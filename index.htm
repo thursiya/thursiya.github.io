@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Thursiyan Nexus</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="index.css" type="text/css" />
+</head>
+
+<body style="background-image: url('images/motif2d.png')">
+	<div style="background-color: #9CBA"><table><tr>
+		<td><img src="images/nexus.png" width="64px"></td>
+		<td><span style="font: italic bold 300% Times serif"><i>Thursiyan Nexus</i></span></td>
+	</tr></table></div>
+
+	<div style="float:right">
+		<p style="line-height: 18px; font-size: 18px; font-family: times;">
+			&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
+			<script>
+				var s;
+				for (var line=1; line<23; line++) {
+					for(var i=1;i<24;i++) {
+						s = (Math.floor((Math.random()*2)%2)) ? '\u2571': '\u2572';
+						if (line == 1) {
+							s = (i % 2) ? '\u2572': '\u2571';
+						}
+						if (line == 22) {
+						  	s = (i % 2) ? '\u2572': '\u2571';
+						}
+						if (i == 1) {
+							s = (line % 2) ? '\u2571': '\u2572';
+						}
+						if (i == 23) {
+							s = (line % 2) ? '\u2572': '\u2571';
+						}
+						document.write(s);
+					}
+					document.writeln(" &nbsp; <br>");
+				}
+			</script>
+		</p>
+	</div>
+	
+	<br>
+
+	<div style="padding:10px">
+		<h3>Board Games</h3>
+			<ul>
+				<dd><a href="collection">Board Game Collection</a></dd>
+				<!--<dd><a href="edcisite">Game Design Locus</a></dd>-->
+			</ul>
+			<br>
+			
+		<h3>Lego</h3>
+			<ul>
+				<dd><a href="lego">Lego Collection</a></dd>
+			</ul>
+			<br>
+		
+		<h3>Minecraft</h3>
+			<ul>
+				<dd><a href="http://skunkland.vastserve.com">Skunkland Server Site</a></dd>
+			</ul>
+			<br>
+		
+		<h3>Web Games</h3>
+			<ul>
+				<dd><a href="spacegame/spacegame.html">Simple Space Game</a></dd>
+				<dd><a href="textgames/textconsole.htm">Classic Text-based Games</a></dd>
+			</ul>
+			<br>
+		
+		<h3>Language</h3>
+			<ul>
+				<dd><a href="styleguide.htm">Style Guide</a></dd>
+				<dd><a href="language">Thursiyan Language</a></dd>
+			</ul>
+			<br>
+			
+		<h3>Shared Creations</h3>
+			<ul>
+				<dd><a href="https://drive.google.com/open?id=1hmP9PtF9j-CuN7uS0lbtO00pIXRecyWc">Midkemia Conquest Map</a> (Map for <a href="http://www.windowsgames.co.uk/conquest.html" target="_blank">Sean O'Connor's Conquest</a>)</dd>
+			</ul>
+	</div>
+</body>
+</html>
