@@ -1,0 +1,61 @@
+<html><head>
+
+<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
+
+<title>Elevator Design Schematics</title>
+
+</head>
+<body>
+
+<div class="content round shadow">
+	<div class="contentheader round">1x1 Minecart Elevator</div>
+	<p>
+		<img src="Elevator (Side View).png" alt="Elevator Design (Side View)" height="486" style="float:right;margin:10px">
+		If you're looking for a little more modern way of ascending your build try this simple elevator 
+		system.  The shaft is only 1m by 1m and it requires no redstone wiring plus it functions for 
+		any number of standard 4m high floors and it's super quick!  You will need 1 minecart, 1 
+		ladder, 1 door, and 1 pressure plate per floor (aside from the ground level).  The ground floor 
+		is simple because it requires nothing, only access to the elevator shaft.  For each subsequent 
+		floor you will need to place a ladder against a block in the shaft level with the floor you're 
+		standing on, then a dirt block above the ladder and a rail on top of the dirt.  Place a 
+		minecart on the rail then destroy the dirt block - this will drop the dirt block and the rail and 
+		the minecart will sink gently down to rest on the ladder.  Now turn away from the minecart and 
+		place your door - this way the back of the door is flush with the minecart and it won't float 
+		off of its spot.  Above your door you need to place a ceiling slab or leave the space open to 
+		allow for the minimum 2.5m clearance required for dismounting (unless you are not fully 
+		enclosing your 1x1 elevator shaft then you will be able to exit at the diagonals).  <i><b>EDIT: 
+		As of 1.8 you now need a minimum of 2.8m clearance to dismount so ceiling slabs now block 
+		exiting.  Ceiling slabs can be replaced with ceiling trapdoors (which also take signs/item 
+		frames).</b></i>  You can place a sign or picture frame with a ladder in it on the slab to 
+		visually cover up the empty shaft space and simultaneously mark an elevator entrance.  Placing a 
+		pressure plate in front of the elevator door allows for easy access.  See the diagram for a side 
+		view of the design.  Note that if your minecarts are more than 4m apart, they aren't sitting at 
+		floor level, or you don't leave exit clearance then your elevator will not work.
+	</p>
+	<p>
+		Through testing in single player I have determined the method that minecarts choose an exit 
+		space and it <b>is relevant to orientation</b>.  When exiting the minecart from a simple elevator 
+		shaft the exit chosen will be in this order: Northwest corner, North, Northeast, West, East.  If 
+		all five of those potential exits do not have at least 2.5m clearance then you will exit to the 
+		minecart itself.  This means that <b>elevators with entrances that face south will not work</b> 
+		properly because all of the potential exits will normally be covered up.  Be careful to consider 
+		this "north side exit strategy" when placing an elevator.
+	</p>
+	<p>
+		This elevator takes advantage of a quirk of minecarts that lets you teleport a short distance 
+		when entering a minecart and the fact that dismounting moves you away from the minecart.  While 
+		sitting in a minecart you can right-click the minecart above you to teleport to it, as long as 
+		the next minecart up is no more than 4m away (3 blocks in between the two).  To ascend the 
+		elevator step into the shaft at ground floor or right-click the minecart behind the door on 
+		another floor then look up and hold right-click until you reach your desired floor.  Leave the 
+		elevator by pressing SHIFT.  To descend simply walk directly into the minecart and you will 
+		fall (safely) through the shaft until you reach the bottom (or you can right-click a minecart 
+		to stop prematurely).
+	</p>
+	<br style="clear: both">
+	
+</div>
+
+</body>
+</html>
