@@ -1,0 +1,137 @@
+<html><head>
+
+<link rel="stylesheet" type="text/css" href="data/collection.css" />
+<title>Board Game Collection</title>
+
+<script type="text/javascript">
+let Selected = 0;
+
+loadFile("data/gamedata.txt", 1);
+loadFile("data/2pgamedata.txt", 2);
+loadFile("data/othergamedata.txt", 3);
+
+function loadFile (url, id) {
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", url);
+	xhr.send();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			fileLoaded(id, convertToArray(xhr.responseText));
+		}
+	}
+}
+
+function convertToArray (data) {
+	// Properly quote keys for JSON parsing
+	data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
+	// Remove final comma
+	if (data.substr(-1) == ",") data = data.slice(0, -1);
+	// Convert @####|Name@ to expansion links
+	data = data.replace(/@(\d+)\|([^@]+)@/g, "<a href='https://www.boardgamegeek.com/boardgameexpansion/$1' target='_blank'>$2</a>");
+	// Convert to array and parse
+	let arr = [];
+	data = data.split(",\n\n");
+	for (let i of data) arr.push(JSON.parse(i));
+	return arr;
+}
+
+function fileLoaded (id, data) {
+	switch (id) {
+		case 1:
+			// Sort games by title (and reverse)
+			nsort = data.sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
+			nrev = nsort.slice().reverse();
+			// Sort games by maximum number of players (and reverse)
+			psort = data.slice().sort((a, b) => a.minp == b.minp ? a.maxp - b.maxp : a.minp - b.minp);
+			prev = data.slice().sort((a, b) => a.maxp == b.maxp ? b.minp - a.minp : b.maxp - a.maxp);
+			// Sort games by shortest playing time (and longest)
+			tsort = data.slice().sort((a, b) => a.time - b.time);
+			trev = tsort.slice().reverse();
+			// Sort games by complexity (and reverse)
+			csort = data.slice().sort((a, b) => a.skill - b.skill);
+			crev = csort.slice().reverse();
+			// Sort games by luck factor (and reverse)
+			lsort = data.slice().sort((a, b) => a.luck - b.luck);
+			lrev = lsort.slice().reverse();	
+			list();
+			break;
+		case 2:
+			games2 = data;
+			list(6);
+			break;
+		case 3:
+			games3 = data;
+			list(7);
+		default:
+	}
+}
+
+function list (sorttype) {
+	let out = '', arr, table = "main";
+	switch (sorttype) {
+		default:
+			sorttype = 1;
+		case 1:
+			Selected == 1 ? (arr = nrev, Selected = 0) : (arr = nsort, Selected = 1);
+			break;
+		case 2:
+			Selected == 2 ? (arr = prev, Selected = 0) : (arr = psort, Selected = 2);
+			break;
+		case 3:
+			Selected == 3 ? (arr = trev, Selected = 0) : (arr = tsort, Selected = 3);
+			break;
+		case 4:
+			Selected == 4 ? (arr = crev, Selected = 0) : (arr = csort, Selected = 4);
+			break;
+		case 5:
+			Selected == 5 ? (arr = lrev, Selected = 0) : (arr = lsort, Selected = 5);
+			break;
+		case 6:		// 2p games
+			arr = games2;
+			table = "2player";
+			break;
+		case 7:		// other games
+			arr = games3;
+			table = "other";
+	}
+	
+	out += `<tr><th title="Box art from the Board Game Geek site.">Image</th>`;
+	out += `<th title="Title of the game, linked to its Board Game Geek entry."${sorttype < 6 ? ' class="sortable" onclick="list(1)"' : ''}>Title</th>`;
+	out += `<th title="Number of players supported."${sorttype < 6 ? ' class="sortable" onclick="list(2)"' : ''}>Players</th>`;
+	out += `<th title="How much time it takes to play an average game, in minutes. The variable &#39;P&#39; represents players, as many games have playing times dependant on number of players."${sorttype < 6 ? ' class="sortable" onclick="list(3)"' : ''}>Time</th>`;
+	out += `<th title="Learning curve and strategic depth on a scale of 1 to 5."${sorttype < 6 ? ' class="sortable" onclick="list(4)"' : ''}>Complexity</th>`;
+	out += `<th title="Importance of random/external factors on a scale of 1 to 5."${sorttype < 6 ? ' class="sortable" onclick="list(5)"' : ''}>Luck Factor</th>`;
+	out += `<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr>`;
+	
+	for (let i of arr) {
+		out += `<tr><td class="picbox"><img src="images/${i.num}.jpg"></td>`;
+		out += `<td><a href="http://www.boardgamegeek.com/boardgame/${i.num}" target="_blank">${i.name}</a></td>`;
+		out += `<td title="${i.pnote || ''}">${i.ptext || (i.minp ? `${i.minp}-${i.maxp}` : '2')}</td>`;
+		out += `<td title="${i.tnote || ''}">${i.ttext || i.time}</td>`;
+		out += `<td>${i.skill}</td><td>${i.luck}</td>`;
+		out += `<td title="${i.enote || ''}">${i.exp || '-'}</td></tr>`;
+	}
+	
+	document.getElementById(table).innerHTML = out;
+}
+</script>
+</head>
+
+<body>
+
+<div class="leftCol">
+	<p><i>Click the appropriate column headers to sort by Title, Players, Time, Complexity, or Luck Factor. Click again to reverse the list.</i></p>
+	<h2>My Board Game Collection</h2>
+	<table id="main"></table>
+</div>
+
+<div class="rightCol">
+	<h2>2-Player Only Games</h2>
+	<table id="2player"></table>
+	<br />
+	<h2>Other Games</h2>
+	<table id="other"></table>
+</div>
+
+</body>
+</html>
