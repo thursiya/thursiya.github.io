@@ -1,0 +1,72 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
+
+<title><?php echo $nation?></title>
+
+<script src="../data/calc.js"></script>
+
+<script>
+var topen = "<tr><td style='padding:5'><table class='info'><tr><td style='width:90'><b>";
+var tclose = "</td></tr></table></td></tr>";
+var nfull = "<?php echo "The $ntype of $nation"?>";
+
+function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
+	bigcity = bigcity || capital;
+	var out = "<table style='float:right' width='300'><tr><th>" + nfull + "</th></tr>";
+	out += "<tr><td><img src='images/<?php echo $nation?> Flag (Wool).png' width='50%'><br><i>" + (motto || "---") + "</i></td></tr>";
+	out += "<tr><td style='padding:0'><img src='../maps/<?php echo $nation?>.jpg' width='100%'></td></tr>";
+	out += topen + "Capital</b></td><td>" + capital + "</td></tr><tr><td><b>Largest City</b><td>" + bigcity + " (";
+	document.write(out);
+	pp(bigcity);
+	var	out = ")" + tclose;
+	out += topen + "Demonym</b></td><td>" + demonym + tclose;
+	out += topen + "Government</b></td><td>" + government + tclose;
+	if (language || money || faith) {
+		out += topen;
+		if (language) {
+			out += "Language</b></td><td>" + language + "</td></tr>";
+			if (money || faith) out += "<tr><td><b>";
+		}
+		if (money) {
+			out += "Currency</b></td><td>" + money + "</td></tr>";
+			if (faith) out += "<tr><td><b>";
+		}
+		if (faith) out += "Religion</b></td><td>" + faith;
+		out += tclose;
+	}
+	if (animal) out += topen + "Animal</b></td><td>" + animal + tclose;
+	out += topen + "Tallest Building</b></td><td>" + tallbuilding + "</td></tr>";
+	out += "<tr><td style='width:90'><b>Tallest Structure</b></td><td>" + tallstructure + tclose;
+	out += "<tr><td><img src='images/<?php echo $nation?> Banner.png' width='64'></td></tr></table>";
+	document.write(out);
+}
+
+	
+	function regions(nation,rtype,regions,bigsettles,builds,nflag) {
+		var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
+		for (var i = 0; i < regions.length; i++) {
+			var rname = regions[i];
+			if (nflag) rname = nation + " " + regions[i];
+			out += "<tr><td><img src='images/" + rname + " Flag.png' height='50' alt='Flag of " + rname + " " + rtype + "'></td>";
+			out += "<td><a href='" + nation + "/" + regions[i] + ".php'><b>" + regions[i] + "</b></a></td>";
+			out += "<td>" + (bigsettles[i] || "-") + "</td><td>";
+			for (var j = 0; j < builds[i].length; j++) {
+				out += builds[i][j] + "<br>"
+			}
+			out += "</td></tr>";
+		}
+		out += "</table><br>";
+		document.write(out);
+	}
+</script>
+
+</head>
+<body>
+
+<img src="images/<?php echo $nation?> Flag.png" height="200" class="gallery" style="display:block; margin:auto auto">
+
+<div class="content round shadow">
+	<div class="contentheader round"><script>document.write(nfull)</script></div>

@@ -1,0 +1,35 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon" />
+
+<title><?php echo $region.' '.$rtype ?></title>
+
+<script src="../../data/calc.js"></script>
+
+<script>
+	function settlements(settles,founds) {
+		document.write("<table style='float:right'><tr><th>Settlements</th><th>Population</th><th>Founded</th></tr>");
+		if (settles == 'None') document.write("<tr><td>None</td><td>-</td><td>-</td>");
+		else {
+			for(var i = 0; i < settles.length; i++) {
+				document.write("<tr><td>" + settles[i] + "</td><td>");
+				pp(settles[i]);
+				document.write("</td><td>");
+				if (founds[i] == 'Unknown') document.write('Unknown');
+				else sy(founds[i]);
+				document.write("</td></tr>");
+			} 
+		}
+		document.write("</table>");
+	}
+</script>
+
+</head>
+<body>
+
+<img src="../images/<?php echo $region?> Flag.png" height="200" class="gallery" style="display:block; margin:auto auto">
+
+<div class="content round shadow">
+	<div class="contentheader round"><?php echo $region.' '.$rtype ?></div>

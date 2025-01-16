@@ -1,0 +1,19 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
+
+<title><?php echo ($mytitle ?: 'Skunkland Server') ?></title>
+
+<script>
+function pic(name,loc,title) {
+	fileloc = (loc == 1) ? 'newsletters':'gallery';
+	document.write("<td><a href='../" + fileloc + "/images/" + name + ".jpg' target='_blank'><img src='../" + fileloc + "/images/" + name + ".jpg' alt='" + name + "' height='175'><br><br>" + (title || name) + "</a></td>");
+}
+</script>
+
+</head>
+<body>
+
+<div class="content round shadow">
