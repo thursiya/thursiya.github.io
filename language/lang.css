@@ -1,0 +1,53 @@
+/* Global Styles */
+
+body {margin:0px;}
+
+a {color: #0000cc;text-decoration:none;font-weight:bold;}
+	
+a:hover {color: #000099;text-decoration:underline;}
+	
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid black;
+  padding: 5px }
+caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: inherit;
+  border: inherit;
+  vertical-align: inherit }
+
+h1 { text-align: center }
+
+.title {
+  margin: auto;
+  vertical-align: middle;
+  text-align: center;
+  border: none }
+
+.markup {
+  padding: 0px 15px 5px 0px;
+  border: none;
+  text-align: left }
+
+.round {-moz-border-radius: 5px; border-radius: 5px}
+
+.shadow {
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);/*#025;*/
+  -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75);}
+
+.content {
+  width: 1000px;
+  background: #f0f0f0;
+  margin: 10 auto 8px auto; padding: 16px; }
+
+.contentheader {
+  background: #e0f0f0;
+  margin-bottom: 10px; padding: 2px 2px 2px 8px;
+  font-family: Courier; font-size: 18px;
+  font-weight: bold;
+  color: #404090;
+  border: 1px solid #e0d9d0;
+  text-shadow: 1px 1px 4px #aaa; -webkit-text-shadow: 1px 1px 4px #aaa }
