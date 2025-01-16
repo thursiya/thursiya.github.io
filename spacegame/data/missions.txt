@@ -1,0 +1,18 @@
+{
+	passage1: {
+		text: "I need to get to [planet] as quick as possible.",
+		reward: "credit(range); comm('I might still make it in time.')",
+		reward2: "credit(range + bonus); comm('')",
+		trigger: "newEvent(id,'fail_passage',range,12)"
+	},
+	escort1: {},
+	deliver1: {
+		text: "I need you to deliver this [cargo] to [person] on [planet], and I need it done quickly!",
+		reward: "credit(200);comm('Oh, I\'ve been waiting for this. Thank you.')",
+		trigger: ""
+	},
+	fail_passage: {
+		text: "It's too late now, I'll just disembark here.",
+		event: "disembark(person)"
+	}
+}

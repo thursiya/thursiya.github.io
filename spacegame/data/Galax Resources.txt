@@ -1,0 +1,147 @@
+Resource List - Galax.bas
+-------------------------
+
+00	Nothing/Empty
+01	Liquid Oxygen
+02	Water
+03	Grain
+04	Fruits & Vegs.
+05	Synthetic Meat
+06	Fertilizer
+07	Waste Products
+08	Radioactives/Dangerous Waste
+09	Government Artifacts
+10	Packages
+11	Info Vaults
+12	Assorted Minerals
+13	Precious Metals
+14	Gemstones
+15	Iron Ore
+16	Steel
+17	Bauxite
+18	Aluminum
+19	Titanium
+20	Lumber
+21	Chemicals
+22	Petroleum
+23	Heavy Plastics
+24	Hydrogen Fuel Cells
+25	Liquor - Grade 1: Assorted New
+26	Liquor - Grade 2: Assorted Aged
+27	Liquor - Grade 3: Doleamas
+28	Live Animals - Grade 1: Bio-Engineered
+29	Live Animals - Grade 2: Terran
+30	Live Animals - Grade 3: Lacotian
+31	Animal Meat - Grade 1: Bio-Engineered
+32	Animal Meat - Grade 2: Terran
+33	Animal Meat - Grade 3: Lacotian
+34	Animal Skins - Grade 1: Bio-Engineered
+35	Animal Skins - Grade 2: Terran
+36	Animal Skins - Grade 3: Lacotian
+37	Slaves - Grade 1: Ferylandro
+38	Slaves - Grade 2: Saurian
+39	Slaves - Grade 3: Terran
+40	Slaves - Grade 3: Rigelian
+41	Slaves - Grade 3: Sirian
+42	Slaves - Grade 4: Gormeg
+43	Slaves - Grade 5: Luxorian
+44	Hydroponic Farms - Grade 1: Stellar
+45	Hydroponic Farms - Grade 2: Centauri
+46	Hydroponic Farms - Grade 3: Sirius
+47	Bacteria Farms - Grade 1: Stellar
+48	Bacteria Farms - Grade 2: Astromedica
+49	Bacteria Farms - Grade 3: Militech
+
+
+
+
+
+50	Narcotics - Grade 1: Minor
+51	Narcotics - Grade 2: Hallucinogens
+52	Narcotics - Grade 3: Heavy
+53	Narcotics - Grade 4: Psychotropes
+54	Medicines - Grade 1: Fortune			
+55	Medicines - Grade 2: Centauri
+56	Medicines - Grade 3: Astromedica
+57	Explosives - Grade 1: Industrial 
+58	Explosives - Grade 2: Large Scale
+59	Industrial Equipment - Grade 1: Forge
+60	Industrial Equipment - Grade 2: Mechanica
+61	Industrial Equipment - Grade 3: Systech
+62	Farming Equipment - Grade 1: Systech
+63	Farming Equipment - Grade 2: Sirius
+64	Farming Equipment - Grade 3: Geotech
+65	Air Processors - Grade 1: Certibrand
+66	Air Processors - Grade 2: Systech
+67	Automobiles - Grade 1: Eagle
+68	Automobiles - Grade 2: Geotech
+69	Automobiles - Grade 2: 5-Star
+70	Automobiles - Grade 3: Mechanica
+71	Automobiles - Grade 4: Eunion
+72	Probes - Grade 1: Globablnet
+73	Probes - Grade 2: Forge
+74	Hand Weapons - Grade 1: Cyberops
+75	Hand Weapons - Grade 2: Forge
+76	Hand Weapons - Grade 3: Militech
+77	Hand Weapons - Grade 4: Eagle
+78	Computers - Grade 1: Nova
+79	Computers - Grade 2: Microtronic
+80	Computers - Grade 2: Eurotech
+81	Computers - Grade 3: Globalnet
+82	Robots - Grade 1: Cyberops
+83	Robots - Grade 2: Microtronic
+84	Robots - Grade 3: Nanoworks
+85	Robots - Grade 4: Eurotech
+86	Luxury Goods - Grade 1: Polis
+87	Luxury Goods - Grade 2: Eurotech
+88	Luxury Goods - Grade 3: ICP (Independant Consortium of Planets)
+89	Industrial Goods - Grade 1: Forge
+90	Industrial Goods - Grade 2: Mechanica
+91	Perishable Goods - Grade 1: MilkyWay
+92	Perishable Goods - Grade 2: 5-Star
+93	Perishable Goods - Grade 2: Sirius
+94	Perishable Goods - Grade 3: Fortune
+95	Commercial Goods - Grade 1: Eagle
+96	Commercial Goods - Grade 2: Nanoworks
+97	Commercial Goods - Grade 3: Eurotech
+98	Commercial Goods - Grade 3: Fortune
+99	Commercial Goods - Grade 4: Polis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5-Star Corp.		Rigel			Autos, P.Goods
+Astromedica		Sirius			B.Farms, Medicine
+Centauri Corp.		Alpha Centauri		H.Farms, Medicine
+<Certibrand>					Air Processors
+Cyberops		Betelgeuse		Hand Weapons, Robots
+<Doleamas Farms>	Barnard's Star		Liquor
+Eagle Corp.		Sol			Autos, Hand Weapons, C.Goods
+<Eunion Corp.>		Sol			Autos
+Eurotech		Sol			Coms, Robots, L.Goods, C.Goods
+Forge Ind.		Rigel			Ind.Equip., Probes, HW, I.Goods
+Fortune			Sol			Medicine, P.Goods, C.Goods
+Geotech						F.Equip., Autos
+Globalnet		Altair			Probes, Computers
+<ICP>						Luxury Goods
+Mechanica Ind.		Sirius			I.Equip., Autos, I.Goods
+Microtronic					Computers, Robots
+Militech Ind.		Sol			B.Farms, Hand Weapons
+<MilkyWay>					P.Goods
+Nanoworks					Robots, C.Goods
+<Nova>						Computers
+Polis						L.Goods, C.Goods
+Sirius Corp.		Sirius			H.Farms, F.Equip., P.Goods
+Stellar			Rigel			H.Farms, B.Farms
+Systech						I.Equip., F.Equip., Air Process.
+		

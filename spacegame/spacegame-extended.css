@@ -1,0 +1,245 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+  --starmapWidth: 1330px; 
+  --starmapHeight: 770px;
+  --tabbuttonWidth: 22px;
+}
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 210px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collcontent {
+	display: none;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.leftCol {
+	width: 200px;
+	overflow-y: auto;
+	height: 100vh;
+	flex: 1;
+}
+.rightCol {
+	width: 800px;
+	overflow-y: auto;
+	height: 100vh;
+	flex: 1;
+}
+
+div.hoverable:hover {
+	background-color: #999;
+}
+
+img.tab {
+	width: var(--tabbuttonWidth);
+}
+
+div.marketicon {
+	background-color: #FFF;
+	border-radius: 4px;
+	opacity: 0.9;
+	height: 36px;
+	width: 36px;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+img.marketicon {
+	position: absolute;
+	left: 2px;
+	top: 2px;
+}
+
+.menubutton {
+	display: inline-block;
+	margin: 5px;
+	cursor: pointer;
+}
+
+.middle {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.planet {
+	position: absolute;
+	display: none;
+	cursor: pointer;
+}
+
+.rotatingPlanet {
+	height: 128px;
+	position: absolute;
+	clip-path: circle(64px);
+	animation: rotatingPlanet 16s infinite linear;
+	float: left;
+}
+.rotatingPlanetShadow {
+	position: absolute;
+	left: 5px;
+	top: 5px;
+	width: 128px;
+	height: 128px;
+	background: radial-gradient(circle at center, transparent 60%, #BBB 68%);
+	z-index: 7;
+}
+@keyframes rotatingPlanet {
+	0% {left: 5px; clip-path: circle(64px at 64px 50%);}
+	100% {left: -251px; clip-path: circle(64px at 320px 50%);}
+}
+
+.speaker {
+	width: 100px;
+	float: left;
+	margin: 0 10px 10px 0; 
+}
+
+.worldname {
+	font-variant: small-caps;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+#animationCanvas {
+	position: absolute;
+	z-index: -1;
+}
+
+#commContent {
+	padding: 10px;
+	clear: both;
+	max-height: 620px;
+	overflow-y: auto;
+}
+
+#commButtons {
+	background-color: #333;
+	border-bottom: 3px solid #CC0;
+	padding: 10px;
+	height: 36px;
+}
+
+#commScreen {
+	 width: calc(var(--starmapWidth) * 0.8);
+	 left: calc(var(--starmapWidth) * 0.1);
+}
+
+#GameWindow {
+	height: var(--starmapHeight);
+	user-select: none;
+}
+
+#menuButtons {
+	border-left: 5px solid #900;
+	background-color: #000;
+	color: #FFF;
+	padding: 1px;
+	margin-bottom: 3px;
+	text-align: center;
+	z-index: 9;
+}
+
+#playerInfo {
+	border-left: 5px solid #090;
+	background-color: #000;
+	color: #FFF;
+	padding: 5px;
+}
+
+#playerInfoTime {
+	font: italic bold 150% "Lucida Console", Monaco, monospace;
+	float: right;
+}
+
+#rightFrame {
+	width: 315px;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #111;
+}
+
+#shipCanvas {
+	background-image: url("images/backgrounds/starfield.png");
+	position: absolute;
+	z-index: -3;
+}
+
+#spaceship {
+	width: var(--starmapWidth);
+	height: var(--starmapHeight);
+	position: relative;
+	background-image: url("images/backgrounds/starfield.png");
+	z-index: -3;
+}
+
+#spaceshipIcon {
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+}
+
+#starmap {
+	width: var(--starmapWidth);
+	height: var(--starmapHeight);
+	position: relative;
+	display: inline-block;
+}
+
+#starmapCanvas {
+	background-image: url("images/backgrounds/milky_way(1330x770).jpg");
+	position: absolute;
+	z-index: -2;
+}
+
+#trashzone {
+	position: absolute;
+	left: -102px;
+	top: calc(var(--starmapHeight) - 98px);
+	width: 96px;
+	height: 96px;
+	border: 2px solid white;
+	border-style: solid none none solid;
+	border-radius: 5px 0 0 0;
+	background-image: url("images/backgrounds/hazard-stripes.png");
+	text-align: center;
+}
+
+#worldbox {
+	width: 300px;
+	height: 669px;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	z-index: 8;
+	border-left: 5px solid #009;
+	margin-bottom: 3px;
+	background-color: #000;
+	color: #FFF;
+	padding: 5px;
+}
+
+#worldboxmenu {
+	border: 2px solid white;
+	border-radius: 5px;
+	margin-top: 10px;
+	background-color: #444;
+}
