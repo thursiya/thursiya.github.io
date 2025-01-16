@@ -1,0 +1,311 @@
+{name: "Age of Empires III:<br />The Age of Discovery", num: 22545,
+minp: 2, maxp: 5, time: 160, ttext: "60+20&times;P<br />(100-160)", skill: 4, luck: 2,
+exp: "@41261|<i>The Builders</i>@",
+enote: "The game now officially supports six players with this expansion." },
+
+{name: "Agricola", num: 31260,
+minp: 1, maxp: 5, time: 120, skill: 3, luck: 2,
+exp: "Different decks<br /><i>2 official expansions</i>" },
+
+{name: "Alea Iacta Est", num: 40760,
+minp: 2, maxp: 5, time: 45, ttext: "30-60", skill: 2, luck: 3.5 },
+
+{name: "Alhambra", num: 6249,
+minp: 2, maxp: 6, pnote: "The 2-player game features a dummy third player.", time: 60, skill: 2, luck: 4,
+exp: "@22279|Treasure Chamber@<br /><i>4 others</i>" },
+
+{name: "Alma Mater", num: 299960,
+minp: 2, maxp: 4, pnote: "The 2-player game features a dummy third player.", time: 120, skill: 4, luck: 2,
+exp: "<i>@313011|New Students@</i>" },
+
+{name: "Amun-Re", num: 5404,
+minp: 3, maxp: 5, time: 90, skill: 3, luck: 2 },
+
+{name: "Attika", num: 8051,
+minp: 2, maxp: 4, time: 60, skill: 2, luck: 3 },
+
+{name: "Broom Service:<br />The Card Game", num: 192735,
+minp: 3, maxp: 6, time: 30, skill: 2, luck: 3 },
+
+{name: "Carcassonne", num: 822,
+minp: 2, maxp: 6, time: 60, timenote: "Length varies according to how many expansions are being used.", skill: 2, luck: 3,
+exp: "@5405|Traders & Builders@<br />@2993|Inns & Cathedrals@<br />@31784|Abbey & Mayor@<br />@2591|The River@ &nbsp; @1883|The River II@<br />@12903|The Count of Carcassonne@<br /><i>13 others (Major & Minor)</i>",
+enote: "The River expansion is included in all new printings of Carcassonne." },
+
+{name: "Carcassonne:<br />South Seas", num: 147303,
+minp: 2, maxp: 5, time: 35, skill: 2, luck: 3 },
+
+{name: "Carnegie", num: 310873,
+minp: 1, maxp: 4, time: 120, skill: 4, luck: 1 },
+
+{name: "Cascadia", num: 295947,
+minp: 1, maxp: 4, time: 30, skill: 3, luck: 4 },
+
+{name: "The Castles<br />of Burgundy", num: 84876,
+minp: 2, maxp: 4, time: 90, ttext: "30&times;P", skill: 2, luck: 4,
+exp: "<i>10+ Small Expansions</i>" },
+
+{name: "Catan", num: 13,
+minp: 3, maxp: 6, time: 120, skill: 3, luck: 4,
+exp: "@2807|5-6 Players@<br />@325|Seafarers@<br /><i>2 major expansions</i><br /><i>and 5-6 player versions</i>" },
+
+{name: "Chicago Express", num: 31730,
+minp: 2, maxp: 6, time: 60, skill: 3, luck: 0,
+exp: "@47400|<i>Narrow Gauge &<br />Erie Railroad Company</i>@" },
+
+{name: "Citadels", num: 478,
+minp: 2, maxp: 8, time: 60, ttext: "15&times;P<br />(30-120)", skill: 2, luck: 4,
+exp: "@13291|The Dark City@",
+enote: "The Dark City expansion is included in all new printings of Citadels." },
+
+{name: "Clans", num: 4636,
+minp: 2, maxp: 4, time: 30, skill: 1.5, luck: 1 },
+
+{name: "Colonia", num: 56707,
+minp: 3, maxp: 6, time: 120, skill: 4, luck: 3 },
+
+{name: "Colossal Arena", num: 105,
+minp: 2, maxp: 5, time: 60, skill: 2, luck: 3 },
+
+{name: "Dixit", num: 39856,
+minp: 3, maxp: 8, time: 30, skill: 2, luck: 3,
+exp: "<i>Numerous</i>",
+enote: "Most expansions are new card sets." },
+
+{name: "Dominion", num: 36218,
+minp: 2, maxp: 4, time: 45, skill: 2, luck: 3,
+exp: "<i>@40834|Intrigue@<br />Many others</i>",
+enote: "Dominion: Intrigue is playable alone." },
+
+{name: "Edel, Stein & Reich", num: 5781,
+minp: 2, maxp: 5, time: 60, skill: 2, luck: 3 },
+
+{name: "Egizia", num: 58421,
+minp: 2, maxp: 4, time: 120, skill: 2.5, luck: 3 },
+
+{name: "Eketorp", num: 6281,
+minp: 3, maxp: 6, time: 45, skill: 2, luck: 3 },
+
+{name: "Endeavor", num: 33160,
+minp: 2, maxp: 5, time: 60, ttext: "60-90", skill: 3, luck: 1 },
+
+{name: "Fairy Tale", num: 13823,
+minp: 2, maxp: 5, time: 20, skill: 2, luck: 3 },
+
+{name: "Finca", num: 40628,
+minp: 2, maxp: 4, time: 45, skill: 2, luck: 2,
+exp: "<i>@70463|El Razul@</i>" },
+
+{name: "Galaxy Trucker", num: 31481,
+minp: 2, maxp: 5, time: 90, skill: 2.5, luck: 3,
+exp: "@38378|The Big Expansion@<br />Tim's custom boards" },
+
+{name: "El Grande", num: 93,
+minp: 2, maxp: 5, time: 120, skill: 4, luck: 3,
+exp: "@583|Expansion Set@" },
+
+{name: "Great Western Trail", num: 193738,
+minp: 2, maxp: 4, time: 120, ttext: "40&times;P", skill: 4, luck: 2.5,
+exp: "<i>@245744|Rails to the North@</i>" },
+
+{name: "Gùgōng", num: 250458,
+minp: 1, maxp: 5, time: 90, skill: 4, luck: 2,
+exp: "<i>@285560|Pànjūn@</i>" },
+
+{name: "Guillotine", num: 116,
+minp: 2, maxp: 5, time: 30, skill: 1.5, luck: 4 },
+
+{name: "Innovation", num: 63888,
+minp: 2, maxp: 4, time: 90, ttext: "30-90", skill: 3, luck: 3,
+exp: "@92898|Echoes of the Past@<br /><i>@122323|Figures in the Sand@</i>" },
+
+{name: "In the Year<br />of the Dragon", num: 31594,
+minp: 2, maxp: 5, time: 90, skill: 3, luck: 1,
+exp: "@40688|<i>Alea Treasure Chest</i>@" },
+
+{name: "Kanagawa", num: 200147,
+minp: 2, maxp: 4, time: 45, skill: 2, luck: 2,
+exp: "<i>@264398|Yokai@</i>" },
+
+{name: "Keyflower", num: 122515,
+minp: 2, maxp: 6, time: 120, ttext: "90-120", skill: 3.5, luck: 2.5,
+exp: "<i>@144058|The Farmers@<br />@163572|The Merchants@<br />Numerous promotional tiles</i>" },
+
+{name: "Kingdomino", num: 204583,
+minp: 2, maxp: 4, time: 30, skill: 2, luck: 3 },
+
+{name: "Louis XIV", num: 13642,
+minp: 2, maxp: 4, time: 100, skill: 4, luck: 3,
+exp: "@40688|<i>Alea Treasure Chest</i>@" },
+
+{name: "Mamma Mia!", num: 49,
+minp: 2, maxp: 5, time: 30, skill: 2, luck: 4 },
+
+{name: "Maracaibo", num: 276025,
+minp: 1, maxp: 4, time: 90, ttext: "30&times;P", skill: 4, luck: 3,
+exp: "<i>@338013|The Uprising@</i>" },
+
+{name: "Masons", num: 21791,
+minp: 2, maxp: 4, time: 60, skill: 2, luck: 4 },
+
+{name: "Metro", num: 559,
+minp: 2, maxp: 6, time: 45, skill: 3, luck: 3 },
+
+{name: "Meuterer", num: 902,
+minp: 3, maxp: 5, ptext: "3-4<br />(5)", pnote: "We usually play with 5 players, despite what the rules say.", time: 60, skill: 3, luck: 3 },
+
+{name: "Minecraft:<br />Builders & Biomes", num: 269603,
+minp: 2, maxp: 4, time: 45, skill: 2, luck: 3,
+exp: "<i>@301055|Farmer's Market@</i>" },
+
+{name: "Mombasa", num: 172386,
+minp: 2, maxp: 4, time: 90, skill: 4, luck: 1.5,
+exp: "<i>@213293|Cooked Books@</i>" },
+
+{name: "Orl&#233;ans", num: 164928,
+minp: 2, maxp: 4, time: 90, skill: 3, luck: 2,
+exp: "<i>Various Promos<br />@183682|Invasion@<br />@204814|Trade & Intrigue@</i>" },
+
+{name: "Pandemic", num: 30549,
+minp: 2, maxp: 4, pnote: "This game is entirely cooperative.", time: 45, skill: 2, luck: 3,
+exp: "<i>Various Promos<br />@40849|On the Brink@<br />@137136|In the Lab@<br />@168703|State of Emergency@</i>" },
+
+{name: "Pick-Omino Deluxe", num: 245200,
+minp: 2, maxp: 7, time: 30, skill: 2, luck: 4},
+
+{name: "The Pillars<br />of the Earth", num: 24480,
+minp: 2, maxp: 4, time: 90, skill: 3.5, luck: 2.5},
+
+{name: "Point Salad", num: 274960,
+minp: 2, maxp: 6, time: 15, skill: 2, luck: 3.5},
+
+{name: "Primordial Soup", num: 124,
+minp: 2, maxp: 4, ptext: "3-6<br />(2)", pnote: "There is a variant rule online for play with 2 players.", time: 90, skill: 3, luck: 2,
+exp: "@2005|Freshly Spiced@" },
+
+{name: "Puerto Rico", num: 3076,
+minp: 3, maxp: 5, time: 100, skill: 3.5, luck: 2,
+exp: "<i>@40688|Alea Treasure Chest@<br />1 official</i>" },
+
+{name: "The Quacks of<br />Quedlinburg", num: 244521,
+minp: 2, maxp: 4, time: 60, skill: 2.5, luck: 3.5,
+exp: "<i>@269259|The Herb Witches@<br />@316597|The Alchemists@</i>" },
+
+{name: "Qwirkle", num: 25669,
+minp: 2, maxp: 4, time: 45, skill: 3, luck: 3.5,
+exp: "<i>@147561|Expansion Boards@<br />@191075|Erweiterung 2@" },
+
+{name: "R-Eco", num: 15290,
+minp: 2, maxp: 5, time: 20, skill: 2, luck: 3 },
+
+{name: "Ra", num: 12, pic: "544927_sq.jpg",
+minp: 3, maxp: 5, time: 60, skill: 3, luck: 4 },
+
+{name: "Race for the Galaxy", num: 28143,
+minp: 2, maxp: 6, ptext: "2-4<br />(1, 5-6)", pnote: "Expansions add the ability to play with 1, 5 and 6 players.", time: 45, skill: 3, luck: 4,
+exp: "@34499|The Gathering Storm@<br />@40210|Rebel vs Imperium@<br />@66121|The Brink of War@<br /><i>@92932|Alien Artifacts@<br />@161599|Xeno Invasion@</i>",
+enote: "Alien Artifacts and Xeno Invasion are each not compatible with any other expansions and can only expand the base game." },
+
+{name: "Red7", num: 161417,
+minp: 2, maxp: 4, time: 30, skill: 2.5, luck: 4 },
+
+{name: "Sail to India", num: 141736,
+minp: 3, maxp: 4, time: 60, skill: 3, luck: 2},
+
+{name: "San Juan", num: 8217,
+minp: 2, maxp: 4, time: 45, skill: 2.5, luck: 4,
+exp: "<i>@40688|Alea Treasure Chest@</i>" },
+
+{name: "Senji", num: 33107,
+minp: 3, maxp: 6, pnote: "Plays best with 6 only. All missing players are replaced by dummy players.", time: 90, skill: 3, luck: 3 },
+
+{name: "Shogun", num: 20551,
+minp: 3, maxp: 5, time: 120, skill: 4, luck: 2.5,
+exp: "<i>@74823|Tenno's Court@</i>" },
+
+{name: "Sid Meier's<br />Civilization<br />The Board Game", num: 77130,
+minp: 2, maxp: 4, pnote: "Fame and Fortune expansion allows for 5 players.", time: 180, ttext: "120-240", skill: 4, luck: 2.5,
+exp: "<i>@108415|Fame and Fortune@<br />@142708|Wisdom and Warfare@</i>" },
+
+{name: "Space Dealer", num: 23451,
+minp: 2, maxp: 4, ptext: "2-4<br /><i>(5-8)</i>", pnote: "Space Dealer can be played with up to 8 players by combining two copies of the game.", time: 30, tnote: "Space Dealer is a timed game; it lasts exactly 30 minutes.", skill: 2.5, luck: 2,
+exp: "<i>@32342|All-Zeit@</i>" },
+
+{name: "Stone Age", num: 34635,
+minp: 2, maxp: 4, pnote: "The expansion allows for 5 players.", time: 90, skill: 3, luck: 3,
+exp: "<i>@107576|The Expansion@</i>" },
+
+{name: "Suburbia", num: 123260,
+minp: 1, maxp: 5, time: 90, skill: 3, luck: 3,
+exp: "@145196|Suburbia Inc@<br />@128386|Suburbia: Essen Spiel@" },
+
+{name: "Taj Mahal", num: 475,
+minp: 3, maxp: 5, time: 90, skill: 3.5, luck: 2 },
+
+{name: "Taluva", num: 24508,
+minp: 2, maxp: 4, time: 30, ttext: "15&times;P<br />(30-60)", skill: 2, luck: 2,
+exp: "<i>@235255|Extension@</i>" },
+
+{name: "Teotihuacan:<br />City of Gods", num: 229853,
+minp: 1, maxp: 4, time: 120, skill: 3.5, luck: 2,
+exp: "<i>@270364|Late Preclassic Period@<br />@293473|Shadow of Xitle@<br />@316777|Expansion Period@</i>" },
+
+{name: "Terra Mystica", num: 120677,
+minp: 2, maxp: 5, time: 120, ttext: "30&times;P<br />(60-150)", skill: 3.5, luck: 2,
+exp: "<i>@161317|Fire & Ice@<br />@280885|Merchants of the Sea@</i>" },
+
+{name: "Through the Ages:<br />A Story of Civilization", num: 25613,
+minp: 2, maxp: 4, time: 120, ttext: "60&times;P<br />(120-240)", skill: 5, luck: 2 },
+
+{name: "Thurn and Taxis", num: 21790,
+minp: 2, maxp: 4, time: 60, skill: 3, luck: 2.5,
+exp: "<i>3 official</i>" },
+
+{name: "Tichu", num: 215,
+minp: 4, maxp: 4, ptext: "4<br />(3-6)", pnote: "Tichu really only plays well with 2 partnerships of 2.", time: 60, skill: 3, luck: 4 },
+
+{name: "Ticket to Ride:<br />Europe", num: 14996,
+minp: 2, maxp: 5, time: 90, skill: 2, luck: 4,
+exp: "<i>1 official<br />Many variants</i>" },
+
+{name: "Tigris & Euphrates", num: 42,
+minp: 2, maxp: 4, time: 120, skill: 3, luck: 3,
+exp: "<i>The Ziggurut</i>" },
+
+{name: "Tikal", num: 54,
+minp: 2, maxp: 4, time: 120, skill: 3, luck: 2.5,
+exp: "<i>@65712|Jungle Zombie@</i>" },
+
+{name: "Timbuktu<br />(Tombouctou)", num: 691,
+minp: 3, maxp: 5, time: 60, ttext: "20&times;P<br />(60-100)", skill: 3, luck: 3 },
+
+{name: "Tongiaki", num: 9028,
+minp: 2, maxp: 6, time: 60, skill: 3, luck: 3 },
+
+{name: "Traders of<br />Carthage", num: 24827,
+minp: 2, maxp: 4, time: 45, skill: 2.5, luck: 3 },
+
+{name: "Transamerica", num: 2842,
+minp: 2, maxp: 6, time: 30, skill: 2, luck: 3,
+exp: "@29432|Vexation@" },
+
+{name: "Troyes", num: 73439,
+minp: 2, maxp: 4, time: 120, skill: 4, luck: 2.5,
+exp: "<i>@127061|The Ladies of Troyes@<br />@94284|Bonus Cards@</i>" },
+
+{name: "Tsuro", num: 16992,
+minp: 2, maxp: 8, time: 15, skill: 1, luck: 3 },
+
+{name: "Tzolk'in:<br />The Mayan Calendar", num: 126163,
+minp: 2, maxp: 4, pnote: "Tribes & Prophecies allows for 5 players.", time: 120, skill: 4, luck: 2,
+exp: "@143065|<i>Tribes & Prophecies</i>@" },
+
+{name: "Verr&auml;ter", num: 72,
+minp: 3, maxp: 4, time: 60, skill: 3, luck: 3.5 },
+
+{name: "The White Castle", num: 371942,
+minp: 2, maxp: 4, time: 90, skill: 4, luck: 2,
+exp: "@420321|<i>Matcha</i>@"},
+
+{name: "Yokohama", num: 196340,
+minp: 2, maxp: 4, time: 90, skill: 4, luck: 2},

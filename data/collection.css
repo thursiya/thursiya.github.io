@@ -1,0 +1,19 @@
+body {background-color:#FFF;background-image:url('../images/marble_9.gif');font-size:100%}
+
+table {background-color:#FFF;font-family:arial, helvetica, sans-serif;border-collapse:collapse;margin:1.5em}
+th {background-color:#EEE;font-family:times;font-size:1.25em}
+td {height:5em}
+table, td, th {border:1px solid black;text-align:center;vertical-align:middle;padding:0.3em}
+
+th.sortable:hover {background-color:#BBB;}
+
+a:link {color:#000}
+a:visited {color:#987}
+a:hover {color:#D96}
+a:active {color:#952}
+
+img {width:75px;max-height:110px}
+.picbox {background-color:#A86;padding:0em}
+
+div.leftCol {float:left;display:inline;position:relative}
+div.rightCol {float:right;display:inline;position:absolute}
