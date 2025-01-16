@@ -1,0 +1,71 @@
+1496,Town,Rally Car
+1596,Castle,Wolf Pack
+1624,Castle,Archery
+1682,Town,Space Shuttle
+1875,Space,Meteor Monitor
+1876,Space,Soil Scooper
+1877,Castle,Forestman Haycart
+4484,Star Wars,Mini X-Wing and TIE Fighter
+4486,Star Wars,Mini AT-ST
+4488,Star Wars,Mini Millenium Falcon
+4489,Star Wars,Mini AT-AT
+4490,Star Wars,Mini Republic Gunship
+4491,Star Wars,Mini MTT
+4492,Star Wars,Mini Star Destroyer
+4494,Star Wars,Mini Imperial Shuttle
+4554,Town,Metro Station
+4805,Ninja,Ninja Knights
+5925,Adventurers Jungle,Pontoon Plane
+5928,Adventurers Egypt,Bi-Wing Baron
+6008,Castle,Royal King,(https://www.toysperiod.com/lego-set-reference/castle/royal-knights/lego-6008-royal-king/)
+6013,Ninja,Samurai Swordsman,(https://www.toysperiod.com/lego-set-reference/ninja/lego-6013-samurai-swordsman/)
+6016,Castle,Knights' Arsenal,(https://www.toysperiod.com/lego-set-reference/castle/lion-knights/lego-6016-knights-arsenal/)
+6018,Castle,Battle Dragon,(https://www.toysperiod.com/lego-set-reference/castle/black-knights/lego-6018-battle-dragon/)
+6033,Ninja,Treasure Transport
+6034,Castle,Black Monarch's Ghost
+6041,Castle,Armor Shop,(https://www.toysperiod.com/lego-set-reference/castle/lion-knights/lego-6041-armor-shop/)
+6042,Castle,Dungeon Hunters
+6060,Castle,Knights' Challenge,(https://www.toysperiod.com/lego-set-reference/castle/lion-knights/lego-1584-knights-challenge/)
+6067,Castle,Inn (Instructions only)
+6071,Castle,Forestmen's Crossing
+6074,Castle,Black Falcons' Castle
+6082,Castle,Majisto's Magical Fortress
+6085,Castle,Black Monarch's Castle
+6086,Castle,Dungeon Master's Castle
+6245,Pirates,Harbor Sentry
+6246,Pirates,Crocodile Cage
+6247,Pirates,Bounty Boat,(https://www.toysperiod.com/lego-set-reference/pirates/pirates-1/lego-6247-bounty-boat/)
+6259,Pirates,Broadside's Brig
+6260,Pirates,Shipwreck Island
+6265,Pirates,Sabre Island
+6274,Pirates,Caribbean Clipper
+6276,Pirates,Eldorado Fortress
+6278,Pirates,Enchanted Island
+6285,Pirates,Black Seas Barracuda
+6307,Town,Firemen,(https://www.toysperiod.com/lego-set-reference/town/classic-town/supplemental/fire/lego-6307-firemen/)
+6351,Town,Surf 'n' Sail Camper
+6396,Town,International Jetport
+6503,Town,Sprint Racer,(https://www.toysperiod.com/lego-set-reference/town/classic-town/race/lego-6503-sprint-racer/)
+6524,Town,Blizzard Blazer
+6531,Town,Flame Chaser,(https://www.toysperiod.com/lego-set-reference/town/classic-town/fire/lego-6531-flame-chaser/)
+6542,Town,Launch & Load Seaport
+6568,Town,Drag Race Rally
+6628,Town,Shell Tow Truck,(https://www.toysperiod.com/lego-set-reference/town/classic-town/gas-station/lego-6628-1-shell-tow-truck/#reviews)
+6771,Alpha Team,Ogel Command Striker
+6780,Space,Light & Sound XT Starship
+6886,Space,Galactic Peace Keeper
+6954,Space,Renegade
+7144,Star Wars,Slave I
+7250,Star Wars,Clone Scout Walker
+7424,Adventurers Orient Expedition,Black Cruiser
+7955,Castle,Green Wizard
+9469,LotR,Gandalf Cart
+9470,LotR,Shelob
+9678,Star Wars,Mini Cloud Car
+9679,Star Wars,Mini At-st
+30230,Galaxy Squad,Galaxy Squad promotional set
+30384,Star Wars,Mini Snowspeeder
+75008,Star Wars,Mini TIE Bomber
+75895,Speed Champions,1974 Porsche 911 Turbo 3.0
+76908,Speed Champions,Lamborghini Countach
+79005,LotR,Palantir

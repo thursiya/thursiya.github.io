@@ -1,0 +1,112 @@
+8093,Star Wars,Plo Koon's Jedi Starfighter
+10402,Classic,Fun Future
+10692,Classic,221 Piece Cube
+10696,Classic,Medium Creative Brick Box
+10739,Ninjago,Shark Attack
+10750,City,Road Repair Truck
+10753,Super Heroes,The Joker Batcave Attack
+11005,Classic,900 Piece Box
+21118,Minecraft,The Mine
+21151,Minecraft,The End Battle
+21159,Minecraft,The Pillager Outpost
+21160,Minecraft,The Illager Raid
+21164,Minecraft,The Coral Reef
+21166,Minecraft,The "Abandoned" Mine
+21171,Minecraft,The Horse Stable
+21172,Minecraft,The Ruined Portal
+21177,Minecraft,The Creeper Ambush
+21180,Minecraft,The Guardian Battle
+21184,Minecraft,The Bakery
+21240,Minecraft,The Swamp Adventure
+21244,Minecraft,The Sword Outpost
+21246,Minecraft,The Deep Dark Battle
+21252,Minecraft,The Armory
+21254,Minecraft,The Turtle Beach House
+30384,Star Wars,Mini Snowspeeder
+30393,Minecraft,Steve & Creeper
+30394,Minecraft,Alex & Skeleton
+30451,Super Heroes,Spider-Man's Mini Spider Crawler
+30649,Ninjago,Ice Dragon Creature
+31056,Creator,Green Truck
+31058,Creator,Mighty Dinosaurs
+31062,Creator,Blue Robot
+31072,Creator,Blue Racer
+31075,Creator,Winch Truck
+31076,Creator,Airshow Biplane
+31088,Creator,Deep Sea Creatures
+31090,Creator,Underwater Robot
+31099,Creator,Propeller Plane
+31102,Creator,Fire Dragon
+31111,Creator,Cyber Drone
+40461,Botanical Collection,Tulips
+40540,BrickHeadz,Lion Dance Guy
+40624,BrickHeadz,Alex
+40626,BrickHeadz,Zombie
+40646,Botanical Collection,Daffodils
+40689,City,Firework Celebrations
+41725,Friends,Beach Buggy Fun
+41805,Dots,Creative Animal Drawer
+42132,Technic,Motorcycle
+60107,City,Fire Truck
+60182,City,Camper Caravan
+60185,City,Mining Power Splitter
+60219,City,Construction Loader
+60239,City,Police Patrol Car
+60247,City,Forest Fire (Dune Buggy)
+60249,City,Street Sweeper
+60250,City,Mail Plane
+60251,City,Monster Truck
+70418,Hidden Side,J.B.'s Ghost Lab
+70419,Hidden Side,Wrecked Shrimp Boat
+70612,Ninjago Movie,Green Ninja Mech Dragon
+70629,Ninjago Movie,Piranha Attack
+70651,Ninjago,Throne Room Showdown
+70652,Ninjago,Stormbringer
+70668,Ninjago,Jay's Storm Fighter
+70674,Ninjago,Fire Fang
+70676,Ninjago,Lloyd's Titan Mech
+70836,Lego Movie 2,Metal Beard & Batman
+70918,Batman Movie,The Bat-Dune Buggy
+71454,Dreamzzz,Mateo and Z-Blob the Robot
+71700,Ninjago,Jungle Raider (Dune Buggy)
+71706,Ninjago,Cole's Speeder Car
+71738,Ninjago,Zane's Titan Mech Battle
+71761,Ninjago,Zane's Power Up Mech EVO
+71780,Ninjago,Kai's Ninja Race Car EVO
+71821,Ninjago,Cole's Titan Dragon Mech
+75004,Star Wars,Z-95 Headhunter
+75030,Star Wars,Han Solo Millennium Falcon Microfighter
+75040,Star Wars,General Grievous' Wheel Bike
+75075,Star Wars,AT-AT Microfighter
+75138,Star Wars,Hoth Attack
+75193,Star Wars,Chewie Millennium Falcon Microfighter
+75194,Star Wars,TIE Bomber Microfighter
+75224,Star Wars,Darth Maul Microfighter
+75228,Star Wars,Escape Pod vs Dewback Microfighters
+75265,Star Wars,T-16 Skyhopper vs Bantha Microfighters
+75267,Star Wars,Mandalorian Battle Pack
+75295,Star Wars,Millennium Falcon Microfighter (young Han)
+75298,Star Wars,AT-AT vs Tauntaun Microfighters
+75299,Star Wars,Trouble on Tatooine
+75344,Star Wars,Boba Fett's Starship Microfighter
+75359,Star Wars,332nd Ahsoka's Clone Trooper Battle Pack
+75368,Star Wars,Darth Vader Mech
+75370,Star Wars,Stormtrooper Mech
+75976,Overwatch,Wrecking Ball (Hamster)
+76085,Super Heroes,Aquaman Battle
+76089,Super Heroes,Spiderman & Sandman Mini Racers
+76091,Super Heroes,Thor & Loki Mini Racers
+76096,Super Heroes,Superman & Lobo Speeder
+76110,Super Heroes,Batman Tri-bike
+76128,Super Heroes,Spider-Man Molten Man Battle
+76140,Super Heroes,Iron Man Mech Armor
+76141,Super Heroes,Thanos Mech Armor
+76146,Super Heroes,Spider-Man Mech Armor
+76150,Super Heroes,Spiderjet vs. Venom Mech
+76171,Super Heroes,Miles Morales Mech Armor
+76186,Super Heroes,Black Panther Dragon Flyer
+76190,Super Heroes,Iron Man: Iron Monger Mayhem
+76202,Super Heroes,Wolverine Mech Armor
+76207,Super Heroes,Attack on New Asgard
+76245,Super Heroes,Ghost Rider Mech & Bike
+76943,Jurassic World,Pteranodon Chase

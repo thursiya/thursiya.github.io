@@ -1,0 +1,14 @@
+body {background-color:#FFF;background-image:url('../images/lego_plate.jpg');font-size:100%}
+
+table {background-color:#FFF;font-family:arial, helvetica, sans-serif;border-collapse:collapse;margin:1.5em}
+td {height:2em}
+table, td, th {text-align:left;vertical-align:middle;padding:0.3em}
+
+a:link {color:#000}
+a:visited {color:#987}
+a:hover {color:#D96}
+a:active {color:#952}
+
+img {width:75px;max-height:110px}
+
+button {background:none;border:none;padding:0}

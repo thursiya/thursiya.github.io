@@ -1,0 +1,60 @@
+<html><head>
+
+<link rel="stylesheet" type="text/css" href="data/lego.css" />
+<title>Lego Collection</title>
+
+<script type="text/javascript">
+loadFile("data/legodata.txt", 1);
+loadFile("data/oldlegodata.txt", 2);
+
+function loadFile (url, id) {
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", url);
+	xhr.send();
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let data = (xhr.responseText).split('\n');
+			fileLoaded(id, buildArray(data));
+		}
+	}
+}
+
+function buildArray (arr) {
+	for (let i = 0; i < arr.length; i++) {
+		arr[i] = arr[i].replace(/\s*,\s*/g, ','); // Remove spaces before and after commas and leading or ending spaces
+		arr[i] = arr[i].trim();
+		arr[i] = arr[i].split(',');		
+	}
+	return arr;
+}
+
+function fileLoaded (id, data) {
+	let out = '', table = (id == 1 ? "main" : "old");	
+	for (let i of data) {
+		out += `<tr><td>${i[0]}</td>`;
+		out += `<td><img src="images/${i[1]}_logo.png" style="width:75;max-height:50"></td>`;
+		// Old Method: out += `<td><button type="submit" name="set" value="${i[0]}"><img src="https://lego.brickinstructions.com/instructions/` + String(i[0]).padStart(5,"0").substring(0,2) + `000/${i[0]}/001.jpg"></button></td>`;
+		out += `<td><a href="https://lego.brickinstructions.com/lego_instructions/set/${i[0]}" target="_blank"><img src="https://lego.brickinstructions.com/instructions/` + String(i[0]).padStart(5,"0").substring(0,2) + `000/${i[0]}/001.jpg"></a></td>`;
+		out += `<td>${i[2]}</td></tr>`;
+	}
+	document.getElementById(table).innerHTML = out;
+}
+</script>
+</head>
+
+<body>
+
+<h2>Lego Collection</h2>
+
+<!-- form method="post" action="https://lego.brickinstructions.com/lego_instructions/set/71821/" -->
+
+<table id="main" style="font-size:24"></table>
+
+<h2>Old Lego</h2>
+
+<table id="old" style="font-size:24;background-color:#EEE"></table>
+
+</form>
+
+</body>
+</html>
