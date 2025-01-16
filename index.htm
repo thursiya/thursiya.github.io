@@ -9,7 +9,7 @@
 <body style="background-image: url('images/motif2d.png')">
 	<div style="background-color: #9CBA"><table><tr>
 		<td><img src="images/nexus.png" width="64px"></td>
-		<td><span style="font: italic bold 300% Times serif"><i>Thursiyan Nexus</i></span></td>
+		<td><span style="font: italic bold 300% Times serif">Thursiyan Nexus</span></td>
 	</tr></table></div>
 
 	<div style="float:right">
@@ -19,7 +19,7 @@
 				var s;
 				for (var line=1; line<23; line++) {
 					for(var i=1;i<24;i++) {
-						s = (Math.floor((Math.random()*2)%2)) ? '\u2571': '\u2572';
+						s = (~~(Math.random()*2)) ? '\u2571': '\u2572';
 						if (line == 1) {
 							s = (i % 2) ? '\u2572': '\u2571';
 						}
@@ -46,7 +46,6 @@
 		<h3>Board Games</h3>
 			<ul>
 				<dd><a href="collection">Board Game Collection</a></dd>
-				<!--<dd><a href="edcisite">Game Design Locus</a></dd>-->
 			</ul>
 			<br>
 			
@@ -58,7 +57,7 @@
 		
 		<h3>Minecraft</h3>
 			<ul>
-				<dd><a href="http://skunkland.vastserve.com">Skunkland Server Site</a></dd>
+				<dd><a href="skunkland">Skunkland Server Site</a></dd>
 			</ul>
 			<br>
 		
@@ -78,7 +77,7 @@
 			
 		<h3>Shared Creations</h3>
 			<ul>
-				<dd><a href="https://drive.google.com/open?id=1hmP9PtF9j-CuN7uS0lbtO00pIXRecyWc">Midkemia Conquest Map</a> (Map for <a href="http://www.windowsgames.co.uk/conquest.html" target="_blank">Sean O'Connor's Conquest</a>)</dd>
+				<dd><a href="https://drive.google.com/file/d/16vcwnZ2w2xEmdhCJHQwcTYL-YQTnrFv6">Midkemia Conquest Map</a> (Map for <a href="http://www.windowsgames.co.uk/conquest.html" target="_blank">Sean O'Connor's Conquest</a>)</dd>
 			</ul>
 	</div>
 </body>
