@@ -1,0 +1,200 @@
+<html><head>
+
+<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
+
+<title>Calculations</title>
+
+</head>
+
+<body>
+
+<script src="../data/calc.js"></script>
+
+<script type="text/javascript">
+	var today = new Date();
+	var thisYear = today.getFullYear();
+	var thisMonth = today.getMonth()+1;
+	var thisDay = today.getDate();
+	var thisHour = today.getHours();
+
+	function quickPop () {
+		var theForm = document.forms["popform"];
+		var jobs = Number(theForm.elements["jobs"].value) || 0;
+		var beds = Number(theForm.elements["beds"].value) || 0;
+		var tourbeds = Number(theForm.elements["visitors"].value) || 0;
+		var bonus = theForm.elements["bonus"].value;
+		
+		var p = pp(jobs,beds,tourbeds,bonus);
+		var result = p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+		document.getElementById('totalPop').innerHTML = result;
+	}
+	
+	function quickTime () {
+		var theForm = document.forms["timeform"];
+		var setdate = new Date(theForm.elements["setdate"].value || today);
+		var setHour = Number(theForm.elements["sethour"].value) || 0;
+		var setYear = setdate.getFullYear();
+		var setMonth = setdate.getMonth() + 1;
+		var setDay = setdate.getDate();
+		var result = syear(setYear,setMonth,setDay,setHour);
+		document.getElementById('syDate').innerHTML = result;
+	}
+	
+	function resetForm () {
+		document.getElementById("popform").reset();
+		quickPop();
+	}
+</script>
+
+<img src="../images/clock.png" class="gallery" style="display:block; margin:auto auto">
+
+<div class="content round shadow">
+	<div class="contentheader round">Time Calculations</div>
+	<p>
+		Minecraft has an internal day/night cycle that is running as long as our server is up (about 98%
+		of the time).  One day in Minecraft takes 20 minutes in the real world, meaning one real world 
+		day on the server is approximately equivalent to 2.5 months of Minecraft time, and more than one
+		Minecraft year passes every week in the real world!
+	</p>
+	<p>
+		Using this basic conversion we have developed a secondary dating system, Skunkland Years (SY).  
+		The server was started in November or December 2011 (we'll figure that one out eventually) so 
+		counting from November 2011 we multiply the time passed by 72 (1 real year = 72 Skunkland Years).
+		That puts the beginning of today in 
+		<script>sy(thisYear,thisMonth,thisDay)</script>,  
+		and right now approximately 
+		<script>sy(thisYear,thisMonth,thisDay,thisHour)</script>.  You can hover over the 
+		Skunkland Year dates on the website to see the equivalent real world dates.
+	</p>
+	<br>
+	<form action="" id="timeform" onsubmit="return false;">
+		<table style="margin: 0px auto">
+			<tr>
+				<th>
+					<span style="font-variant:small-caps">Quick Time Calculator</span><br>				
+					<input type="date" name="Date" placeholder="Date" id="setdate" onchange="quickTime()" style="width:130px">
+					<input type="number" name="Hour" placeholder="Hour" id="sethour" onchange="quickTime()" min="0" max="23" step="1" maxlength="2" size="2" style="width:50px">
+					<br>
+					SkunkYears: <span id="syDate"><script>sy(thisYear,thisMonth,thisDay,thisHour)</script></span>
+				</th>
+			</tr>
+		</table>
+	</form>
+	
+	
+	<br>
+
+	<div class="contentheader round">Distance Calculations</div>
+	<p>
+		In Minecraft a block is supposed to represent one cubic meter.  This makes calculations of 
+		distance incredibly simple, as everything is metric: 1000 blocks away is 1km away, etc.
+	</p>
+	<p>
+		The inhabited regions of Skunkland cover an area of about 5km from West to East and about the 
+		same from North to South, although there are myriad uninhabited regions within that 25
+		km&sup2; and settlement has mostly been along the East/West axis.
+	</p>
+	<br>
+	
+	<div class="contentheader round">Population Calculations</div>
+	<p>
+		To create population demographics we use a complex algorithm that takes into account homes, 
+		employment, and national immigration opportunities.  Essentially we start with the greater of 
+		homes or employment and subtract a fraction of the difference then add a percentage based on a 
+		comparison of the settlement size to other settlements in the country (i.e. large cities attract 
+		more people than small villages) and add a number based on tourism (hotels).  Permanent 
+		residences (homes) are calculated at 2 people per bed (maximum 4 per room).  Job numbers are 
+		calculated based on the following table:
+	</p>
+
+	<table style="float:right">
+		<tr>
+			<th>
+				Number of Settlements<br>in Nation
+			</th>
+			<th>
+				Population Bonus for<br>Largest Settlement(s)
+			</th>
+		</tr>
+		<tr>
+			<td>1-3</td>
+			<td>50%</td>
+		</tr>
+				<tr>
+			<td>4-5</td>
+			<td>35%, 15%</td>
+		</tr>
+				<tr>
+			<td>6-7</td>
+			<td>30%, 15%, 5%</td>
+		</tr>
+		<tr>
+			<td>8+</td>
+			<td>20%, 15%, 10%, 5%</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<th>Location</th>
+			<th>People</th>
+		</tr>
+		<tr>
+			<td>All Employers<br>(Maintenance &<br>Management)</td>
+			<td>1 / 50m&sup2;<br><span class="grey">(1 / 200m&sup2; for <br>outdoor/unfurnished/dining)</span></td>
+		</tr>
+		<tr>
+			<td>Food Service</td>
+			<td>1 / 6 seats<br><span class="grey">(1 / 4 seats with full kitchen)<br>(1 / 18 or 1 / 12 after first 24)</span></td>
+		</tr>
+		<tr>
+			<td>Offices</td>
+			<td>Min. 1 / workspace</td>
+		</tr>
+		<tr>
+			<td>Subway<br>Infrastructure</td>
+			<td>0</td>
+		</tr>
+	</table>
+	<br>
+	<p>
+		The public town of Desert Town has permanent residency for <b>8</b> people (4 beds), job 
+		opportunities for <b>14</b> people (5 in visitor accommodations, 3 in the tea shop, 1 in the 
+		dance hall, 2 in the church, 1 in the fruit stand, 1 in a sitting room, and 1 in the veggie 
+		patch) and accommodations for <b>14</b> visitors (7 beds).  Using the current population 
+		calculation we take an average of housing and jobs (8 + 13 = 21 / 2 = 10.5).  The results are 
+		not affected by a national bonus because Desert Town is not part of a nation.  We add &frac14; 
+		of potential visitors to the population (+3.5) then multiply the result by 1000 to reach a 
+		town population of <b><script>document.write(pp(14,4,7,1.0))</script></b>.
+	</p>
+	<br>
+
+	<form action="" id="popform" onsubmit="return false;">
+		<table style="margin: 0px auto">
+			<tr>
+				<th>
+					<span style="font-variant:small-caps">Quick Population Calculator</span><br>				
+					<input type="number" name="Jobs" placeholder="Jobs" min="0" step="1" maxlength="4" size="4" id="jobs" onchange="quickPop()" style="width:70px">
+					<input type="number" name="Beds" placeholder="Beds" min="0" step="1" maxlength="4" id="beds" onchange="quickPop()" style="width:70px">
+					<input type="number" name="Visitors" placeholder="Visitors" min="0" step="1" maxlength="4" id="visitors" onchange="quickPop()" style="width:70px">
+					<select id="bonus" name="bonus" onchange="quickPop()">
+						<option value="1.00">Bonus: 0%</option>
+						<option value="1.05">5%</option>
+						<option value="1.10">10%</option>
+						<option value="1.15">15%</option>
+						<option value="1.20">20%</option>
+						<option value="1.30">30%</option>
+						<option value="1.35">35%</option>
+						<option value="1.50">50%</option>
+					</select>
+					<br>
+					Total: <span id="totalPop">0</span> people <input type="button" value="Reset" onclick="resetForm()">
+				</th>
+			</tr>
+		</table>
+	</form>
+	
+</div>
+
+</body>
+</html>

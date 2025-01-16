@@ -1,0 +1,117 @@
+<html><head>
+
+<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
+<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
+
+<title>Census of Skunkland</title>
+
+<script src="../data/calc.js"></script>
+
+</head>
+
+<body>
+
+<img src="../images/bookandquill.png" class="gallery" style="display:block; margin:auto auto">
+
+<div class="content round shadow">
+	<div class="contentheader round">Taking the Census</div>
+	<p>
+		In the world of Skunkland the Chief Information Officer of the Department of Information in the 
+		Republic of Gavel orders a global census from the Department of Information's World Records 
+		Office every 100 years.  This is the census data that is published in books in game.  In the 
+		real world the census is updated on a regular basis as additions are made to the settlements of 
+		Skunkland, based on the calculations <a href="calculations.htm">posted here</a>.
+	</p>
+
+	<br>
+
+	<div class="contentheader round">Current Census</div>
+	<table border=1>
+		<thead>
+			<tr>
+				<th class="sortable" onclick="list(1)" title="Click to sort alphabetically by nation and population/settlement name">Nation</th>
+				<th class="sortable" onclick="list(2)" title="Click to sort alphabetically/reverse by settlement name">Settlements</th>
+				<th class="sortable" onclick="list(3)" title="Click to sort by population from greatest/least">Population</th>
+				<th class="sortable" onclick="list(4)" title="Click to sort by most recent/oldest census date">Date of most<br>Recent Census</th>
+			</tr>
+		</thead>
+		<tbody id="tabledata"></tbody>
+	</table>
+	<br>
+	<p>
+		As of the most recent <a href="../maps.php">political map</a> the Kingdom of Aiur, Miasma of 
+		Boatmurdered, and Independent State of Sedona have no inhabited settlements.  All other settlements 
+		have no population base (e.g. player-built housing, designated work sites).
+	</p>
+	
+<script type="text/javascript">
+	var Current = 0;
+
+	csort = city.slice(0);
+	psort = city.slice(0);
+	ncsort = city.slice(0);
+	npsort = city.slice(0);
+	dsort = city.slice(0);
+		
+	// Sort cities alphabetically		
+	csort.sort();
+	// Sort cities reverse-alphabetically
+	crev = csort.slice(0);
+	crev.reverse();
+	// Sort cities by population (Greatest to least)
+	psort.sort(function(a, b){return b[3] - a[3]});
+	// Sort cities by population (Least to greatest)
+	prev = psort.slice(0);
+	prev.reverse();
+	// Sort cities by nation then population (greatest to least)
+	ncsort.sort(function(a, b){return a[1] == b[1] ? b[3] - a[3] : a[1] > b[1] ? 1 : -1});
+	// Sort cities by nation then alphabetically
+	npsort.sort(function(a, b){return (a[1] + a[0]) > (b[1] + b[0]) ? 1 : -1});
+	// Creat array for rowspan nation view
+	newnat = [];
+	var last = 0;
+	newnat[0] = 1;
+	for (var i = 1; i < ncsort.length; i++) {
+		newnat[i] = 0;
+		ncsort[i-1][1] == ncsort[i][1] ? newnat[last] ++ : (last = i, newnat[i]++);
+	}
+	// Sort cities by most recent census date
+	dsort.sort(function(a, b){return b[4] - a[4]});
+	// Sort cities by oldest census date
+	drev = dsort.slice(0);
+	drev.reverse();
+		
+	list();
+
+	function list(sorttype) {
+		var out = '', arr = [];
+		switch (sorttype) {
+			default:
+				sorttype = 1;
+			case 1:
+				Current == 1 ? (arr = npsort, Current = 0) : (arr = ncsort, Current = 1);
+				break;
+			case 2:
+				Current == 2 ? (arr = crev, Current = 0) : (arr = csort, Current = 2);
+				break;
+			case 3:
+				Current == 3 ? (arr = prev, Current = 0) : (arr = psort, Current = 3);
+				break;
+			case 4:
+				Current == 4 ? (arr = drev, Current = 0) : (arr = dsort, Current = 4);
+				break;
+		}
+		for (var i = 0; i < arr.length; i++) {
+			out += '<tr>';
+			if (sorttype != 1 || newnat[i] != 0) {
+				out += '<td rowspan=' + (sorttype == 1 ? newnat[i] : 1) + '>' + (arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1]) + '</td>';
+			}
+			out += '<td>' + arr[i][0] + '</td><td>' + arr[i][2] + '</td><td>' + syear(arr[i][4]) + '</td></tr>';
+		}
+		document.getElementById("tabledata").innerHTML = out;
+	}
+</script>
+	
+</div>
+</body>
+</html>
