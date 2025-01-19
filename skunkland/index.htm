@@ -6,7 +6,9 @@
 		<title>Skunkland Server</title>
 		<link rel="stylesheet" href="data/mc.css">
 		<link rel="icon" href="images/pickaxe.png" type="image/x-icon">
-		<script src="data/header.js" defer></script>
+		<script src="data/calc.js"></script>
+		<script src="data/header.js"></script>
+		<script>insertHeader();</script>
 	</head>
 	<body>
 		<header></header>
@@ -48,7 +50,6 @@
 				<div class="contentheader round">News</div>
 				<div id="newsbreak0"></div>
 
-				<script>insertHeader();</script>
 				<script>
 					let fact_xmlhttp = new XMLHttpRequest();
 					const fact_url = "data/facts.txt";
