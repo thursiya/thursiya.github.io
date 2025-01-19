@@ -72,21 +72,14 @@
 							let out = "";
 							let newsfeed = [];
 							const last = headlines.length - 1;
+							const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
 							for (let i = 0; i <= last; i++) {
 								news[i] = eval('[' + headlines[i] + ']');
 								function swap (str, p1) {
 									if (p1.search("news") > -1) return (`<a href='newsletters/${p1}.htm' target='_blank'>`);
 									if (p1 == 'Q') return (`<blockquote class='grey'>`);
 									if (p1 == '/Q') return (`</i></blockquote>`);
-									let t = `<img src='images/`;
-									if (p1 == 'C') t += "compass";
-									if (p1 == 'G') t += "painting";
-									if (p1 == 'M') t += "map";
-									if (p1 == 'N') t += "bookshelf";
-									if (p1 == 'T') t += "craft";
-									if (p1 == 'W') t += "pickaxe";
-									t += `.png' height='16'>`;
-									return t;
+									return `<img src='images/${swapcode[p1]}.png' height='16'>`;
 								}
 								news[i][3] = news[i][3].replace(/{(.*?)}/g,swap);
 								out += `<p><span class="grey">${news[i][0]}-${('0' + news[i][1]).slice(-2)}`;
