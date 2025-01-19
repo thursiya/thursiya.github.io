@@ -77,12 +77,12 @@ a:hover {text-decoration: underline}
 .header {
   position: relative;
   width: 1000px; height: 150px;
-  margin: 10px auto 0 auto; }
+  margin: 10px auto 0; }
 
 .server {
   width: 468px; height: 60px;
   background: #5d8dad;
-  margin: 10 auto 8px auto; padding: 5px; }
+  margin: 10px auto 8px; padding: 5px; }
 
 .navbar {
   width: 1000px; height: 40px;
@@ -112,7 +112,7 @@ div.navbar .navitem.link { background: url(../images/rail.png) no-repeat; }
 
 .content {
   width: 1000px;
-  background: #f0f0f0;
+  background: #eee;
   margin: 10 auto 8px auto; padding: 16px; }
 
 .contentheader {
@@ -132,7 +132,7 @@ div.navbar .navitem.link { background: url(../images/rail.png) no-repeat; }
 
 area {outline: none; }
 
-.grey {color:#999999; }
+.grey {color:#999; }
 
 .title {
   font-size:120%;
