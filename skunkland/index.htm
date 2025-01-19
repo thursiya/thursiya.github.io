@@ -91,16 +91,9 @@
 					news_xmlhttp.send();
 			
 					function toggletext(cid) {
-						let nb = (document.getElementById(`newsbreak${cid}`).style.display == "none");
-						document.getElementById(`newsbreak${cid}`).style.display = (nb ? "block" : "none");
-						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb ? "Less" : "More"} News &#x25B2;`;
-						/*if (document.getElementById(`newsbreak${cid}`).style.display == "none") {
-							document.getElementById(`newsbreak${cid}`).style.display = "block";
-							document.getElementById(`button${cid}`).innerHTML = "&#x25B2; Less News &#x25B2;";
-						} else {
-							document.getElementById(`newsbreak${cid}`).style.display = "none";
-							document.getElementById(`button${cid}`).innerHTML = "&#x25BC; More News &#x25BC;";
-						}*/
+						let nb = document.getElementById(`newsbreak${cid}`).style.display;
+						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb == "none" ? "Less" : "More"} News &#x25B2;`;
+						nb = (nb == "none" ? "block" : "none");
 					}
 				</script>
 			</div>
