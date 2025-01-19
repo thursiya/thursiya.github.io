@@ -113,7 +113,7 @@ div.navbar .navitem.link { background: url(../images/rail.png) no-repeat; }
 .content {
   width: 1000px;
   background: #eee;
-  margin: 10 auto 8px auto; padding: 16px; }
+  margin: 10px auto 8px; padding: 16px; }
 
 .contentheader {
   background: #f5e9e0;
