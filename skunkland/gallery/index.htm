@@ -51,11 +51,9 @@
 			const xhr = new XMLHttpRequest();
 			xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
 			xhr.onload = function() {
-				const pics = shuffle(JSON.parse(this.response));
+				const pics = shuffle(JSON.parse(this.response)).splice(3);
 				let out = "";
-				for (let i = 0; i < 2; i++) {
-					out += `<div class='col-4'><a href='${pics[i].download_url}' target='_blank'><img src='${pics[i].download_url}' height='175' alt='${pics[i].name.slice(0,-4)}'></a></div>`;
-				}
+				for (let p of pics) out += `<div class='col-4'><a href='${p.download_url}' target='_blank'><img src='${p.download_url}' height='175' alt='${p.name.slice(0,-4)}'></a></div>`;
 				document.getElementById('screenshots').innerHTML = out;
 			}
 			xhr.send();
