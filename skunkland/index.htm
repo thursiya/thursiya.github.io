@@ -91,9 +91,9 @@
 					news_xmlhttp.send();
 			
 					function toggletext(cid) {
-						let nb = document.getElementById(`newsbreak${cid}`).style.display;
-						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb == "none" ? "Less" : "More"} News &#x25B2;`;
-						nb = (nb == "none" ? "block" : "none");
+						let nb = document.getElementById(`newsbreak${cid}`);
+						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb.style.display == "none" ? "Less" : "More"} News &#x25B2;`;
+						nb = (nb.style.display == "none" ? "block" : "none");
 					}
 				</script>
 			</div>
