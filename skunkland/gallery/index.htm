@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Skunkland Server</title>
+		<link rel="stylesheet" href="data/mc.css">
+		<link rel="icon" href="images/pickaxe.png" type="image/x-icon">
+		<script src="data/calc.js"></script>
+		<script src="data/time.js"></script>
+		<script src="data/header.js"></script>		
+	</head>
+	<body>
+		<header><script>insertHeader();</script></header>
+		<main>
+			<div class="content round shadow">
+				<div class="contentheader round">Random Screenshots</div>
+					<div class="row">
+						<script>
+							const xhr = new XMLHttpRequest();
+							xhr.open('GET', "https://https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
+							xhr.onload = function() {
+								const data = JSON.parse(this.response);
+								console.log(data);
+							}
+							xhr.send();
+						</script>
+						/*	$images = glob('gallery/images/*');
+							shuffle($images);
+							for ($i = 0; $i < 3; $i++) {
+								echo "<div class='col-4'><a href='".$images[$i]."' target='_blank'><img src='".$images[$i]."' height='175'></a></div>";
+							}*/
+
+					</div>
+				</div>
+				<br><br>
+	
+				<div class="contentheader round">General Gallery</div>
+					<p>
+						<a href="gallery/Skunkland.htm">Skunkland General Gallery</a><br>
+						<a href="gallery/Nether.htm">Nether Gallery</a>
+					</p>
+					<div class="row">
+						<div class="col-6">
+							<ul>
+								<li><a href="gallery/Aiur.htm">Kingdom of Aiur</a>
+								<li><a href="gallery/Amahn.htm">Hanse of Amahn</a>
+								<li><a href="gallery/Badrum.htm">Imperium of Badrum</a>
+								<li><a href="gallery/Boatmurdered.htm">Miasma of Boatmurdered</a>
+								<li><a href="gallery/Braille.htm">Protectorate of Braille</a>
+								<li><a href="gallery/Crevatia.htm">D.P.R. of Crevatia</a>
+							</ul>
+						</div>
+						<div class="col-6">
+							<ul>
+								<li><a href="gallery/Delve.htm">Adhocracy of Delve</a>
+								<li><a href="gallery/Faclair.htm">Freenation of Faclair</a>
+								<li><a href="gallery/Gavel.htm">Republic of Gavel</a>
+								<li><a href="gallery/Koku.htm">Kingdom of Koku</a>
+								<li><a href="gallery/Porcinia.htm">Commune of Porcinia</a>
+								<li><a href="gallery/SouthShore.htm">Commune of South Shore</a>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
