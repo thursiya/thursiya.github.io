@@ -17,7 +17,8 @@ function shuffle(arr) {
 		let r = ~~(Math.random() * i);
 		i--;
 		[arr[i], arr[r]] = [arr[r], arr[i]];
-  }
+  	}
+	return arr;
 }
 
 function buildArray(arr) {
