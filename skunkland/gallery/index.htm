@@ -15,23 +15,7 @@
 		<main>
 			<div class="content round shadow">
 				<div class="contentheader round">Random Screenshots</div>
-				<div class="row">
-					<script>
-						const xhr = new XMLHttpRequest();
-						xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
-						xhr.onload = function() {
-							const data = JSON.parse(this.response);
-							console.log(data);
-						}
-						xhr.send();
-					</script>
-						<!--	$images = glob('gallery/images/*');
-							shuffle($images);
-							for ($i = 0; $i < 3; $i++) {
-								echo "<div class='col-4'><a href='".$images[$i]."' target='_blank'><img src='".$images[$i]."' height='175'></a></div>";
-							}-->
-
-				</div>
+				<div class="row" id="screenshots"></div>
 				<br><br>
 	
 				<div class="contentheader round">General Gallery</div>
@@ -63,5 +47,25 @@
 				</div>
 			</div>
 		</main>
+		<script>
+			const xhr = new XMLHttpRequest();
+			xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
+			xhr.onload = function() {
+				const pics = shuffle(JSON.parse(this.response));
+				console.log(pics);
+				let out = "";
+				for (let i = 0; i < 2; i++) {
+					out += `<div class='col-4'><a href='${pics[i].html_url}' target='_blank'><img src='${pics[i].html_url}' height='175' alt='${pics[i].name.slice(0,-3)}'></a></div>`;
+				}
+				document.getElementById('screenshots').innerHTML = out;
+			}
+			xhr.send();
+		</script>
+						<!--	$images = glob('gallery/images/*');
+							shuffle($images);
+							for ($i = 0; $i < 3; $i++) {
+								echo "<div class='col-4'><a href='".$images[$i]."' target='_blank'><img src='".$images[$i]."' height='175'></a></div>";
+							}-->
+
 	</body>
 </html>
