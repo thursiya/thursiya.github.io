@@ -15,52 +15,50 @@
 		<main>
 			<div class="content round shadow">
 				<div class="contentheader round">Random Screenshots</div>
-					<div class="row">
-						<script>
-							const xhr = new XMLHttpRequest();
-							xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
-							xhr.onload = function() {
-								const data = JSON.parse(this.response);
-								console.log(data);
-							}
-							xhr.send();
-						</script>
+				<div class="row">
+					<script>
+						const xhr = new XMLHttpRequest();
+						xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
+						xhr.onload = function() {
+							const data = JSON.parse(this.response);
+							console.log(data);
+						}
+						xhr.send();
+					</script>
 						<!--	$images = glob('gallery/images/*');
 							shuffle($images);
 							for ($i = 0; $i < 3; $i++) {
 								echo "<div class='col-4'><a href='".$images[$i]."' target='_blank'><img src='".$images[$i]."' height='175'></a></div>";
 							}-->
 
-					</div>
 				</div>
 				<br><br>
 	
 				<div class="contentheader round">General Gallery</div>
-					<p>
-						<a href="Skunkland.htm">Skunkland General Gallery</a><br>
-						<a href="Nether.htm">Nether Gallery</a>
-					</p>
-					<div class="row">
-						<div class="col-6">
-							<ul>
-								<li><a href="Aiur.htm">Kingdom of Aiur</a>
-								<li><a href="Amahn.htm">Hanse of Amahn</a>
-								<li><a href="Badrum.htm">Imperium of Badrum</a>
-								<li><a href="Boatmurdered.htm">Miasma of Boatmurdered</a>
-								<li><a href="Braille.htm">Protectorate of Braille</a>
-								<li><a href="Crevatia.htm">D.P.R. of Crevatia</a>
-							</ul>
-						</div>
-						<div class="col-6">
-							<ul>
-								<li><a href="Delve.htm">Adhocracy of Delve</a>
-								<li><a href="Faclair.htm">Freenation of Faclair</a>
-								<li><a href="Gavel.htm">Republic of Gavel</a>
-								<li><a href="Koku.htm">Kingdom of Koku</a>
-								<li><a href="Porcinia.htm">Commune of Porcinia</a>
-								<li><a href="SouthShore.htm">Commune of South Shore</a>
-							</ul>
-						</div>
+				<p>
+					<a href="Skunkland.htm">Skunkland General Gallery</a><br>
+					<a href="Nether.htm">Nether Gallery</a>
+				</p>
+				<div class="row">
+					<div class="col-6">
+						<ul>
+							<li><a href="Aiur.htm">Kingdom of Aiur</a>
+							<li><a href="Amahn.htm">Hanse of Amahn</a>
+							<li><a href="Badrum.htm">Imperium of Badrum</a>
+							<li><a href="Boatmurdered.htm">Miasma of Boatmurdered</a>
+							<li><a href="Braille.htm">Protectorate of Braille</a>
+							<li><a href="Crevatia.htm">D.P.R. of Crevatia</a>
+						</ul>
+					</div>
+					<div class="col-6">
+						<ul>
+							<li><a href="Delve.htm">Adhocracy of Delve</a>
+							<li><a href="Faclair.htm">Freenation of Faclair</a>
+							<li><a href="Gavel.htm">Republic of Gavel</a>
+							<li><a href="Koku.htm">Kingdom of Koku</a>
+							<li><a href="Porcinia.htm">Commune of Porcinia</a>
+							<li><a href="SouthShore.htm">Commune of South Shore</a>
+						</ul>
 					</div>
 				</div>
 			</div>
