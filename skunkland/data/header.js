@@ -1,9 +1,8 @@
 function insertHeader () {
-	let today = new Date();
 	document.getElementsByTagName('header')[0].innerHTML = `
 		<div class='server round shadow'>
 			<img src='images/clock.png' height='50' style='vertical-align:middle'>
-			<span style='font:bold 36px georgia;vertical-align:middle' id='headdate'>${syear(today,'full')}</span>
+			<span style='font:bold 36px georgia;vertical-align:middle' id='headdate'>${syear(new Date(),'full')}</span>
 		</div>
 
 		<div class='header round shadow' align='middle' id='headtitle' style='background-image:url("vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg")'>
