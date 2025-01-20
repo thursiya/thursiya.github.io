@@ -1,4 +1,10 @@
 function insertHeader () {
+	const homepage = 'https://thursiya.github.io/skunkland/';
+	const navitems = ["Home", "Gallery", "Maps", "World", "Newsletters", "Rules", "Tour", "Tools", "Links"];
+	let out = "";
+	for (let i of navitem) {
+		out += `<div class='fl navitem ${i.toLowerCase().substring(0, 4)}'><a href='${homepage}${i == 'Home' ? '' : i.toLowerCase()}'>${i}</a></div>`;
+	}
 	document.getElementsByTagName('header')[0].innerHTML = `
 		<div class='server round shadow'>
 			<img src='images/clock.png' height='50' style='vertical-align:middle'>
@@ -10,32 +16,6 @@ function insertHeader () {
 		</div>
 
 		<div class='navbar round shadow'>
-			<div class='fl navitem home'>
-				<a href='index.php'>Home</a>
-			</div>
-			<div class='fl navitem gall'>
-				<a href='gallery.php'>Gallery</a>
-			</div>
-			<div class='fl navitem maps'>
-				<a href='maps.php'>Maps</a>
-			</div>
-			<div class='fl navitem worl'>
-				<a href='world.php'>World</a>
-			</div>
-			<div class='fl navitem news'>
-				<a href='newsletters.php'>Newsletters</a>
-			</div>
-			<div class='fl navitem rule'>
-				<a href='rules.php'>Rules</a>
-			</div>
-			<div class='fl navitem tour'>
-				<a href='tour.php'>Tour</a>
-			</div>
-			<div class='fl navitem tool'>
-				<a href='tools.php'>Tools</a>
-			</div>
-			<div class='fl navitem link'>
-				<a href='links.php'>Links</a>
-			</div>
+  			${out}	
 		</div>`;
 }
