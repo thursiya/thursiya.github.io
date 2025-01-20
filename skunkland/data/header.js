@@ -2,7 +2,7 @@ function insertHeader () {
 	const homepage = 'https://thursiya.github.io/skunkland/';
 	const navitems = ["Home", "Gallery", "Maps", "World", "Newsletters", "Rules", "Tour", "Tools", "Links"];
 	let out = "";
-	for (let i of navitem) {
+	for (let i of navitems) {
 		out += `<div class='fl navitem ${i.toLowerCase().substring(0, 4)}'><a href='${homepage}${i == 'Home' ? '' : i.toLowerCase()}'>${i}</a></div>`;
 	}
 	document.getElementsByTagName('header')[0].innerHTML = `
