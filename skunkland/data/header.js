@@ -7,12 +7,12 @@ function insertHeader () {
 	}
 	document.getElementsByTagName('header')[0].innerHTML = `
 		<div class='server round shadow'>
-			<img src='images/clock.png' height='50' style='vertical-align:middle'>
+			<img src='${homepage}images/clock.png' height='50' style='vertical-align:middle'>
 			<span style='font:bold 36px georgia;vertical-align:middle' id='headdate'>${syear(new Date(),'full')}</span>
 		</div>
 
-		<div class='header round shadow' align='middle' id='headtitle' style='background-image:url("vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg")'>
-			<img src='images/server_name.gif' align='middle' style='padding-top:50px'>
+		<div class='header round shadow' align='middle' id='headtitle' style='background-image:url("${homepage}vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg")'>
+			<img src='${homepage}images/server_name.gif' align='middle' style='padding-top:50px'>
 		</div>
 
 		<div class='navbar round shadow'>
