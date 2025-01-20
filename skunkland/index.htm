@@ -93,7 +93,7 @@
 					function toggletext(cid) {
 						let nb = document.getElementById(`newsbreak${cid}`);
 						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb.style.display == "none" ? "Less" : "More"} News &#x25B2;`;
-						nb = (nb.style.display == "none" ? "block" : "none");
+						nb.style.display = (nb.style.display == "none" ? "block" : "none");
 					}
 				</script>
 			</div>
