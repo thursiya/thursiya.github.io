@@ -39,7 +39,7 @@
 					let r = ~~(Math.random() * (i + 1));
 					[pics[i], pics[r]] = [pics[r], pics[i]];
 				}
-				pics = pics.splice(-3);
+				pics.splice(-3);
 				g = [{name: "Random Screenshots", type: -1, section: [{img: [pics[0].name.slice(0, -4), pics[1].name.slice(0, -4), pics[2].name.slice(0, -4)]}]}];
 				//let out = `<div class="contentheader round">Random Screenshots</div><div class="row">`;
 				//for (let p of pics.splice(-3)) out += `<div class="col-4"><a href="${p.download_url}" target="_blank"><img src="${p.download_url}" height="175" alt="${p.name.slice(0,-4)}"></a></div>`;
