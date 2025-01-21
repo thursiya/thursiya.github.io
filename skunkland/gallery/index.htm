@@ -13,8 +13,10 @@
 		<header><script>insertHeader();</script></header>
 		<main>
 			<div class="content round shadow">
-				<div class="contentheader round" id="gallery">Random Screenshots</div>
-				<div class="row" id="screenshots"></div>
+				<div id="gallerycontent">
+					<div class="contentheader round" id="gallery">Random Screenshots</div>
+					<div class="row" id="screenshots"></div>
+				</div>
 				<br><br>
 	
 				<div class="contentheader round">General Gallery</div>
@@ -47,10 +49,19 @@
 			</div>
 		</main>
 		<script>
-			const xhr = new XMLHttpRequest();
-			xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
-			xhr.onload = function() {
-				let pics = JSON.parse(this.response);
+			const g = [];
+			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);
+			loadDoc("../data/gallery.txt", buildGalleryArray);
+			
+			function loadDoc(url, cFunction) {
+  				const xhttp = new XMLHttpRequest();
+  				xhttp.onload = function() {cFunction(this);}
+  				xhttp.open("GET", url);
+  				xhttp.send();
+			}
+
+			function getRandomImages(xhr) {
+				let pics = JSON.parse(xhr.response);
 				for (let i = pics.length - 1; i > 0; i--) {
 					let r = ~~(Math.random() * (i + 1));
 					[pics[i], pics[r]] = [pics[r], pics[i]];
@@ -59,16 +70,19 @@
 				for (let p of pics.splice(-3)) out += `<div class='col-4'><a href='${p.download_url}' target='_blank'><img src='${p.download_url}' height='175' alt='${p.name.slice(0,-4)}'></a></div>`;
 				document.getElementById('screenshots').innerHTML = out;
 			}
-			xhr.send();
-
-			const xhr2 = new XMLHttpRequest();
-			xhr2.open('GET', "../data/gallery.txt", true);
-			xhr2.onload = function() {
-				let g = JSON.parse(this.response);
-				console.log(g);
-				document.getElementById('gallery').innerHTML;
+			
+			function buildGalleryArray(xhr) {
+				let data = xhr.responseText;
+				console.log(data);
+				// Properly quote keys for JSON parsing
+				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
+				// Remove final comma
+				if (data.substr(-1) == ",") data = data.slice(0, -1);
+				// Convert to array and parse
+				data = data.split(",\n\n");
+				for (let i of data) g.push(JSON.parse(i));
+				document.getElementById('gallerycontent').innerHTML;
 			}
-			xhr2.send();
 
 			function loadGallery(i) {
 				
