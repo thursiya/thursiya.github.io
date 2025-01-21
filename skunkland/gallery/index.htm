@@ -67,7 +67,7 @@
 					[pics[i], pics[r]] = [pics[r], pics[i]];
 				}
 				let out = "";
-				for (let p of pics.splice(-3)) out += `<div class='col-4'><a href='${p.download_url}' target='_blank'><img src='${p.download_url}' height='175' alt='${p.name.slice(0,-4)}'></a></div>`;
+				for (let p of pics.splice(-3)) out += `<div class="col-4"><a href="${p.download_url}" target="_blank"><img src="${p.download_url}" height="175" alt="${p.name.slice(0,-4)}"></a></div>`;
 				document.getElementById('screenshots').innerHTML = out;
 			}
 
