@@ -47,7 +47,7 @@
 			}
 
 			function buildGalleryArray(xhr) {
-				g = [g, ...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'))];
+				g.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
 				let states = g.filter(v => v.type == 1);
 				let general = g.filter(v => v.type == 0);
 				let gcount = 0;
