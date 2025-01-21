@@ -6,7 +6,6 @@
 		<title>Skunkland Server</title>
 		<link rel="stylesheet" href="../data/mc.css">
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
-		<script src="../data/calc.js"></script>
 		<script src="../data/time.js"></script>
 		<script src="../data/header.js"></script>		
 	</head>
@@ -51,9 +50,13 @@
 			const xhr = new XMLHttpRequest();
 			xhr.open('GET', "https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", true);
 			xhr.onload = function() {
-				const pics = shuffle(JSON.parse(this.response)).splice(-3);
+				let pics = JSON.parse(this.response);
+				for (let i = pics.length - 1; i > 0; i--) {
+					let r = ~~(Math.random() * (i + 1));
+					[pics[i], pics[r]] = [pics[r], pics[i]];
+				}
 				let out = "";
-				for (let p of pics) out += `<div class='col-4'><a href='${p.download_url}' target='_blank'><img src='${p.download_url}' height='175' alt='${p.name.slice(0,-4)}'></a></div>`;
+				for (let p of pics.splice(-3)) out += `<div class='col-4'><a href='${p.download_url}' target='_blank'><img src='${p.download_url}' height='175' alt='${p.name.slice(0,-4)}'></a></div>`;
 				document.getElementById('screenshots').innerHTML = out;
 			}
 			xhr.send();
