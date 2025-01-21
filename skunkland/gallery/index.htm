@@ -23,7 +23,6 @@
 		<script>
 			let g = [];
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);	
-			loadGallery(0);
 			
 			function loadDoc(url, cFunction) {
   				const xhttp = new XMLHttpRequest();
@@ -59,6 +58,7 @@
 					}
 					document.getElementById(dest).innerHTML = out;
 				}
+				loadGallery(0);
 				writeLinks(general, "general");
 				writeLinks(states, "states");
 			}
