@@ -5,8 +5,9 @@
 		"Igloo at Spawn",
 		"Welcoming House",
 		"First Century Build Competition Site",
+		"Century Build 300",
 		"Red Rock",
-		"Sky Gardens"
+		"Tree Tower"
 	]}]},
 
 {name: "Nether Gallery", type: 0, section: [
