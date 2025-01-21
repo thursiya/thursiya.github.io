@@ -50,17 +50,16 @@
 				let g = JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
 				let s = g.filter(v => v.type);
 				g = g.filter(v => !v.type);
-				let out = "";
-				for (let i of g) out += `${i.name}<br>`;
-				document.getElementById('general').innerHTML = out;
-				out = "";
-				const depth = Math.ceil(s.length / 2);
-				for (let i = 0; i < s.length; i++) {
-					if (i == 0 || i == Math.ceil(s.length / 2)) out += `<div class="col-6"><ul>`;
-					out += `<li>${i.name}`;
-					if (i == s.length - 1 || i == Math.ceil(s.length / 2) - 1) out += `</ul></div>`;
+				function writeLinks(arr,dest) {
+					for (let i = 0; i < arr.length; i++) {
+						if (i == 0 || i == Math.ceil(arr.length / 2)) out += `<div class="col-6"><ul>`;
+						out += `<li>${arr[i].name}`;
+						if (i == arr.length - 1 || i == Math.ceil(arr.length / 2) - 1) out += `</ul></div>`;
+					}
+					document.getElementById(dest).innerHTML = out;
 				}
-				document.getElementById('states').innerHTML = out;
+				writeLinks(g, "general");
+				writeLinks(s, "states");
 			}
 
 			function loadGallery(i) {
