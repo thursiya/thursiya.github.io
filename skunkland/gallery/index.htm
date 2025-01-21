@@ -63,8 +63,17 @@
 				writeLinks(states, "states");
 			}
 
-			function loadGallery(i) {
-				
+			function loadGallery(v) {
+				let out = "";
+				for (let i = 0; i < g[v].section.length; i++) {
+					out += `<div class="contentheader round">${g[v].section[i].title || g[v].name}</div><div class="row">`;
+					for (let j = 0; j < g[v].section[i].length; j++) {
+						let pic = g[v].section[i][j];
+						out += `<div class="col-4"><a href="images/${pic}.jpg" target="_blank"><img src="images/${pic}.jpg" height="175" alt="${pic}"></a></div>`;
+					}
+					out += `</div>`;
+				}
+				document.getElementById("gallery").innerHTML = out;
 			}
 		</script>
 	</body>
