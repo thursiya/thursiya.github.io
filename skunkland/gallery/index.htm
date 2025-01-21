@@ -73,7 +73,7 @@
 
 			let data = "";
 			function buildGalleryArray(xhr) {
-				let data = xhr.responseText;
+				data = xhr.responseText;
 				console.log(data);
 				// Properly quote keys for JSON parsing
 				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
