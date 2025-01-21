@@ -7,13 +7,13 @@
 		<link rel="stylesheet" href="../data/mc.css">
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
 		<script src="../data/time.js"></script>
-		<script src="../data/header.js"></script>		
+		<script src="../data/header.js"></script>
 	</head>
 	<body>
 		<header><script>insertHeader();</script></header>
 		<main>
 			<div class="content round shadow">
-				<div class="contentheader round">Random Screenshots</div>
+				<div class="contentheader round" id="gallery">Random Screenshots</div>
 				<div class="row" id="screenshots"></div>
 				<br><br>
 	
@@ -60,6 +60,10 @@
 				document.getElementById('screenshots').innerHTML = out;
 			}
 			xhr.send();
+
+			function loadGallery(i) {
+				
+			}
 		</script>
 	</body>
 </html>
