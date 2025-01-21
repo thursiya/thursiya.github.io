@@ -49,7 +49,7 @@
 			</div>
 		</main>
 		<script>
-			const g = [];
+			let g;
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);
 			loadDoc("../data/gallery.txt", buildGalleryArray);
 			
@@ -71,17 +71,9 @@
 				document.getElementById('screenshots').innerHTML = out;
 			}
 
-			let data = "";
 			function buildGalleryArray(xhr) {
-				data = xhr.responseText;
-				console.log(data);
-				// Properly quote keys for JSON parsing
-				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
-				// Remove final comma
-				if (data.substr(-1) == ",") data = data.slice(0, -1);
-				// Convert to array and parse
-				data = data.split(",\n\n");
-				for (let i of data) g.push(JSON.parse(i));
+				g = JSON.parse(xhr.response);
+				console.log(g);
 				document.getElementById('gallerycontent').innerHTML;
 			}
 
