@@ -1,3 +1,4 @@
+[
 {name: "Skunkland General Gallery", type: 0, section: [
 	{img: [
 		"Desert Town",
@@ -123,4 +124,5 @@
 		"Moon Base",
 		"Moon Base Interior",
 		"Cutter's Junction"
-	]}]},
+	]}]}
+]
