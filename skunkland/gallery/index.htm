@@ -50,7 +50,6 @@
 		</main>
 		<script>
 			let g;
-			let raw;
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);
 			loadDoc("../data/gallery.txt", buildGalleryArray);
 			
@@ -73,8 +72,9 @@
 			}
 
 			function buildGalleryArray(xhr) {
-				raw = xhr.response;
-				g = xhr.responseText;
+				g = xhr.response;
+				console.log(g);
+				g = JSON.parse(g.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
 				console.log(g);
 				document.getElementById('gallerycontent').innerHTML;
 			}
