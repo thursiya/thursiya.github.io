@@ -12,7 +12,9 @@
 
 {name: "Nether Gallery", type: 0, section: [
 	{img: [
-		"New Kingsburg Portal"
+		"New Kingsburg Portal",
+		"Nether Hub",
+		"Skaald Fortress"
 	]}]},
 
 {name: "Kingdom of Aiur", type: 1, section: [
