@@ -14,7 +14,6 @@
 		<main>
 			<div class="content round shadow">
 				<div id="gallery"></div>
-				<br><br>
 				<div class="contentheader round">Galleries</div>
 				<div class="row" id="general"></div>
 				<hr style="border: 1px solid #999; width: 70%; margin: auto">
@@ -41,7 +40,7 @@
 				}
 				let out = `<div class="contentheader round">Random Screenshots</div><div class="row">`;
 				for (let p of pics.splice(-3)) out += `<div class="col-4"><a href="${p.download_url}" target="_blank"><img src="${p.download_url}" height="175" alt="${p.name.slice(0,-4)}"></a></div>`;
-				document.getElementById('gallery').innerHTML = `${out}</div>`;
+				document.getElementById('gallery').innerHTML = `${out}</div><br><br>`;
 			}
 
 			function buildGalleryArray(xhr) {
@@ -71,7 +70,7 @@
 						let pic = g[v].section[i][j];
 						out += `<div class="col-4"><a href="images/${pic}.jpg" target="_blank"><img src="images/${pic}.jpg" height="175" alt="${pic}"></a></div>`;
 					}
-					out += `</div>`;
+					out += `</div><br><br>`;
 				}
 				document.getElementById("gallery").innerHTML = out;
 			}
