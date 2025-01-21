@@ -20,11 +20,8 @@
 				<br><br>
 	
 				<div class="contentheader round">General Gallery</div>
-				<p>
-					<a href="Skunkland.htm">Skunkland General Gallery</a><br>
-					<a href="Nether.htm">Nether Gallery</a>
-				</p>
-				<div class="row">
+				<p id="general"></p>
+				<div class="row" id="states">
 					<div class="col-6">
 						<ul>
 							<li><a href="Aiur.htm">Kingdom of Aiur</a>
@@ -72,11 +69,13 @@
 			}
 
 			function buildGalleryArray(xhr) {
-				g = xhr.response;
+				g = JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
 				console.log(g);
-				g = JSON.parse(g.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
-				console.log(g);
-				document.getElementById('gallerycontent').innerHTML;
+				let s = g.filter(v => !v.type);
+				g = g.filter(v => v.type);
+				let out = "";
+				for (let i of s) {out += `${i.name}<br>`;
+				document.getElementById('general').innerHTML = out;
 			}
 
 			function loadGallery(i) {
