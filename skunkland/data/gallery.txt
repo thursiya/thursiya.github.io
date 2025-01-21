@@ -1,0 +1,126 @@
+{name: "Skunkland General Gallery", type: 0, section: [
+	{img: [
+		"Desert Town",
+		"Igloo at Spawn",
+		"Welcoming House",
+		"First Century Build Competition Site",
+		"Red Rock",
+		"Sky Gardens"
+	]}]},
+
+{name: "Nether Gallery", type: 0, section: [
+	{img: [
+		"New Kingsburg Portal"
+	]}]},
+
+{name: "Kingdom of Aiur", type: 1, section: [
+	{img: [
+		"Unnamed City Cathedral",
+		"Unnamed City Mine",
+		"Western Homestead"
+	]}]},
+		
+{name: "Hanse of Amahn", type: 1, section: [
+	{img: [
+		"Dragon Ridge",
+		"Sofia"
+	]}]},
+
+{name: "Imperium of Badrum", type: 1, section: [
+	{img: [
+		"Badrum Capital"
+	]}]},
+
+{name: "Miasma of Boatmurdered", type: 1, section: [
+	{img: [
+		"Boatmurdered",
+		"Boatmurdered Entrance",
+		"Lut Gholein Station"
+	]}]},
+
+{name: "Protectorate of Braille", type: 1, section: [
+	{img: [
+		"Braille"
+	]}]},
+
+{name: "D.P.R. of Crevatia", type: 1, section: [
+	{title: "Democratic People's Republic of Crevatia", img: [
+		"Bentley Bay",
+		"Crevasse Power Company (CPC) Power Plant",
+		"Eweton at Night",
+		"Windmill",
+		"Baetica"]},
+	{title: "Crevasse City", img: [
+		"Crevasse",
+		"Crevasse Graveyard",
+		"Ambassador House",
+		"The Crevasse",
+		"Crevasse Underworks",
+		"Mechwarrior"]},
+	{title: "Northern Frontier", img: [
+		"Dojo at Dawn",
+		"Fort Resolution",
+		"Noricum",
+		"Anderson's Crossing",
+		"Gickerville"
+	]}]},
+
+{name: "Adhocracy of Delve", type: 1, section: [
+	{img: [
+		"Delve",
+		"Castle Gorllewin",
+		"Black Jack Farm",
+		"Bright Farm",
+		"Delve Market"]},
+	{title: "Ennist Province Gallery", img: [
+		"Ulve",
+		"Ulvenstand",
+		"Speurach Torr",
+		"Savvaerk Great Hall"
+	]}]},
+
+{name: "Freenation of Faclair", type: 1, section: [
+	{img: [
+		"Cadwgan",
+		"Jungle Tours",
+		"Auverland",
+		"Executive Hotel Auverland"
+	]}]},
+
+{name: "Republic of Gavel", type: 1, section: [
+	{img: [
+		"Ghibli Port",
+		"Gavel Power Company (GPC) Solar Plant",
+		"Baths Palace",
+		"Operis National Distribution Centre",
+		"Persson International Airport",
+		"Celestia Corolla",
+		"Zephyr Federal Mining Penal Colony",
+		"Lunar Hill"]},
+	{title: "New Kingsburg", img: [
+		"New Kingsburg",
+		"Great Gate of Gavel",
+		"Pristina State Capitol at Dawn"
+	]}]},
+
+{name: "Kingdom of Koku", type: 1, section: [
+	{img: [
+		"Tall Ship",
+		"Pacman Treehouse"
+	]}]},
+
+{name: "Commune of Porcinia", type: 1, section: [
+	{img: [
+		"Porcinia",
+		"Porcinia Rowhomes",
+		"Rainbow"
+	]}]},
+
+{name: "Commune of South Shore", type: 1, section: [
+	{img: [
+		"South Shore",
+		"South Shore Professional Building",
+		"Moon Base",
+		"Moon Base Interior",
+		"Cutter's Junction"
+	]}]},
