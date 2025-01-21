@@ -13,11 +13,11 @@
 		<header><script>insertHeader();</script></header>
 		<main>
 			<div class="content round shadow">
-				<div id="gallerycontent"></div>
+				<div id="gallery"></div>
 				<br><br>
 				<div class="contentheader round">Galleries</div>
 				<div class="row" id="general"></div>
-				<div class="col-9" style="border: 1px solid #999"></div>
+				<div class="col-9" style="border-top: 1px solid #999;margin:auto"></div>
 				<div class="row" id="states"></div>
 			</div>
 		</main>
@@ -40,7 +40,7 @@
 				}
 				let out = `<div class="contentheader round">Random Screenshots</div><div class="row">`;
 				for (let p of pics.splice(-3)) out += `<div class="col-4"><a href="${p.download_url}" target="_blank"><img src="${p.download_url}" height="175" alt="${p.name.slice(0,-4)}"></a></div>`;
-				document.getElementById('screenshots').innerHTML = `${out}</div>`;
+				document.getElementById('gallery').innerHTML = `${out}</div>`;
 			}
 
 			function buildGalleryArray(xhr) {
