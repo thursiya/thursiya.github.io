@@ -22,6 +22,7 @@
 			</div>
 		</main>
 		<script>
+			let s;
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);
 			loadDoc("../data/gallery.txt", buildGalleryArray);
 			
@@ -45,13 +46,13 @@
 
 			function buildGalleryArray(xhr) {
 				let g = JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
-				let s = g.filter(v => v.type);
+				s = g.filter(v => v.type);
 				g = g.filter(v => !v.type);
 				function writeLinks(arr,dest) {
 					let out = "";
 					for (let i = 0; i < arr.length; i++) {
 						if (i == 0 || i == Math.ceil(arr.length / 2)) out += `<div class="col-6"><ul>`;
-						out += `<li>${arr[i].name}`;
+						out += `<li><span style="font-weight: bold" onclick="loadGallery(${i})">${arr[i].name}</span>`;
 						if (i == arr.length - 1 || i == Math.ceil(arr.length / 2) - 1) out += `</ul></div>`;
 					}
 					document.getElementById(dest).innerHTML = out;
