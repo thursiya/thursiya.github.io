@@ -72,8 +72,7 @@
 			}
 
 			function buildGalleryArray(xhr) {
-				console.log(xhr.response);
-				g = JSON.parse(xhr.response);
+				g = JSON.parse(xhr.responseText);
 				console.log(g);
 				document.getElementById('gallerycontent').innerHTML;
 			}
