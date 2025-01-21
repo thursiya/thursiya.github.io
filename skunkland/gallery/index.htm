@@ -61,6 +61,15 @@
 			}
 			xhr.send();
 
+			const xhr2 = new XMLHttpRequest();
+			xhr2.open('GET', "../data/gallery.txt", true);
+			xhr2.onload = function() {
+				let g = JSON.parse(this.response);
+				console.log(g);
+				document.getElementById('gallery').innerHTML;
+			}
+			xhr2.send();
+
 			function loadGallery(i) {
 				
 			}
