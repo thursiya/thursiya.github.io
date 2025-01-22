@@ -1,30 +1,18 @@
-<script type="text/javascript">
-	// Identify Station
-	var url = self.location.search;
-	var station = decodeURI(url.substring(url.lastIndexOf('?') + 1)) || "Spawn";
-	var s1 = "<span style='font-size:80%'>";
-	var s2 = "</span><br><br><a href='?";
-	var s3 = "</a><br><br>";
-	var sflight = s1 + "&#9992; FLIGHT &#9992;" + s2;
-	
-	// Reset Corner Station Borders
-	northwest.style.border = "none";
-	northeast.style.border = "none";
-	southwest.style.border = "none";
-	southeast.style.border = "none";
-	
-	// Select Station Data
-	var sdat = "";
-	switch (station) {
-		case "Andersons Crossing":
-			sdat = ["Andersons Crossing","The station serves as a stop-over on the long north rail through Crevatia from Eweton to Gickerville.","Anderson's Crossing, The Trident (The Dragon's Tail Inn, The Trident Nature Preserve, The Dojo)","Gickerville","Noricum","","Eweton"];
-			break;
-		case "Auverland":
-			sdat = ["Auverland","Access to Faclair's largest city.","Auverland, Endermere","Jungle Tours","","West Patria","Auverland Market"];
-			break;
-		case "Auverland Market":
-			sdat = ["Auverland Market","Southern station in Faclair's largest city.","Auverland, Faclair Central Warehouse","Auverland","","West Patria",""];
-			break;
+[{name: "Anderson's Crossing",
+	desc: "The station serves as a stop-over on the long north rail through Crevatia from Eweton to Gickerville.",
+	near: "Anderson's Crossing, The Trident (The Dragon's Tail Inn, The Trident Nature Preserve, The Dojo)"
+	link: {n: "Gickerville", w: "Noricum", s: "Eweton"}},
+
+{name: "Auverland",
+	desc: "Access to Faclair's largest city.",
+	near: "Auverland, Endermere",
+	link: {n: "Jungle Tours", e: "West Patria", s: "Auverland Market"}},
+
+{name: "Auverland Market",
+	desc: "Southern station in Faclair's largest city.",
+	near: "Auverland, Faclair Central Warehouse",
+	link: {n: "Auverland", e: "West Patria", s: "Sartori", w: "Orne"}},
+
 		case "Badrum Capital":
 			sdat = ["Badrum Capital","This is a temporary station allowing fast land access to and from the Badrum Imperium.","Badrum Imperial City","","","Botanical Garden",""];
 			break;
@@ -189,27 +177,3 @@
 			break;
 		default:
 			sdat = ["Igloo at Spawn","This station does not exist.","See above","","","",""];
-	}
-	
-	var stationpic = sdat[0],
-		stationtext = sdat[1],
-		nearsites = sdat[2],
-		northExit = sdat[3],
-		westExit = sdat[4],
-		eastExit = sdat[5],
-		southExit = sdat[6];
-		
-	// Display Station Header, Picture & Info
-	stationheader.innerHTML = station + " Station";
-	picture.src = "gallery/images/" + stationpic + ".jpg";
-	flavour.innerHTML = stationtext;
-	nearby.innerHTML = "Close by: " + nearsites;
-		
-	// Display Station Selector
-	northExit ? north.innerHTML = s1 + "---- NORTH ----" + s2 + northExit + "'>" + northExit + s3 : north.style.border = "none";
-	westExit ? west.innerHTML = s1 + "---- WEST ----" + s2 + westExit + "'>" + westExit + s3 : west.style.border = "none";
-	eastExit ? east.innerHTML = s1 + "---- EAST ----" + s2 + eastExit + "'>" + eastExit + s3 : east.style.border = "none";
-	southExit ? south.innerHTML = s1 + "---- SOUTH ----" + s2 + southExit + "'>" + southExit + s3 : south.style.border = "none";
-	stationName.innerHTML = station;
-	
-</script>
