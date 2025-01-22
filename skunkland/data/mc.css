@@ -117,7 +117,7 @@ div.navbar .navitem.link { background: url(../images/rail.png) no-repeat; }
 
 .contentheader {
   background: #f5e9e0;
-  margin-bottom: 10px; padding: 2px 2px 2px 8px;
+  margin-bottom: 10px; padding: 2px 8px;
   font-family: Courier; font-size: 18px;
   font-weight: bold;
   color: #944;
@@ -125,7 +125,7 @@ div.navbar .navitem.link { background: url(../images/rail.png) no-repeat; }
   text-shadow: 1px 1px 4px #aaa; -webkit-text-shadow: 1px 1px 4px #aaa }
 
 .gallery {
-  margin: auto; padding: 16px;
+  margin: auto;
   display:inline }
 .gallery td {
   vertical-align: top }
