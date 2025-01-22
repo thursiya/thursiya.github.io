@@ -1,125 +1,124 @@
-<html><head>
-
-<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
-<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
-
-<title>Lighting Basics</title>
-
-</head>
-<body>
-
-<div class="content round shadow">
-	<div class="contentheader round">Properties of Lighting</div>
-	<p>
-		<img src="Torch Light.png" alt="Torch Light Distance" height="300" style="float:right;margin:10px">
-		Light is one of the central mechanics of Minecraft.  The light value on a block can be from 0 
-		to 15.  The most basic source of light is the sun.  Blocks exposed to sunlight (the sky is 
-		directly above them) will be at light level 15 during the majority of the day.  As the day ends 
-		the sunlight level will drop until it is dark and these blocks have a light level of 0.  As the 
-		new day dawns the light level will return to 15.  This is the natural light cycle.  During 
-		weather events the light level drops and will even fall below level 8 during a thunderstorm.
-	</p>
-	<p>
-		Any solid block that has a light level below 8 could potentially spawn a hostile mob (see below).
-		This drives us to add crafted lighting to keep our builds at or above light level 8 regardless of 
-		the time of day.  The most common light source is the torch.  Torches light the block they are in
-		to a value of 14 then drop off by 1 for each block from the source (see diagram).  The light
-		thrown by a torch is the same regardless of its orientation (standing up/attached to the side of
-		a block).  Block light sources (redstone lamp, glowstone, jack o'lantern) fill their entire block
-		and throw light one block farther than torches (i.e. adjacent blocks start at level 14).  You 
-		can measure the light level of the block you are standing on by loading the debug screen (F3) 
-		and looking for the 'Light' value.  The number after tells you the current light level (often 
-		15 outside during the day) and then a 'sky' and 'block' value are given (with the current 
-		light level always the highest of the two).  The 'block' light is how much light your block 
-		will have regardless of the weather or time of day - it's the minimum light level.  Note that 
-		light is listed as 0 for sky and block when you are standing on a half-slab (which cannot 
-		spawn mobs anyhow).
-	</p>
-	<p>
-		Less common light sources include fire, lava, redstone torches, redstone ore blocks, redstone 
-		repeaters, operating furnaces, and nether portals.  Fire and lava both produce light at the same 
-		level as the block light sources (and lava produces the same light level regardless of volume).  
-		Redstone torches, glowing redstone ore blocks, and redstone repeaters produce light but not 
-		significant amounts.  A lit repeater produces a light level of 9 in its own block, but otherwise 
-		they all do not produce enough light to raise the light level above 7.  Be careful - lit 
-		redstone wiring and redstone blocks do not actually emit any light.  Furnaces produce nearly as 
-		much light as a torch when they are in operation (regardless of which side you are facing).  
-		Nether portals also give off enough light to keep a few blocks around them mob free (but not 
-		their tops!).
-	</p>
-	<table>
-		<tr>
-			<td style="border:none; vertical-align:top">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Lighting Basics</title>
+		<link rel="stylesheet" href="../data/mc.css">
+		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
+	</head>
+	<body>
+		<main>
+			<div class="content round shadow">
+				<div class="contentheader round">Properties of Lighting</div>
+				<p>
+					<img src="images/Torch Light.png" alt="Torch Light Distance" height="300" style="float:right;margin:10px">
+					Light is one of the central mechanics of Minecraft. The light value on a block can be from 0 
+					to 15. The most basic source of light is the sun. Blocks exposed to sunlight (the sky is 
+					directly above them) will be at light level 15 during the majority of the day. As the day ends 
+					the sunlight level will drop until it is dark and these blocks have a light level of 0. As the 
+					new day dawns the light level will return to 15. This is the natural light cycle. During 
+					weather events the light level drops and will even fall below level 8 during a thunderstorm.
+				</p>
+				<p>
+					Any solid block that has a light level below 8 could potentially spawn a hostile mob (see below). 
+					This drives us to add crafted lighting to keep our builds at or above light level 8 regardless of 
+					the time of day. The most common light source is the torch. Torches light the block they are in 
+					to a value of 14 then drop off by 1 for each block from the source (see diagram). The light 
+					thrown by a torch is the same regardless of its orientation (standing up/attached to the side of 
+					a block). Block light sources (redstone lamp, glowstone, jack o'lantern) fill their entire block 
+					and throw light one block farther than torches (i.e. adjacent blocks start at level 14). You can 
+					measure the light level of the block you are standing on by loading the debug screen (F3) and 
+					looking for the 'Light' value. The number after tells you the current light level (often 15 
+					outside during the day) and then a 'sky' and 'block' value are given (with the current light 
+					level always the highest of the two). The 'block' light is how much light your block will have 
+					regardless of the weather or time of day - it's the minimum light level. Note that light is 
+					listed as 0 for sky and block when you are standing on a half-slab (which cannot spawn mobs anyhow).
+				</p>
+				<p>
+					Less common light sources include fire, lava, redstone torches, redstone ore blocks, redstone 
+					repeaters, operating furnaces, and nether portals. Fire and lava both produce light at the same 
+					level as the block light sources (and lava produces the same light level regardless of volume). 
+					Redstone torches, glowing redstone ore blocks, and redstone repeaters produce light but not 
+					significant amounts. A lit repeater produces a light level of 9 in its own block, but otherwise 
+					they all do not produce enough light to raise the light level above 7. Be careful - lit redstone 
+					wiring and redstone blocks do not actually emit any light. Furnaces produce nearly as much light 
+					as a torch when they are in operation (regardless of which side you are facing). Nether portals 
+					also give off enough light to keep a few blocks around them mob free (but not their tops!).
+				</p>
+				
 				<table>
 					<tr>
-						<th>Light Source</th>
-						<th>Safe Lighting<br>Range</th>
-						<th>Full Lighting<br>Value</th>
+						<td style="border:none; vertical-align:top">
+							<table>
+								<tr>
+									<th>Light Source</th>
+									<th>Safe Lighting<br>Range</th>
+									<th>Full Lighting<br>Value</th>
+								</tr>
+								<tr><td>Redstone Lamp</td><td>7m</td><td>15</td>
+								<tr><td>Glowstone</td><td>7m</td><td>15</td>
+								<tr><td>Jack o'Lantern</td><td>7m</td><td>15</td>
+								<tr><td>Fire</td><td>7m</td><td>15</td>
+								<tr><td>Lava</td><td>7m</td><td>15</td>
+								<tr><td>Torch</td><td>6m</td><td>14</td></tr>
+							</table>
+						</td>
+						<td style="border:none; vertical-align:top">
+							<table>
+								<tr>
+									<th>Light Source</th>
+									<th>Safe Lighting<br>Range</th>
+									<th>Full Lighting<br>Value</th>
+								</tr>
+								<tr><td>Operating Furnace</td><td>5m</td><td>13</td></tr>
+								<tr><td>Nether Portal</td><td>3m</td><td>11</td></tr>
+								<tr><td>Lit Repeater</td><td>1m</td><td>9</td></tr>
+								<tr><td>Glowing Redstone<br>Ore</td><td>1m</td><td>9</td></tr>
+								<tr><td>Redstone Torch</td><td>--</td><td>7</td></tr>
+							</table>
+						</td>
 					</tr>
-					<tr><td>Redstone Lamp</td><td>7m</td><td>15</td>
-					<tr><td>Glowstone</td><td>7m</td><td>15</td>
-					<tr><td>Jack o'Lantern</td><td>7m</td><td>15</td>
-					<tr><td>Fire</td><td>7m</td><td>15</td>
-					<tr><td>Lava</td><td>7m</td><td>15</td>
-					<tr><td>Torch</td><td>6m</td><td>14</td></tr>
 				</table>
-			</td>
-			<td style="border:none; vertical-align:top">
-				<table>
-					<tr>
-						<th>Light Source</th>
-						<th>Safe Lighting<br>Range</th>
-						<th>Full Lighting<br>Value</th>
-					</tr>
-					<tr><td>Operating Furnace</td><td>5m</td><td>13</td></tr>
-					<tr><td>Nether Portal</td><td>3m</td><td>11</td></tr>
-					<tr><td>Lit Repeater</td><td>1m</td><td>9</td></tr>
-					<tr><td>Glowing Redstone<br>Ore</td><td>1m</td><td>9</td></tr>
-					<tr><td>Redstone Torch</td><td>--</td><td>7</td></tr>
-				</table>
-			</td>
-		</tr>
-	</table>
-	<br><br>
-	<div class="contentheader round">Preventing Hostile Mob Spawning</div>
-	<p>
-		<img src="https://minecraft.wiki/images/Mob_spawning_ranges.png" 
-		alt="Mob Spawning Ranges" height="300" style="float:right; margin:10px">
-		When the light level drops below 8, or in locations where it already is below 8 (such as caves), 
-		players	need to worry about hostile mobs spawning.  Monsters can spawn on top of any dark block 
-		within a certain range of the player (as long as there is headroom for them).  Mobs will not 
-		spawn within 16m of the player or outside of loaded chunks.
-	</p>
-	<p>
-		Monsters can only spawn on top of solid blocks.  This means the block must have a solid top, 
-		such as on a block of dirt, sand, or stone.  This includes the tops of upside-down stairs and 
-		slabs.  Mobs will not spawn on top of transparent or partially transparent blocks, including 
-		air (obviously), leaves, glass, fences, tops of stairs, and slabs.  They will also not spawn in 
-		or on top of lava, water, or bedrock.
-	</p>
-	<p style="clear:both">
-		<img src="Staggered Torches.png" alt="Efficient Staggered Torches" height="290" style="float:left;margin:10px">
-		This means that most of the natural world is not safe at night (outside of tree tops and water).
-		It also means that most players' builds are not safe unless properly lit with torches or lamps. 
-		If you are working in a large flat area and want to efficiently place torches to avoid hostile 
-		mob spawning then you need to consider the torch ranges (given above).  A good repeating pattern 
-		is to place torches with 11m between them, then stagger the next row of torches 6m to the right 
-		and 7m up (see example).
-	</p>
-	<p>
-		One key area that players run into lighting problems is with the roofs of structures.  Just like
-		the ground level, roofs need to built in a certain way or lit properly to avoid mobs dropping in.
-		This has led to the popularity of the staircase roof.  Because stairs are not solid blocks they 
-		are safe from mob spawning and they make a lovely 45 degree angled roof, plus they come in many 
-		block varieties.  It is also safe to use glass blocks in roofs.Be careful of building roofs with 
-		slabs.  Although slabs in their standard form are safe from mob spawning, when you build an 
-		upside-down slab (one that is level with full-sized	blocks on the top) then it functions just 
-		like a normal block on its top and can spawn mobs.  Carpeting now prevents mob spawning and 
-		can be used to make individual solid block tops safe.
-	<br style="clear: both">
-	</p>
-
-</div>
-
-</body>
+				<br><br>
+				
+				<div class="contentheader round">Preventing Hostile Mob Spawning</div>
+				<p>
+					<img src="https://minecraft.wiki/images/Mob_spawning_ranges.png" alt="Mob Spawning Ranges" height="300" style="float:right; margin:10px">
+					When the light level drops below 8, or in locations where it already is below 8 (such as caves), 
+					players	need to worry about hostile mobs spawning. Monsters can spawn on top of any dark block 
+					within a certain range of the player (as long as there is headroom for them). Mobs will not 
+					spawn within 16m of the player or outside of loaded chunks.
+				</p>
+				<p>
+					Monsters can only spawn on top of solid blocks. This means the block must have a solid top, 
+					such as on a block of dirt, sand, or stone. This includes the tops of upside-down stairs and 
+					slabs. Mobs will not spawn on top of transparent or partially transparent blocks, including 
+					air (obviously), leaves, glass, fences, tops of upright stairs, and slabs. They will also not 
+					spawn in or on top of lava, water, or bedrock.
+				</p>
+				<p style="clear:both">
+					<img src="images/Staggered Torches.png" alt="Efficient Staggered Torches" height="290" style="float:left;margin:10px">
+					This means that most of the natural world is not safe at night (outside of tree tops and water). 
+					It also means that most players' builds are not safe unless properly lit with torches or lamps. 
+					If you are working in a large flat area and want to efficiently place torches to avoid hostile 
+					mob spawning then you need to consider the torch ranges (given above). A good repeating pattern 
+					is to place torches with 11m between them, then stagger the next row of torches 6m to the right 
+					and 7m up (see example).
+				</p>
+				<p>
+					One key area that players run into lighting problems is with the roofs of structures. Just like
+					the ground level, roofs need to be built in a certain way or lit properly to avoid mobs dropping 
+					in. This has led to the popularity of the staircase roof.  Because stairs are not solid blocks 
+					they are safe from mob spawning and they make a lovely 45 degree angled roof, plus they come in 
+					many block varieties. It is also safe to use glass blocks in roofs.Be careful of building roofs 
+					with slabs. Although slabs in their standard form are safe from mob spawning, when you build an 
+					upside-down slab (one that is level with full-sized blocks on the top) then it functions just 
+					like a normal block on its top and can spawn mobs. Carpeting now prevents mob spawning and can 
+					be used to make individual solid block tops safe.
+					<br style="clear: both">
+				</p>
+			</div>
+		</main>
+	</body>
 </html>
