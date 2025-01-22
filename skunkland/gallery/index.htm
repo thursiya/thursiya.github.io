@@ -48,7 +48,7 @@
 					let out = "";
 					for (let i = 0; i < arr.length; i++) {
 						if (i == 0 || i == Math.ceil(arr.length / 2)) out += `<div class="col-6"><ul>`;
-						out += `<li><span style="font-weight: bold; color: #00F" onclick="loadGallery(${g.findIndex(v => v.name == arr[i].name)})">${arr[i].name}</span>`;
+						out += `<li><span style="font-weight: bold; color: #00F; cursor: pointer" onclick="loadGallery(${g.findIndex(v => v.name == arr[i].name)})">${arr[i].name}</span>`;
 						if (i == arr.length - 1 || i == Math.ceil(arr.length / 2) - 1) out += `</ul></div>`;
 					}
 					document.getElementById(dest).innerHTML = out;
