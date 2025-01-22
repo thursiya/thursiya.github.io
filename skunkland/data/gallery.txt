@@ -104,18 +104,27 @@
 
 {name: "Republic of Gavel", type: 1, section: [
 	{img: [
-		"Ghibli Port",
+
 		"Gavel Power Company (GPC) Solar Plant",
 		"Baths Palace",
 		"Operis National Distribution Centre",
 		"Persson International Airport",
-		"Celestia Corolla",
-		"Zephyr Federal Mining Penal Colony",
-		"Lunar Hill"]},
+		"Celestia Corolla"]},
 	{title: "New Kingsburg", img: [
 		"New Kingsburg",
 		"Great Gate of Gavel",
-		"Pristina State Capitol at Dawn"
+		"Pristina State Capitol at Dawn",
+		"New Kingsburg Smelter",
+		"Southside (New Kingsburg)",
+		"Northside (New Kingsburg)"]},
+	{title: "Ghibli Province", img: [
+		"Ghibli Port",
+		"Lunar Hill",
+		"Cod Piece Fish & Chips"]},
+	{title: "Zephyr Province", img: [
+		"Zephyr Federal Mining Penal Colony",
+		"Zefram",
+		"Zefram at Night"
 	]}]},
 
 {name: "Kingdom of Koku", type: 1, section: [
