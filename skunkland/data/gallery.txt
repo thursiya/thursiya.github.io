@@ -66,7 +66,8 @@
 		"Fort Resolution",
 		"Noricum",
 		"Anderson's Crossing",
-		"Gickerville"
+		"Gickerville",
+		"Stellarton"
 	]}]},
 
 {name: "Adhocracy of Delve", type: 1, section: [
@@ -75,7 +76,8 @@
 		"Castle Gorllewin",
 		"Black Jack Farm",
 		"Bright Farm",
-		"Delve Market"]},
+		"Delve Market",
+		"Falling Golem Inn & The Golden Poppy"]},
 	{title: "Ennist Province Gallery", img: [
 		"Ulve",
 		"Ulvenstand",
@@ -85,10 +87,19 @@
 
 {name: "Freenation of Faclair", type: 1, section: [
 	{img: [
-		"Cadwgan",
+		"Faclair Airport",
 		"Jungle Tours",
+		"Glorious Farm UFO",
+		"Red Rose Mall",
+		"Red Rose Food Court"]},
+	{title: "Auverland", img: [
 		"Auverland",
-		"Executive Hotel Auverland"
+		"Auverland (Downtown)",
+		"Executive Hotel Auverland"]},
+	{title: "Cadwgan", img: [
+		"Cadwgan",
+		"Horse Track",
+		"Rose Garden Inn"
 	]}]},
 
 {name: "Republic of Gavel", type: 1, section: [
