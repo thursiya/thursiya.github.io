@@ -48,18 +48,9 @@
 	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "Faclair Airport"}},
 
 {name: "Celestia", img: "Celestia Corolla",
-	desc: "This is the hub station of the Thurail Subway network which is why it has eight exits. It is located at the heart of the city of Celestia (Tercomciel province, Gavel).",
+	desc: "This is the hub station of the Thurail Subway network which is why it has eight exits (N and NW not yet operational). It is located at the heart of the city of Celestia (Tercomciel province, Gavel).",
 	near: "City of Celestia",
-	link: {"","Zefram","Mellon Bay","Funland"];
-			//northwest.innerHTML = s1 + "-- NORTHWEST --" + s2 + "Navy Base'>Navy Base" + s3;
-			//northwest.style.border = "1px solid black";
-			northeast.innerHTML = s1 + "-- NORTHEAST --" + s2 + "Persson Airport'>Persson Airport" + s3;
-			northeast.style.border = "1px solid black";
-			//southwest.innerHTML = s1 + "-- SOUTHWEST --" + s2 + "Casino'>Casino" + s3;
-			//southwest.style.border = "1px solid black";
-			southeast.innerHTML = s1 + "-- SOUTHEAST --" + s2 + "Baths Palace'>Baths Palace" + s3;
-			southeast.style.border = "1px solid black";
-			break;
+	link: {w: "Zefram", e: "Mellon Bay", s: "Funland", ne: "Persson Airport", sw: "North Pristina", se: "Baths Palace"}},
 
 {name: "Century Build", img: "First Centruy Build Competition Site",
 	desc: "This is the site of the Century Build Competition, held during SY 200. The site features statues by players who participated.",
@@ -72,9 +63,9 @@
 	link: {w: "Pristina Capitol", e: "West Koku"}},
 
 {name: "Crevasse",
-	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has 			undergone significant renovations and no longer resembles its original form, now spanning the length of the city.",
+	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has 			undergone significant renovations and no longer resembles its original form, now spanning the length of the city. Heli-flights available out of Gavel Embassy.",
 	near: "Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano",
-	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "Persson Airport"}},
+	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "&#9992; Persson Airport", sw: "&#9992; Delve Airport", se: "&#9992; Zefram"}},
 
 {name: "Cutter's Junction",
 	desc: "This is a stop-over station at Cutter's Junction, South Shore.",
@@ -85,6 +76,11 @@
 	desc: "This station is located just outside of the east entrance to Delve City which lets you walk through the famed Dragon Maw Gate.",
 	near: "Delve City, Treetop Village",
 	link: {n: "Desert Town", w: "Braille", e: "Space Town", s: "Ulve"}},
+
+{name: "Delve Airport",
+	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ."
+	near: "Delve City",
+	link: {sw: "&#9992; Faclair Airport", ne: "&#9992; Crevasse"}
 
 {name: "Desert Town",
 	desc: "Desert Town is a designated neutral town. It is open to all players to visit, trade in, and add to.",
@@ -101,10 +97,15 @@
 	near: "Eweton, Midgewater Swamp",
 	link: {n: "Anderson's Crossing", w: "William's Harbor", e: "Baetica", s: "Crevasse"}},
 
+{name: "Expo 400",
+	desc: "The station is the last northern stop on the rail lines in the northeast and exits into the Enlil Museum of Modern Art. Provides access to the Expo 400 site.",
+	near: "Art Museum, various houses",
+	link: {s: "Jeda"}},
+
 {name: "Faclair Airport",
 	desc: "There is currently no subway station at the airport, but one may be built in the future. An underground passage connects directly to the West Patria station.",
 	near: "Glorious Farm",
-	link: {n: "West Patria", ne: "Delve Airport"}},
+	link: {n: "West Patria", ne: "&#9992; Delve Airport"}},
 
 {name: "Fort Resolution",
 	desc: "At the end of the long dark tunnel the subway stops underground at the Fort Resolution monster spawner.",
@@ -124,12 +125,17 @@
 {name: "Ghibli Port",
 	desc: "This station exits on the docks of Ghibli Port (Ghibli province, Gavel). Heli-flight from North Star Shipping HQ to New Kingsburg and Persson.",
 	near: "Ghibli Port, Koku northern border",
-	link: {n: "Funland", w: "Pristina Capitol", s: "West Koku", nw: "New Kingsburg Airport", ne: "Persson Airport"}},
+	link: {n: "Funland", w: "Pristina Capitol", s: "West Koku", nw: "&#9992; New Kingsburg Airport", ne: "&#9992; Persson Airport"}},
 
 {name: "Gickerville",
 	desc: "Currently the northernmost station in the subway network. Access to Gickerville and northern Crevatia.",
 	near: "Gickerville",
 	link: {s: "Anderson's Crossing"}},
+
+{name: "Jeda", img: "Pyramid",
+	desc: "This station currently serves as a connector along the north coast of the Sea of Gavel, but there are no exits built. Future site of the city of Jeda.",
+	near: "Pyramid",
+	link: {n: "Expo 400", w: "Persson Airport", s: "Ottokar"}},
 
 {name: "Johnville",
 	desc: "Originally known as Tetriston, Johnville is the second largest independent settlement after Desert Town.",
@@ -161,49 +167,88 @@
 	near: "Moon Base",
 	link: {n: "South Shore", w: "Lunar Hill", e: "Cutter's Junction", s: "Southeast Koku"}},
 
-			break;
-		case "New Kingsburg":
-			sdat = ["New Kingsburg","This is where the subway system began (which is why the station is peculiarly built).  The four exits come out in the center of downtown New Kingsburg (Pristina state, Gavel), the first city of Skunkland.","New Kingsburg, Pristina Capitol","Northside","Crevasse","New Kingsburg Airport","Southside"];
-			break;
-		case "New Kingsburg Airport":
-			sdat = ["New Kingsburg Regional Airport","In the northeast of New Kingsburg lies the regional airport (connecting directly to Persson International).","New Kingsburg, Smelter","Northside","New Kingsburg","Funland","Pristina Capitol"];
-			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
-			break;
-		case "Noricum":
-			sdat = ["Noricum","This station exits in the town of Noricum (Crevatia).","Noricum, Fort Resolution","Fort Resolution","","Andersons Crossing","Stellarton"];
-			break;
+{name: "New Kingsburg",
+	desc: "This is where the subway system began (which is why the station is peculiarly built). The four exits come out in the center of downtown New Kingsburg (Pristina state, Gavel), 
+		the first city of Skunkland.",
+	near: "Operis Tower, Mandor Memorial Medical Centre, Midori Kesshutsu Tower",
+	link: {n: "Northside", w: "Crevasse", e: "New Kingsburg Airport", s: "Southside"}},
 
-North Pristina
+{name: "New Kingsburg Airport", img: "New Kingsburg Regional Airport",
+	desc: "In the northeast of New Kingsburg lies the regional airport (connecting directly to Persson International). Heli-flights to the Midori Kesshutsu Tower and Ghibli Port.",
+	near: "New Kingsburg, Smelter",
+	link: {n: "Northside", w: "New Kingsburg", e: "Funland", s: "Pristina Capitol", ne: "&#9992; Persson Airport", se: "&#9992; Ghibli Port"}},
 
-		case "Northside":
-			sdat = ["Northside (New Kingsburg)","The northern suburb of New Kingsburg.","New Kingsburg, GPC Solar Plant","","Baetica","New Kingsburg Airport","New Kingsburg"];
-			break;
-		case "Persson Airport":
-			sdat = ["Persson Airport","The station exits inside the Persson International Airport terminal (Enlil province, Gavel).","Persson International Airport","","Celestia","","Mellon Bay"];
-			northwest.innerHTML = sflight + "West Patria'>Faclair Airport" + s3;
-			northeast.innerHTML = sflight + "Crevasse'>Crevasse" + s3;
-			southwest.innerHTML = sflight + "New Kingsburg Airport'>New Kingsburg Airport" + s3;
-			break;
-		case "Porcinia":
-			sdat = ["Porcinia","Currently the most eastern station of the northern stations.  Access to the town and Commune of Porcinia.","Porcinia, Rainbow","","South Shore","","Tree Tower"];
-			break;
-		case "Pristina Capitol":
-			sdat = ["Pristina State Capitol at Dawn","This station exits either to the basement or exterior of the Pristina State Capitol.","Pristina Capitol, New Kingsburg","New Kingsburg Airport","Southside","Ghibli Port","Contested Village"];
-			break;
-		case "Red Rock":
-			sdat = ["Red Rock","The town of Red Rock is the hub of mesa mining.","Red Rock, otherwise nothing - it's in the middle of the Grand Mesa","Spawn","Ulve","Dragon Ridge",""];
-			break;
+{name: "Nexus",
+	desc: "The national capital of Gavel, the station sits directly underneath of the Nexus Orb capitol building. Also home to numerous embassies built during a Skyscrapers of Skunkland competition.",
+	near: "Nexus Orb, Embassies",
+	link: {e: "Persson Airport"}},
 
-Seaside
+{name: "Noricum",
+	desc: "This station exits in the town of Noricum (Crevatia).",
+	near: "Noricum, Fort Resolution",
+	link: {n: "Fort Resolution", e: "Anderson's Crossing", s: "Stellarton"}},
 
-		case "Sofia":
-			sdat = ["Sofia","Sofia was a neutral town that joined the Hanse of Amahn in February 190.","Sofia, Castle Foundations, Cross on the Hill","","Johnville","Lut Gholein","Dragon Ridge"];
-			break;
-		case "Southeast Koku":
-			sdat = ["Southeast Koku Station","This station is a stop-over on the way from Moon Base to Boatmurdered.  There is currently nothing to see here and the exits are closed.","Nothing","Moon Base","","Boatmurdered","Lut Gholein"];
-			break;
-		case "South Shore":
-			sdat = ["South Shore","Access to the city of South Shore, capital of the Commune of South Shore.","South Shore, Twisty Tower, Gavel eastern border","Mellon Bay","Baths Palace","Porcinia","Moon Base"];
+{name: "North Pristina", img: "Gavel Power Company (GPC) Solar Plant",
+	desc: "This station currently serves as a major connector in western Gavel, but there are no exits built. Future site of the Pristina Casino.",
+	near: "Solar Plant",
+	link: {n: "Zefram", w: "Baetica", e: "Celestia", s: "Northside"},
+
+{name: "Northside", img: "Northside (New Kingsburg)",
+	desc: "The northern suburb of New Kingsburg.",
+	near: "New Kingsburg, Northside Plaza, Firehall",
+	link: {n: "North Pristina", w: "Baetica", e: "New Kingsburg Airport", s: "New Kingsburg"}},
+
+{name: "Orne",
+	desc: "The western terminus of the rail network, accessing the new build site in Orne.",
+	near: "White dome",
+	link: {e: "Seaside"}},
+
+{name: "Ottokar", img: "Ottokar Fortress",
+	desc: "This station does not yet have a proper exit but provides access to the Ottokar Fortress build site (Syldavia state, Gavel) and a connection to the eastern rail routes.",
+	near: "Ottokar Fortress",
+	link: {w: "Jeda", s: "Porcinia"}},
+
+{name: "Persson Airport", img: "Persson International Airport",
+	desc: "The station exits inside the Persson International Airport terminal (Enlil province, Gavel).",
+	near: "Persson Airport",
+	link: {n: "Nexus", w: "Celestia", e: "Jeda", s: "Mellon Bay", nw: "&#9992; Zefram", ne: "&#9992; Ghibli Port", se: "&#9992; New Kingsburg", sw: "&#9992; Crevasse"}},
+
+{name: "Porcinia",
+	desc: "Currently the most eastern station of the northern stations. Access to the town and Commune of Porcinia.",
+	near: "Porcinia, Rainbow",
+	link: {n: "Ottokar", w: "South Shore", s: "Tree Tower"}},
+
+{name: "Pristina Capitol", img: "Pristina State Capitol at Dawn",
+	desc: "This station used to exit to either the basement or exterior of the Pristina State Capitol, but it was moved further south to exit in the Capitol Centre Mall, with access 
+		to the state capitol on the north end of the underground mall.",
+	near: "Capitol Centre Mall, Delve Co., Tseles Bank, Pristina Capitol, New Kingsburg",
+	link: {n: "New Kingsburg Airport", w: "Southside", e: "Ghibli Port", s: "Contested Village"}},
+
+{name: "Red Rock",
+	desc: "The town of Red Rock is the hub of mesa mining.",
+	near: "Red Rock, otherwise nothing - it's in the middle of the Grand Mesa",
+	link: {n: "Spawn", w: "Ulve", e: "Dragon Ridge"}},
+
+{name: "Seaside",
+	desc: "The Seaside station is a stop-over on the way to western Orne.",
+	near: "A quiet little bay",
+	link: {w: "Orne", e: "Auverland Market"}},
+
+{name: "Sofia",
+	desc: "Sofia was a neutral town that joined the Hanse of Amahn in February 190.",
+	near: "Sofia, Castle foundations, Cross on the Hill",
+	link: {w: "Johnville", e: "Lut Gholein", s: "Dragon Ridge"}},
+
+{name: "Southeast Koku", img: "Southeast Koku Station",
+	desc: "This station is a stop-over on the way from Moon Base to Boatmurdered. There is currently nothing to see here and the exits are closed.",
+	near: "Nothing",
+	link: {n: "Moon Base", e: "Boatmurdered", s: "Lut Gholein"}},
+
+{name: "South Shore",
+	desc: "Access to the city of South Shore, capital of the Commune of South Shore.",
+	near: "South Shore, Twisty Tower, Gavel eastern border",
+	link: {n: "Mellon Bay", w: "Baths Palace", e: "Porcinia", s: "Moon Base"}},
+
 			break;
 		case "Southside":
 			sdat = ["Southside (New Kingsburg)","This is currently a placeholder station, one of the New Kingsburg inner city network.","New Kingsburg, Pristina Capitol, Great Gate of Gavel","New Kingsburg","Century Build","Pristina Capitol","Johnville"];
@@ -217,24 +262,30 @@ Seaside
 		case "Stellarton":
 			sdat = ["Stellarton","This station exits in the town of Stellarton (Crevatia).","Stellarton, Delve northern border","Noricum","","","Williams Harbor"];
 			break;
+
+{name: "Tortilla Flat",
+	desc: "A terminus station connecting to the new community of Tortilla Flat with future connecting lines planned.",
+	near: "Tortilla Flat (Sedona)",
+	link: {s: "Bright Farm"}},
+
 		case "Tree Tower":
-			sdat = ["Tree Tower","This station is the last on the eastern line and directly connects to the Far East Rail Link.","Tree Tower, abandoned builds","Porcinia","Cutters Junction","",""];
+			sdat = ["Tree Tower","This station is the last on the eastern line and directly connects to the Far East Rail Link.","Tree Tower, abandoned builds","Porcinia","Cutter's Junction","",""];
 			break;
 		case "Ulve":
 			sdat = ["Ulve","Ulve is the capital and largest settlement in Ennist province, Delve.  The station is located in the Ulve Undermarket, beneath the castle of Ulvenstand.  Although not particularly close to the Arcane Factory, it is the closest subway station available.","Ulve, Ulvenstand, University of Ennist, Standing Stones","Delve","Cadwgan","Red Rock",""];
 			break;
 		case "West Koku":
-			sdat = ["Pacman Tree","Access to the Kingdom of Koku.","Pacman Tree, Koku Fortress, Gavel southern border","Ghibli Port","Contested Village","",""];
+			sdat = ["Pacman Treehouse","Access to the Kingdom of Koku.","Pacman Tree, Koku Fortress, Gavel southern border","Ghibli Port","Contested Village","",""];
 			break;
 		case "West Patria":
 			sdat = ["West Patria","Access to Faclair's southeastern zone of Patria and the international airport.","Red Rose Mall, Faclair Airport, Market","Cadwgan","G-Corporation Skyfarm","","Auverland Market", se: "Faclair Airport"];
 			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
 			break;
-		case "Williams Harbor":
+		case "William's Harbor":
 			sdat = ["Williams Harbour","This station exits in the town of William's Harbour (Crevatia).","William's Harbour, Bentley Bay","Stellarton","","Eweton","Desert Town"];
 			break;
 		case "Zefram":
-			sdat = ["Zefram","At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport.  It is the site of the Year 300 Century Build.","Zefram, Century Build 300","","Zephyr Prison","Celestia",""];
+			sdat = ["Zefram","At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport.  It is the site of the Year 300 Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.","Zefram, Expo 300","","Zephyr Prison","Celestia",ne: "&#9992; Persson Airport"];
 			break;
 		case "Zephyr Prison":
 			sdat = ["Zephyr Prison","The station exits to an access tunnel with a short rail to the Zephyr Federal Mining Penal Colony (Zephyr province, Gavel).","Zephyr Prison","","","Zefram","Baetica"];
