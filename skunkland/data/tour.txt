@@ -6,12 +6,12 @@
 {name: "Auverland",
 	desc: "Access to Faclair's largest city.",
 	near: "Auverland, Endermere",
-	link: {n: "Jungle Tours", e: "West Patria", s: "Auverland Market"}},
+	link: {n: "Jungle Tours", e: "G-Corporation Skyfarm", s: "Auverland Market"}},
 
 {name: "Auverland Market",
 	desc: "Southern station in Faclair's largest city.",
 	near: "Auverland, Faclair Central Warehouse",
-	link: {n: "Auverland", e: "West Patria", s: "Sartori", w: "Orne"}},
+	link: {n: "Auverland", w: "Seaside", e: "Faclair Airport", s: "Sartori"}},
 
 {name: "Badrum Capital",
 	desc: "This is a temporary station allowing fast land access to and from the Badrum Imperium.",
@@ -45,12 +45,12 @@
 {name: "Cadwgan",
 	desc: "Access to the town of Cadwgan and the Freenation of Faclair.",
 	near: "Cadwgan, Endermere",
-	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "West Patria"}},
+	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "Faclair Airport"}},
 
-{
-			break;
-		case "Celestia":
-			sdat = ["Celestia Corolla","This is the hub station of the Thurail Subway network which is why it has eight exits.  It is located at the heart of the city of Celestia (Tercomciel province, Gavel).","City of Celestia","","Zefram","Mellon Bay","Funland"];
+{name: "Celestia", img: "Celestia Corolla",
+	desc: "This is the hub station of the Thurail Subway network which is why it has eight exits. It is located at the heart of the city of Celestia (Tercomciel province, Gavel).",
+	near: "City of Celestia",
+	link: {"","Zefram","Mellon Bay","Funland"];
 			//northwest.innerHTML = s1 + "-- NORTHWEST --" + s2 + "Navy Base'>Navy Base" + s3;
 			//northwest.style.border = "1px solid black";
 			northeast.innerHTML = s1 + "-- NORTHEAST --" + s2 + "Persson Airport'>Persson Airport" + s3;
@@ -60,33 +60,52 @@
 			southeast.innerHTML = s1 + "-- SOUTHEAST --" + s2 + "Baths Palace'>Baths Palace" + s3;
 			southeast.style.border = "1px solid black";
 			break;
-		case "Century Build":
-			sdat = ["Century Build","This is the site of the Century Build Competition, held during SY 200.  The site features statues by players who participated.","Crevatia south border","Crevasse","Space Town","Southside","Spawn"];
-			break;
-		case "Contested Village":
-			sdat = ["Contested Village","The village contested between Gavel and Koku, located southeast of New Kingsburg.","New Kingsburg, Pristina Capitol","","Pristina Capitol","West Koku"];
-			break;
-		case "Crevasse":
-			sdat = ["Crevasse","The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia.  The station has undergone significant renovations and no longer resembles its original form, now spanning the length of the city.","Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano","Eweton","Desert Town","New Kingsburg","Century Build"];
-			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
-			break;
-		case "Cutters Junction":
-			sdat = ["Cutters Junction","This is a stop-over station at Cutter's Junction, South Shore.","Cutter's Junction, Quarries","","Moon Base","Tree Tower"];
-			break;
-		case "Delve":
-			sdat = ["Delve","This station is located just outside of the east entrance to Delve City which lets you walk through the famed Dragon Maw Gate.","Delve City, Treetop Village","Desert Town","Braille","Space Town","Ulve"];
-			break;
-		case "Desert Town":
-			sdat = ["Desert Town","Desert Town is a designated neutral town.  It is open to all players to visit, trade in, and add to.","Desert Town, Mt. Pacifica, Delve eastern border, Crevatia western border","Williams Harbor","Delve","Crevasse","Space Town"];
-			break;
-		case "Dragon Ridge":
-			sdat = ["Dragon Ridge","Currently the most southern station.  Dragon Ridge is the chief town in the Hanse of Amahn.","Dragon Ridge, Dragon Bones","Sofia","Red Rock","",""];
-			break;
-		case "Eweton":
-			sdat = ["Eweton at Night","This station is so old it was built before Eweton was incorporated into Crevatia.","Eweton, Midgewater Swamp","Andersons Crossing","Williams Harbor","Baetica","Crevasse"];
-			break;
-		case "Faclair Airport":
-			sdat = ["Faclair Airport","There is currently no subway station at the airport but one may be built in the future.","Auverland, Endermere, Glorious Farm","","","",""];
+
+{name: "Century Build", img: "First Centruy Build Competition Site",
+	desc: "This is the site of the Century Build Competition, held during SY 200. The site features statues by players who participated.",
+	near: "Crevatia south border",
+	link: {n: "Crevasse", w: "Space Town", e: "Southside", s: "Spawn"}},
+
+{name: "Contested Village",
+	desc: "The village contested between Gavel and Koku, located southeast of New Kingsburg.",
+	near: "New Kingsburg, Pristina Capitol",
+	link: {w: "Pristina Capitol", e: "West Koku"}},
+
+{name: "Crevasse",
+	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has 			undergone significant renovations and no longer resembles its original form, now spanning the length of the city.",
+	near: "Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano",
+	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "Persson Airport"}},
+
+{name: "Cutter's Junction",
+	desc: "This is a stop-over station at Cutter's Junction, South Shore.",
+	near: "Cutter's Junction, Quarries",
+	link: {w: "Moon Base", e: "Tree Tower"}},
+
+{name: "Delve",
+	desc: "This station is located just outside of the east entrance to Delve City which lets you walk through the famed Dragon Maw Gate.",
+	near: "Delve City, Treetop Village",
+	link: {n: "Desert Town", w: "Braille", e: "Space Town", s: "Ulve"}},
+
+{name: "Desert Town",
+	desc: "Desert Town is a designated neutral town. It is open to all players to visit, trade in, and add to.",
+	near: "Desert Town, Mt. Pacifica, Delve eastern border, Crevatia western border",
+	link: {n: "William's Harbor", w: "Delve", e: "Crevasse", s: "Space Town"}},
+
+{name: "Dragon Ridge",
+	desc: "Currently the most southern station. Dragon Ridge is the chief town in the Hanse of Amahn.",
+	near: "Dragon Ridge, Dragon Bones",
+	link: {n: "Sofia", w: "Red Rock"}},
+
+{name: "Eweton", img: "Eweton at Night",
+	desc: "This station is so old it was built before Eweton was incorporated into Crevatia.",
+	near: "Eweton, Midgewater Swamp",
+	link: {n: "Anderson's Crossing", w: "William's Harbor", e: "Baetica", s: "Crevasse"}},
+
+{name: "Faclair Airport",
+	desc: "There is currently no subway station at the airport, but one may be built in the future. An underground passage connects directly to the West Patria station.",
+	near: "Glorious Farm",
+	link: {n: "West Patria", ne: "Delve Airport"}},
+
 			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
 			break;
 		case "Fort Resolution":
@@ -95,6 +114,12 @@
 		case "Funland":
 			sdat = ["Central Ghibli","This station is a waypoint in the middle of the province of Ghibli, Gavel, sitting between four important stations.  Funland will be a theme park developed in the future.  There is nothing here and all exits are closed.","Dead end desert roads","Celestia","New Kingsburg Airport","Lunar Hill","Ghibli Port"];
 			break;
+
+{name: "G-Corporation Skyfarm",
+	desc: "This is a stop-over station between Auverland and West Patria. From here you can access the first Skyscrapers of Skunkland build site.",
+	near: "Auverland, Skyfarm, Tseles HQ",
+	link: {w: "Auverland", e: "West Patria"}},
+
 		case "Ghibli Port":
 			sdat = ["Ghibli Port","This station exits on the docks of Ghibli Port (Ghibli province, Gavel).","Ghibli Port, Koku northern border","Funland","Pristina Capitol","","West Koku"];
 			break;
@@ -129,6 +154,9 @@
 		case "Noricum":
 			sdat = ["Noricum","This station exits in the town of Noricum (Crevatia).","Noricum, Fort Resolution","Fort Resolution","","Andersons Crossing","Stellarton"];
 			break;
+
+North Pristina
+
 		case "Northside":
 			sdat = ["Northside (New Kingsburg)","The northern suburb of New Kingsburg.","New Kingsburg, GPC Solar Plant","","Baetica","New Kingsburg Airport","New Kingsburg"];
 			break;
@@ -147,6 +175,9 @@
 		case "Red Rock":
 			sdat = ["Red Rock","The town of Red Rock is the hub of mesa mining.","Red Rock, otherwise nothing - it's in the middle of the Grand Mesa","Spawn","Ulve","Dragon Ridge",""];
 			break;
+
+Seaside
+
 		case "Sofia":
 			sdat = ["Sofia","Sofia was a neutral town that joined the Hanse of Amahn in February 190.","Sofia, Castle Foundations, Cross on the Hill","","Johnville","Lut Gholein","Dragon Ridge"];
 			break;
@@ -178,7 +209,7 @@
 			sdat = ["Pacman Tree","Access to the Kingdom of Koku.","Pacman Tree, Koku Fortress, Gavel southern border","Ghibli Port","Contested Village","",""];
 			break;
 		case "West Patria":
-			sdat = ["West Patria","Access to Faclair's southeastern zone of Patria and the international airport.","Red Rose Mall, Faclair Airport, Market","Cadwgan","Auverland","","Auverland Market"];
+			sdat = ["West Patria","Access to Faclair's southeastern zone of Patria and the international airport.","Red Rose Mall, Faclair Airport, Market","Cadwgan","G-Corporation Skyfarm","","Auverland Market", se: "Faclair Airport"];
 			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
 			break;
 		case "Williams Harbor":
