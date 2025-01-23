@@ -67,7 +67,7 @@
 	link: {n: "Crevasse", w: "Space Town", e: "Southside", s: "Spawn"}},
 
 {name: "Contested Village",
-	desc: "The village contested between Gavel and Koku, located southeast of New Kingsburg.",
+	desc: "The village contested between Gavel and Koku, sometimes known as Spawnmouth, located southeast of New Kingsburg.",
 	near: "New Kingsburg, Pristina Capitol",
 	link: {w: "Pristina Capitol", e: "West Koku"}},
 
@@ -106,43 +106,61 @@
 	near: "Glorious Farm",
 	link: {n: "West Patria", ne: "Delve Airport"}},
 
-			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
-			break;
-		case "Fort Resolution":
-			sdat = ["Fort Resolution","At the end of the long dark tunnel the subway stops underground at the Fort Resolution monster spawner.","Fort Resolution","","","","Noricum"];
-			break;
-		case "Funland":
-			sdat = ["Central Ghibli","This station is a waypoint in the middle of the province of Ghibli, Gavel, sitting between four important stations.  Funland will be a theme park developed in the future.  There is nothing here and all exits are closed.","Dead end desert roads","Celestia","New Kingsburg Airport","Lunar Hill","Ghibli Port"];
-			break;
+{name: "Fort Resolution",
+	desc: "At the end of the long dark tunnel the subway stops underground at the Fort Resolution monster spawner.",
+	near: "Fort Resolution",
+	link: {s: "Noricum"}},
+
+{name: "Funland",
+	desc: "Access to the Funland theme park (Expo 600). This station was originally just a waypoint in the middle of the province of Ghibli, Gavel, sitting between four important stations.",
+	near: "Funland",
+	link: {n: "Celestia", w: "New Kingsburg Airport", e: "Lunar Hill", s: "Ghibli Port"}},
 
 {name: "G-Corporation Skyfarm",
 	desc: "This is a stop-over station between Auverland and West Patria. From here you can access the first Skyscrapers of Skunkland build site.",
-	near: "Auverland, Skyfarm, Tseles HQ",
+	near: "Auverland, Skyfarm, Tseles Bank HQ",
 	link: {w: "Auverland", e: "West Patria"}},
 
-		case "Ghibli Port":
-			sdat = ["Ghibli Port","This station exits on the docks of Ghibli Port (Ghibli province, Gavel).","Ghibli Port, Koku northern border","Funland","Pristina Capitol","","West Koku"];
-			break;
-		case "Gickerville":
-			sdat = ["Gickerville","Currently the northernmost station in the subway network.  Access to Gickerville and northern Crevatia.","Gickerville","","","","Andersons Crossing"];
-			break;
-		case "Johnville":
-			sdat = ["Johnville","Originally known as Tetriston, Johnville is the second largest independent settlement after Desert Town","Johnville","Southside","Spawn","","Sofia"];
-			break;
-		case "Jungle Tours":
-			sdat = ["Jungle Tours","Tucked away in northwest Faclair is the Jungle Tours site, built to address the western shortfall of jungle.","Jungle Tours, Horse Track","Botanical Garden","","Cadwgan","Auverland"];
-			break;
-		case "Lunar Hill":
-			sdat = ["Lunar Hill","Access to Lunar Hill (Ghibli province, Gavel).","Lunar Hill, Observatory, South Shore western border","Baths Palace","Funland","Moon Base",""];
-			break;
-		case "Lut Gholein":
-			sdat = ["Lut Gholein Station","Access to Lut Gholein (Boatmurdered).  The east exit stops over at the Yanacocha mob spawner first.","Lut Gholein, Yanacocha Mine","Southeast Koku","Sofia","Boatmurdered",""];
-			break;
-		case "Mellon Bay":
-			sdat = ["Operis Warehouse","This station provides access to the Operis National Distribution Center (Masovia state, Gavel) and the future town of Mellon Bay.","Operis National Distribution Center, Doggy Magical HQ","Persson Airport","Celestia","South Shore","Baths Palace"];
-			break;
-		case "Moon Base":
-			sdat = ["Moon Base","This subway station is the only access to the inside of the Moon Base (South Shore).","Moon Base","South Shore","Lunar Hill","Cutters Junction","Southeast Koku"];
+{name: "Ghibli Port",
+	desc: "This station exits on the docks of Ghibli Port (Ghibli province, Gavel). Heli-flight from North Star Shipping HQ to New Kingsburg and Persson.",
+	near: "Ghibli Port, Koku northern border",
+	link: {n: "Funland", w: "Pristina Capitol", s: "West Koku", nw: "New Kingsburg Airport", ne: "Persson Airport"}},
+
+{name: "Gickerville",
+	desc: "Currently the northernmost station in the subway network. Access to Gickerville and northern Crevatia.",
+	near: "Gickerville",
+	link: {s: "Anderson's Crossing"}},
+
+{name: "Johnville",
+	desc: "Originally known as Tetriston, Johnville is the second largest independent settlement after Desert Town.",
+	near: "Johnville",
+	link: {n: "Southside", w: "Spawn", s: "Sofia"}},
+
+{name: "Jungle Tours",
+	desc: "Tucked away in northwest Faclair is the Jungle Tours site, built to address the western shortfall of jungle.",
+	near: "Jungle Tours, Horse Track",
+	link: {n: "Botanical Garden", e: "Cadwgan", s: "Auverland"}},
+
+{name: "Lunar Hill",
+	desc: "Access to Lunar Hill (Ghibli province, Gavel).",
+	near: "Lunar Hill, Observatory, South Shore western border",
+	link: {n: "Baths Palace", w: "Funland", e: "Moon Base"}},
+
+{name: "Lut Gholein", img: "Lut Gholein Station",
+	desc: "Access to Lut Gholein (Boatmurdered). The east rail line stops over at the Yanacocha mob spawner first.",
+	near: "Lut Gholein, Yanacocha Mine",
+	link: {n: "Southeast Koku", w: "Sofia", e: "Boatmurdered"}},
+
+{name: "Mellon Bay", img: "Operis National Distribution Centre",
+	desc: "This station provides access to the Operis National Distribution Centre (Masovia state, Gavel) and the town of Mellon Bay. There is also a direct heli-flight from Doggy Magical HQ to Persson.",
+	near: "Operis National Distribution Center, Doggy Magical HQ",
+	link: {n: "Persson Airport", w: "Celestia", e: "South Shore", s: "Baths Palace"}},
+
+{name: "Moon Base",
+	desc: "This subway station is the only access to the inside of the Moon Base (South Shore).",
+	near: "Moon Base",
+	link: {n: "South Shore", w: "Lunar Hill", e: "Cutter's Junction", s: "Southeast Koku"}},
+
 			break;
 		case "New Kingsburg":
 			sdat = ["New Kingsburg","This is where the subway system began (which is why the station is peculiarly built).  The four exits come out in the center of downtown New Kingsburg (Pristina state, Gavel), the first city of Skunkland.","New Kingsburg, Pristina Capitol","Northside","Crevasse","New Kingsburg Airport","Southside"];
