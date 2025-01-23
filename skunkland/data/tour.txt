@@ -13,26 +13,41 @@
 	near: "Auverland, Faclair Central Warehouse",
 	link: {n: "Auverland", e: "West Patria", s: "Sartori", w: "Orne"}},
 
-		case "Badrum Capital":
-			sdat = ["Badrum Capital","This is a temporary station allowing fast land access to and from the Badrum Imperium.","Badrum Imperial City","","","Botanical Garden",""];
-			break;
-		case "Baetica":
-			sdat = ["Baetica","Access to the town of Baetica and eastern Crevatia.","Baetica, Gavel western border","Zephyr Prison","Eweton","","Northside"];
-			break;
-		case "Baths Palace":
-			sdat = ["Baths Palace","The Baths Palace was one of the first isolated custom builds.  The station is incomplete so all exits are closed.","Baths Palace, South Shore western border","Mellon Bay","Celestia","South Shore","Lunar Hill"];
-			break;
-		case "Boatmurdered":
-			sdat = ["Boatmurdered","Currently the most eastern of the southern stations.  Access to Boatmurdered mountain stronghold.  The south exit stops over at the Yanacocha mob spawner first.","Boatmurdered","","Southeast Koku","","Lut Gholein"];
-			break;
-		case "Botanical Garden":
-			sdat = ["Botanical Garden","A tiny waypoint in Faclair enroute to Badrum. There is a large selection of flowers in the surrounding flower forest.","Braille border","","Badrum Capital","Braille","Jungle Tours"];
-			break;
-		case "Braille":
-			sdat = ["Braille","Access to the town and protectorate of Braille.","Braille, Castle Gorllewin (Delve)","","Botanical Garden","Delve","Cadwgan"];
-			break;
-		case "Cadwgan":
-			sdat = ["Cadwgan","Access to the town of Cadwgan and the Freenation of Faclair.","Cadwgan, Endermere","Braille","Jungle Tours","Ulve","West Patria"];
+{name: "Badrum Capital",
+	desc: "This is a temporary station allowing fast land access to and from the Badrum Imperium.",
+	link: {w: "Badrum Imperial City", e: "Botanical Garden"}},
+
+{name: "Baetica",
+	desc: "Access to the town of Baetica and eastern Crevatia.",
+	near: "Baetica, Gavel western border",
+	link: {n: "Zephyr Prison", w: "Eweton", e: "North Pristina", s: "Northside"}},
+
+{name: "Baths Palace",
+	desc: "The Baths Palace was one of the first isolated custom builds. The station is incomplete so all exits are closed.",
+	near: "Baths Palace, South Shore western border",
+	link: {n: "Mellon Bay", w: "Celestia", e: "South Shore", s: "Lunar Hill"}},
+
+{name: "Boatmurdered",
+	desc: "Currently the most eastern of the southern stations. Access to Boatmurdered mountain stronghold. The south rail line stops over at the Yanacocha mob spawner first.",
+	near: "Boatmurdered",
+	link: {w: "Southeast Koku", s: "Lut Gholein"}},
+
+{name: "Botanical Garden",
+	desc: "A tiny waypoint in Faclair enroute to Badrum. There is a large selection of flowers in the surrounding flower forest.",
+	near: "Braille border",
+	link: {w: "Badrum Capital", e: "Braille", s: "Jungle Tours"}},
+
+{name: "Braille",
+	desc: "Access to the town and protectorate of Braille.",
+	near: "Braille, Castle Gorllewin (Delve)",
+	link: {w: "Botanical Garden", e: "Bright Farm", s: "Cadwgan"}},
+
+{name: "Cadwgan",
+	desc: "Access to the town of Cadwgan and the Freenation of Faclair.",
+	near: "Cadwgan, Endermere",
+	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "West Patria"}},
+
+{
 			break;
 		case "Celestia":
 			sdat = ["Celestia Corolla","This is the hub station of the Thurail Subway network which is why it has eight exits.  It is located at the heart of the city of Celestia (Tercomciel province, Gavel).","City of Celestia","","Zefram","Mellon Bay","Funland"];
