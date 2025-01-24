@@ -85,7 +85,7 @@
 {name: "Desert Town",
 	desc: "Desert Town is a designated neutral town. It is open to all players to visit, trade in, and add to.",
 	near: "Desert Town, Mt. Pacifica, Delve eastern border, Crevatia western border",
-	link: {n: "William's Harbor", w: "Delve", e: "Crevasse", s: "Space Town"}},
+	link: {n: "William's Harbour", w: "Delve", e: "Crevasse", s: "Space Town"}},
 
 {name: "Dragon Ridge",
 	desc: "Currently the most southern station. Dragon Ridge is the chief town in the Hanse of Amahn.",
@@ -95,7 +95,7 @@
 {name: "Eweton", img: "Eweton at Night",
 	desc: "This station is so old it was built before Eweton was incorporated into Crevatia.",
 	near: "Eweton, Midgewater Swamp",
-	link: {n: "Anderson's Crossing", w: "William's Harbor", e: "Baetica", s: "Crevasse"}},
+	link: {n: "Anderson's Crossing", w: "William's Harbour", e: "Baetica", s: "Crevasse"}},
 
 {name: "Expo 400",
 	desc: "The station is the last northern stop on the rail lines in the northeast and exits into the Enlil Museum of Modern Art. Provides access to the Expo 400 site.",
@@ -155,7 +155,7 @@
 {name: "Lut Gholein", img: "Lut Gholein Station",
 	desc: "Access to Lut Gholein (Boatmurdered). The east rail line stops over at the Yanacocha mob spawner first.",
 	near: "Lut Gholein, Yanacocha Mine",
-	link: {n: "Southeast Koku", w: "Sofia", e: "Boatmurdered"}},
+	link: {n: "When It's Bigger", w: "Sofia", e: "Boatmurdered"}},
 
 {name: "Mellon Bay", img: "Operis National Distribution Centre",
 	desc: "This station provides access to the Operis National Distribution Centre (Masovia state, Gavel) and the town of Mellon Bay. There is also a direct heli-flight from Doggy Magical HQ to Persson.",
@@ -242,7 +242,7 @@
 {name: "Southeast Koku", img: "Southeast Koku Station",
 	desc: "This station is a stop-over on the way from Moon Base to Boatmurdered. There is currently nothing to see here and the exits are closed.",
 	near: "Nothing",
-	link: {n: "Moon Base", e: "Boatmurdered", s: "Lut Gholein"}},
+	link: {n: "Moon Base", e: "Boatmurdered", s: "When It's Bigger"}},
 
 {name: "South Shore",
 	desc: "Access to the city of South Shore, capital of the Commune of South Shore.",
@@ -254,43 +254,65 @@
 	near: "FCTV Tower, Century Tower, Southside Tower, New Kingsburg, Great Gate of Gavel",
 	link: {n: "New Kingsburg", w: "Century Build", e: "Pristina Capitol", s: "Johnville"}},
 
-			break;
-		case "Space Town":
-			sdat = ["Space Town","Space Town is a public build site where any player can learn the ropes.","Space Town","Desert Town","Delve","Century Build","Spawn"];
-			break;
-		case "Spawn":
-			sdat = ["Spawn","Spawn station is where it all begins!  Players spawning for the first time in Skunkland show up in the middle of a harsh snowy biome so we've created a welcoming house and there is a subway station to start your tour immediately.","The Welcoming House, Igloo","Century Build","Space Town","Johnville","Red Rock"];
-			break;
-		case "Stellarton":
-			sdat = ["Stellarton","This station exits in the town of Stellarton (Crevatia).","Stellarton, Delve northern border","Noricum","","","Williams Harbor"];
-			break;
+{name: "Space Town",
+	desc: "Space Town is a public build site where any player can learn the ropes.",
+	near: "Space Town",
+	link: {n: "Desert Town", w: "Delve", e: "Century Build", s: "Spawn"}},
+
+{name: "Spawn",
+	desc: "Spawn station is where it all begins! Players spawning for the first time in Skunkland show up in the middle of a harsh snowy biome so we've created 
+		a welcoming house and there is a subway station to start your tour immediately.",
+	near: "The Welcoming House, Igloo",
+	link: {n: "Century Build", w: "Space Town", e: "Johnville", s: "Red Rock"}},
+
+{name: "Stellarton",
+	desc: "This station exits in the town of Stellarton (Crevatia).",
+	near: "Stellarton, Black Jack Farm, western border of civilization",
+	link: {{n: "Noricum", s: "William's Harbour"}},
 
 {name: "Tortilla Flat",
 	desc: "A terminus station connecting to the new community of Tortilla Flat with future connecting lines planned.",
 	near: "Tortilla Flat (Sedona)",
 	link: {s: "Bright Farm"}},
 
-		case "Tree Tower":
-			sdat = ["Tree Tower","This station is the last on the eastern line and directly connects to the Far East Rail Link.","Tree Tower, abandoned builds","Porcinia","Cutter's Junction","",""];
-			break;
-		case "Ulve":
-			sdat = ["Ulve","Ulve is the capital and largest settlement in Ennist province, Delve.  The station is located in the Ulve Undermarket, beneath the castle of Ulvenstand.  Although not particularly close to the Arcane Factory, it is the closest subway station available.","Ulve, Ulvenstand, University of Ennist, Standing Stones","Delve","Cadwgan","Red Rock",""];
-			break;
-		case "West Koku":
-			sdat = ["Pacman Treehouse","Access to the Kingdom of Koku.","Pacman Tree, Koku Fortress, Gavel southern border","Ghibli Port","Contested Village","",""];
-			break;
-		case "West Patria":
-			sdat = ["West Patria","Access to Faclair's southeastern zone of Patria and the international airport.","Red Rose Mall, Faclair Airport, Market","Cadwgan","G-Corporation Skyfarm","","Auverland Market", se: "Faclair Airport"];
-			northeast.innerHTML = sflight + "Persson Airport'>Persson Airport" + s3;
-			break;
-		case "William's Harbor":
-			sdat = ["Williams Harbour","This station exits in the town of William's Harbour (Crevatia).","William's Harbour, Bentley Bay","Stellarton","","Eweton","Desert Town"];
-			break;
-		case "Zefram":
-			sdat = ["Zefram","At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport.  It is the site of the Year 300 Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.","Zefram, Expo 300","","Zephyr Prison","Celestia",ne: "&#9992; Persson Airport"];
-			break;
-		case "Zephyr Prison":
-			sdat = ["Zephyr Prison","The station exits to an access tunnel with a short rail to the Zephyr Federal Mining Penal Colony (Zephyr province, Gavel).","Zephyr Prison","","","Zefram","Baetica"];
-			break;
-		default:
-			sdat = ["Igloo at Spawn","This station does not exist.","See above","","","",""];
+{name: "Tree Tower",
+	desc: "This station is the last on the eastern line and directly connects to the Far East Rail Link.",
+	near: "Tree Tower, abandoned builds",
+	link: {n: "Porcinia", w: "Cutter's Junction"}},
+
+{name: "Ulve",
+	desc: "Ulve is the capital and largest settlement in Ennist province, Delve. The station is located in the Ulve Undermarket, beneath the castle of Ulvenstand. 
+		Although not particularly close to the Arcane Factory, it is often the quickest subway station available.",
+	near: "Ulve, Ulvenstand, Speurach Torr/University of Ennist, Standing Stones",
+	link: {n: "Delve", w: "Cadwgan", e: "Red Rock"}},
+
+{name: "West Koku", img: "Pacman Treehouse",
+	desc: "Access to the Kingdom of Koku (no further subway expansion has ever happened here).",
+	near: "Pacman Tree, Koku Fortress, Gavel southern border",
+	link: {n: "Ghibli Port", w: "Contested Village"}},
+
+{name: "West Patria",
+	desc: "Access to Faclair's southeastern zone of Patria and the international airport.",
+	near: "Red Rose Mall, Faclair Airport, Market",
+	link: {n: "Cadwgan", w: "G-Corporation Skyfarm", s: "Auverland Market", se: "Faclair Airport"}},
+
+{name: "When It's Bigger",
+	desc: "This station is a stop-over on the long route from South Koku to Lut Gholein. Provides access to the new build to be named properly &quot;When it's bigger&quot;.",
+	near: "When It's Bigger, new player builds, Boatmurdered border",
+	link: {n: "Southeast Koku", s: "Lut Gholein"}},
+
+{name: "William's Harbor",
+	desc: "This station exits in the town of William's Harbour (Crevatia).",
+	near: "William's Harbour, Black Jack Farm, Bentley Bay",
+	link: {n: "Stellarton", e: "Eweton", s: "Desert Town"}},
+
+{name: "Zefram",
+	desc: "At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport. It is the site of the Year 300 
+		Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.",
+	near: "Zefram, Expo 300",
+	link: {w: "Zephyr Prison", e: "Celestia", s: "North Pristina", ne: "&#9992; Persson Airport"}},
+
+{name: "Zephyr Prison", img: "Zephyr Federal Mining Penal Colony",
+	desc: "The station exits to an access tunnel with a short rail to the Zephyr Federal Mining Penal Colony (Zephyr province, Gavel).",
+	near: "Zephyr Prison",
+	link: {e: "Zefram", s: "Baetica"}}]
