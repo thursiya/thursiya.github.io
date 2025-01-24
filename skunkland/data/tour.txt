@@ -249,9 +249,11 @@
 	near: "South Shore, Twisty Tower, Gavel eastern border",
 	link: {n: "Mellon Bay", w: "Baths Palace", e: "Porcinia", s: "Moon Base"}},
 
-			break;
-		case "Southside":
-			sdat = ["Southside (New Kingsburg)","This is currently a placeholder station, one of the New Kingsburg inner city network.","New Kingsburg, Pristina Capitol, Great Gate of Gavel","New Kingsburg","Century Build","Pristina Capitol","Johnville"];
+{name: "Southside", img: "Southside (New Kingsburg)",
+	desc: "Access to the bustling Southside district of New Kingsburg. This is currently a placeholder station, not the finished state.",
+	near: "FCTV Tower, Century Tower, Southside Tower, New Kingsburg, Great Gate of Gavel",
+	link: {n: "New Kingsburg", w: "Century Build", e: "Pristina Capitol", s: "Johnville"}},
+
 			break;
 		case "Space Town":
 			sdat = ["Space Town","Space Town is a public build site where any player can learn the ropes.","Space Town","Desert Town","Delve","Century Build","Spawn"];
