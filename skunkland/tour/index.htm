@@ -66,7 +66,7 @@
 					<br>
 					<p>${s[i].desc}</p>
 					<p>Close by: ${s[i].near}</p>`;
-				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" style="cursor:pointer;font-weight:bold">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${s[i].link[v]}</a>`);
+				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" style="cursor:pointer;font-weight:bold">${["nw","ne","sw","se"].includes(v) && v.name != "Celestia" ? "&#9992; " : ""}${s[i].link[v]}</a>`);
 			}
 		</script>
 	</body>
