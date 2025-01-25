@@ -18,7 +18,7 @@
 	near: "Auverland, Faclair Central Warehouse",
 	link: {n: "Auverland", w: "Seaside", e: "Faclair Airport", s: "Sartori"}},
 
-{name: "Badrum Capital",
+{name: "Badrum Capital", img: "Imperial City",
 	desc: "This is a temporary station allowing fast land access to and from the Badrum Imperium.",
 	near: "Badrum Imperial City",
 	link: {e: "Botanical Garden"}},
