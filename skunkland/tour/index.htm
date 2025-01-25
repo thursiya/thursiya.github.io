@@ -39,14 +39,12 @@
 
 			function buildTourArray(xhr) {
 				s.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
-				console.log(s);
-				loadDest("Spawn");
+				loadDest(s.findIndex(v => v.name == "Spawn"));
 			}
 
-			function loadDest(id) {
-				const d = s.find(v => v.name == id);
+			function loadDest(i) {
 				document.getElementById("station").innerHTML = `
-    					<div class="contentheader round">${d.name} Station</div>
+    					<div class="contentheader round">${s[i].name} Station</div>
 					<table style="float:right">
 						<tr>
 							<td id="nw" width="140" height="90"></td>
@@ -55,7 +53,7 @@
 						</tr>
 						<tr>
 							<td id="w" width="140" height="90"></td>
-							<th width="140">${d.name}<br><span style="font-size:80%">Station</span></th>
+							<th width="140">${s[i].name}<br><span style="font-size:80%">Station</span></th>
 							<td id="e" width="140"></td>
 						</tr>
 						<tr>
@@ -64,11 +62,11 @@
 							<td id="se" width="140"></td>
 						</tr>
 					</table>
-					<img src="../gallery/images/${d.img || d.name}.jpg" alt="${d.img || d.name}" height="275">
+					<img src="../gallery/images/${s[i].img || s[i].name}.jpg" alt="${s[i].img || s[i].name}" height="275">
 					<br>
-					<p>${d.desc}</p>
-					<p>Close by: ${d.near}</p>`;
-				Object.keys(d.link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(\"${d.link[v]}\")">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${d.link[v]}</a>`);
+					<p>${s[i].desc}</p>
+					<p>Close by: ${s[i].near}</p>`;
+				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${s[i].link[v]}</a>`);
 			}
 		</script>
 	</body>
