@@ -48,6 +48,11 @@
 	near: "Braille, Castle Gorllewin (Delve)",
 	link: {w: "Botanical Garden", e: "Bright Farm", s: "Cadwgan"}},
 
+{name: "Bright Farm",
+	desc: "A pleasant farm on the road to Braille, south of the Bright Swamp.",
+	near: "Castle Gorllewin, Arcane Factory",
+	link: {n: "Tortilla Flat", w: "Braille", e: "Delve"}},
+
 {name: "Cadwgan",
 	desc: "Access to the town of Cadwgan and the Freenation of Faclair.",
 	near: "Cadwgan, Endermere",
@@ -81,7 +86,7 @@
 {name: "Delve",
 	desc: "This station is located just outside of the east entrance to Delve City which lets you walk through the famed Dragon Maw Gate.",
 	near: "Delve City, Treetop Village",
-	link: {n: "Desert Town", w: "Braille", e: "Space Town", s: "Ulve"}},
+	link: {n: "Desert Town", w: "Bright Farm", e: "Space Town", s: "Ulve"}},
 
 {name: "Delve Airport",
 	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ.",
@@ -216,7 +221,7 @@
 {name: "Persson Airport", img: "Persson International Airport",
 	desc: "The station exits inside the Persson International Airport terminal (Enlil province, Gavel). The airport has numerous flights available including a direct heli-flight to Doggy Magical HQ in Mellon Bay.",
 	near: "Persson Airport",
-	link: {n: "Nexus", w: "Celestia", e: "Jeda", s: "Mellon Bay", nw: "Zefram", ne: "Ghibli Port", se: "New Kingsburg", sw: "Crevasse"}},
+	link: {n: "Nexus", w: "Celestia", e: "Jeda", s: "Mellon Bay", nw: "Zefram", ne: "Ghibli Port", se: "New Kingsburg Airport", sw: "Crevasse"}},
 
 {name: "Porcinia",
 	desc: "Currently the most eastern station of the northern stations. Access to the town and Commune of Porcinia.",
