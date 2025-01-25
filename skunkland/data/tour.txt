@@ -266,7 +266,7 @@
 {name: "Stellarton",
 	desc: "This station exits in the town of Stellarton (Crevatia).",
 	near: "Stellarton, Black Jack Farm, western border of civilization",
-	link: {{n: "Noricum", s: "William's Harbour"}},
+	link: {n: "Noricum", s: "William's Harbour"}},
 
 {name: "Tortilla Flat",
 	desc: "A terminus station connecting to the new community of Tortilla Flat with future connecting lines planned.",
