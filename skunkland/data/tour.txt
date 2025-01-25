@@ -191,7 +191,7 @@
 {name: "North Pristina", img: "Gavel Power Company (GPC) Solar Plant",
 	desc: "This station currently serves as a major connector in western Gavel, but there are no exits built. Future site of the Pristina Casino.",
 	near: "Solar Plant",
-	link: {n: "Zefram", w: "Baetica", e: "Celestia", s: "Northside"},
+	link: {n: "Zefram", w: "Baetica", e: "Celestia", s: "Northside"}},
 
 {name: "Northside", img: "Northside (New Kingsburg)",
 	desc: "The northern suburb of New Kingsburg.",
