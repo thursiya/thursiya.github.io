@@ -81,7 +81,7 @@
 {name: "Delve Airport",
 	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ.",
 	near: "Delve City",
-	link: {sw: "&#9992; Faclair Airport", ne: "&#9992; Crevasse"}
+	link: {sw: "&#9992; Faclair Airport", ne: "&#9992; Crevasse"}},
 
 {name: "Desert Town",
 	desc: "Desert Town is a designated neutral town. It is open to all players to visit, trade in, and add to.",
