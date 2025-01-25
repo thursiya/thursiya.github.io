@@ -1,6 +1,6 @@
 [{name: "Anderson's Crossing",
 	desc: "The station serves as a stop-over on the long north rail through Crevatia from Eweton to Gickerville.",
-	near: "Anderson's Crossing, The Trident (The Dragon's Tail Inn, The Trident Nature Preserve, The Dojo)"
+	near: "Anderson's Crossing, The Trident (The Dragon's Tail Inn, The Trident Nature Preserve, The Dojo)",
 	link: {n: "Gickerville", w: "Noricum", s: "Eweton"}},
 
 {name: "Auverland",
@@ -15,7 +15,8 @@
 
 {name: "Badrum Capital",
 	desc: "This is a temporary station allowing fast land access to and from the Badrum Imperium.",
-	link: {w: "Badrum Imperial City", e: "Botanical Garden"}},
+	near: "Badrum Imperial City",
+	link: {e: "Botanical Garden"}},
 
 {name: "Baetica",
 	desc: "Access to the town of Baetica and eastern Crevatia.",
