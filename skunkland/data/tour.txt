@@ -53,7 +53,7 @@
 	near: "City of Celestia",
 	link: {w: "Zefram", e: "Mellon Bay", s: "Funland", ne: "Persson Airport", sw: "North Pristina", se: "Baths Palace"}},
 
-{name: "Century Build", img: "First Centruy Build Competition Site",
+{name: "Century Build", img: "First Century Build Competition Site",
 	desc: "This is the site of the Century Build Competition, held during SY 200. The site features statues by players who participated.",
 	near: "Crevatia south border",
 	link: {n: "Crevasse", w: "Space Town", e: "Southside", s: "Spawn"}},
