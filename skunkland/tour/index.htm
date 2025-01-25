@@ -68,7 +68,7 @@
 					<br>
 					<p>${d.desc}</p>
 					<p>Close by: ${d.near}</p>`;
-				Object.keys(d.link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest('${d.link[v]}')">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${d.link[v]}</a>`);
+				Object.keys(d.link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(\"${d.link[v]}\")">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${d.link[v]}</a>`);
 			}
 		</script>
 	</body>
