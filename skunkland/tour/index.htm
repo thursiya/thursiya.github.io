@@ -67,7 +67,7 @@
 					<img src="../gallery/images/${d.img || d.name}.jpg" alt="${d.img || d.name}" height="275">
 					<br>
 					<p>${d.desc}</p>
-					<p>${d.near}</p>`;
+					<p>Close by: ${d.near}</p>`;
 				Object.keys(d.link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest('${d.link[v]}')">${d.link[v]}</a>`);
 			}
 		</script>
