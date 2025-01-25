@@ -32,7 +32,7 @@
 
 {name: "Imperium of Badrum", type: 1, section: [
 	{img: [
-		"Badrum Capital"
+		"Imperial City"
 	]}]},
 
 {name: "Miasma of Boatmurdered", type: 1, section: [
