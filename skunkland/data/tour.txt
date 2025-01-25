@@ -64,9 +64,7 @@
 	link: {w: "Pristina Capitol", e: "West Koku"}},
 
 {name: "Crevasse",
-	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, 
-		it's now home to the capital of Crevatia. The station has undergone significant renovations and no longer resembles its original form, now 
-		spanning the length of the city. Heli-flights available out of Gavel Embassy.",
+	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has undergone significant renovations and no longer resembles its original form, now spanning the length of the city. Heli-flights available out of Gavel Embassy.",
 	near: "Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano",
 	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "&#9992; Persson Airport", sw: "&#9992; Delve Airport", se: "&#9992; Zefram"}},
 
@@ -171,8 +169,7 @@
 	link: {n: "South Shore", w: "Lunar Hill", e: "Cutter's Junction", s: "Southeast Koku"}},
 
 {name: "New Kingsburg",
-	desc: "This is where the subway system began (which is why the station is peculiarly built). The four exits come out in the center of downtown New Kingsburg (Pristina state, Gavel), 
-		the first city of Skunkland.",
+	desc: "This is where the subway system began (which is why the station is peculiarly built). The four exits come out in the center of downtown New Kingsburg (Pristina state, Gavel), the first city of Skunkland.",
 	near: "Operis Tower, Mandor Memorial Medical Centre, Midori Kesshutsu Tower",
 	link: {n: "Northside", w: "Crevasse", e: "New Kingsburg Airport", s: "Southside"}},
 
@@ -222,8 +219,7 @@
 	link: {n: "Ottokar", w: "South Shore", s: "Tree Tower"}},
 
 {name: "Pristina Capitol", img: "Pristina State Capitol at Dawn",
-	desc: "This station used to exit to either the basement or exterior of the Pristina State Capitol, but it was moved further south to exit in the Capitol Centre Mall, with access 
-		to the state capitol on the north end of the underground mall.",
+	desc: "This station used to exit to either the basement or exterior of the Pristina State Capitol, but it was moved further south to exit in the Capitol Centre Mall, with access to the state capitol on the north end of the underground mall.",
 	near: "Capitol Centre Mall, Delve Co., Tseles Bank, Pristina Capitol, New Kingsburg",
 	link: {n: "New Kingsburg Airport", w: "Southside", e: "Ghibli Port", s: "Contested Village"}},
 
@@ -263,8 +259,7 @@
 	link: {n: "Desert Town", w: "Delve", e: "Century Build", s: "Spawn"}},
 
 {name: "Spawn",
-	desc: "Spawn station is where it all begins! Players spawning for the first time in Skunkland show up in the middle of a harsh snowy biome so we've created 
-		a welcoming house and there is a subway station to start your tour immediately.",
+	desc: "Spawn station is where it all begins! Players spawning for the first time in Skunkland show up in the middle of a harsh snowy biome so we've created a welcoming house and there is a subway station to start your tour immediately.",
 	near: "The Welcoming House, Igloo",
 	link: {n: "Century Build", w: "Space Town", e: "Johnville", s: "Red Rock"}},
 
@@ -284,8 +279,7 @@
 	link: {n: "Porcinia", w: "Cutter's Junction"}},
 
 {name: "Ulve",
-	desc: "Ulve is the capital and largest settlement in Ennist province, Delve. The station is located in the Ulve Undermarket, beneath the castle of Ulvenstand. 
-		Although not particularly close to the Arcane Factory, it is often the quickest subway station available.",
+	desc: "Ulve is the capital and largest settlement in Ennist province, Delve. The station is located in the Ulve Undermarket, beneath the castle of Ulvenstand. Although not particularly close to the Arcane Factory, it is often the quickest subway station available.",
 	near: "Ulve, Ulvenstand, Speurach Torr/University of Ennist, Standing Stones",
 	link: {n: "Delve", w: "Cadwgan", e: "Red Rock"}},
 
@@ -310,8 +304,7 @@
 	link: {n: "Stellarton", e: "Eweton", s: "Desert Town"}},
 
 {name: "Zefram",
-	desc: "At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport. It is the site of the Year 300 
-		Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.",
+	desc: "At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport. It is the site of the Year 300 Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.",
 	near: "Zefram, Expo 300",
 	link: {w: "Zephyr Prison", e: "Celestia", s: "North Pristina", ne: "&#9992; Persson Airport"}},
 
