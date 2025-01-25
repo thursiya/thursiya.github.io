@@ -64,7 +64,9 @@
 	link: {w: "Pristina Capitol", e: "West Koku"}},
 
 {name: "Crevasse",
-	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has 			undergone significant renovations and no longer resembles its original form, now spanning the length of the city. Heli-flights available out of Gavel Embassy.",
+	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, 
+		it's now home to the capital of Crevatia. The station has undergone significant renovations and no longer resembles its original form, now 
+		spanning the length of the city. Heli-flights available out of Gavel Embassy.",
 	near: "Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano",
 	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "&#9992; Persson Airport", sw: "&#9992; Delve Airport", se: "&#9992; Zefram"}},
 
