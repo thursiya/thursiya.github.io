@@ -66,7 +66,7 @@
 {name: "Crevasse",
 	desc: "The second station ever constructed and first to feature the ubiquitous 4-way switch, built as a waypoint between New Kingsburg and Delve, it's now home to the capital of Crevatia. The station has undergone significant renovations and no longer resembles its original form, now spanning the length of the city. Heli-flights available out of Gavel Embassy.",
 	near: "Crevasse City, Crevasse Pyramid, Mechwarrior, Bentley Bay, Volcano",
-	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "&#9992; Persson Airport", sw: "&#9992; Delve Airport", se: "&#9992; Zefram"}},
+	link: {n: "Eweton", w: "Desert Town", e: "New Kingsburg", s: "Century Build", ne: "Persson Airport", sw: "Delve Airport", se: "Zefram"}},
 
 {name: "Cutter's Junction",
 	desc: "This is a stop-over station at Cutter's Junction, South Shore.",
@@ -81,7 +81,7 @@
 {name: "Delve Airport",
 	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ.",
 	near: "Delve City",
-	link: {sw: "&#9992; Faclair Airport", ne: "&#9992; Crevasse"}},
+	link: {sw: "Faclair Airport", ne: "Crevasse", se: "Delve"}},
 
 {name: "Desert Town",
 	desc: "Desert Town is a designated neutral town. It is open to all players to visit, trade in, and add to.",
@@ -106,7 +106,7 @@
 {name: "Faclair Airport",
 	desc: "There is currently no subway station at the airport, but one may be built in the future. An underground passage connects directly to the West Patria station.",
 	near: "Glorious Farm",
-	link: {n: "West Patria", ne: "&#9992; Delve Airport"}},
+	link: {n: "West Patria", ne: "Delve Airport"}},
 
 {name: "Fort Resolution",
 	desc: "At the end of the long dark tunnel the subway stops underground at the Fort Resolution monster spawner.",
@@ -126,7 +126,7 @@
 {name: "Ghibli Port",
 	desc: "This station exits on the docks of Ghibli Port (Ghibli province, Gavel). Heli-flight from North Star Shipping HQ to New Kingsburg and Persson.",
 	near: "Ghibli Port, Koku northern border",
-	link: {n: "Funland", w: "Pristina Capitol", s: "West Koku", nw: "&#9992; New Kingsburg Airport", ne: "&#9992; Persson Airport"}},
+	link: {n: "Funland", w: "Pristina Capitol", s: "West Koku", nw: "New Kingsburg Airport", ne: "Persson Airport"}},
 
 {name: "Gickerville",
 	desc: "Currently the northernmost station in the subway network. Access to Gickerville and northern Crevatia.",
@@ -176,7 +176,7 @@
 {name: "New Kingsburg Airport", img: "New Kingsburg Regional Airport",
 	desc: "In the northeast of New Kingsburg lies the regional airport (connecting directly to Persson International). Heli-flights to the Midori Kesshutsu Tower and Ghibli Port.",
 	near: "New Kingsburg, Smelter",
-	link: {n: "Northside", w: "New Kingsburg", e: "Funland", s: "Pristina Capitol", ne: "&#9992; Persson Airport", se: "&#9992; Ghibli Port"}},
+	link: {n: "Northside", w: "New Kingsburg", e: "Funland", s: "Pristina Capitol", ne: "Persson Airport", se: "Ghibli Port"}},
 
 {name: "Nexus",
 	desc: "The national capital of Gavel, the station sits directly underneath of the Nexus Orb capitol building. Also home to numerous embassies built during a Skyscrapers of Skunkland competition.",
@@ -209,9 +209,9 @@
 	link: {w: "Jeda", s: "Porcinia"}},
 
 {name: "Persson Airport", img: "Persson International Airport",
-	desc: "The station exits inside the Persson International Airport terminal (Enlil province, Gavel).",
+	desc: "The station exits inside the Persson International Airport terminal (Enlil province, Gavel). The airport has numerous flights available including a direct heli-flight to Doggy Magical HQ in Mellon Bay.",
 	near: "Persson Airport",
-	link: {n: "Nexus", w: "Celestia", e: "Jeda", s: "Mellon Bay", nw: "&#9992; Zefram", ne: "&#9992; Ghibli Port", se: "&#9992; New Kingsburg", sw: "&#9992; Crevasse"}},
+	link: {n: "Nexus", w: "Celestia", e: "Jeda", s: "Mellon Bay", nw: "Zefram", ne: "Ghibli Port", se: "New Kingsburg", sw: "Crevasse"}},
 
 {name: "Porcinia",
 	desc: "Currently the most eastern station of the northern stations. Access to the town and Commune of Porcinia.",
@@ -306,7 +306,7 @@
 {name: "Zefram",
 	desc: "At the heart of Gavel's Zephyr province, the town of Zefram is the future home of the Gavel Space Agency and spaceport. It is the site of the Year 300 Century Build. Heli-flight to Persson or Crevasse from the Execute Hotel Zefram.",
 	near: "Zefram, Expo 300",
-	link: {w: "Zephyr Prison", e: "Celestia", s: "North Pristina", ne: "&#9992; Persson Airport"}},
+	link: {w: "Zephyr Prison", e: "Celestia", s: "North Pristina", ne: "Persson Airport"}},
 
 {name: "Zephyr Prison", img: "Zephyr Federal Mining Penal Colony",
 	desc: "The station exits to an access tunnel with a short rail to the Zephyr Federal Mining Penal Colony (Zephyr province, Gavel).",
