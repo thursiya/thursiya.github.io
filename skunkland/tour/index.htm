@@ -66,65 +66,8 @@
 					<br>
 					<p>${s[i].desc}</p>
 					<p>Close by: ${s[i].near}</p>`;
-				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${s[i].link[v]}</a>`);
+				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" style="cursor:pointer;font-weight:bold">${["nw","ne","sw","se"].includes(v) ? "&#9992; " : ""}${s[i].link[v]}</a>`);
 			}
 		</script>
 	</body>
 </html>
-			
-
-<!--   *** Touring Script ***   
-
-<script type="text/javascript">
-	// Identify Station
-	var url = self.location.search;
-	var station = decodeURI(url.substring(url.lastIndexOf('?') + 1)) || "Spawn";
-	var s1 = "<span style='font-size:80%'>";
-	var s2 = "</span><br><br><a href='?";
-	var s3 = "</a><br><br>";
-	var sflight = s1 + "&#9992; FLIGHT &#9992;" + s2;
-	
-	// Reset Corner Station Borders
-	northwest.style.border = "none";
-	northeast.style.border = "none";
-	southwest.style.border = "none";
-	southeast.style.border = "none";
-	
-
-		case "Celestia":
-			sdat = ["Celestia Corolla","This is the hub station of the Thurail Subway network which is why it has eight exits.  It is located at the heart of the city of Celestia (Tercomciel province, Gavel).","City of Celestia","","Zefram","Mellon Bay","Funland"];
-			//northwest.innerHTML = s1 + "-- NORTHWEST --" + s2 + "Navy Base'>Navy Base" + s3;
-			//northwest.style.border = "1px solid black";
-			northeast.innerHTML = s1 + "-- NORTHEAST --" + s2 + "Persson Airport'>Persson Airport" + s3;
-			northeast.style.border = "1px solid black";
-			//southwest.innerHTML = s1 + "-- SOUTHWEST --" + s2 + "Casino'>Casino" + s3;
-			//southwest.style.border = "1px solid black";
-			southeast.innerHTML = s1 + "-- SOUTHEAST --" + s2 + "Baths Palace'>Baths Palace" + s3;
-			southeast.style.border = "1px solid black";
-			break;
-
-	
-	var stationpic = sdat[0],
-		stationtext = sdat[1],
-		nearsites = sdat[2],
-		northExit = sdat[3],
-		westExit = sdat[4],
-		eastExit = sdat[5],
-		southExit = sdat[6];
-		
-	// Display Station Header, Picture & Info
-	stationheader.innerHTML = station + " Station";
-	picture.src = "gallery/images/" + stationpic + ".jpg";
-	flavour.innerHTML = stationtext;
-	nearby.innerHTML = "Close by: " + nearsites;
-		
-	// Display Station Selector
-	northExit ? north.innerHTML = s1 + "---- NORTH ----" + s2 + northExit + "'>" + northExit + s3 : north.style.border = "none";
-	westExit ? west.innerHTML = s1 + "---- WEST ----" + s2 + westExit + "'>" + westExit + s3 : west.style.border = "none";
-	eastExit ? east.innerHTML = s1 + "---- EAST ----" + s2 + eastExit + "'>" + eastExit + s3 : east.style.border = "none";
-	southExit ? south.innerHTML = s1 + "---- SOUTH ----" + s2 + southExit + "'>" + southExit + s3 : south.style.border = "none";
-	stationName.innerHTML = station;
-
-	
-
--->
