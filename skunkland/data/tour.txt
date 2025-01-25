@@ -79,7 +79,7 @@
 	link: {n: "Desert Town", w: "Braille", e: "Space Town", s: "Ulve"}},
 
 {name: "Delve Airport",
-	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ."
+	desc: "A giant floating airship port hovering over Bright Swamp with ramp connecting to the city. Heli-flight to Bank of Gavel Western HQ.",
 	near: "Delve City",
 	link: {sw: "&#9992; Faclair Airport", ne: "&#9992; Crevasse"}
 
