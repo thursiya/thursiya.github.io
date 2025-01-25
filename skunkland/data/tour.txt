@@ -313,7 +313,7 @@
 	near: "When It's Bigger, new player builds, Boatmurdered border",
 	link: {n: "Southeast Koku", s: "Lut Gholein"}},
 
-{name: "William's Harbor",
+{name: "William's Harbour",
 	desc: "This station exits in the town of William's Harbour (Crevatia).",
 	near: "William's Harbour, Black Jack Farm, Bentley Bay",
 	link: {n: "Stellarton", e: "Eweton", s: "Desert Town"}},
