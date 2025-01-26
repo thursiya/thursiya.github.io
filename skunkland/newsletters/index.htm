@@ -42,6 +42,8 @@
 			}
 
 			function buildNewsletterArray(xhr) {
+				console.log(xhr.response);
+				console.log(xhr.response.split('\n'));
 				n.push(...((xhr.response).split('\n').pop()));
 				document.getElementById('latestNews').innerHTML = `<a href="news${n.length-1}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
