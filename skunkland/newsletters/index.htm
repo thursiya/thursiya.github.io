@@ -12,20 +12,22 @@
 	<body>
 		<header><script>insertHeader();</script></header>
 		<main>
-			<div class="contentheader round">The Skunkland Newsletter</div>
-			<p><b>Latest Newsletter:</b> <span id='latestNews'></span></p>
-			<p>
-				As part of the Skunkland server community we release a newsletter about the goings on of the 
-				server every few months. These newsletters keep players up to date on new developments in the 
-				game, what other players are working on, and current build areas. If you would like to include 
-				something in a future newsletter please contact thursiya.
-			</p>
-			<br>
-
-			<div class="contentheader round">Newsletter Archive</div>
-			<div class="row">
-				<div id="leftcol" class="col-6"></div>
-				<div id="rightcol" class="col-6"></div>
+			<div class="content round shadow">
+				<div class="contentheader round">The Skunkland Newsletter</div>
+				<p><b>Latest Newsletter:</b> <span id='latestNews'></span></p>
+				<p>
+					As part of the Skunkland server community we release a newsletter about the goings on of the 
+					server every few months. These newsletters keep players up to date on new developments in the 
+					game, what other players are working on, and current build areas. If you would like to include 
+					something in a future newsletter please contact thursiya.
+				</p>
+				<br>
+				
+				<div class="contentheader round">Newsletter Archive</div>
+				<div class="row">
+					<div id="leftcol" class="col-6"></div>
+					<div id="rightcol" class="col-6"></div>
+				</div>
 			</div>
 		</main>
 		<script>
@@ -40,7 +42,7 @@
 			}
 
 			function buildNewsletterArray(xhr) {
-				n.push(...(xhr.response.split('\n').pop()));
+				n.push(...((xhr.response).split('\n').pop()));
 				document.getElementById('latestNews').innerHTML = `<a href="news${n.length-1}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
 				for (let i = n.length - 1; i > 0; i--) {
