@@ -40,11 +40,11 @@
 			}
 
 			function buildNewsletterArray(xhr) {
-				n.push(...xhr.response.split('\n').pop().reverse());
-				document.getElementById('latestNews').innerHTML = `<a href="news${n.length-1}.htm" target="_blank"><i>${n[0]}</i></a>`;
+				n.push(...(xhr.response.split('\n').pop()));
+				document.getElementById('latestNews').innerHTML = `<a href="news${n.length-1}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
-				for (let i = 0; i < n.length; i++) {
-					out += `<li><a href="news${n.length - i - 1}.htm" target="_blank">${n[i]}</a>`;
+				for (let i = n.length - 1; i > 0; i--) {
+					out += `<li><a href="news${i+1}.htm" target="_blank">${n[i]}</a>`;
 					if (i == ~~(n.length / 2)) {
 						document.getElementById('leftcol').innerHTML = out;
 						out = "";
