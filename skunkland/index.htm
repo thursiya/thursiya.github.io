@@ -73,8 +73,7 @@
 				}
 				let out = "";
 				for (let i = 0; i <= last; i++) {
-					//news[i] = eval('[' + news[i] + ']');
-					news[i] = [...news[i].split(",").slice(0, 3), news[i].split(",").slice(3).join()];
+					news[i] = [...news[i].split(",").slice(0, 3), news[i].match(/"(.*?)"/)[1]];
 					news[i][3] = news[i][3]?.replace(/{(.*?)}/g,swap);
 					out += `<p><span class="grey">${news[i][0]}-${('0' + news[i][1]).slice(-2)}${(news[i][2] > 0) ? `-${('0' + news[i][2]).slice(-2)}` : ""}</span><br>${news[i][3]}</p>`;
 					if ((i % 6 == 5) || (i == last)) {
