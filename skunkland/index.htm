@@ -63,6 +63,7 @@
 
 			function printNews(xhr) {
 				const news = xhr.response.split('\n');
+				console.log(news);
 				const last = news.length - 1;
 				const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
 				function swap (str, p1) {
