@@ -56,7 +56,7 @@
 {name: "Cadwgan",
 	desc: "Access to the town of Cadwgan and the Freenation of Faclair.",
 	near: "Cadwgan, Endermere",
-	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "Faclair Airport"}},
+	link: {n: "Braille", w: "Jungle Tours", e: "Ulve", s: "West Patria"}},
 
 {name: "Celestia", img: "Celestia Corolla",
 	desc: "This is the hub station of the Thurail Subway network which is why it has eight exits (N and NW not yet operational). It is located at the heart of the city of Celestia (Tercomciel province, Gavel).",
