@@ -16,7 +16,7 @@
 {name: "Auverland Market",
 	desc: "Southern station in Faclair's largest city.",
 	near: "Auverland, Faclair Central Warehouse",
-	link: {n: "Auverland", w: "Seaside", e: "Faclair Airport", s: "Sartori"}},
+	link: {n: "Auverland", w: "Seaside", e: "West Patria", s: "Sartori"}},
 
 {name: "Badrum Capital", img: "Imperial City",
 	desc: "This is a temporary station allowing fast land access to and from the Badrum Imperium.",
