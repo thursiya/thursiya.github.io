@@ -12,7 +12,7 @@
 	<body>
 		<header><script>insertHeader();</script></header>
 		<main>
-		<div class="content round shadow">
+			<div class="content round shadow">
 				<div class="contentheader round">Welcome</div>
 				<p><b><i><img src="images/pickaxe.png">
 					The Skunkland Server has been retired. The world files have been retained for potential
@@ -33,7 +33,7 @@
 					stations in Skunkland.
 				</p>
 				<br>
-				
+			
 				<div class="contentheader round">Random Facts of Skunkland</div>
 				<div id="randomfact" style="margin-left:auto;margin-right:auto;max-width:600px;text-align:center;font:italic 150% Georgia,serif"></div>
 				<br>
@@ -44,59 +44,47 @@
 
 				<div class="contentheader round">News</div>
 				<div id="newsbreak0"></div>
-
-				<script>
-					let fact_xmlhttp = new XMLHttpRequest();
-					const fact_url = "data/facts.txt";
-					
-					fact_xmlhttp.onreadystatechange = function() {
-						if (fact_xmlhttp.readyState == 4 && fact_xmlhttp.status == 200) {
-							let facts = (fact_xmlhttp.responseText).split('\n');
-							document.getElementById("randomfact").innerHTML = facts[~~(Math.random() * facts.length)];
-						}
-					}
-					fact_xmlhttp.open("GET", fact_url, false);
-					fact_xmlhttp.send();
-			
-					let news_xmlhttp = new XMLHttpRequest();
-					const news_url = "data/news.txt";
-					let news = [];
-
-					news_xmlhttp.onreadystatechange = function() {
-						if (news_xmlhttp.readyState == 4 && news_xmlhttp.status == 200) {
-							const headlines = (news_xmlhttp.responseText).split('\n');
-							const last = headlines.length - 1;
-							const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
-							function swap (str, p1) {
-								if (p1.search("news") > -1) return (`<a href='newsletters/${p1}.htm' target='_blank'>`);
-								if (p1 == 'Q') return (`<blockquote class='grey'>`);
-								if (p1 == '/Q') return (`</i></blockquote>`);
-								return `<img src='images/${swapcode[p1]}.png' height='16'>`;
-							}
-							let out = "";
-							for (let i = 0; i <= last; i++) {
-								news[i] = eval('[' + headlines[i] + ']');
-								news[i][3] = news[i][3].replace(/{(.*?)}/g,swap);
-								out += `<p><span class="grey">${news[i][0]}-${('0' + news[i][1]).slice(-2)}${(news[i][2] > 0) ? `-${('0' + news[i][2]).slice(-2)}` : ""}</span><br>${news[i][3]}</p>`;
-								if ((i % 6 == 5) || (i == last)) {
-									let newsset = ~~(i / 6) + 1;
-									if (i < last) out += `<div id="button${newsset}" onclick="toggletext(${newsset})" style="text-align:center;font-weight:bold">&#x25BC; More News &#x25BC;</div><br><div id="newsbreak${newsset}" style="display:none"></div>`;
-									document.getElementById(`newsbreak${(newsset - 1)}`).innerHTML = out;
-									out = "";
-								} 
-							}					
-						}
-					}
-					news_xmlhttp.open("GET", news_url, false);
-					news_xmlhttp.send();
-			
-					function toggletext(cid) {
-						let nb = document.getElementById(`newsbreak${cid}`);
-						document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb.style.display == "none" ? "Less" : "More"} News &#x25B2;`;
-						nb.style.display = (nb.style.display == "none" ? "block" : "none");
-					}
-				</script>
 			</div>
 		</main>
+		<script>
+			loadDoc("data/facts.txt", addRandomFact);
+			let news = [];
+			loadDoc("data/news.txt", printNews);
+				
+			function addRandomFact(xhr) {
+				const facts = xhr.response.split('\n');
+				document.getElementById("randomfact").innerHTML = facts[~~(Math.random() * facts.length)];
+			}
+
+			function printNews(xhr) {
+				const headlines = xhr.response.split('\n');
+				const last = headlines.length - 1;
+				const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
+				function swap (str, p1) {
+					if (p1.search("news") > -1) return (`<a href='newsletters/${p1}.htm' target='_blank'>`);
+					if (p1 == 'Q') return (`<blockquote class='grey'>`);
+					if (p1 == '/Q') return (`</i></blockquote>`);
+					return `<img src='images/${swapcode[p1]}.png' height='16'>`;
+				}
+				let out = "";
+				for (let i = 0; i <= last; i++) {
+					news[i] = eval('[' + headlines[i] + ']');
+					news[i][3] = news[i][3].replace(/{(.*?)}/g,swap);
+					out += `<p><span class="grey">${news[i][0]}-${('0' + news[i][1]).slice(-2)}${(news[i][2] > 0) ? `-${('0' + news[i][2]).slice(-2)}` : ""}</span><br>${news[i][3]}</p>`;
+					if ((i % 6 == 5) || (i == last)) {
+						let newsset = ~~(i / 6) + 1;
+						if (i < last) out += `<div id="button${newsset}" onclick="toggletext(${newsset})" style="text-align:center;font-weight:bold">&#x25BC; More News &#x25BC;</div><br><div id="newsbreak${newsset}" style="display:none"></div>`;
+						document.getElementById(`newsbreak${(newsset - 1)}`).innerHTML = out;
+						out = "";
+					} 
+				}					
+			}
+			
+			function toggletext(cid) {
+				let nb = document.getElementById(`newsbreak${cid}`);
+				document.getElementById(`button${cid}`).innerHTML = `&#x25B2; ${nb.style.display == "none" ? "Less" : "More"} News &#x25B2;`;
+				nb.style.display = (nb.style.display == "none" ? "block" : "none");
+			}
+		</script>
 	</body>
 </html>
