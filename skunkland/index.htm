@@ -59,6 +59,7 @@
 
 			function addLatestNewsletter(xhr) {
 				const nl = xhr.response.split('\n');
+				console.log(nl);
 				document.getElementById("latestNewsletter").innerHTML = `<a href="newsletters/news${nl.length}.htm" target="_blank"><b>${nl.at(-1)}</b></a>`;
 			}
 
