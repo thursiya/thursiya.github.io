@@ -29,13 +29,6 @@
 		<script>
 			const s = [];
 			loadDoc("../data/tour.txt", buildTourArray);	
-			
-			function loadDoc(url, cFunction) {
-  				const xhttp = new XMLHttpRequest();
-  				xhttp.onload = function() {cFunction(this);}
-  				xhttp.open("GET", url);
-  				xhttp.send();
-			}
 
 			function buildTourArray(xhr) {
 				s.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
