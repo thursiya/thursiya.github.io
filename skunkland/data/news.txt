@@ -49,6 +49,6 @@
 2014,07,01,"{N} {news11}June 2014 Newsletter</a> is released."
 2014,06,18,"{C} <a href='tour'>Tour Section</a> is completed."
 2014,05,26,"{N} {news10}April/May 2014 Newsletter</a> is released."
-2014,05,00,"Massive updates to the <a href='world'>World section</a>.<br>{W} <i>This month we've added a lot of content to the <a href='world.php'>World section</a> although it could still use a lot more. If you have something you'd like to share about your nation on the server, please pass it on.</i>"
+2014,05,00,"Massive updates to the <a href='world'>World section</a>.<br>{W} <i>This month we've added a lot of content to the <a href='world'>World section</a> although it could still use a lot more. If you have something you'd like to share about your nation on the server, please pass it on.</i>"
 2014,04,11,"{N} {news9}January/March 2014 Newsletter</a> is released."
 2014,03,11,"The website goes live!"
