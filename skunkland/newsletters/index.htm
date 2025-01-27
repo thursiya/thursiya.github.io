@@ -36,7 +36,7 @@
 
 			function buildNewsletterArray(xhr) {
 				n.push(...xhr.response.split('\n').slice(0, -1));
-				document.getElementById('latestNews').innerHTML = `<a href="news${n.length-1}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
+				document.getElementById('latestNews').innerHTML = `<a href="news${n.length}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
 				for (let i = n.length - 1; i >= 0; i--) {
 					out += `<li><a href="news${i+1}.htm" target="_blank">${n[i]}</a>`;
