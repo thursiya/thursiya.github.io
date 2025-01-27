@@ -52,18 +52,17 @@
 			loadDoc("data/news.txt", printNews);
 				
 			function addRandomFact(xhr) {
-				const facts = xhr.response.split('\n');
+				const facts = xhr.response.split('\n').filter(v => v);
 				document.getElementById("randomfact").innerHTML = facts[~~(Math.random() * facts.length)];
 			}
 
 			function addLatestNewsletter(xhr) {
-				const nl = xhr.response.split('\n').slice(0, -1);
+				const nl = xhr.response.split('\n').filter(v => v);
 				document.getElementById("latestNewsletter").innerHTML = `<a href="newsletters/news${nl.length}.htm" target="_blank"><b>${nl.at(-1)}</b></a>`;
 			}
 
 			function printNews(xhr) {
-				const news = xhr.response.split('\n');
-				console.log(news);
+				const news = xhr.response.split('\n').filter(v => v);
 				const last = news.length - 1;
 				const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
 				function swap (str, p1) {
