@@ -39,7 +39,7 @@
 				<br>
 			
 				<div class="contentheader round">Latest Newsletter</div>
-				<p><a href="newsletters/news35.htm" target="_blank"><b>February/April 2020</b></a></p>
+				<p id="latestNewsletter"></p>
 				<br>
 
 				<div class="contentheader round">News</div>
@@ -48,12 +48,18 @@
 		</main>
 		<script>
 			loadDoc("data/facts.txt", addRandomFact);
+			loadDoc("data/newsletter.txt", addLatestNewsletter);
 			let news = [];
 			loadDoc("data/news.txt", printNews);
 				
 			function addRandomFact(xhr) {
 				const facts = xhr.response.split('\n');
 				document.getElementById("randomfact").innerHTML = facts[~~(Math.random() * facts.length)];
+			}
+
+			function addLatestNewsletter(xhr) {
+				const nl = xhr.response.split('\n');
+				document.getElementById("latestNewsletter").innerHTML = `<a href="newsletters/news${nl.length}.htm" target="_blank"><b>${nl.at(-1)}</b></a>`;
 			}
 
 			function printNews(xhr) {
