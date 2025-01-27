@@ -49,7 +49,6 @@
 		<script>
 			loadDoc("data/facts.txt", addRandomFact);
 			loadDoc("data/newsletter.txt", addLatestNewsletter);
-			let news = [];
 			loadDoc("data/news.txt", printNews);
 				
 			function addRandomFact(xhr) {
@@ -64,18 +63,18 @@
 			}
 
 			function printNews(xhr) {
-				const headlines = xhr.response.split('\n');
-				const last = headlines.length - 1;
+				const news = xhr.response.split('\n');
+				const last = news.length - 1;
 				const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
 				function swap (str, p1) {
-					if (p1.search("news") > -1) return (`<a href='newsletters/${p1}.htm' target='_blank'>`);
-					if (p1 == 'Q') return (`<blockquote class='grey'>`);
-					if (p1 == '/Q') return (`</i></blockquote>`);
+					if (p1.search("news") > -1) return `<a href='newsletters/${p1}.htm' target='_blank'>`;
+					if (p1 == 'Q') return `<blockquote class='grey'>`;
+					if (p1 == '/Q') return `</i></blockquote>`;
 					return `<img src='images/${swapcode[p1]}.png' height='16'>`;
 				}
 				let out = "";
 				for (let i = 0; i <= last; i++) {
-					news[i] = eval('[' + headlines[i] + ']');
+					news[i] = eval('[' + news[i] + ']');
 					news[i][3] = news[i][3].replace(/{(.*?)}/g,swap);
 					out += `<p><span class="grey">${news[i][0]}-${('0' + news[i][1]).slice(-2)}${(news[i][2] > 0) ? `-${('0' + news[i][2]).slice(-2)}` : ""}</span><br>${news[i][3]}</p>`;
 					if ((i % 6 == 5) || (i == last)) {
