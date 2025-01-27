@@ -33,13 +33,6 @@
 		<script>
 			const n = [];
 			loadDoc("../data/newsletter.txt", buildNewsletterArray);	
-			
-			function loadDoc(url, cFunction) {
-  				const xhttp = new XMLHttpRequest();
-  				xhttp.onload = function() {cFunction(this);}
-  				xhttp.open("GET", url);
-  				xhttp.send();
-			}
 
 			function buildNewsletterArray(xhr) {
 				n.push(...xhr.response.split('\n').slice(0, -1));
