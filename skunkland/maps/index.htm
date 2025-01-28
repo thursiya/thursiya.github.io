@@ -1,8 +1,21 @@
-<?php include 'data/header.htm'; ?>
-
-	<div class="contentheader round">Current World Political Map</div>
-		<div class="gallery">
-			<img src="maps/Skunkland World Political Map.jpg" width="935" alt="Skunkland Political Map" usemap="#worldmap">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Skunkland Server</title>
+		<link rel="stylesheet" href="../data/mc.css">
+		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
+		<script src="../data/time.js"></script>
+		<script src="../data/header.js"></script>
+	</head>
+	<body>
+		<header><script>insertHeader();</script></header>
+		<main>
+			<div class="content round shadow">
+				<div class="contentheader round">Current World Political Map</div>
+					<div class="gallery">
+						<img src="maps/Skunkland World Political Map.jpg" width="935" alt="Skunkland Political Map" usemap="#worldmap">
 			<?php /*
 			<map name="worldmap">
 				<!-- Spawn & Miscellaneous -->
@@ -108,6 +121,6 @@
 				echo "</div>";
 			}
 		}
-	?>
-
-<?php include 'data/footer.htm'; ?>
+		</script>
+	</body>
+</html>
