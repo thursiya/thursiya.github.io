@@ -21,15 +21,8 @@
 			</div>
 		</main>
 		<script>
-			let g = [];
+			const g = [];
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);	
-			
-			function loadDoc(url, cFunction) {
-  				const xhttp = new XMLHttpRequest();
-  				xhttp.onload = function() {cFunction(this);}
-  				xhttp.open("GET", url);
-  				xhttp.send();
-			}
 
 			function getRandomImages(xhr) {
 				let pics = JSON.parse(xhr.response);
@@ -44,7 +37,7 @@
 
 			function buildGalleryArray(xhr) {
 				g.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
-				function writeLinks(arr,dest) {
+				function writeLinks(arr, dest) {
 					let out = "";
 					for (let i = 0; i < arr.length; i++) {
 						if (i == 0 || i == Math.ceil(arr.length / 2)) out += `<div class="col-6"><ul>`;
