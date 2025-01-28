@@ -15,7 +15,7 @@
 			<div class="content round shadow">
 				<div class="contentheader round">Current World Political Map</div>
 				<div class="gallery">
-					<img src="maps/Skunkland World Political Map.jpg" width="935" alt="Skunkland Political Map">
+					<img id="currentmap" width="935" alt="Skunkland Political Map">
 				</div>
 				<p>
 					Current as of March 2020. ( <a href="https://drive.google.com/file/d/1LRJQ8R0zdD5zfVhuMH-S5bs9inB9Vp6P/view?usp=sharing" target="_blank">Full Quality PNG File Download</a> )
@@ -63,16 +63,19 @@
 				echo "</div>";
 			}
 		}*/
-		
-			loadDoc("", buildMapArray);
-			
-			function buildMapArray(xhr) {
-				let m = JSON.parse(xhr.response);
+			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/maps/political", buildMapArray);
 
+			function buildMapArray(xhr) {
+				const m = JSON.parse(xhr.response);
+				document.getElementById("currentmap").src = `political/${m.pop().name}`;
+				m.reverse();
+				
 				let out = "";
 				for (let i = 0; i < m.length; i++) {
 					if (i % 3 == 0) out += `<tr>`;
-					out += `<td><a href="${}" target="_blank"><img src="${}" height="200" alt="${}"><br><br>${}</a></td>`;
+					const date = new Date(m[0].name.substr(-12, 7));
+					date.setHours(25);
+					out += `<td><a href="political/${m[i].name}" target="_blank"><img src="political/${m[i].name}" height="200" alt="${m[i].name}"><br><br>${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</a></td>`;
 					if (i % 3 == 2 || i == m.length - 1) out += `</tr>`;
 				}
 				document.getElementById("pastmaps").innerHTML = out;
