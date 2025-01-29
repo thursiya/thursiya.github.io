@@ -27,43 +27,11 @@
 			</div>
 		</main>
 		<script>
-			/*
-					$maps = glob('maps/Old Political Map*');
-		rsort($maps);
-		$links = array("https://drive.google.com/file/d/0B0KxjcJqLLD4THJiaVBHTzg2Nnc/view?usp=sharing",
-			"https://drive.google.com/file/d/0B0KxjcJqLLD4Q1BZMFRoOEFyOFk/view?usp=sharing",
-			"https://drive.google.com/file/d/0B0KxjcJqLLD4YUd3ZEJRV2laV00/view?usp=sharing",
-			"https://drive.google.com/file/d/0B0KxjcJqLLD4M1FDY2lZQVlzdU0/view?usp=sharing",
-			"https://drive.google.com/file/d/0B0KxjcJqLLD4dUxSdEpEb0xEYjQ/view?usp=sharing",
-			"maps/Old Political Map 6.jpg",
-			"maps/Old Political Map 5.jpg",
-			"maps/Old Political Map 4.jpg",
-			"maps/Old Political Map 3.jpg",
-			"maps/Old Political Map 2.jpg",
-			"maps/Old Political Map 1.jpg");
-		$titles = array("July 2017",
-			"January 2017",
-			"July 2016",
-			"January 2016",
-			"July 2015",
-			"December 2014",
-			"June 2014",
-			"December 2013",
-			"July 2013",
-			"December 2012",
-			"August 2012");
-		for ($i = 0; $i < count($maps); $i++) {
-			if ($i % 3 == 0) {
-				echo "<div class='row'>";
-			}
-			echo "<div class='col-4'>";
-			echo "<a href='".$links[$i]."' target='_blank'>";
-			echo "<img src='".$maps[$i]."' height='200' style='display:block;margin:auto' alt='Skunkland Old Political Map (".$titles[$i].")'>";
-			echo "<p style='text-align:center'>".$titles[$i]."</p></a></div>";
-			if ($i % 3 == 2 || $i == count($maps)) {
-				echo "</div>";
-			}
-		}*/
+			const sharelink = ["https://drive.google.com/file/d/0B0KxjcJqLLD4THJiaVBHTzg2Nnc/view?usp=sharing",
+					   "https://drive.google.com/file/d/0B0KxjcJqLLD4Q1BZMFRoOEFyOFk/view?usp=sharing",
+					   "https://drive.google.com/file/d/0B0KxjcJqLLD4YUd3ZEJRV2laV00/view?usp=sharing",
+					   "https://drive.google.com/file/d/0B0KxjcJqLLD4M1FDY2lZQVlzdU0/view?usp=sharing",
+					   "https://drive.google.com/file/d/0B0KxjcJqLLD4dUxSdEpEb0xEYjQ/view?usp=sharing"];
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/maps/political", buildMapArray);
 
 			function buildMapArray(xhr) {
@@ -76,7 +44,7 @@
 					if (i % 3 == 0) out += `<tr>`;
 					const date = new Date(m[i].name.substr(-12, 7));
 					date.setHours(25);
-					out += `<td><a href="political/${m[i].name}" target="_blank"><img src="political/${m[i].name}" height="200" alt="${m[i].name}"><br>${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</a><br></td>`;
+					out += `<td><a href="${sharelink[i] || `political/${m[i].name}`}" target="_blank"><img src="political/${m[i].name}" height="200" alt="${m[i].name}"><br>${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</a><br></td>`;
 					if (i % 3 == 2 || i == m.length - 1) out += `</tr>`;
 				}
 				document.getElementById("pastmaps").innerHTML = out;
