@@ -9,7 +9,7 @@ function insertHeader() {
 			<span style='font:bold 36px georgia;vertical-align:middle'>${syear(new Date(),'full')}</span>
 		</div>
 
-		<div class='header round shadow' align='middle' style='background-image:url("${homepage}vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg")'>
+		<div class='header round shadow' align='middle' style='background-image:url("${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg")'>
 			<img src='${homepage}images/server_name.gif' align='middle' style='padding-top:50px'>
 		</div>
 
