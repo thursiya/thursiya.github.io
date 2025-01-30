@@ -132,7 +132,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
 .gallery {
   margin: auto;
   padding: 16px;
-  display: inline; }
+  display: block; }
 .gallery td {
   width: 322px;
   vertical-align: top; }
