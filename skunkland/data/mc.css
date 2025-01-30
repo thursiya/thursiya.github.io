@@ -130,7 +130,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   text-shadow: 1px 1px 4px #aaa; }
 
 .gallery {
-  margin: auto;
+  margin: 0 auto 20px;
   display: inline; }
 .gallery td {
   width: 322px;
