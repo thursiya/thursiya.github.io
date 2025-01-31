@@ -1,6 +1,6 @@
 function pic(name, loc = "gallery") {
 	const file = {gallery: "../gallery/images", newsletter: "images", map: "../maps/political", special: "../maps/special"};
-	document.write(`<a href='${file[loc]}/${name}.jpg' target='_blank'><img src='${file[loc]}/${name}.jpg' alt='${name}' height='300' style='margin-right: 20px'></a>`);
+	document.write(`<a href='${file[loc]}/${name}.jpg' target='_blank'><img src='${file[loc]}/${name}.jpg' alt='${name}' height='300'></a>`);
 }
 
 function wiki(str) {
