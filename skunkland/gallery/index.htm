@@ -8,7 +8,6 @@
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
 		<script src="../data/time.js"></script>
 		<script src="../data/header.js"></script>
-		<script src="../data/newsletter.js"></script>
 	</head>
 	<body>
 		<header><script>insertHeader();</script></header>
@@ -55,19 +54,8 @@
 			function loadGallery(v) {
 				let out = "";
 				for (let i = 0; i < g[v].section.length; i++) {
-					//out += `<div class="contentheader round">${g[v].section[i].title || g[v].name}</div><table class="gallery">`;
-					//for (let j = 0; j < g[v].section[i].img.length; j++) {
-					//	if (j % 3 == 0) out += `<tr>`;
-					//	let pic = g[v].section[i].img[j];
-					//	out += `<td><a href="images/${pic}.jpg" target="_blank"><img src="images/${pic}.jpg" height="175" alt="${pic}"><br><br>${pic}</a></td>`;
-					//	if (j % 3 == 2 || j == g[v].section[i].img.length - 1) out += `</tr>`;
-					//}
-					//out += `</table><br><br>`;
-
 					out += `<div class="contentheader round">${g[v].section[i].title || g[v].name}</div><div class="gallery">`;
-					for (j of g[v].section[i].img) {
-						out += `<div><a href="images/${j}.jpg" target="_blank"><img src="images/${j}.jpg" height="175" alt="${j}"><div class="caption">${j}</div></a></div>`;
-					}
+					g[v].section[i].img.forEach(j => out += `<div><a href="images/${j}.jpg" target="_blank"><img src="images/${j}.jpg" height="175" alt="${j}"><div class="caption">${j}</div></a></div>`);
 					out += `</div>`;
 				}
 				document.getElementById("gallerycontainer").innerHTML = out;
