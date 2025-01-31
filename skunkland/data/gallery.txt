@@ -5,7 +5,7 @@
 		"Igloo at Spawn",
 		"Welcoming House",
 		"First Century Build Competition Site",
-		"Century Build 300",
+		"Expo 300",
 		"Red Rock",
 		"Tree Tower"
 	]}]},
