@@ -36,17 +36,7 @@
 				n.push(...xhr.response.split('\n').filter(v => v));
 				document.getElementById('latestNews').innerHTML = `<a href="news${n.length}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
-				for (let i = n.length - 1; i >= 0; i--) {
-					out += `<div class="flexbutton"><a href="news${i+1}.htm" target="_blank">${n[i]}</a></div>`;
-					/*if (i == ~~(n.length / 3)) {
-						document.getElementById("leftcol").innerHTML = out;
-						out = "";
-					}
-					if (i == ~~(n.length / 3 * 2)) {
-						document.getElementById("midcol").innerHTML = out;
-						out = "";
-					}*/
-				}
+				for (let i = n.length - 1; i >= 0; i--) out += `<div class="flexbutton round"><a href="news${i+1}.htm" target="_blank">${n[i]}</a></div>`;
 				document.getElementById("listNews").innerHTML = out;
 			}
 		</script>
