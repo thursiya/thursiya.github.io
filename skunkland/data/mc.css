@@ -39,6 +39,9 @@ p.big { font-size: 150%; }
 p.heading {
   font-style: italic;
   font-weight: bold; }
+p.subheading {
+  font-weight: bold;
+  margin-left: 20px; }
 
 span.note {
   color: #999;
