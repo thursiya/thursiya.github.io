@@ -122,6 +122,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   background-color: #fee;
   border: 1px outset #888;
   font-weight: bold;
+  height: 45px;
   margin: 3px;
   padding: 10px;
   text-align: center;
