@@ -14,7 +14,7 @@
 		<header><script>insertHeader();</script></header>
 		<main>
 			<div class="content round shadow">
-				<div id="gallery"></div>
+				<div id="gallerycontainer"></div>
 				<div class="contentheader round">Galleries</div>
 				<div class="row" id="general"></div>
 				<hr style="border: 1px solid #999; width: 70%; margin: auto">
@@ -70,7 +70,7 @@
 					}
 					out += `</div><br><br>`;
 				}
-				document.getElementById("gallery").innerHTML = out;
+				document.getElementById("gallerycontainer").innerHTML = out;
 			}
 		</script>
 	</body>
