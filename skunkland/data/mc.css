@@ -17,13 +17,16 @@ p {
   margin: 0;
   padding: 0 0 8px 0; }
 p.big { font-size: 150%; }
-p.heading { font: italic bold; }
+p.heading { 
+  font-style: italic;
+  font-weight: bold; }
 p.heading:not(.big) { margin-top: 20px; }
 p.indent { margin-left: 20px; }
 
 span.note {
   color: #999;
-  font: italic 75%; }
+  font-size: 75%; 
+  font-style: italic; }
 
 table { border-collapse: collapse; }
 th, td {
@@ -115,9 +118,9 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
 .gallery > div {
   max-width: min-content;
   margin: 0 0 20px 20px; }
-.gallery > button {
-  border: 1px solid #000;
-  margin: 0 0 5px 20px;
+.flextile {
+  background-color: #fee;
+  border: 2px solid #000;
   padding: 10px;
   width: 300px; }
 .caption {
@@ -129,4 +132,6 @@ area { outline: none; }
 
 .grey { color:#999; }
 
-.title { font: bold 120%; }
+.title { 
+  font-size: 120%; 
+  font-weight: bold; }
