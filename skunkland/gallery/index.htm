@@ -53,7 +53,7 @@
 
 			function loadGallery(gid) {
 				let out = "";
-				for (let section of g[gid].section.length) {
+				for (let section of g[gid].section) {
 					out += `<div class="contentheader round">${section.title || g[gid].name}</div><div class="gallery">`;
 					section.img.forEach(v => out += `<div><a href="images/${v}.jpg" target="_blank"><img src="images/${v}.jpg" alt="${v}"><div class="caption">${v}</div></a></div>`);
 					out += `</div>`;
