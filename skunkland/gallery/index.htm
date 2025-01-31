@@ -66,7 +66,7 @@
 
 					out += `<div class="contentheader round">${g[v].section[i].title || g[v].name}</div><div class="gallery">`;
 					for (j of g[v].section[i].img) {
-						out += `<script>pic("${j}")</script>`;
+						out += `<div><a href="images/${j}.jpg" target="_blank"><img src="images/${j}.jpg" height="175" alt="${j}"><div class="caption">${j}</div></a></div>`;
 					}
 					out += `</div><br><br>`;
 				}
