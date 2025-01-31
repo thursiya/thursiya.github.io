@@ -51,11 +51,11 @@
 				writeLinks(g.filter(v => v.type == 1), "states");
 			}
 
-			function loadGallery(v) {
+			function loadGallery(gid) {
 				let out = "";
-				for (let i = 0; i < g[v].section.length; i++) {
-					out += `<div class="contentheader round">${g[v].section[i].title || g[v].name}</div><div class="gallery">`;
-					g[v].section[i].img.forEach(j => out += `<div><a href="images/${j}.jpg" target="_blank"><img src="images/${j}.jpg" height="175" alt="${j}"><div class="caption">${j}</div></a></div>`);
+				for (let section of g[gid].section.length) {
+					out += `<div class="contentheader round">${section.title || g[gid].name}</div><div class="gallery">`;
+					section.img.forEach(v => out += `<div><a href="images/${v}.jpg" target="_blank"><img src="images/${v}.jpg" alt="${v}"><div class="caption">${v}</div></a></div>`);
 					out += `</div>`;
 				}
 				document.getElementById("gallerycontainer").innerHTML = out;
