@@ -120,8 +120,8 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   margin: 0 0 20px 20px; }
 .flextile {
   background-color: #fee;
-  border: 2px solid #000;
-  margin: 5px;
+  border: 2px solid #555;
+  margin: 3px;
   padding: 10px;
   text-align: center;
   width: 300px; }
