@@ -13,6 +13,8 @@ body {
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+blockquote { font-style: italic; }
+
 p {
   margin: 0;
   padding: 0 0 8px 0; }
