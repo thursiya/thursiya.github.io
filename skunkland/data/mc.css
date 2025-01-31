@@ -115,9 +115,10 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
 .gallery > div {
   max-width: min-content;
   margin: 0 0 20px 20px; }
-.gallery > button {
+.flexbutton {
   border: 1px solid #000;
   padding: 10px;
+  max-width: none;
   width: 300px; }
 .caption {
   text-align: center;
