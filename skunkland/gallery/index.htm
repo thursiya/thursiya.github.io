@@ -41,7 +41,7 @@
 					let out = "";
 					for (let i = 0; i < arr.length; i++) {
 						if (i == 0 || i == Math.ceil(arr.length / 2)) out += `<div class="col-6"><ul>`;
-						out += `<li><span style="font-weight: bold; color: #00F; cursor: pointer" onclick="loadGallery(${g.findIndex(v => v.name == arr[i].name)})">${arr[i].name}</span>`;
+						out += `<li><span class="clickable" onclick="loadGallery(${g.findIndex(v => v.name == arr[i].name)})">${arr[i].name}</span>`;
 						if (i == arr.length - 1 || i == Math.ceil(arr.length / 2) - 1) out += `</ul></div>`;
 					}
 					document.getElementById(dest).innerHTML = out;
@@ -55,7 +55,7 @@
 				let out = "";
 				for (let section of g[gid].section) {
 					out += `<div class="contentheader round">${section.title || g[gid].name}</div><div class="gallery">`;
-					section.img.forEach(v => out += `<div><a href="images/${v}.jpg" target="_blank"><img src="images/${v}.jpg" height="175" alt="${v}"><div class="caption">${v}</div></a></div>`);
+					section.img.forEach(v => out += `<div class="pic"><a href="images/${v}.jpg" target="_blank"><img src="images/${v}.jpg" height="175" alt="${v}"><div class="caption">${v}</div></a></div>`);
 					out += `</div>`;
 				}
 				document.getElementById("gallerycontainer").innerHTML = out;
