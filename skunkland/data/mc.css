@@ -133,7 +133,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   border: 1px outset #888;
   font-weight: bold;
   height: 45px;
-  gap: 3px;
+  margin: 0 -17px -17px 0;
   padding: 10px;
   text-align: center;
   width: 315px; }
