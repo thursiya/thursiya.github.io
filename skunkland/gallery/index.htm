@@ -40,7 +40,7 @@
 				function writeLinks(arr, dest) {
 					let out = "";
 					for (let i of arr) {
-						out += `<div style="flex: 50%"><span class="clickable" onclick="loadGallery(${g.findIndex(v => v.name == arr[i].name)})">${arr[i].name}</span></div>`;
+						out += `<div style="flex: 50%"><span class="clickable" onclick="loadGallery(${g.findIndex(v => v.name == i.name)})">${i.name}</span></div>`;
 					}
 					
 					/*for (let i = 0; i < arr.length; i++) {
