@@ -114,6 +114,11 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   border: 1px solid #e0d9d0;
   text-shadow: 1px 1px 4px #aaa; }
 
+.button {
+  color: #00F;
+  cursor: pointer;
+  font-weight: bold; }
+
 .gallery {
   display: flex;
   flex-wrap: wrap; }
