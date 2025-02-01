@@ -128,13 +128,13 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   margin-left: 20px; }
 .gallery > div.pic {
   max-width: min-content;
-  margin: 0 20px 20px 0; }
+  gap: 20px; }
 .flextile {
   background-color: #fee;
   border: 1px outset #888;
   font-weight: bold;
   height: 45px;
-  margin: 3px;
+  gap: 3px;
   padding: 10px;
   text-align: center;
   width: 315px; }
