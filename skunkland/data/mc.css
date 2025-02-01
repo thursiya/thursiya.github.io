@@ -120,6 +120,8 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   font-weight: bold; 
   padding: 10px; }
 
+.flex50 { flex: 50%; }
+
 .gallery {
   display: flex;
   flex-wrap: wrap; }
