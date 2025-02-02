@@ -118,10 +118,8 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   border: 1px solid black;
   color: #00F;
   cursor: pointer;
-  font-weight: bold; 
-  padding: 10px; }
-
-.flex50 { flex: 50%; }
+  padding: 10px; 
+  width: 400px; }
 
 .gallery {
   display: flex;
