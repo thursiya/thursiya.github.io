@@ -39,7 +39,7 @@
 				g.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
 				function writeLinks(arr, dest) {
 					let out = "";
-					for (let i of arr) out += `<div class="clickable flex50 title"><span onclick="loadGallery(${g.findIndex(v => v.name == i.name)})">${i.name}</span></div>`;
+					for (let i of arr) out += `<div class="clickable title"><span onclick="loadGallery(${g.findIndex(v => v.name == i.name)})">${i.name}</span></div>`;
 					document.getElementById(dest).innerHTML = out;
 				}
 				loadGallery(0);
