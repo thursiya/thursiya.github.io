@@ -115,10 +115,8 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   text-shadow: 1px 1px 4px #aaa; }
 
 .clickable {
-  border: 1px solid black;
   color: #00F;
-  cursor: pointer;
-  padding: 10px; 
+  cursor: pointer; 
   width: 400px; }
 
 .gallery {
