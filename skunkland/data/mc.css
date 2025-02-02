@@ -115,10 +115,11 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   text-shadow: 1px 1px 4px #aaa; }
 
 .clickable {
+  border: 1px solid black;
   color: #00F;
   cursor: pointer;
   font-weight: bold; 
-  padding: 0 10px 10px 0; }
+  padding: 10px; }
 
 .flex50 { flex: 50%; }
 
