@@ -16,7 +16,7 @@ Fort Resolution, Crevatia,	30,1,4,1.0,	2018,10,14,	Fort Res
 Ghibli Port, Gavel,		21,1,4,1.0,	2015,1,5,	GP
 Gickerville, Crevatia,		26,8,0,1.0,	2018,10,14
 Imperial City, Badrum,		22,4,4,1.5,	2016,1,31,	Badrum Capital
-Johnville,,    	18,0,1,1.0,	2015,1,23,	Tetriston
+Johnville,,                    	18,0,1,1.0,	2015,1,23,	Tetriston
 Koku Town, Koku,		26,0,4,1.50,	2015,1,5,	Koku, Koku Village
 Leawood, Faclair,		9,5,4,1.0,	2020,5,5
 Lumina City, Lumina,		28,4,15,1.50,	2020,3,2,	Lumina
@@ -33,8 +33,8 @@ Red Rock,,	                5,2,0,1.0,	2017,5,29
 Sartori, Faclair,		59,28,0,1.0,	2019,08,19,	Sartori City
 Sofia, Amahn,			13,0,4,1.0,	2015,1,23
 South Shore City, South Shore,	83,14,28,1.50,	2015,1,4,	South Shore
-Space Town,,          	1,0,0,1.0,	2016,1,31
-Spawnmouth,,          	4,0,0,1.0,	2016,1,31,	Contested Village
+Space Town,,                  	1,0,0,1.0,	2016,1,31
+Spawnmouth,,                  	4,0,0,1.0,	2016,1,31,	Contested Village
 Stellarton, Crevatia,		16,5,1,1.0,	2016,3,4
 Ulve, Delve,			38,21,3,1.0,	2020,5,6,	Ulvenstand
 William's Harbour, Crevatia,	13,15,0,1.05,	2018,10,14,	WH
