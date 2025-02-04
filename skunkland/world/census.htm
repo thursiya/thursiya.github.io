@@ -1,57 +1,53 @@
-<html><head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Census of Skunkland</title>
+		<link rel="stylesheet" href="../data/mc.css">
+		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
+	</head>
+	<body>
+		<main>
+			<div style="text-align: center"><img src="../images/bookandquill.png"></div>
+			<div class="content round shadow">
+				<div class="contentheader round">Taking the Census</div>
+				<p>
+					In the world of Skunkland, the Chief Information Officer of the Department of Information in the Republic of Gavel orders a global census from 
+					the Department of Information's World Records Office every 100 years. This is the census data that is published in books in game. In the real 
+					world, the census is updated on a regular basis as additions are made to the settlements of Skunkland, based on the calculations 
+					<a href="calculations.htm">posted here</a>.
+				</p>
+				<br>
 
-<link rel="stylesheet" href="../data/mc.css" type="text/css" media="screen" />
-<link rel="icon" href="../images/pickaxe.png" type="image/x-icon" />
-
-<title>Census of Skunkland</title>
-
-<script src="../data/calc.js"></script>
-
-</head>
-
-<body>
-
-<img src="../images/bookandquill.png" class="gallery" style="display:block; margin:auto auto">
-
-<div class="content round shadow">
-	<div class="contentheader round">Taking the Census</div>
-	<p>
-		In the world of Skunkland the Chief Information Officer of the Department of Information in the 
-		Republic of Gavel orders a global census from the Department of Information's World Records 
-		Office every 100 years.  This is the census data that is published in books in game.  In the 
-		real world the census is updated on a regular basis as additions are made to the settlements of 
-		Skunkland, based on the calculations <a href="calculations.htm">posted here</a>.
-	</p>
-
-	<br>
-
-	<div class="contentheader round">Current Census</div>
-	<table border=1>
-		<thead>
-			<tr>
-				<th class="sortable" onclick="list(1)" title="Click to sort alphabetically by nation and population/settlement name">Nation</th>
-				<th class="sortable" onclick="list(2)" title="Click to sort alphabetically/reverse by settlement name">Settlements</th>
-				<th class="sortable" onclick="list(3)" title="Click to sort by population from greatest/least">Population</th>
-				<th class="sortable" onclick="list(4)" title="Click to sort by most recent/oldest census date">Date of most<br>Recent Census</th>
-			</tr>
-		</thead>
-		<tbody id="tabledata"></tbody>
-	</table>
-	<br>
-	<p>
-		As of the most recent <a href="../maps.php">political map</a> the Kingdom of Aiur, Miasma of 
-		Boatmurdered, and Independent State of Sedona have no inhabited settlements.  All other settlements 
-		have no population base (e.g. player-built housing, designated work sites).
-	</p>
-	
-<script type="text/javascript">
-	var Current = 0;
-
-	csort = city.slice(0);
-	psort = city.slice(0);
-	ncsort = city.slice(0);
-	npsort = city.slice(0);
-	dsort = city.slice(0);
+				<div class="contentheader round">Current Census</div>
+				<table border=1>
+					<thead>
+						<tr>
+							<th class="sortable" onclick="list(1)" title="Click to sort alphabetically by nation and population/settlement name">Nation</th>
+							<th class="sortable" onclick="list(2)" title="Click to sort alphabetically/reverse by settlement name">Settlements</th>
+							<th class="sortable" onclick="list(3)" title="Click to sort by population from greatest/least">Population</th>
+							<th class="sortable" onclick="list(4)" title="Click to sort by most recent/oldest census date">Date of most<br>Recent Census</th>
+						</tr>
+					</thead>
+					<tbody id="censustabledata"></tbody>
+				</table>
+				<br>
+				
+				<p>
+					As of the most recent political map, the Kingdom of Aiur, Miasma of Boatmurdered, and Independent State of Sedona have no inhabited settlements. 
+					All other settlements have no population base (e.g. player-built housing, designated work sites).
+				</p>
+			</div>
+		</main>
+		<script>
+			var Current = 0;
+			
+			csort = city.slice(0);
+			psort = city.slice(0);
+			ncsort = city.slice(0);
+			npsort = city.slice(0);
+			dsort = city.slice(0);
 		
 	// Sort cities alphabetically		
 	csort.sort();
@@ -108,10 +104,8 @@
 			}
 			out += '<td>' + arr[i][0] + '</td><td>' + arr[i][2] + '</td><td>' + syear(arr[i][4]) + '</td></tr>';
 		}
-		document.getElementById("tabledata").innerHTML = out;
+		document.getElementById("censustabledata").innerHTML = out;
 	}
-</script>
-	
-</div>
-</body>
+		</script>
+	</body>
 </html>
