@@ -59,7 +59,7 @@
 					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
 					<td>${i[2]}</td></tr>` : `<tr><td width="60"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
-				document.getElementById(`${+arr[0][0] == NaN ? "nation" : "event"}tabledata`).innerHTML = out;
+				document.getElementById(`${(+arr[0][0] == NaN) ? "nation" : "event"}tabledata`).innerHTML = out;
 			}
 			
 			/*loadDoc("../data/nations.txt", drawNationsTable);
