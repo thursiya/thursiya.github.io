@@ -52,19 +52,19 @@
 			}
 
 			function buildCityArray(xhr) {
-				const cities = xhr.response.split('\n').filter(v => v);
+				const cities = xhr.response.split('\n').filter(v => v).map(v => ;
 				const city = buildArray(cities);
 				list();
 			}
 
 			function buildArray(arr) {
-				for(var i = 0; i < arr.length; i++) {
+				for(let i = 0; i < arr.length; i++) {
 					// Remove spaces before and after commas and leading or ending spaces
 					arr[i] = arr[i].replace(/\s*,\s*/g, ',');
 					arr[i] = arr[i].trim();
 					arr[i] = arr[i].split(',');
 					// Convert 4 pop values into 1 string (with commas) and one numerical population value
-					var thispop = pp(Number(arr[i][2]),Number(arr[i][3]),Number(arr[i][4]),Number(arr[i][5]));
+					var thispop = pp(+arr[i][2], +arr[i][3], +arr[i][4], +arr[i][5]);
 					var popstring = thispop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	// convert ####### to #,###,###)
 					arr[i].splice(2,4,popstring);
 					arr[i].splice(3,0,thispop);
