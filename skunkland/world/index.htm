@@ -75,7 +75,7 @@
 			function drawEventsTable(xhr) {
 				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
 				let out = "";
-				for (let i of arr) out += `<tr><td width="60"><b>${syear(new Date(i[0], i[1], i[2]))}</b></td><td>${i[3]}</td></tr>`;
+				for (let i of arr) out += `<tr><td width="60"><b>${syear(i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				document.getElementById("tabledata1").innerHTML = out;
 			}
 		</script>
