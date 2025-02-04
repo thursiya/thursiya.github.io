@@ -52,11 +52,12 @@
 			}
 
 			function buildCityArray(xhr) {
-				const city = xhr.response.split('\n').filter(v => v).map(v => v.split(','));
+				const city = xhr.response.split('\n').filter(v => v).replace(/\s*,\s*/g, ',').trim().map(v => v.split(','));
 				console.log(city);
 				//const city = buildArray(cities);
 				//list();
 			}
+
 
 
 			
