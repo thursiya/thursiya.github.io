@@ -6,6 +6,7 @@
 		<title>Census of Skunkland</title>
 		<link rel="stylesheet" href="../data/mc.css">
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
+		<script src="../data/time.js"></script>
 	</head>
 	<body>
 		<main>
@@ -53,6 +54,7 @@
 			function buildCityArray(xhr) {
 				const cities = xhr.response.split('\n').filter(v => v);
 				const city = buildArray(cities);
+				list();
 			}
 
 			function buildArray(arr) {
@@ -88,40 +90,37 @@
 				}
 			}
 
+			function list(id) {
+				let out = "";
+				let arr = [];
+				switch (sorttype) {
+					default:
+						sorttype = 1;
+					case 1:
+						Current == 1 ? (arr = npsort, Current = 0) : (arr = ncsort, Current = 1);
+						break;
+					case 2:
+						Current == 2 ? (arr = crev, Current = 0) : (arr = csort, Current = 2);
+						break;
+					case 3:
+						Current == 3 ? (arr = prev, Current = 0) : (arr = psort, Current = 3);
+						break;
+					case 4:
+						Current == 4 ? (arr = drev, Current = 0) : (arr = dsort, Current = 4);
+						break;
+				}
+				for (var i = 0; i < arr.length; i++) {
+					out += `<tr>`;
+					if (sorttype != 1 || newnat[i] != 0) {
+						out += `<td rowspan=${sorttype == 1 ? newnat[i] : 1}>${arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1])}</td>`;
+					}
+					out += `<td>${arr[i][0]}</td><td>${arr[i][2]}</td><td>${syear(arr[i][4])}</td></tr>`;
+				}
+				document.getElementById("censustabledata").innerHTML = out;
+			}
 
 
-Date.prototype.getDOY = function() {
-	var onejan = new Date(this.getFullYear(),0,1);
-	return (this - onejan) / 86400000;
-}
 
-function syear(day,val2,val3,val4) {
-	if (typeof day == 'number') {
-		day = new Date(day, (val2 - 1), (val3 || 1), (val4 || 0));
-		if (!val3) val2 = 'noday';
-	}
-	var longsy = (day.getFullYear() - 2012 + (day.getDOY() + 61) / 365) * 72 + 1;
-	var sy = Math.floor(longsy);
-	var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-	var skunkmonth = Math.floor(longsy % 1 * 12);
-	var out = "<span title='" + month[day.getMonth()] + " ";
-	if (val2 != "noday") {
-		out += day.getDate() + ", ";
-	}
-	out += day.getFullYear() + "'>";
-	if (val2 == "full" || val4) {
-		out += month[skunkmonth] + " of ";
-	}
-	out += "SY " + sy + "</span>";
-	return out;
-}
-
-function sy(a,b,c,d) { document.write(syear(a,b,c,d)) }
-
-function pic(name,loc,title) {
-	fileloc = (loc == 1) ? 'newsletters':'gallery';
-	document.write("<td><a href='" + fileloc + "/images/" + name + ".jpg' target='_blank'><img src='" + fileloc + "/images/" + name + ".jpg' alt='" + name + "' height='175'><br><br>" + (title || name) + "</a></td>");
-}
 			
 			var Current = 0;
 			
@@ -161,33 +160,6 @@ function pic(name,loc,title) {
 		
 	list();
 
-	function list(sorttype) {
-		var out = '', arr = [];
-		switch (sorttype) {
-			default:
-				sorttype = 1;
-			case 1:
-				Current == 1 ? (arr = npsort, Current = 0) : (arr = ncsort, Current = 1);
-				break;
-			case 2:
-				Current == 2 ? (arr = crev, Current = 0) : (arr = csort, Current = 2);
-				break;
-			case 3:
-				Current == 3 ? (arr = prev, Current = 0) : (arr = psort, Current = 3);
-				break;
-			case 4:
-				Current == 4 ? (arr = drev, Current = 0) : (arr = dsort, Current = 4);
-				break;
-		}
-		for (var i = 0; i < arr.length; i++) {
-			out += '<tr>';
-			if (sorttype != 1 || newnat[i] != 0) {
-				out += '<td rowspan=' + (sorttype == 1 ? newnat[i] : 1) + '>' + (arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1]) + '</td>';
-			}
-			out += '<td>' + arr[i][0] + '</td><td>' + arr[i][2] + '</td><td>' + syear(arr[i][4]) + '</td></tr>';
-		}
-		document.getElementById("censustabledata").innerHTML = out;
-	}
 		</script>
 	</body>
 </html>
