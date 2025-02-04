@@ -1,49 +1,78 @@
-<?php include 'data/header.htm'; ?>
-
-	<div class="contentheader round">The World of Skunkland</div>
-	<p>
-		Most players on the Skunkland server have decided to give their build a national identity.  This
-		section focuses on detailed information about nation-state builds.  Some players have formed 
-		confederations of nations (such as the protectorates in the west).  Those players who have not or
-		do not wish to take part in national identities have their builds marked by a purple boundary on
-		the political map.
-	</p>
-	<p style="text-align:center;font-size:150%">
-		<i>~ <a href="world/projects.htm">Current Player Projects</a> ~</i>
-	</p>
-	<br>
-	
-	<div class="contentheader round">Nations of Skunkland</div>
-	<div class="row">
-		<div class="col-8">
-			<table>
-				<tr>
-					<th>Flag</th>
-					<th>Nation</th>
-					<th>Player(s)</th>
-				</tr>
-				<tbody id="tabledata2"></tbody>
-			</table>
-		</div>	
-		<div class="col-4">
-			<table>
-				<tr><th>Timeline of Skunkland</th></tr>
-				<tr>
-					<td>
-						<table class="info">
-							<tbody id="tabledata1"></tbody>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Skunkland Server</title>
+		<link rel="stylesheet" href="../data/mc.css">
+		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
+		<script src="../data/time.js"></script>
+		<script src="../data/header.js"></script>
+	</head>
+	<body>
+		<header><script>insertHeader();</script></header>
+		<main>
+			<div class="content round shadow">
+				<div class="contentheader round">The World of Skunkland</div>
+				<p>
+					Most players on the Skunkland server have decided to give their build a national identity. This	section focuses on detailed information about 
+					nation-state builds. Some players have formed confederations of nations (such as the protectorates in the west). Those players who have not or 
+					do not wish to take part in national identities have their builds marked by a purple boundary on the political map.
+				</p>
+				<p style="text-align:center;font-size:150%">
+					<i>~ <a href="world/projects.htm">Current Player Projects</a> ~</i>
+				</p>
+				<br>
+				
+				<div class="contentheader round">Nations of Skunkland</div>
+				<div class="gallery">
+					<div class="col-8">
+						<table>
 							<tr>
-								<td width="55"><b>SY 1</b></td>
-								<td>Year of Spawn</td>
+								<th>Flag</th>
+								<th>Nation</th>
+								<th>Player(s)</th>
 							</tr>
+							<tbody id="tabledata2"></tbody>
 						</table>
-					</td>
-				</tr>
-				<tr><td><i>~ <a href="world/calculations.htm">Time Calculation</a> ~</i></td></tr>
-				<tr><td><i>~ <a href="world/census.htm">Census of Skunkland</a> ~</i></td></tr>
-			</table>
-		</div>
-	</div>
+					</div>
+					<div class="col-4">
+						<table>
+							<tr><th>Timeline of Skunkland</th></tr>
+							<tr>
+								<td>
+									<table class="info">
+										<tbody id="tabledata1"></tbody>
+										<tr>
+											<td width="55"><b>SY 1</b></td>
+											<td>Year of Spawn</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr><td><i>~ <a href="world/calculations.htm">Time Calculation</a> ~</i></td></tr>
+							<tr><td><i>~ <a href="world/census.htm">Census of Skunkland</a> ~</i></td></tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+		
+		<script>
+			const n = [];
+			loadDoc("../data/newsletter.txt", buildNewsletterArray);	
+
+			function buildNewsletterArray(xhr) {
+				n.push(...xhr.response.split('\n').filter(v => v));
+				document.getElementById('latestNews').innerHTML = `<a href="news${n.length}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
+				let out = "";
+				for (let i = n.length - 1; i >= 0; i--) out += `<div class="flextile"><a href="news${i+1}.htm" target="_blank">${n[i]}</a></div>`;
+				document.getElementById("listNews").innerHTML = out;
+			}
+		</script>
+
+
+	
 
 <script>
 var xmlhttp1 = new XMLHttpRequest();
