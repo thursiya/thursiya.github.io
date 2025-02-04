@@ -55,11 +55,11 @@
 				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
 				let out = "";
 				for (let i of arr) {
-					out += i.length < 4 ? `<tr><td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
+					out += (+i[0] == NaN) ? `<tr><td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
 					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
 					<td>${i[2]}</td></tr>` : `<tr><td width="60"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
-				document.getElementById(`${arr[0].length < 4 ? "nation" : "event"}tabledata`).innerHTML = out;
+				document.getElementById(`${+arr[0][0] == NaN ? "nation" : "event"}tabledata`).innerHTML = out;
 			}
 			
 			/*loadDoc("../data/nations.txt", drawNationsTable);
