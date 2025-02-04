@@ -55,50 +55,12 @@
 				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
 				let out = "";
 				for (let i of arr) {
-					out += isNaN(+i[0]) ? `<tr><td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
+					out += isNaN(arr[0][0]) ? `<tr><td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
 					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
 					<td>${i[2]}</td></tr>` : `<tr><td width="60"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
 				document.getElementById(`${isNaN(arr[0][0]) ? "nation" : "event"}tabledata`).innerHTML = out;
 			}
-			
-			/*loadDoc("../data/nations.txt", drawNationsTable);
-			loadDoc("../data/events.txt", drawEventsTable);
-
-			function drawTable(dest, xhr, data) {
-				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
-				let out = "";
-				for (let i of arr) out += `<tr>${data}</tr>`;
-				document.getElementById().innerHTML = out;
-			}
-
-			function drawNationsTable(xhr) {
-				drawTable("nationtabledata", xhr, `<td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
-					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
-					<td>${i[2]}</td>`);
-			}
-
-			function drawEventsTable(xhr) {
-				drawTable("eventtabledata", xhr, `<td width="60"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td>`);
-			}*/
-			
-			/*function drawNationsTable(xhr) {
-				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
-				let out = "";
-				for (let i of arr) {
-					out += `<tr><td><img src="images/${i[0]} Flag.png" height="50" alt="Flag of ${i[0]}"></td>
-					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
-					<td>${i[2]}</td></tr>`;
-				}
-				document.getElementById("tabledata2").innerHTML = out;
-			}
-
-			function drawEventsTable(xhr) {
-				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
-				let out = "";
-				for (let i of arr) out += `<tr><td width="60"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
-				document.getElementById("tabledata1").innerHTML = out;
-			}*/
 		</script>
 	</body>
 </html>
