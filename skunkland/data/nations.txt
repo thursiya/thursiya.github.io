@@ -1,14 +1,14 @@
-Aiur,Kingdom,nebby28,temp
+Aiur,Kingdom,nebby28
 Amahn,Hanse,Jehkoba
-Badrum,Imperium,Quackey958,temp
+Badrum,Imperium,Quackey958
 Boatmurdered,Miasma,Jaanke
-Braille,Protectorate,SpaceNerds,temp
+Braille,Protectorate,SpaceNerds
 Crevatia,D.P.R.,yrsyrs
 Delve,Adhocracy,SpaceSkunks
 Faclair,Freenation,Shylilie
 Gavel,Republic,thursiya
-Koku,Kingdom,kokushibyou316,temp
-Lumina,Principality,SpaceSkunks,temp
-Porcinia,Commune,Aninabanina,temp
-Sedona,Independent State,123weedie,temp
-South Shore,Commune,msteveharrison,temp
+Koku,Kingdom,kokushibyou316
+Lumina,Principality,SpaceSkunks
+Porcinia,Commune,Aninabanina
+Sedona,Independent State,123weedie
+South Shore,Commune,msteveharrison
