@@ -42,6 +42,7 @@
 			</div>
 		</main>
 		<script>
+			const city = [];
 			loadDoc("../data/census.txt", buildCityArray);
 			
 			function loadDoc(url, cFunction) {
@@ -52,13 +53,131 @@
 			}
 
 			function buildCityArray(xhr) {
-				const city = xhr.response.split('\n').filter(v => v).map(v => v.replace(/\s*,\s*/g, ',').trim().split(','));
-				console.log(city);
+				const citydata = xhr.response.split('\n').filter(v => v).map(v => v.replace(/\s*,\s*/g, ',').trim().split(','));
+				console.log(citydata);
 				//const city = buildArray(cities);
-				//list();
+				list();
 			}
 
+			function list(id = 1) {
+				let out = "";
+				// add or remove class="toggled" (toggled list)
+				// num.toLocaleString('en', {useGrouping:true}) // convert ####### to #,###,###
+				for (let i of city) {
+					out += `<tr>`;
+					if (sorttype != 1 || newnat[i] != 0) {
+						out += `<td rowspan=${sorttype == 1 ? newnat[i] : 1}>${arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1])}</td>`;
+					}
+					out += `<td>${i[0]}</td><td>${pp(i[2], i[3], i[4], i[5]}</td><td>${syear(i[6], i[7], i[8])}</td></tr>`;
+				}
+				document.getElementById("censustabledata").innerHTML = out;
+			}
 
+			// Eliminate this function
+			function buildArray(arr) {
+				for(let i = 0; i < arr.length; i++) {
+					// Remove spaces before and after commas and leading or ending spaces
+					arr[i] = arr[i].replace(/\s*,\s*/g, ',');
+					arr[i] = arr[i].trim();
+					arr[i] = arr[i].split(',');
+					// Convert 4 pop values into 1 string (with commas) and one numerical population value
+					var thispop = pp(+arr[i][2], +arr[i][3], +arr[i][4], +arr[i][5]);
+					var popstring = thispop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	// convert ####### to #,###,###)
+					arr[i].splice(2,4,popstring);
+					arr[i].splice(3,0,thispop);
+					// Convert 3 date numbers to a date value
+					census = new Date(Number(arr[i][4]),Number(arr[i][5])-1,Number(arr[i][6]));
+					arr[i].splice(4,3,census);
+				}
+				return arr;
+			}
+
+			// Probably need to move this function to its own .js file (needed by world files?)
+			function pp(jobs, beds, tourbeds, bonus) {
+				if (typeof jobs == 'string') {
+					for(var i = 0; i < city.length; i++) {
+						if (city[i].indexOf(jobs) > -1) return (document.write(city[i][2]));
+					}
+					document.write("Uninhabited");
+				} else { 
+					var homes = beds * 2;
+					var tourists = tourbeds / 2;
+					var maxpop = (homes + jobs) / 2;
+					var p = Math.ceil((maxpop * bonus + tourists) * 10) * 100;
+					return p;
+				}
+			}
+
+			/*
+			function list(id) {
+				let out = "";
+				let arr = [];
+				switch (sorttype) {
+					default:
+						sorttype = 1;
+					case 1:
+						Current == 1 ? (arr = npsort, Current = 0) : (arr = ncsort, Current = 1);
+						break;
+					case 2:
+						Current == 2 ? (arr = crev, Current = 0) : (arr = csort, Current = 2);
+						break;
+					case 3:
+						Current == 3 ? (arr = prev, Current = 0) : (arr = psort, Current = 3);
+						break;
+					case 4:
+						Current == 4 ? (arr = drev, Current = 0) : (arr = dsort, Current = 4);
+						break;
+				}
+				for (var i = 0; i < arr.length; i++) {
+					out += `<tr>`;
+					if (sorttype != 1 || newnat[i] != 0) {
+						out += `<td rowspan=${sorttype == 1 ? newnat[i] : 1}>${arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1])}</td>`;
+					}
+					out += `<td>${arr[i][0]}</td><td>${arr[i][2]}</td><td>${syear(arr[i][4])}</td></tr>`;
+				}
+				document.getElementById("censustabledata").innerHTML = out;
+			}
+			*/
+
+
+			
+			var Current = 0;
+			
+			csort = city.slice(0);
+			psort = city.slice(0);
+			ncsort = city.slice(0);
+			npsort = city.slice(0);
+			dsort = city.slice(0);
+		
+	// Sort cities alphabetically		
+	csort.sort();
+	// Sort cities reverse-alphabetically
+	crev = csort.slice(0);
+	crev.reverse();
+	// Sort cities by population (Greatest to least)
+	psort.sort(function(a, b){return b[3] - a[3]});
+	// Sort cities by population (Least to greatest)
+	prev = psort.slice(0);
+	prev.reverse();
+	// Sort cities by nation then population (greatest to least)
+	ncsort.sort(function(a, b){return a[1] == b[1] ? b[3] - a[3] : a[1] > b[1] ? 1 : -1});
+	// Sort cities by nation then alphabetically
+	npsort.sort(function(a, b){return (a[1] + a[0]) > (b[1] + b[0]) ? 1 : -1});
+	// Creat array for rowspan nation view
+	newnat = [];
+	var last = 0;
+	newnat[0] = 1;
+	for (var i = 1; i < ncsort.length; i++) {
+		newnat[i] = 0;
+		ncsort[i-1][1] == ncsort[i][1] ? newnat[last] ++ : (last = i, newnat[i]++);
+	}
+	// Sort cities by most recent census date
+	dsort.sort(function(a, b){return b[4] - a[4]});
+	// Sort cities by oldest census date
+	drev = dsort.slice(0);
+	drev.reverse();
+		
+			//list();
 
 			
 		</script>
