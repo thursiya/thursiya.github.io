@@ -52,11 +52,13 @@
 			}
 
 			function buildCityArray(xhr) {
-				const cities = xhr.response.split('\n').filter(v => v).map(v => ;
-				const city = buildArray(cities);
-				list();
+				const city = xhr.response.split('\n').filter(v => v).map(v => v.split(','));
+				console.log(city);
+				//const city = buildArray(cities);
+				//list();
 			}
 
+			/*
 			function buildArray(arr) {
 				for(let i = 0; i < arr.length; i++) {
 					// Remove spaces before and after commas and leading or ending spaces
@@ -159,7 +161,7 @@
 	drev.reverse();
 		
 	list();
-
+		*/
 		</script>
 	</body>
 </html>
