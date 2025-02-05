@@ -61,7 +61,7 @@
 				console.log(citydata);
 				city.push(...citydata);
 				for (let i of city) {
-					cityOutput.push([i[0] || "<i>Skunkland</i>", i[1], i[2].toLocaleString("en", {useGrouping: true}), syear(i[3])]);
+					cityOutput.push([i[0] ? `<a href="${i[0]}">${i[0]}</a>` || "<i>Skunkland</i>", i[1], i[2].toLocaleString("en", {useGrouping: true}), syear(i[3])]);
 				}
 				//const city = buildArray(cities);
 				list();
