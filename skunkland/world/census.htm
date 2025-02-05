@@ -79,7 +79,7 @@
 					//out += i[1] ? `<td><a href="${i[1]}">${i[1]}</a></td>` : `<td><i>Skunkland</i></td>`;
 					//out += `<td>${i[0]}</td><td>${pp(i[2], i[3], i[4], i[5])}</td><td>${syear(~~i[6], i[7], i[8])}</td></tr>`;
 				//}
-				for (let i of cityOutput) out += `<tr><td>i[0]</td><td>i[1]</td><td>i[2]</td><td>i[3]</td></tr>`;
+				for (let i of cityOutput) out += `<tr><td>${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`;
 				document.getElementById("censustabledata").innerHTML = out;
 			}
 
