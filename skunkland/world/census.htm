@@ -61,7 +61,6 @@
 				for (let i of city) {
 					cityOutput.push([i[0] ? `<a href="${i[0]}">${i[0]}</a>` : "<i>Skunkland</i>", i[1], i[2].toLocaleString("en", {useGrouping: true}), syear(i[3])]);
 				}
-				//const city = buildArray(cities);
 				list();
 			}
 
@@ -70,7 +69,7 @@
 				// add or remove class="toggled" (toggled list)
 				// num.toLocaleString('en', {useGrouping:true}) // convert ####### to #,###,###
 				//for (let i of city) {
-					out += `<tr>`;
+					//out += `<tr>`;
 					//if (sorttype != 1 || newnat[i] != 0) {
 					//	out += `<td rowspan=${sorttype == 1 ? newnat[i] : 1}>${arr[i][1] != "<i>Skunkland</i>" ? ('<a href="' + arr[i][1] + '.php">' + arr[i][1] + '</a>') : arr[i][1])}</td>`;
 					//}
@@ -81,38 +80,20 @@
 				document.getElementById("censustabledata").innerHTML = out;
 			}
 
-			// Eliminate this function
-			function buildArray(arr) {
-				for(let i = 0; i < arr.length; i++) {
-					// Remove spaces before and after commas and leading or ending spaces
-					arr[i] = arr[i].replace(/\s*,\s*/g, ',');
-					arr[i] = arr[i].trim();
-					arr[i] = arr[i].split(',');
-					// Convert 4 pop values into 1 string (with commas) and one numerical population value
-					var thispop = pp(+arr[i][2], +arr[i][3], +arr[i][4], +arr[i][5]);
-					var popstring = thispop.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");	// convert ####### to #,###,###)
-					arr[i].splice(2,4,popstring);
-					arr[i].splice(3,0,thispop);
-					// Convert 3 date numbers to a date value
-					census = new Date(Number(arr[i][4]),Number(arr[i][5])-1,Number(arr[i][6]));
-					arr[i].splice(4,3,census);
-				}
-				return arr;
-			}
-
 			// Probably need to move this function to its own .js file (needed by world files?)
 			function pp(jobs, beds, tourbeds, bonus) {
+				return ((jobs / 2 + beds) * bonus + tourbeds / 2) * 1000;
 				//if (typeof jobs == 'string') {
 				//	for(var i = 0; i < city.length; i++) {
 				//		if (city[i].indexOf(jobs) > -1) return (document.write(city[i][2]));
 				//	}
 				//	document.write("Uninhabited");
 				//} else { 
-					var homes = beds * 2;
-					var tourists = tourbeds / 2;
-					var maxpop = (homes + jobs) / 2;
-					var p = Math.ceil((maxpop * bonus + tourists) * 10) * 100;
-					return p;
+				//	var homes = beds * 2;
+				//	var tourists = tourbeds / 2;
+				//	var maxpop = (homes + jobs) / 2;
+				//	var p = Math.ceil((maxpop * bonus + tourists) * 10) * 100;
+				//	return p;
 				//}
 			}
 
