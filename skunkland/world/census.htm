@@ -25,10 +25,10 @@
 				<table border=1>
 					<thead>
 						<tr>
-							<th class="sortable" onclick="list(1)" title="Click to sort alphabetically by nation and population/settlement name">Nation</th>
-							<th class="sortable" onclick="list(2)" title="Click to sort alphabetically/reverse by settlement name">Settlements</th>
-							<th class="sortable" onclick="list(3)" title="Click to sort by population from greatest/least">Population</th>
-							<th class="sortable" onclick="list(4)" title="Click to sort by most recent/oldest census date">Date of most<br>Recent Census</th>
+							<th class="sortable" onclick="list(0)" title="Click to sort alphabetically by nation and population/settlement name">Nation</th>
+							<th class="sortable" onclick="list(1)" title="Click to sort alphabetically/reverse by settlement name">Settlements</th>
+							<th class="sortable" onclick="list(2)" title="Click to sort by population from greatest/least">Population</th>
+							<th class="sortable" onclick="list(3)" title="Click to sort by most recent/oldest census date">Date of most<br>Recent Census</th>
 						</tr>
 					</thead>
 					<tbody id="censustabledata"></tbody>
@@ -44,9 +44,8 @@
 		<script>
 			const city = [];
 			const cityOutput = [];
-			const nationSort = [];
-			const popSort = [];
-			const dateSort = [];
+			
+			const tableOutput = [];
 			
 			loadDoc("../data/census.txt", buildCityArray);
 			
@@ -60,20 +59,27 @@
 			function buildCityArray(xhr) {
 				city.push(...(xhr.response.split('\n').filter(v => v).
 					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
-					map((v, i) => [i, v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])])));
+					map(v => [v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])]).
+					map(v => [...v, v[0] ? `<a href="${v[0]}">${v[0]}</a>` : "<i>Skunkland</i>", v[2].toLocaleString("en", {useGrouping: true}), syear(v[3])])));
 				console.log(city);
-				nationSort.push(...city.toSorted((a, b) => a[1].localeCompare(b[1])).map(v => v[0]));
-				popSort.push(...city.toSorted((a, b) => b[3] - a[3]).map(v => v[0]));
-				dateSort.push(...city.toSorted((a, b) => b[4] - a[4]).map(v => v[0]));
+				const nationSortArray = city.toSorted((a, b) => a[0].localeCompare(b[0]));
+				const popSortArray = city.toSorted((a, b) => b[2] - a[2]);
+				const dateSortArray = city.toSorted((a, b) => b[3] - a[3]);
+
+				tableOutput.push([["", ...nationSortArray].reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`), 
+						  ["", ...nationSortArray].toReversed().reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`)], 
+						 [["", ...city].reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`), 
+						  ["", ...city].toReversed().reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`)], 
+						 [["", ...popSortArray].reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`), 
+						  ["", ...popSortArray].toReversed().reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`)], 
+						 [["", ...dateSortArray].reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`), 
+						  ["", ...dateSortArray].toReversed().reduce((t, v) => t + `<tr><td>${v[4]}</td><td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`)]);
 				
-				for (let i of city) {
-					cityOutput.push([i[1] ? `<a href="${i[1]}">${i[1]}</a>` : "<i>Skunkland</i>", i[2], i[3].toLocaleString("en", {useGrouping: true}), syear(i[4])]);
-				}
 				list();
 			}
 
-			function list(id = 1) {
-				let out = "";
+			function list(id = 1, toggle = 0) {
+				//let out = "";
 				// add or remove class="toggled" (toggled list)
 				// num.toLocaleString('en', {useGrouping:true}) // convert ####### to #,###,###
 				//for (let i of city) {
@@ -84,8 +90,8 @@
 					//out += i[1] ? `<td><a href="${i[1]}">${i[1]}</a></td>` : `<td><i>Skunkland</i></td>`;
 					//out += `<td>${i[0]}</td><td>${pp(i[2], i[3], i[4], i[5])}</td><td>${syear(~~i[6], i[7], i[8])}</td></tr>`;
 				//}
-				for (let i of cityOutput) out += `<tr><td>${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`;
-				document.getElementById("censustabledata").innerHTML = out;
+				//for (let i of cityOutput) out += `<tr><td>${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`;
+				document.getElementById("censustabledata").innerHTML = tableOutput[id][toggle];
 			}
 
 			// Probably need to move this function to its own .js file (needed by world files?)
