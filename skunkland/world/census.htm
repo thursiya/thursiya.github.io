@@ -46,8 +46,8 @@
 			const cityOutput = [];
 			
 			const tableOutput = [];
-			let active = 0;
-			let toggle = 0;
+			let active = -1;
+			//let toggle = 0;
 
 			loadDoc("../data/census.txt", buildCityArray);
 			
@@ -93,8 +93,8 @@
 					//out += `<td>${i[0]}</td><td>${pp(i[2], i[3], i[4], i[5])}</td><td>${syear(~~i[6], i[7], i[8])}</td></tr>`;
 				//}
 				//for (let i of cityOutput) out += `<tr><td>${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`;
-				document.getElementById("censustabledata").innerHTML = tableOutput[id][(id == active && toggle == 0) ? 1 : 0];
-				active = id;
+				document.getElementById("censustabledata").innerHTML = tableOutput[id][id == active ? 1 : 0];
+				active = id == active ? -1 : id;
 				console.log(`DEBUG) id: ${id}, active: ${active}, toggle: ${toggle}`);
 			}
 
