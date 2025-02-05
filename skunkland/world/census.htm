@@ -60,9 +60,9 @@
 			function buildCityArray(xhr) {
 				city.push(...(xhr.response.split('\n').filter(v => v).
 					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
-					map(v => [v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])])));
+					map((v, i) => [i, v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])])));
 				console.log(city);
-				popSort.push(city.toSorted((a, b) => a[2] - b[2]));
+				popSort.push(city.toSorted((a, b) => a[2] - b[2]).map(v => v[0]));
 				
 				for (let i of city) {
 					cityOutput.push([i[0] ? `<a href="${i[0]}">${i[0]}</a>` : "<i>Skunkland</i>", i[1], i[2].toLocaleString("en", {useGrouping: true}), syear(i[3])]);
