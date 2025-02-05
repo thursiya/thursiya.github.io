@@ -62,7 +62,9 @@
 					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 					map((v, i) => [i, v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])])));
 				console.log(city);
+				nationSort.push(...city.toSorted((a, b) => a[1] - b[1]).map(v => v[0]));
 				popSort.push(...city.toSorted((a, b) => b[3] - a[3]).map(v => v[0]));
+				dateSort.push(...city.toSorted((a, b) => b[4] - a[4]).map(v => v[0]));
 				
 				for (let i of city) {
 					cityOutput.push([i[1] ? `<a href="${i[1]}">${i[1]}</a>` : "<i>Skunkland</i>", i[2], i[3].toLocaleString("en", {useGrouping: true}), syear(i[4])]);
@@ -88,7 +90,7 @@
 
 			// Probably need to move this function to its own .js file (needed by world files?)
 			function pp(jobs, beds, tourbeds, bonus) {
-				return ((jobs / 2 + beds) * bonus + tourbeds / 2) * 1000;
+				return Math.ceil(((jobs / 2 + beds) * bonus + tourbeds / 2) * 10) * 100;
 				//if (typeof jobs == 'string') {
 				//	for(var i = 0; i < city.length; i++) {
 				//		if (city[i].indexOf(jobs) > -1) return (document.write(city[i][2]));
