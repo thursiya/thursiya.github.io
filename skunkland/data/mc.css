@@ -38,7 +38,9 @@ th, td {
   text-align: center;
   padding: 10px; }
 th { background: #f5e9e0; }
-th.sortable:hover { background: #e5c9c0; }
+th.sortable:hover { 
+  background: #e5c9c0; 
+  cursor: pointer; }
 
 table.info td {
   border-style: none;
