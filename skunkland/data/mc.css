@@ -32,7 +32,7 @@ span.note {
 
 table { 
   border-collapse: collapse; 
-  font-size: large; }
+  font-size: 16px; }
 th, td {
   border: 1px solid #000;
   text-align: center;
