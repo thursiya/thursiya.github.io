@@ -30,7 +30,9 @@ span.note {
   font-size: 75%; 
   font-style: italic; }
 
-table { border-collapse: collapse; }
+table { 
+  border-collapse: collapse; 
+  font-size: large; }
 th, td {
   border: 1px solid #000;
   text-align: center;
@@ -42,7 +44,7 @@ table.info td {
   border-style: none;
   text-align: left;
   vertical-align: top;
-  font-size: 85%;
+  font-size: smaller;
   padding: 5px; }
 
 ul { margin: 0 0 8px 0; }
