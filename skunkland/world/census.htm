@@ -46,7 +46,9 @@
 			const cityOutput = [];
 			
 			const tableOutput = [];
-			
+			let active = 0;
+			let toggle = 0;
+
 			loadDoc("../data/census.txt", buildCityArray);
 			
 			function loadDoc(url, cFunction) {
@@ -92,6 +94,8 @@
 				//}
 				//for (let i of cityOutput) out += `<tr><td>${i[0]}</td><td>${i[1]}</td><td>${i[2]}</td><td>${i[3]}</td></tr>`;
 				document.getElementById("censustabledata").innerHTML = tableOutput[id][toggle];
+				toggle = (id == active) ? 1 : 0;
+				active = id;
 			}
 
 			// Probably need to move this function to its own .js file (needed by world files?)
