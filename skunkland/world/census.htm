@@ -54,9 +54,9 @@
 
 			function buildCityArray(xhr) {
 				const citydata = xhr.response.split('\n').filter(v => v).
-					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
-					map(v => v.splice(2, 4, pp(+v[2], +v[3], +v[4], +v[5]))).
-					map(v => v.splice(3, 3, new Date(v[3], +v[4] - 1, v[5])));
+					map(v => v.replace(/\s*,\s*/g, ',').trim().split(','));//.
+				//	map(v => v.splice(2, 4, pp(+v[2], +v[3], +v[4], +v[5]))).
+				//	map(v => v.splice(3, 3, new Date(v[3], +v[4] - 1, v[5])));
 				console.log(citydata);
 				city.push(...citydata);
 				//const city = buildArray(cities);
