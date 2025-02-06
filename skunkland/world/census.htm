@@ -59,8 +59,8 @@
 					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 					map(v => [v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])]).
 					map(v => [...v, v[0] ? `<a href="${v[0]}">${v[0]}</a>` : "<i>Skunkland</i>", v[2].toLocaleString("en", {useGrouping: true}), syear(v[3])]);
-				const pop = citySort.toSorted((a, b) => b[2] - a[2]);
-				const date = citySort.toSorted((a, b) => b[3] - a[3]);
+				const pop = city.toSorted((a, b) => b[2] - a[2]);
+				const date = city.toSorted((a, b) => b[3] - a[3]);
 
 				const alphaSort = v => v.toSorted((a, b) => a[0].localeCompare(b[0]));
 				const nationReducer = (t, v, i, a) => t + `<tr>${a.findIndex(v2 => v2[0] == v[0]) == i ? `<td rowspan="${a.findLastIndex(v2 => v2[0] == v[0]) - i + 1}">${v[4]}</td>` : ""}<td>${v[1]}</td><td>${v[5]}</td><td>${v[6]}</td></tr>`;
