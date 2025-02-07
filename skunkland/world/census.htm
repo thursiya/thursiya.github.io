@@ -74,7 +74,7 @@
 				list();
 			}
 
-			function list(id = 1) {
+			function list(id = 0) {
 				document.getElementById("censustabledata").innerHTML = tableOutput[id][id == active ? 1 : 0];
 				active = id == active ? -1 : id;
 			}
