@@ -1,9 +1,31 @@
-<html><head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<titleBoard Game Collection></title>
+		<link rel="stylesheet" href="data/boardgames.css">
+	</head>
+	<body>
+		<main>
+			<div class="content round shadow">
+				<div class="leftCol">
+					<p><i>Click the appropriate column headers to sort by Title, Players, Time, Complexity, or Luck Factor. Click again to reverse the list.</i></p>
+					<h2>My Board Game Collection</h2>
+					<table id="main"></table>
+				</div>
+				<div class="rightCol">
+					<h2>2-Player Only Games</h2>
+					<table id="2player"></table>
+					<br>
+					
+					<h2>Other Games</h2>
+					<table id="other"></table>
+				</div>
+			</div>
+		</main>
+		<script>
 
-<link rel="stylesheet" type="text/css" href="data/boardgames.css" />
-<title>Board Game Collection</title>
-
-<script type="text/javascript">
 let Selected = 0;
 
 loadFile("data/gamedata.txt", 1);
@@ -114,24 +136,6 @@ function list (sorttype) {
 	
 	document.getElementById(table).innerHTML = out;
 }
-</script>
-</head>
-
-<body>
-
-<div class="leftCol">
-	<p><i>Click the appropriate column headers to sort by Title, Players, Time, Complexity, or Luck Factor. Click again to reverse the list.</i></p>
-	<h2>My Board Game Collection</h2>
-	<table id="main"></table>
-</div>
-
-<div class="rightCol">
-	<h2>2-Player Only Games</h2>
-	<table id="2player"></table>
-	<br />
-	<h2>Other Games</h2>
-	<table id="other"></table>
-</div>
-
-</body>
+		</script>
+	</body>
 </html>
