@@ -34,7 +34,7 @@
 	   			<td>${v.skill}</td><td>${v.luck}</td>
 				<td title="${v.enote || ""}">${v.exp || "-"}</td></tr>`;
 
-			loadFile("data/gamedata.txt", buildMainArray);
+			loadDoc("data/gamedata.txt", buildMainArray);
 			//loadFile("data/2pgamedata.txt", build2pArray);
 			//loadFile("data/othergamedata.txt", buildOtherArray);
 
@@ -48,7 +48,7 @@
        					playing times dependant on number of players."${i == "main" ? ` class="sortable" onclick="list(2)"` : ""}>Time</th>
        				<th title="Learning curve and strategic depth on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(3)"` : ""}>Complexity</th>
 	     			<th title="Importance of random/external factors on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(4)"` : ""}>Luck Factor</th>
-	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "2player" ? loadFile("data/2pgamedata.txt", build2pArray) : (i == "other" ? loadFile("data/othergamedata.txt", buildOtherArray) : "")}</tbody>`;
+	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "2player" ? loadDoc("data/2pgamedata.txt", build2pArray) : (i == "other" ? loadDoc("data/othergamedata.txt", buildOtherArray) : "")}</tbody>`;
 			}
 			
 			function loadDoc(url, cFunction) {
