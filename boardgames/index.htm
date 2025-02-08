@@ -65,7 +65,7 @@
 				const complexity = title.toSorted((a, b) => a.skill - b.skill);
 				const luck = title.toSorted((a, b) => a.luck - b.luck);
 				
-				tableOutput.push([title.reduce(reducer, ""), title.reduceRight(reducer, "")],
+				mainTableOutput.push([title.reduce(reducer, ""), title.reduceRight(reducer, "")],
 						[players.reduce(reducer, ""), players.toSorted((a, b) => a.maxp - b.maxp).reduceRight(reducer, "")],
 						[time.reduce(reducer, ""), time.reduceRight(reducer, "")],
 						[complexity.reduce(reducer, ""), complexity.reduceRight(reducer, "")],
