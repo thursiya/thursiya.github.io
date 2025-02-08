@@ -32,7 +32,8 @@
 
 			function buildLegoTable(xhr) {
 				console.log(xhr.response.split("\n"));
-				const data = xhr.response.split("\n").filter(v => v).split(",");
+				//xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
+				const data = xhr.response.split("\n").filter(v => v).map(v => v.split(","));
 				let out = "";
 				for (const i of data) out += `<tr><td>${i[0]}</td>
  					<td><img src="images/${i[1]}_logo.png" style="width:75;max-height:50"></td>
