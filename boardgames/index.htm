@@ -82,6 +82,7 @@
 			}
 
 			function convertToArray(data) {
+				console.log(data);
 				// Properly quote keys for JSON parsing
 				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
 				// Remove final comma
