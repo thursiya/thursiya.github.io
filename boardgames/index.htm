@@ -40,7 +40,6 @@
 
 			// Draw table headings
 			for (let i of ["main", "2player", "other"]) {
-				const out = (i == "main") ? "" : "Stuff";
 				document.getElementById(i).innerHTML = `<thead><tr><th title="Box art from the Board Game Geek site.">Image</th>
      				<th title="Title of the game, linked to its Board Game Geek entry."${i == "main" ? ` class="sortable" onclick="list(0)"` : ""}>Title</th>
 	   			<th title="Number of players supported."${i == "main" ? ` class="sortable" onclick="list(1)"` : ""}>Players</th>
@@ -48,12 +47,12 @@
        					playing times dependant on number of players."${i == "main" ? ` class="sortable" onclick="list(2)"` : ""}>Time</th>
        				<th title="Learning curve and strategic depth on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(3)"` : ""}>Complexity</th>
 	     			<th title="Importance of random/external factors on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(4)"` : ""}>Luck Factor</th>
-	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "2player" ? loadDoc("data/2pgamedata.txt", build2pArray) : (i == "other" ? loadDoc("data/othergamedata.txt", buildOtherArray) : "")}</tbody>`;
+	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "2player" ? loadDoc("data/2pgamedata.txt", build2pArray) : (i == "other" ? loadDoc("data/othergamedata.txt", buildOtherArray) : "... Loading ...")}</tbody>`;
 			}
 			
 			function loadDoc(url, cFunction) {
 				const xhttp = new XMLHttpRequest();
-				xhttp.onload = function() {cFunction(this);}
+				xhttp.onload = function() {return cFunction(this);}
 				xhttp.open("GET", url);
 				xhttp.send();
 			}
@@ -74,6 +73,7 @@
 			}
 
 			function build2pArray(xhr) {
+				console.log(convertToArray(xhr.response).reduce(reducer, ""));
 				return convertToArray(xhr.response).reduce(reducer, "");
 			}
 
