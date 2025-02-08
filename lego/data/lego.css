@@ -1,14 +1,29 @@
-body {background-color:#FFF;background-image:url('../images/lego_plate.jpg');font-size:100%}
+body {
+  background-color: #FFF;
+  background-image: url('../images/lego_plate.jpg');
+  font-size: 100%; }
 
-table {background-color:#FFF;font-family:arial, helvetica, sans-serif;border-collapse:collapse;margin:1.5em}
-td {height:2em}
-table, td, th {text-align:left;vertical-align:middle;padding:0.3em}
+table {
+  background-color: #FFF;
+  border-collapse: collapse;
+  font-family: Verdana, sans-serif;
+  margin: 1.5em; }
+td { height: 2em; }
+table, td, th {
+  padding: 0.3em;
+  text-align: left;
+  vertical-align: middle; }
 
-a:link {color:#000}
-a:visited {color:#987}
-a:hover {color:#D96}
-a:active {color:#952}
+a:link { color: #000; }
+a:visited { color: #987; }
+a:hover { color: #D96; }
+a:active { color: #952; }
 
-img {width:75px;max-height:110px}
+img {
+  max-height: 110px;
+  width: 75px; }
 
-button {background:none;border:none;padding:0}
+button {
+  background: none;
+  border: none;
+  padding: 0; }
