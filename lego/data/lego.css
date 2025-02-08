@@ -4,9 +4,9 @@ body {
   font-size: 100%; }
 
 table {
-  background-color: #FFF;
+  background-color: #DDE;
   border-collapse: collapse;
-  font-family: Verdana, sans-serif;
+  font: 24px Tahoma, sans-serif;
   margin: 1.5em; }
 td { height: 2em; }
 table, td, th {
