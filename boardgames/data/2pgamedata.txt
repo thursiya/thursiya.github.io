@@ -1,3 +1,4 @@
+[
 {name: "Catan Card Game", num: 278,
 time: 75, skill: 3, luck: 4,
 exp: "<i>8 official</i>" },
@@ -23,4 +24,5 @@ exp: "1 full expansion" },
 
 {name: "Star Realms", num: 147020,
 time: 20, skill: 3, luck: 4,
-exp: "<i>Numerous</i>" },
+exp: "<i>Numerous</i>" }
+]
