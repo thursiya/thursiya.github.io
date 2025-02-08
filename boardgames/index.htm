@@ -12,15 +12,15 @@
 				<div class="col">
 					<p><i>Click the appropriate column headers to sort by Title, Players, Time, Complexity, or Luck Factor. Click again to reverse the list.</i></p>
 					<h2>My Board Game Collection</h2>
-					<table id="mainTableData"></table>
+					<table id="main"></table>
 				</div>
 				<div class="col">
 					<h2>2-Player Only Games</h2>
-					<table id="2playerTableData"></table>
+					<table id="2player"></table>
 					<br>
 					
 					<h2>Other Games</h2>
-					<table id="otherTableData"></table>
+					<table id="other"></table>
 				</div>
 			</div>
 		</main>
@@ -96,7 +96,7 @@
 			}
 
 			function list(id = 0) {
-				document.querySelector('#mainTableData tbody').innerHTML = tableOutput[id][id == active ? 1 : 0];
+				document.querySelector('#main tbody').innerHTML = tableOutput[id][id == active ? 1 : 0];
 				active = id == active ? -1 : id;
 			}
 				
