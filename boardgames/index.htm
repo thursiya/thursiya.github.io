@@ -99,7 +99,7 @@
 			}
 
 			function list(id = 0) {
-				document.querySelector('#main tbody').innerHTML = tableOutput[id][id == active ? 1 : 0];
+				document.querySelector('#main tbody').innerHTML = mainTableOutput[id][id == active ? 1 : 0];
 				active = id == active ? -1 : id;
 			}
 				
