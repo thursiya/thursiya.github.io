@@ -10,7 +10,7 @@ table {
   margin: 1.5em; }
 th {
   background-color: #EEE;
-  font: 1.25em "Times New Roman", serif; }
+  font: bold 1.25em "Times New Roman", serif; }
 td { height: 5em; }
 table, td, th {
   border: 1px solid #000;
