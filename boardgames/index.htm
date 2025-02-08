@@ -86,15 +86,16 @@
 				// Properly quote keys for JSON parsing
 				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
 				// Remove final comma
-				if (data.substr(-1) == ",") data = data.slice(0, -1);
+				//if (data.substr(-1) == ",") data = data.slice(0, -1);
 				// Convert @####|Name@ to expansion links
 				data = data.replace(/@(\d+)\|([^@]+)@/g, "<a href='https://www.boardgamegeek.com/boardgameexpansion/$1' target='_blank'>$2</a>");
 				// Convert to array and parse
-				const arr = [];
-				data = data.split(",\n\n");
+				//const arr = [];
+				//data = data.split(",\n\n");
 				console.log(data);
-				for (let i of data) arr.push(JSON.parse(i));
-				return arr;
+				//for (let i of data) arr.push(JSON.parse(i));
+				//return arr;
+				return JSON.parse(data);
 			}
 
 			function list(id = 0) {
