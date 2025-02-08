@@ -59,7 +59,7 @@
 			}
 
 			function buildMainArray(xhr) {
-				const title = convertToArray(xhr).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
+				const title = convertToArray(xhr.response).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
 				const players = title.toSorted((a, b) => a.minp == b.minp ? a.maxp - b.maxp : a.minp - b.minp);
 				const time = title.toSorted((a, b) => a.time - b.time);
 				const complexity = title.toSorted((a, b) => a.skill - b.skill);
@@ -74,11 +74,11 @@
 			}
 
 			function build2pArray(xhr) {
-				return convertToArray(xhr).reduce(reducer, "");
+				return convertToArray(xhr.response).reduce(reducer, "");
 			}
 
 			function buildOtherArray(xhr) {
-				return convertToArray(xhr).reduce(reducer, "");
+				return convertToArray(xhr.response).reduce(reducer, "");
 			}
 
 			function convertToArray(data) {
