@@ -1,3 +1,4 @@
+[
 {name: "Age of Empires III:<br />The Age of Discovery", num: 22545,
 minp: 2, maxp: 5, time: 160, ttext: "60+20&times;P<br />(100-160)", skill: 4, luck: 2,
 exp: "@41261|<i>The Builders</i>@",
@@ -308,4 +309,5 @@ minp: 2, maxp: 4, time: 90, skill: 4, luck: 2,
 exp: "@420321|<i>Matcha</i>@"},
 
 {name: "Yokohama", num: 196340,
-minp: 2, maxp: 4, time: 90, skill: 4, luck: 2},
+minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
+]
