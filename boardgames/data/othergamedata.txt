@@ -1,3 +1,4 @@
+[
 {name: "Kingmaker", num: 987,
 ptext: "2<br />(2-7)", pnote: "Basically only plays well with 2.", time: 240, skill: 4, luck: 3,
 exp: "@18165|<i>Variant Event Cards</i>@" },
@@ -14,4 +15,5 @@ exp: "<i>1 official</i>" },
 ptext: "2-6", pnote: "Although the game states it requires at least 3 players, it is quite playable with 2.", time: 45, skill: 3, luck: 2 },
 
 {name: "Treasure Quest", num: 13878,
-ptext: "2-6", ttext: "30+15xP<br />(60-120)", skill: 2, luck: 5 },
+ptext: "2-6", ttext: "30+15xP<br />(60-120)", skill: 2, luck: 5 }
+]
