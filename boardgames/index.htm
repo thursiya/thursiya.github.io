@@ -28,6 +28,10 @@
 			const mainTableOutput = [];
 			let active = -1;
 
+			loadFile("data/gamedata.txt", buildMainArray);
+			loadFile("data/2pgamedata.txt", build2pArray);
+			loadFile("data/othergamedata.txt", buildOtherArray);
+
 			// Draw table headings
 			for (let i of ["main", "2player", "other"]) {
 				const out = (i == "main") ? "" : "Stuff";
@@ -40,10 +44,6 @@
 	     			<th title="Importance of random/external factors on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(5)"` : ""}>Luck Factor</th>
 	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "main" ? "" : out}</tbody>`;
 			}
-			
-			loadFile("data/gamedata.txt", buildMainArray);
-			loadFile("data/2pgamedata.txt", build2pArray);
-			loadFile("data/othergamedata.txt", buildOtherArray);
 			
 			function loadDoc(url, cFunction) {
 				const xhttp = new XMLHttpRequest();
