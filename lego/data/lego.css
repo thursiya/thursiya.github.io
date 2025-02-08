@@ -27,3 +27,11 @@ button {
   background: none;
   border: none;
   padding: 0; }
+
+div.flexbox {
+  display: flex; 
+  flex-wrap: wrap;
+  gap: 20px; }
+
+div.col {
+  width: 750px; }
