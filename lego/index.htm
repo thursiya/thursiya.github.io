@@ -18,7 +18,15 @@ function loadFile (url, id) {
 		}
 	}
 }
-
+			loadDoc("../data/census.txt", buildCityArray);
+			
+			function loadDoc(url, cFunction) {
+				const xhttp = new XMLHttpRequest();
+				xhttp.onload = function() {cFunction(this);}
+				xhttp.open("GET", url);
+				xhttp.send();
+			}
+	
 function buildArray (arr) {
 	for (let i = 0; i < arr.length; i++) {
 		arr[i] = arr[i].replace(/\s*,\s*/g, ','); // Remove spaces before and after commas and leading or ending spaces
@@ -45,11 +53,11 @@ function fileLoaded (id, data) {
 
 <!-- form method="post" action="https://lego.brickinstructions.com/lego_instructions/set/71821/" -->
 
-<table id="main" style="font-size:24"></table>
+<table id="main"></table>
 
 <h2>Old Lego</h2>
 
-<table id="old" style="font-size:24;background-color:#EEE"></table>
+<table id="old"></table>
 
 </form>
 
