@@ -12,37 +12,43 @@
 				<div class="col">
 					<p><i>Click the appropriate column headers to sort by Title, Players, Time, Complexity, or Luck Factor. Click again to reverse the list.</i></p>
 					<h2>My Board Game Collection</h2>
-					<table id="main"></table>
+					<table id="mainTableData"></table>
 				</div>
 				<div class="col">
 					<h2>2-Player Only Games</h2>
-					<table id="2player"></table>
+					<table id="2playerTableData"></table>
 					<br>
 					
 					<h2>Other Games</h2>
-					<table id="other"></table>
+					<table id="otherTableData"></table>
 				</div>
 			</div>
 		</main>
 		<script>
 			const mainTableOutput = [];
 			let active = -1;
+			const reducer = (t, v) => t + `<tr><td class="picbox"><img src="images/${v.num}.jpg"></td>
+    				<td><a href="http://www.boardgamegeek.com/boardgame/${v.num}" target="_blank">${v.name}</a></td>
+	 			<td title="${v.pnote || ""}">${v.ptext || (v.minp ? `${v.minp}-${v.maxp}` : "2")}</td>
+      				<td title="${v.tnote || ""}">${v.ttext || v.time}</td>
+	   			<td>${v.skill}</td><td>${v.luck}</td>
+				<td title="${v.enote || ""}">${v.exp || "-"}</td></tr>`;
 
 			loadFile("data/gamedata.txt", buildMainArray);
-			loadFile("data/2pgamedata.txt", build2pArray);
-			loadFile("data/othergamedata.txt", buildOtherArray);
+			//loadFile("data/2pgamedata.txt", build2pArray);
+			//loadFile("data/othergamedata.txt", buildOtherArray);
 
 			// Draw table headings
 			for (let i of ["main", "2player", "other"]) {
 				const out = (i == "main") ? "" : "Stuff";
 				document.getElementById(i).innerHTML = `<thead><tr><th title="Box art from the Board Game Geek site.">Image</th>
-     				<th title="Title of the game, linked to its Board Game Geek entry."${i == "main" ? ` class="sortable" onclick="list(1)"` : ""}>Title</th>
-	   			<th title="Number of players supported."${i == "main" ? ` class="sortable" onclick="list(2)"` : ""}>Players</th>
+     				<th title="Title of the game, linked to its Board Game Geek entry."${i == "main" ? ` class="sortable" onclick="list(0)"` : ""}>Title</th>
+	   			<th title="Number of players supported."${i == "main" ? ` class="sortable" onclick="list(1)"` : ""}>Players</th>
        				<th title="How much time it takes to play an average game, in minutes. The variable &#39;P&#39; represents players, as many games have 
-       					playing times dependant on number of players."${i == "main" ? ` class="sortable" onclick="list(3)"` : ""}>Time</th>
-       				<th title="Learning curve and strategic depth on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(4)"` : ""}>Complexity</th>
-	     			<th title="Importance of random/external factors on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(5)"` : ""}>Luck Factor</th>
-	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "main" ? "" : out}</tbody>`;
+       					playing times dependant on number of players."${i == "main" ? ` class="sortable" onclick="list(2)"` : ""}>Time</th>
+       				<th title="Learning curve and strategic depth on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(3)"` : ""}>Complexity</th>
+	     			<th title="Importance of random/external factors on a scale of 1 to 5."${i == "main" ? ` class="sortable" onclick="list(4)"` : ""}>Luck Factor</th>
+	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody>${i == "2player" ? loadFile("data/2pgamedata.txt", build2pArray) : (i == "other" ? loadFile("data/othergamedata.txt", buildOtherArray) : "")}</tbody>`;
 			}
 			
 			function loadDoc(url, cFunction) {
@@ -53,15 +59,26 @@
 			}
 
 			function buildMainArray(xhr) {
-				let arr = covertToArray(xhr);
+				const title = convertToArray(xhr).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
+				const players = title.toSorted((a, b) => a.minp == b.minp ? a.maxp - b.maxp : a.minp - b.minp);
+				const time = title.toSorted((a, b) => a.time - b.time);
+				const complexity = title.toSorted((a, b) => a.skill - b.skill);
+				const luck = title.toSorted((a, b) => a.luck - b.luck);
+				
+				tableOutput.push([title.reduce(reducer, ""), title.reduceRight(reducer, "")],
+						[players.reduce(reducer, ""), players.toSorted((a, b) => a.maxp - b.maxp).reduceRight(reducer, "")],
+						[time.reduce(reducer, ""), time.reduceRight(reducer, "")],
+						[complexity.reduce(reducer, ""), complexity.reduceRight(reducer, "")],
+						[luck.reduce(reducer, ""), luck.reduceRight(reducer, "")]);
+				list();
 			}
 
 			function build2pArray(xhr) {
-				let arr = covertToArray(xhr);
+				return convertToArray(xhr).reduce(reducer, "");
 			}
 
 			function buildOtherArray(xhr) {
-				let arr = covertToArray(xhr);
+				return convertToArray(xhr).reduce(reducer, "");
 			}
 
 			function convertToArray(data) {
