@@ -9,7 +9,7 @@ table {
   font-family: arial, helvetica, sans-serif; 
   margin: 1.5em; }
 th {
-  background-color: #EEE;
+  background-color: #CBA;
   font: bold 1.25em "Times New Roman", serif; }
 td { height: 5em; }
 table, td, th {
@@ -17,9 +17,10 @@ table, td, th {
   padding: 0.3em;
   text-align: center;
   vertical-align: middle; }
+tr.alt { background-color: #FFECE0; }
 
 th.sortable:hover {
-  background-color: #BBB; 
+  background-color: #A98; 
   cursor: pointer; }
 
 a:link { color: #000; }
