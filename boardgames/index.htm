@@ -27,7 +27,7 @@
 		<script>
 			const mainTableOutput = [];
 			let active = -1;
-			const reducer = (t, v) => t + `<tr><td class="picbox"><img src="images/${v.num}.jpg"></td>
+			const reducer = (t, v, i) => t + `<tr${i % 2 == 1 ? ` class="alt"` : ""}><td class="picbox"><img src="images/${v.num}.jpg"></td>
     				<td><a href="http://www.boardgamegeek.com/boardgame/${v.num}" target="_blank">${v.name}</a></td>
 	 			<td title="${v.pnote || ""}">${v.ptext || (v.minp ? `${v.minp}-${v.maxp}` : "2")}</td>
       				<td title="${v.tnote || ""}">${v.ttext || v.time}</td>
