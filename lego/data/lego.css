@@ -7,10 +7,10 @@ table {
   background-color: #EEF;
   border-collapse: collapse;
   font: 24px Tahoma, sans-serif;
-  margin: 1.5em; }
-td { height: 2em; }
+  margin: 10px; }
+td { height: 68px; }
 table, td, th {
-  padding: 0.3em;
+  padding: 4px;
   text-align: left;
   vertical-align: middle; }
 
