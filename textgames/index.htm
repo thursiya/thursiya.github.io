@@ -1,61 +1,63 @@
-<html>
-<head>
-	<title>Text-Based Game Console</title>
-	<script type="text/javascript" src="animal.js"></script>
-	<script type="text/javascript" src="hammurabi.js"></script>
-	<script type="text/javascript" src="wumpus.js"></script>
-	<script>
-		let gameLog = [];
-		const gameLogLimit = 50;	// Maximum entries
-		let currentApp = "MainScreen";
-		let gameState;
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Text-Based Game Console</title>
+		<link rel="stylesheet" href="../language/lang.css">
+		<script type="text/javascript" src="animal.js"></script>
+		<script type="text/javascript" src="hammurabi.js"></script>
+		<script type="text/javascript" src="wumpus.js"></script>
+	</head>
+	<body style="background: #BDB" onload="addEnterKeySubmitFunctionality()">
+		<main>
+			<h3>Text-Based Game Console</h3>
+			<div id="gameWindow">
+				<div id="textLog" style="width:500; height:400; overflow-y:auto; border:2px solid black; background-color:#FFF; padding:2px"></div>
+				<input id="textInput" type="text" style="margin:5px 5px 0 0; padding:2px" autofocus></input>
+				<button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button>
+			</div>
+			<div>
+				Play:
+				<button type="button" onClick="initAnimal();">Animal</button>
+				<button type="button" onClick="initHammurabi();">Hammurabi</button>
+				<button type="button" onClick="initWumpus();">Wumpus</button>
+			</div>
+		</main>
+		<script>
+			const gameLog = [];
+			const gameLogLimit = 50;
+			// Globals used by the apps
+			let currentApp = "MainScreen";
+			let gameState;
 		
-		function submitMainScreen () {
-			updateLog(`<i>Click on a button to load a title.`);
-			setInput();
-		}
-
-		function updateLog (newtext) {
-			const log = document.getElementById("textLog");
-			let logText = "";
-			if (gameLog.length >= gameLogLimit) gameLog.shift();
-			gameLog.push(newtext);
-			for (let i of gameLog) {
-				logText += "<p>" + i + "</p>";
+			function submitMainScreen() {
+				updateLog(`<i>Click on a button to load a title.</i>`);
+				setInput();
 			}
-			log.innerHTML = logText;
-			log.scrollTop = log.scrollHeight;	
-		}
-		
-		function setInput (value = "") {
-			document.getElementById("textInput").value = value;
-		}
-		
-		function addEnterKeyFunctionality () {
-			document.getElementById('textInput').addEventListener("keyup", function(event) {	// Add ability to submit with [Enter] key
-				if (event.keyCode === 13) {
-					event.preventDefault();
-					document.getElementById('textButton').click();
-				}
-			});
-		}
-	</script>
-</head>
-<body style="background-color:#BDB" onload="addEnterKeyFunctionality()">
 
-	<h3>Text-Based Game Console</h3>
-
-	<div id="gameWindow">
-		<div id="textLog" style="width:500; height:400; overflow-y:auto; border:2px solid black; background-color:#FFF; padding:2px"></div>
-		<input id="textInput" type="text" style="margin:5px 5px 0 0; padding:2px" autofocus></input><button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button>
-	</div>
-
-	<div>
-		Play:
-		<button type="button" onClick="initAnimal();">Animal</button>
-		<button type="button" onClick="initHammurabi();">Hammurabi</button>
-		<button type="button" onClick="initWumpus();">Wumpus</button>
-	</div>
-
-</body>
+			function updateLog(newtext) {
+				const log = document.getElementById("textLog");
+				let logText = "";
+				if (gameLog.length >= gameLogLimit) gameLog.shift();
+				gameLog.push(newtext);
+				gameLog.forEach(v => logText += `<p>${v}</p>`);
+				log.innerHTML = logText;
+				log.scrollTop = log.scrollHeight;
+			}
+			
+			function setInput(value = "") {
+				document.getElementById("textInput").value = value;
+			}
+			
+			function addEnterKeySubmitFunctionality() {
+				document.getElementById('textInput').addEventListener("keyup", function(event) {
+					if (event.keyCode === 13) {
+						event.preventDefault();
+						document.getElementById('textButton').click();
+					}
+				});
+			}
+		</script>
+	</body>
 </html>
