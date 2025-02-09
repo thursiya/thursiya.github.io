@@ -33,7 +33,7 @@
 			</div>
 		</main>
   		<script>
-			const data = [
+			document.getElementById("commonWordTable").innerHTML = [
 				["all", "Determiner (All + N)", "Adverb (All + A)"],
 				["like", "Preposition (V + Like + NP)", "Conjunction ('as if; as though')", "Noun, Verb", "<i>Adverb, Particle, Adjective ('like minds')</i>"],
 				["more", "Determiner (More + NP)", "Adverb (More + A / More + PP)", "<i>Noun, Verb</i>"],
@@ -42,8 +42,7 @@
 				["still", "Adjective, Adverb, Noun", "<i>Verb</i>"],
 				["than", "Conjunction (VP + than + VP)", "Preposition ('fewer than')"],
 				["who", "Pronoun", "<i>Noun ('the whos and hows')</i>"]
-					].map((v, i) => v.forEach(v2 => `<td>${i == 0 ? `<a href="https://en.wiktionary.org/wiki/${v}#English">${v}</a>` : v}</td>`));
-			document.getElementById("commonWordTable").innerHTML = data.reduce((t, v) => t + `<tr>${v}</tr>`, "");		
+					].reduce((t, v) => t + v.reduce((t2, v2, i2) => t2 + `<td>${i2 == 0 ? `<a href="https://en.wiktionary.org/wiki/${v}#English">${v2}</a>` : v2}</td>`, "<tr>") + "</tr>", "");	
 		</script>
 	</body>
 </html>
