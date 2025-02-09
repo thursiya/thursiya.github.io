@@ -17,7 +17,7 @@ table, td, th {
   padding: 0.3em;
   text-align: center;
   vertical-align: middle; }
-tr.alt { background-color: #FFECE0; }
+tr.alt { background-color: #F0ECE7; }
 
 th.sortable:hover {
   background-color: #A98; 
