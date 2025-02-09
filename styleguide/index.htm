@@ -25,6 +25,9 @@
 				
 				<div class="contentheader round">Common Words</div>
 				<table style="margin-left: 20px; text-align: left">
+					<colgroup>
+						<col span="2" style="font-weight: bold">
+					</colgroup>
 					<tbody id="commonWordTable"></tbody>
 				</table>
 			</div>
@@ -39,7 +42,7 @@
 				["still", "Adjective, Adverb, Noun", "<i>Verb</i>"],
 				["than", "Conjunction (VP + than + VP)", "Preposition ('fewer than')"],
 				["who", "Pronoun", "<i>Noun ('the whos and hows')</i>"]
-					].map((v, i) => `<td>${i == 0 ? `<a href="https://en.wiktionary.org/wiki/${v}#English">${v}</a>` : v}</td>`);
+					].map((v, i) => v.forEach(v2 => `<td>${i == 0 ? `<a href="https://en.wiktionary.org/wiki/${v}#English">${v}</a>` : v}</td>`));
 			document.getElementById("commonWordTable").innerHTML = data.reduce((t, v) => t + `<tr>${v}</tr>`, "");		
 		</script>
 	</body>
