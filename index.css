@@ -21,4 +21,6 @@ div.flexbox {
   display: flex;
   flex-wrap: wrap;
   gap: 20px; }
-div.header { background: #9CBA; }
+div.header {
+  align-items: center;	
+  background: #9CBA; }
