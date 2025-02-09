@@ -1,82 +1,46 @@
-<html><head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="../language/lang.css" type="text/css" media="screen" />
-<link rel="icon" href="../language/images/script-t.jpg" type="image/jpeg" />
-
-<title>Thursiyan Style Guide</title>
-
-</head>
-<body>
-
-<div class="content round shadow">
-	<div class="contentheader round">General Rules</div>
-		<h2>Titles</h2>
-		<p>
-			The first and last words of the title should <i>always</i> be capitalized.  All main words 
-			(nouns, verbs, pronouns, adjectives, and adverbs) will also be capitalized.  The following rules 
-			apply to when we <i>do not</i> capitalize a word.
-			<ol>
-				<li>Prepositions, determiners, interjections, and conjunctions (coordinating/subordinating)
-				<li>Auxilliary Verbs (regular use of 'to be', do, have, can, will, etc.) and their contractions
-				<li>The preceding categories can be capitalized when they start a new phrase with equal 
-					weight within a title (i.e. "To My Mother, To My Father")
-			</ol>
-		</p>
-		<br>
-	
-	<div class="contentheader round">Common Words</div>
-		<dd>
-			<table style="text-align:left">
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/all#English">all</a></th>
-					<th>Determiner (All + N)</th>
-					<td>Adverb (All + A)</td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/like#English">like</a></th>
-					<th>Preposition (V + Like + NP)</th>
-					<td>Conjunction ('as if; as though')</td>
-					<td>Noun, Verb</td>
-					<td><i>Adverb, Particle, Adjective ('like minds')</i></td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/more#English">more</a></th>
-					<th>Determiner (More + NP)</th>
-					<td>Adverb (More + A / More + PP)</td>
-					<td><i>Noun, Verb</i></td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/so#English">so</a></th>
-					<th>Conjunction (So + VP)</th>
-					<td>Adverb (So + A)</td>
-					<td><i>Adjective ('That is so.')</i></td>
-					<td><i>Interjection ('So, let's go home.')</i></td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/some#English">some</a></th>
-					<th>Determiner (Some + N)</th>
-					<td>Pronoun (Some + of N / Some + V)</td>
-					<td><i>Adverb ('some 30 kg')</i></td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/still#English">still</a></th>
-					<th>Adjective, Adverb, Noun</th>
-					<td><i>Verb</i></td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/than#English">than</a></th>
-					<th>Conjunction (VP + than + VP)</th>
-					<td>Preposition ('fewer than')</td>
-				</tr>
-				<tr>
-					<th><a href="http://en.wiktionary.org/wiki/who#English">who</a></th>
-					<th>Pronoun</th>
-					<td><i>Noun ('the whos and hows')</i></td>
-				</tr>
-			</table>
-		</dd>
-</div>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Thursiyan Style Guide</title>
+		<link rel="stylesheet" href="../language/lang.css">
+		<link rel="icon" href="../language/images/script-t.jpg" type="image/x-icon">
+	</head>
+	<body>
+		<main>
+			<div class="content round shadow">
+				<div class="contentheader round">General Rules</div>
+				<h2>Titles</h2>
+				<p>
+					The first and last words of the title should <i>always</i> be capitalized. All main words (nouns, verbs, pronouns, adjectives, and adverbs) 
+					will also be capitalized. The following rules apply to when we <i>do not</i> capitalize a word.
+				</p>
+				<ol>
+					<li>Prepositions, determiners, interjections, and conjunctions (coordinating/subordinating)
+					<li>Auxilliary Verbs (regular use of 'to be', do, have, can, will, etc.) and their contractions
+					<li>The preceding categories can be capitalized when they start a new phrase with equal weight within a title (i.e. "To My Mother, To My Father")
+				</ol>
+				<br>
+				
+				<div class="contentheader round">Common Words</div>
+				<table style="margin-left: 20px; text-align: left">
+					<tbody id="commonWordTable"></tbody>
+				</table>
+			</div>
+		</main>
+  		<script>
+			const data = [
+				["all", "Determiner (All + N)", "Adverb (All + A)"],
+				["like", "Preposition (V + Like + NP)", "Conjunction ('as if; as though')", "Noun, Verb", "<i>Adverb, Particle, Adjective ('like minds')</i>"],
+				["more", "Determiner (More + NP)", "Adverb (More + A / More + PP)", "<i>Noun, Verb</i>"],
+				["so", "Conjunction (So + VP)", "Adverb (So + A)", "<i>Adjective ('That is so.')</i>", "<i>Interjection ('So, let's go home.')</i>"],
+				["some", "Determiner (Some + N)", "Pronoun (Some + of N / Some + V)", "<i>Adverb ('some 30 kg')</i>"],
+				["still", "Adjective, Adverb, Noun", "<i>Verb</i>"],
+				["than", "Conjunction (VP + than + VP)", "Preposition ('fewer than')"],
+				["who", "Pronoun", "<i>Noun ('the whos and hows')</i>"]
+					].map((v, i) => `<td>${i == 0 ? `<a href="https://en.wiktionary.org/wiki/${v}#English">${v}</a>` : v}</td>`);
+			document.getElementById("commonWordTable").innerHTML = data.reduce((t, v) => t + `<tr>${v}</tr>`, "");		
+		</script>
+	</body>
 </html>
