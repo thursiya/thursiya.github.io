@@ -57,11 +57,10 @@
 							for (let line = 1; line < 23; line++) {
 								for (let i = 1; i < 24; i++) {
 									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
-									if (line == 1) s = (i % 2) ? "\u2572" : "\u2571";
-									if (line == 22) s = (i % 2) ? "\u2572" : "\u2571";
+									if (line == 1 || line == 22) s = (i % 2) ? "\u2572" : "\u2571";
 									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
 									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
-									document.write(s);
+									document.write(`<span class="blank">${s}</span>`);
 								}
 								document.writeln(" &nbsp; <br>");
 							}
