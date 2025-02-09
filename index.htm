@@ -52,7 +52,7 @@
 				
 				<div class="content right">
 					<style>
-						span.fill { background: #9CB }
+						span.full { background: #9CB }
 						span.ls.lower {	background: linear-gradient(225deg, #FFF 50%, #9CB 50%) }
 						span.ls.upper {	background: linear-gradient(225deg, #9CB 50%, #FFF 50%) }
 						span.rs.lower {	background: linear-gradient(135deg, #FFF 50%, #9CB 50%) }
@@ -73,17 +73,6 @@
 								out += `<br>`;
 							}
 							document.write(out);
-							/*
-							for (let line = 1; line < 23; line++) {
-								for (let i = 1; i < 24; i++) {
-									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
-									if (line == 1 || line == 22) s = (i % 2) ? "\u2572" : "\u2571";
-									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
-									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
-									document.write(`<span class="blank ${s == "\u2571" ? "rs" : "ls"}${line == 1 && i == 2 ? " dest" : ""}">${s}</span>`);
-								}
-								document.writeln("<br>");
-							} */
 						</script>
 					</p>
 					<button type="button" onClick="advanceMaze();">Advance in the Maze</button>
@@ -92,9 +81,22 @@
 		</main>
 		<script>
 			const pos = {e: 0, x: 1, y: 0};
+			let steps = 0;
 			function advanceMaze() {
-				const el = document.getElementById("");
-				el.classList.contains("ls");
+				if (pos.y > 23) return alert(`The maze is done! It took ${steps} steps to complete.`);
+				const el = document.getElementById(`maze${pos.x},${pos.y}`);
+				if (el.classList.contains("ls")) {
+					el.classList.add(pos.e < 2 ? "upper" : "lower");
+					pos.e = [3, 2, 1, 0][pos.e];
+				} else {
+					el.classList.add(pos.e == 0 || pos.e == 3 ? "upper" : "lower");
+					pos.e = [1, 0, 3, 2][pos.e];
+				}
+				if (pos.e == 0) pos.y++;
+				if (pos.e == 1) pos.x--;
+				if (pos.e == 2) pos.y--;
+				if (pos.e == 3) pos.x++;
+				steps++;
 			}
 		</script>
 	</body>
