@@ -20,13 +20,17 @@
 21240,Minecraft,The Swamp Adventure
 21244,Minecraft,The Sword Outpost
 21246,Minecraft,The Deep Dark Battle
+21247,Minecraft,The Axolotl House
 21252,Minecraft,The Armory
 21254,Minecraft,The Turtle Beach House
+21281,Minecraft,Baby Pig's Birthday Party
 30384,Star Wars,Mini Snowspeeder
 30393,Minecraft,Steve & Creeper
 30394,Minecraft,Alex & Skeleton
 30451,Super Heroes,Spider-Man's Mini Spider Crawler
 30649,Ninjago,Ice Dragon Creature
+30679,Super Heroes,Venom Street Bike
+30685,Star Wars,TIE Interceptor
 31056,Creator,Green Truck
 31058,Creator,Mighty Dinosaurs
 31062,Creator,Blue Robot
@@ -38,15 +42,19 @@
 31099,Creator,Propeller Plane
 31102,Creator,Fire Dragon
 31111,Creator,Cyber Drone
+31145,Creator,Red Dragon
 40461,Botanical Collection,Tulips
 40540,BrickHeadz,Lion Dance Guy
 40624,BrickHeadz,Alex
 40626,BrickHeadz,Zombie
+40640,Lego,Nutcracker
 40646,Botanical Collection,Daffodils
 40689,City,Firework Celebrations
 41725,Friends,Beach Buggy Fun
 41805,Dots,Creative Animal Drawer
 42132,Technic,Motorcycle
+42149,Technic,Monster Jam Dragon
+42161,Technic,Lamborghini Huracán Tecnica
 60107,City,Fire Truck
 60182,City,Camper Caravan
 60185,City,Mining Power Splitter
@@ -56,6 +64,7 @@
 60249,City,Street Sweeper
 60250,City,Mail Plane
 60251,City,Monster Truck
+60402,City,Monster Truck
 70418,Hidden Side,J.B.'s Ghost Lab
 70419,Hidden Side,Wrecked Shrimp Boat
 70612,Ninjago Movie,Green Ninja Mech Dragon
@@ -67,6 +76,7 @@
 70676,Ninjago,Lloyd's Titan Mech
 70836,Lego Movie 2,Metal Beard & Batman
 70918,Batman Movie,The Bat-Dune Buggy
+71453,Dreamzzz,Izzie and Bunchu the Bunny
 71454,Dreamzzz,Mateo and Z-Blob the Robot
 71700,Ninjago,Jungle Raider (Dune Buggy)
 71706,Ninjago,Cole's Speeder Car
@@ -91,7 +101,9 @@
 75344,Star Wars,Boba Fett's Starship Microfighter
 75359,Star Wars,332nd Ahsoka's Clone Trooper Battle Pack
 75368,Star Wars,Darth Vader Mech
+75369,Star Wars,Boba Fett Mech
 75370,Star Wars,Stormtrooper Mech
+75895,Speed Champions,1974 Porsche 911 Turbo 3.0
 75976,Overwatch,Wrecking Ball (Hamster)
 76085,Super Heroes,Aquaman Battle
 76089,Super Heroes,Spiderman & Sandman Mini Racers
@@ -109,4 +121,8 @@
 76202,Super Heroes,Wolverine Mech Armor
 76207,Super Heroes,Attack on New Asgard
 76245,Super Heroes,Ghost Rider Mech & Bike
+76906,Speed Champions,1970 Ferrari 512 M
+76908,Speed Champions,Lamborghini Countach
+76916,Speed Champions,Porsche 963
+76918,Speed Champions,McLaren Solus GT & McLaren F1 LM
 76943,Jurassic World,Pteranodon Chase
