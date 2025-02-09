@@ -4,11 +4,11 @@
 * { box-sizing: border-box; }
 
 body {
-  margin: 0;
-  padding: 0;
   background: #221800 url("../images/mcbg.png") repeat-x;
   color: #333;
-  font: 14px Verdana, sans-serif; }
+  font: 14px Verdana, sans-serif;
+  margin: 0;
+  padding: 0; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -35,47 +35,47 @@ table {
   font-size: 16px; }
 th, td {
   border: 1px solid #000;
-  text-align: center;
-  padding: 10px; }
-th { background: #f5e9e0; }
+  padding: 10px;
+  text-align: center; }
+th { background: #F5E9E0; }
 th.sortable:hover { 
-  background: #e5c9c0; 
+  background: #E5C9C0; 
   cursor: pointer; }
 
 table.info td {
   border-style: none;
-  text-align: left;
-  vertical-align: top;
   font-size: smaller;
-  padding: 5px; }
+  padding: 5px;
+  text-align: left;
+  vertical-align: top; }
 
 ul { margin: 0 0 8px 0; }
 
 .round { border-radius: 5px; }
 
-.shadow { box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75); }
+.shadow { box-shadow: 1px 1px 4px #000B; }
 
 .header {
-  position: relative;
   height: 150px;
-  width: 1000px;
-  margin: 10px auto 0; }
+  margin: 10px auto 0;
+  position: relative;
+  width: 1000px; }
 
 .server {
+  background: #59B;
   height: 60px;
-  width: 468px;
-  background: #59b;
   margin: 10px auto 8px;
-  padding: 5px; }
+  padding: 5px; 
+  width: 468px; }
 
 .navbar {
-  height: 40px;
-  width: 1000px;
-  color: #fff;
+  background: #A11 url(../images/red64.png) repeat;
+  color: #FFF;
   font: 18px "Times New Roman", serif;
-  text-align: center;
+  height: 40px;
   margin: 10px auto;
-  background: #a11 url(../images/red64.png) repeat; }
+  text-align: center;
+  width: 1000px; }
 
 div.navbar .navitem {
   float: left;
@@ -85,8 +85,8 @@ div.navbar .navitem {
   padding: 0 0 0 40px;
   text-shadow: 4px 4px 4px #000; }
 
-div.navbar .navitem a:link, div.navbar .navitem a:visited { color: #eee; }
-div.navbar .navitem a:hover, div.navbar .navitem a:active { color: #fff; }
+div.navbar .navitem a:link, div.navbar .navitem a:visited { color: #EEE; }
+div.navbar .navitem a:hover, div.navbar .navitem a:active { color: #FFF; }
 
 div.navbar .navitem.home { background: url("../images/grass.png") no-repeat; }
 div.navbar .navitem.gall { background: url("../images/painting.png") no-repeat; }
@@ -99,19 +99,19 @@ div.navbar .navitem.tool { background: url("../images/craft.png") no-repeat; }
 div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
 
 .content {
-  width: 1000px;
-  background: #eee;
-  margin: 10px auto 8px;
-  padding: 16px; }
+  background: #EEE;
+  margin: 10px auto;
+  padding: 16px;
+  width: 1000px; }
 
 .contentheader {
-  background: #f5e9e0;
-  margin-bottom: 10px;
-  padding: 2px 8px;
+  background: #F5E9E0;
+  border: 1px solid #DCC;
   color: #944;
   font: bold 18px Courier, monospace;
-  border: 1px solid #e0d9d0;
-  text-shadow: 1px 1px 4px #aaa; }
+  margin-bottom: 10px;
+  padding: 2px 8px;
+  text-shadow: 1px 1px 4px #AAA; }
 
 .clickable {
   color: #00F;
@@ -125,7 +125,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   margin: 0 0 20px 20px; }
 .gallery > div.pic { max-width: min-content; }
 .flextile {
-  background-color: #fee;
+  background: #FEE;
   border: 1px outset #888;
   font-weight: bold;
   height: 45px;
@@ -134,17 +134,17 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   text-align: center;
   width: 315px; }
 .flextile:hover {
-  background-color: #edd;
+  background-color: #EDD;
   border: 2px outset #888; 
   font-size: 120%; }
 .caption {
-  text-align: center;
-  margin: 8px 16px; }
+  margin: 8px 16px;
+  text-align: center; }
 
 
 area { outline: none; }
 
-.grey { color:#999; }
+.grey { color: #999; }
 
 .title { 
   font-size: 120%; 
