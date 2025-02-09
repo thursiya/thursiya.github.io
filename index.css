@@ -24,3 +24,4 @@ div.flexbox {
 div.header {
   align-items: center;	
   background: #9CBA; }
+div.flexbox > div.right { margin-left: auto; }
