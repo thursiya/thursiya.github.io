@@ -6,11 +6,17 @@ a {
   color: #C00;
   font-weight: bold;
   text-decoration: none; }
-	
 a:hover {
   color: #900;
   text-decoration: underline; }
+h3 { margin-top: 20px: }
 
+#maintitle { font: italic bold 300% "Times New Roman", serif; }
+#maze {
+  font: 18px "Times New Roman", serif;
+  line-height: 18px; }
+
+div.content { margin: 20px; }
 div.flexbox {
   display: flex;
   flex-wrap: wrap;
