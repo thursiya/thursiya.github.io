@@ -86,12 +86,19 @@
 				if (pos.y > 23) return alert(`The maze is done! It took ${steps} steps to complete.`);
 				const el = document.getElementById(`maze${pos.x},${pos.y}`);
 				if (el.classList.contains("ls")) {
+					if (!el.classList.toggle(pos.e < 2 ? "upper" : "lower")) el.classList.add("full");
+					pos.e = [3, 2, 1, 0][pos.e];
+				} else {
+					if (!el.classList.toggle(pos.e == 0 || pos.e == 3 ? "upper" : "lower")) el.classList.add("full");
+					pos.e = [1, 0, 3, 2][pos.e];
+				}
+				/* if (el.classList.contains("ls")) {
 					el.classList.add(pos.e < 2 ? "upper" : "lower");
 					pos.e = [3, 2, 1, 0][pos.e];
 				} else {
 					el.classList.add(pos.e == 0 || pos.e == 3 ? "upper" : "lower");
 					pos.e = [1, 0, 3, 2][pos.e];
-				}
+				}*/
 				if (pos.e == 0) pos.y++;
 				if (pos.e == 1) pos.x--;
 				if (pos.e == 2) pos.y--;
