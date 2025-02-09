@@ -8,7 +8,6 @@ table {
   border-collapse: collapse;
   font: 24px Tahoma, sans-serif;
   margin: 10px; }
-td { height: 68px; }
 table, td, th {
   padding: 4px;
   text-align: left;
