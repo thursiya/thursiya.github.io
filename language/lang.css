@@ -41,6 +41,8 @@ h1 { text-align: center; }
 
 .shadow { box-shadow: 1px 1px 4px #000B; }
 
+.strong { font-weight: bold; }
+
 .content {
   width: 1000px;
   background: #EEE;
