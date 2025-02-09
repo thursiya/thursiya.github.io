@@ -64,8 +64,5 @@
 9678,Star Wars,Mini Cloud Car
 9679,Star Wars,Mini At-st
 30230,Galaxy Squad,Galaxy Squad promotional set
-30384,Star Wars,Mini Snowspeeder
 75008,Star Wars,Mini TIE Bomber
-75895,Speed Champions,1974 Porsche 911 Turbo 3.0
-76908,Speed Champions,Lamborghini Countach
 79005,LotR,Palantir
