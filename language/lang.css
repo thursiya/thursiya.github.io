@@ -13,6 +13,7 @@ a:hover {
 	
 
 table {
+  background: #FFF;
   border-collapse: collapse;
   border-spacing: 0;
   border: 1px solid #000;
@@ -42,8 +43,8 @@ h1 { text-align: center; }
 
 .content {
   width: 1000px;
-  background: #FFF;
-  margin: 10px auto; 
+  background: #EEE;
+  margin: 10px auto;
   padding: 16px; }
 
 .contentheader {
