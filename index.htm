@@ -1,85 +1,74 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>Thursiyan Nexus</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="index.css" type="text/css" />
-</head>
-
-<body>
-	<main>
-	<div class="header flexbox">
-		<td><img src="images/nexus.png" width="64px"></td>
-		<td><span style="font: italic bold 300% Times serif">Thursiyan Nexus</span></td>
-	</tr></table></div>
-
-	<div style="float:right">
-		<p style="line-height: 18px; font-size: 18px; font-family: times;">
-			&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
-			<script>
-				var s;
-				for (var line=1; line<23; line++) {
-					for(var i=1;i<24;i++) {
-						s = (~~(Math.random()*2)) ? '\u2571': '\u2572';
-						if (line == 1) {
-							s = (i % 2) ? '\u2572': '\u2571';
-						}
-						if (line == 22) {
-						  	s = (i % 2) ? '\u2572': '\u2571';
-						}
-						if (i == 1) {
-							s = (line % 2) ? '\u2571': '\u2572';
-						}
-						if (i == 23) {
-							s = (line % 2) ? '\u2572': '\u2571';
-						}
-						document.write(s);
-					}
-					document.writeln(" &nbsp; <br>");
-				}
-			</script>
-		</p>
-	</div>
-	
-	<br>
-
-	<div style="padding:10px">
-		<h3>Board Games</h3>
-			<ul>
-				<dd><a href="boardgames">Board Game Collection</a></dd>
-			</ul>
-			<br>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Thursiyan Nexus</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<main>
+			<div class="header flexbox">
+				<div><img src="images/nexus.png" width="64px"></div>
+				<div><p class="maintitle">Thursiyan Nexus</p></div>
+			</div>
 			
-		<h3>Lego</h3>
-			<ul>
-				<dd><a href="lego">Lego Collection</a></dd>
-			</ul>
-			<br>
-		
-		<h3>Minecraft</h3>
-			<ul>
-				<dd><a href="skunkland">Skunkland Server Site</a></dd>
-			</ul>
-			<br>
-		
-		<h3>Web Games</h3>
-			<ul>
-				<dd><a href="spacegame">Simple Space Game</a></dd>
-				<dd><a href="textgames">Classic Text-based Games</a></dd>
-			</ul>
-			<br>
-		
-		<h3>Language</h3>
-			<ul>
-				<dd><a href="styleguide">Style Guide</a></dd>
-				<dd><a href="language">Thursiyan Language</a></dd>
-			</ul>
-			<br>
-			
-		<h3>Shared Creations</h3>
-			<ul>
-				<dd><a href="https://drive.google.com/file/d/16vcwnZ2w2xEmdhCJHQwcTYL-YQTnrFv6/view?usp=sharing">Midkemia Conquest Map</a> (Map for <a href="http://www.windowsgames.co.uk/conquest.html" target="_blank">Sean O'Connor's Conquest</a>)</dd>
-			</ul>
-	</div>
-</body>
+			<div class="flexbox">
+				<div class="content">
+					<h3>Board Games</h3>
+					<ul>
+						<li><a href="boardgames">Board Game Collection</a>
+					</ul>
+					
+					<h3>Lego</h3>
+					<ul>
+						<li><a href="lego">Lego Collection</a>
+					</ul>
+					
+					<h3>Minecraft</h3>
+					<ul>
+						<li><a href="skunkland">Skunkland Server Site</a>
+					</ul>
+					
+					<h3>Web Games</h3>
+					<ul>
+						<li><a href="spacegame">Simple Space Game</a>
+						<li><a href="textgames">Classic Text-based Games</a>
+					</ul>
+					
+					<h3>Language</h3>
+					<ul>
+						<li><a href="styleguide">Style Guide</a>
+						<li><a href="language">Thursiyan Language</a>
+					</ul>
+
+					<h3>Shared Creations</h3>
+					<ul>
+						<li><a href="https://drive.google.com/file/d/16vcwnZ2w2xEmdhCJHQwcTYL-YQTnrFv6/view?usp=sharing">Midkemia Conquest Map</a> 
+							(Map for <a href="http://www.windowsgames.co.uk/conquest.html" target="_blank">Sean O'Connor's Conquest</a>)
+					</ul>
+				</div>
+				
+				<div class="content">
+					<p class="maze">
+						&nbsp; &nbsp; &nbsp;<i>&darr;</i>
+						<script>
+							let s;
+							for (let line = 1; line < 23; line++) {
+								for (let i = 1; i < 24; i++) {
+									s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
+									if (line == 1) s = (i % 2) ? "\u2572" : "\u2571";
+									if (line == 22) s = (i % 2) ? "\u2572" : "\u2571";
+									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
+									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
+									document.write(s);
+								}
+								document.writeln(" &nbsp; <br>");
+							}
+						</script>
+					</p>
+				</div>
+			</div>
+		</main>
+	</body>
 </html>
