@@ -10,7 +10,7 @@
 		<main>
 			<div class="header flexbox">
 				<div><img src="images/nexus.png" width="64px"></div>
-				<div><p class="maintitle">Thursiyan Nexus</p></div>
+				<div><p id="maintitle">Thursiyan Nexus</p></div>
 			</div>
 			
 			<div class="flexbox">
@@ -50,13 +50,12 @@
 				</div>
 				
 				<div class="content">
-					<p class="maze">
+					<p id="maze">
 						&nbsp; &nbsp; &nbsp;<i>&darr;</i>
 						<script>
-							let s;
 							for (let line = 1; line < 23; line++) {
 								for (let i = 1; i < 24; i++) {
-									s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
+									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
 									if (line == 1) s = (i % 2) ? "\u2572" : "\u2571";
 									if (line == 22) s = (i % 2) ? "\u2572" : "\u2571";
 									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
