@@ -85,11 +85,16 @@
 			function advanceMaze() {
 				if (pos.y > 23) return alert(`The maze is done! It took ${steps} steps to complete.`);
 				const el = document.getElementById(`maze${pos.x},${pos.y}`);
+				const visited = el.class.length > 1;
+				if (visited) {
+					el.classList.remove("lower", "upper");
+					el.classList.add("full");
+				}
 				if (el.classList.contains("ls")) {
-					if (!el.classList.toggle(pos.e < 2 ? "upper" : "lower")) el.classList.add("full");
+					if (!visited) el.classList.add(pos.e < 2 ? "upper" : "lower");
 					pos.e = [3, 2, 1, 0][pos.e];
 				} else {
-					if (!el.classList.toggle(pos.e == 0 || pos.e == 3 ? "upper" : "lower")) el.classList.add("full");
+					if (!visited) el.classList.add(pos.e == 0 || pos.e == 3 ? "upper" : "lower");
 					pos.e = [1, 0, 3, 2][pos.e];
 				}
 				/* if (el.classList.contains("ls")) {
