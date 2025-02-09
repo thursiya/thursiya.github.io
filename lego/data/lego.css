@@ -1,6 +1,6 @@
 body {
   background-color: #FFF;
-  background-image: url('../images/lego_plate.jpg');
+  background-image: url("../images/lego_plate.png");
   font-size: 100%; }
 
 table {
