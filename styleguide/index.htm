@@ -42,7 +42,7 @@
 				["still", "Adjective, Adverb, Noun", "<i>Verb</i>"],
 				["than", "Conjunction (VP + than + VP)", "Preposition ('fewer than')"],
 				["who", "Pronoun", "<i>Noun ('the whos and hows')</i>"]
-					].reduce((t, v) => t + v.reduce((t2, v2, i2) => t2 + `<td>${i2 == 0 ? `<a href="https://en.wiktionary.org/wiki/${v2}#English">${v2}</a>` : v2}</td>`, "<tr>") + "</tr>", "");	
+					].reduce((t, v) => t + v.reduce((t2, v2, i2) => t2 + `<td${i2 < 2 ? ` class="strong"` : ""}>${i2 == 0 ? `<a href="https://en.wiktionary.org/wiki/${v2}#English">${v2}</a>` : v2}</td>`, "<tr>") + "</tr>", "");
 		</script>
 	</body>
 </html>
