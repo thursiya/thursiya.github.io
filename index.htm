@@ -60,9 +60,9 @@
 									if (line == 1 || line == 22) s = (i % 2) ? "\u2572" : "\u2571";
 									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
 									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
-									document.write(`<span class="blank">${s}</span>`);
+									document.write(`<span class="blank ${s[-1] > 1 ? "ls" : "rs"}">${s}</span>`);
 								}
-								document.writeln(" &nbsp; <br>");
+								document.writeln("<br>");
 							}
 						</script>
 					</p>
