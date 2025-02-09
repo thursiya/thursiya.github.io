@@ -18,14 +18,15 @@ a:visited { color: #987; }
 a:hover { color: #D96; }
 a:active { color: #952; }
 
+h2 {
+  color: #FFF;
+  font: bold 36px Impact, sans-serif;
+  text-shadow: 5px 5px #0009;
+  -webkit-text-stroke: 0.5px #000; }
+
 img {
   max-height: 110px;
   width: 75px; }
-
-button {
-  background: none;
-  border: none;
-  padding: 0; }
 
 div.flexbox {
   display: flex; 
