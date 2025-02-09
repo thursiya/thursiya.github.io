@@ -52,20 +52,18 @@
 				
 				<div class="content right">
 					<style>
-						span.fill {
-							background: 
-						}
-						span.lower {
-						}
-						span.upper {
-						}
+						span.fill { background: #9CB }
+						span.ls.lower {	background: linear-gradient(225deg, #FFF 50%, #9CB 50%) }
+						span.ls.upper {	background: linear-gradient(225deg, #9CB 50%, #FFF 50%) }
+						span.rs.lower {	background: linear-gradient(135deg, #FFF 50%, #9CB 50%) }
+						span.rs.upper {	background: linear-gradient(135deg, #9CB 50%, #FFF 50%) }
 					</style>
 					<p id="maze">
 						&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
 						<script>
 							let out = "";
-							for (const y = 0; y < 24; y++) {
-								for (const x = 0; x < 23; x++) {
+							for (let y = 0; y < 24; y++) {
+								for (let x = 0; x < 23; x++) {
 									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
 									if (y == 1 || y == 22) s = (x % 2) ? "\u2572" : "\u2571";
 									if (x == 1) s = (y % 2) ? "\u2571" : "\u2572";
