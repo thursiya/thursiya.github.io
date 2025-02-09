@@ -29,28 +29,28 @@ h1 { text-align: center; }
   margin: auto;
   vertical-align: middle;
   text-align: center;
-  border: none }
+  border: none; }
 
 .markup {
   padding: 0px 15px 5px 0px;
   border: none;
-  text-align: left }
+  text-align: left; }
 
-.round { border-radius: 5px}
+.round { border-radius: 5px; }
 
-.shadow { box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.75); }
+.shadow { box-shadow: 1px 1px 4px #000B; }
 
 .content {
   width: 1000px;
-  background: #f0f0f0;
-  margin: 10 auto 8px auto; 
+  background: #FFF;
+  margin: 10px auto; 
   padding: 16px; }
 
 .contentheader {
-  background: #e0f0f0;
-  border: 1px solid #e0d9d0;
-  color: #404090;
+  background: #DEEE;
+  border: 1px solid #DCC;
+  color: #449;
   font: bold 18px Courier, monospace;
   margin-bottom: 10px;
-  padding: 2px 2px 2px 8px;  
+  padding: 2px 8px;  
   text-shadow: 1px 1px 4px #AAA; }
