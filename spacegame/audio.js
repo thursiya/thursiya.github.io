@@ -15,7 +15,7 @@ let explosionSFX = new Audio("audio/explosion.mp3");
 
 function playBGMusic () {
 	let bgmusic = document.getElementById('bgMusic');
-	bgmusic.src = `http://soundimage.org/wp-content/uploads/2016/${rnd(["08/Trouble-in-a-Digital-City_Looping", "02/Star-Light_Looping", "07/Urban-Jungle-2061_Looping", "12/Himalayan-Mind_Looping"])}.mp3`;
+	bgmusic.src = `https://soundimage.org/wp-content/uploads/2016/${rnd(["08/Trouble-in-a-Digital-City_Looping", "02/Star-Light_Looping", "07/Urban-Jungle-2061_Looping", "12/Himalayan-Mind_Looping"])}.mp3`;
 	bgmusic.load();
 	bgmusic.play();
 }
