@@ -54,16 +54,29 @@
 					<p id="maze">
 						&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
 						<script>
+							let out = "";
+							for (const y = 0; y < 24; y++) {
+								for (const x = 0; x < 23; x++) {
+									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
+									if (line == 1 || line == 22) s = (i % 2) ? "\u2572" : "\u2571";
+									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
+									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
+									out += `<span id="maze${x},${y}" class="${s == "\u2571" ? "rs" : "ls"}">${s}</span>`;
+								}
+								out += `<br>`;
+							}
+							document.write(out);
+							/*
 							for (let line = 1; line < 23; line++) {
 								for (let i = 1; i < 24; i++) {
 									let s = (~~(Math.random() * 2)) ? "\u2571" : "\u2572";
 									if (line == 1 || line == 22) s = (i % 2) ? "\u2572" : "\u2571";
 									if (i == 1) s = (line % 2) ? "\u2571" : "\u2572";
 									if (i == 23) s = (line % 2) ? "\u2572" : "\u2571";
-									document.write(`<span class="blank ${s == "\u2571" ? "rs" : "ls"}">${s}</span>`);
+									document.write(`<span class="blank ${s == "\u2571" ? "rs" : "ls"}${line == 1 && i == 2 ? " dest" : ""}">${s}</span>`);
 								}
 								document.writeln("<br>");
-							}
+							} */
 						</script>
 					</p>
 					<button type="button" onClick="advanceMaze();">Advance in the Maze</button>
