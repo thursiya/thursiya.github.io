@@ -49,12 +49,6 @@
       					${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
 	  				${subTable(["Demonym", demonym])}
        					${subTable(["Government", government])}`;
-				/* let out = `<table style="width: 300px;"><tr><th>${nfull}</th></tr>
-    					<tr><td><img src="../images/${nation} Flag (Wool).png" width="50%"><br><i>${motto || "---"}</i></td></tr>
-	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%" style="display: block;"></td></tr>
-      					${topen}Capital</b></td><td>${capital}</td></tr><tr><td><b>Largest City</b><td>${bigcity} (${pp(bigcity)})${tclose}
-	   				${topen}Demonym</b></td><td>${demonym}${tclose}
-					${topen}<span style="font-size: 11px;">Government</span></b></td><td>${government}${tclose}`; */
 				if (language || money || faith) {
 					out += topen;
 					if (language) {
@@ -68,9 +62,8 @@
 					if (faith) out += `Religion</b></td><td>${faith}`;
 					out += tclose;
 				}
-				if (animal) out += `${topen}Animal</b></td><td>${animal}${tclose}`;
-				out += `${topen}Tallest Building</b></td><td>${tallbuilding}</td></tr>
-    					<tr><td style="width: 90px;"><b>Tallest Structure</b></td><td>${tallstructure}${tclose}
+				if (animal) out += subTable(["Animal", animal]);
+				out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
 	 				<tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
 				document.getElementById("infowindow").innerHTML = out;
 			}
