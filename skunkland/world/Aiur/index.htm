@@ -39,7 +39,7 @@
 			function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
 				function subTable(...arr) {
 					let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-					arr.forEach(v => stOut += `<tr><td style="width: 90px;${v[0] == "Government" ? " font-size: 11px;" : ""}"><b>${v[0]}</b></td><td>${v[1]}</td></tr>`);
+					arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
 					return `${stOut}</table></td></tr>`;
 				}
 				bigcity = bigcity || capital;
@@ -48,7 +48,7 @@
 	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%" style="display: block;"></td></tr>
       					${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
 	  				${subTable(["Demonym", demonym])}
-       					${subTable(["Government", government])}
+       					${subTable(["Government", government])}`;
 				/* let out = `<table style="width: 300px;"><tr><th>${nfull}</th></tr>
     					<tr><td><img src="../images/${nation} Flag (Wool).png" width="50%"><br><i>${motto || "---"}</i></td></tr>
 	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%" style="display: block;"></td></tr>
