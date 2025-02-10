@@ -44,8 +44,8 @@
 				}
 				bigcity = bigcity || capital;
 				let out = `<table style="width: 300px;"><tr><th>${nfull}</th></tr>
-    					<tr><td><img src="../images/${nation} Flag (Wool).png" width="50%" class="info"><br><i>${motto || "---"}</i></td></tr>
-	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%" class="info"></td></tr>
+    					<tr><td><img src="../images/${nation} Flag (Wool).png" width="50%"><br><i>${motto || "---"}</i></td></tr>
+	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%"></td></tr>
       					${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
 	  				${subTable(["Demonym", demonym])}
        					${subTable(["Government", government])}`;
@@ -64,7 +64,7 @@
 				}
 				if (animal) out += subTable(["Animal", animal]);
 				out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
-	 				<tr><td><img src="../images/${nation} Banner.png" width="64" class="info"></td></tr></table>`;
+	 				<tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
 				document.getElementById("infowindow").innerHTML = out;
 			}
 
