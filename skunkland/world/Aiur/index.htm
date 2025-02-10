@@ -21,9 +21,7 @@
 							Aiur was founded in <script>sy(2014,5,15,13)</script>.  It is located in the deep south of Skunkland on the southern shores of the Austral ocean.
 						</p>
 					</div>
-					<div class="right">
-						<script>infowindow("","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");</script>
-					</div>
+					<div id="infowindow" class="right"></div>
 				</div>
 			</div>
 		</main>
@@ -31,6 +29,8 @@
 			var topen = "<tr><td style='padding:5'><table class='info'><tr><td style='width:90'><b>";
 var tclose = "</td></tr></table></td></tr>";
 var nfull = "<?php echo "The $ntype of $nation"?>";
+
+			infowindow("","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");
 
 function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
 	bigcity = bigcity || capital;
@@ -60,7 +60,7 @@ function infowindow(motto, capital, bigcity, demonym, government, language, mone
 	out += topen + "Tallest Building</b></td><td>" + tallbuilding + "</td></tr>";
 	out += "<tr><td style='width:90'><b>Tallest Structure</b></td><td>" + tallstructure + tclose;
 	out += "<tr><td><img src='images/<?php echo $nation?> Banner.png' width='64'></td></tr></table>";
-	document.write(out);
+	document.getElementById("infowindow").innerHTML = out;
 }
 
 	
