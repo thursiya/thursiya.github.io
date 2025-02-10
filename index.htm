@@ -62,7 +62,7 @@
 						&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
 						<span id="mazeBody"></span>
 					</p>
-					<button type="button" onClick="startMaze();">Restart Maze</button> &nbsp; <span id="mazeStatus"></span>
+					<button type="button" onClick="startMaze();">New Maze</button> &nbsp; <span id="mazeStatus"></span>
 				</div>
 			</div>
 		</main>
@@ -74,6 +74,7 @@
 			startMaze();
 			
 			function startMaze() {
+				clearInterval(mazeTimer);
 				let out = "";
 				for (let y = 0; y < 24; y++) {
 					out += `<span class="mazerow">`;
