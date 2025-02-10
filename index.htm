@@ -53,10 +53,10 @@
 				<div class="content right">
 					<style>
 						span.full { background: #9CB }
-						span.ls.lower {	background: linear-gradient(225deg, #FFF 47%, #000 6%, #9CB 47%) }
-						span.ls.upper {	background: linear-gradient(225deg, #9CB 47%, #000 6%, #FFF 47%) }
-						span.rs.lower {	background: linear-gradient(135deg, #FFF 47%, #000 6%, #9CB 47%) }
-						span.rs.upper {	background: linear-gradient(135deg, #9CB 47%, #000 6%, #FFF 47%) }
+						span.ls.lower {	background: linear-gradient(225deg, #FFF 50%, #9CB 50%) }
+						span.ls.upper {	background: linear-gradient(225deg, #9CB 50%, #FFF 50%) }
+						span.rs.lower {	background: linear-gradient(135deg, #FFF 50%, #9CB 50%) }
+						span.rs.upper {	background: linear-gradient(135deg, #9CB 50%, #FFF 50%) }
 					</style>
 					<p id="maze">
 						&nbsp; &nbsp; &nbsp;<i>&darr;</i><br>
@@ -89,7 +89,7 @@
 				document.getElementById("mazeBody").innerHTML = out;
 				steps = 0;
 				Object.assign(pos, {e: 0, x: 1, y: 0});
-				mazeTimer = setInterval(advanceMaze, 500);
+				mazeTimer = setInterval(advanceMaze, 100);
 			}
 			
 			function advanceMaze() {
