@@ -44,7 +44,7 @@ th.sortable:hover {
 
 table.info td {
   border-style: none;
-  font-size: smaller;
+  font-size: 12px;
   padding: 5px;
   text-align: left;
   vertical-align: top; }
