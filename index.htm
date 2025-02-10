@@ -89,13 +89,13 @@
 				document.getElementById("mazeBody").innerHTML = out;
 				steps = 0;
 				Object.assign(pos, {e: 0, x: 1, y: 0});
-				mazeTimer = setTimeout(advanceMaze, 1000);
+				mazeTimer = setInterval(advanceMaze, 500);
 			}
 			
 			function advanceMaze() {
 				if (pos.y > 23) {
 					document.getElementById("mazeStatus").innerHTML = `Last run completed in <b>${steps}</b> steps.`;
-					return clearTimeout(mazeTimer);
+					return clearInterval(mazeTimer);
 				}
 				const el = document.getElementById(`maze${pos.x},${pos.y}`);
 				const visited = el.classList.length > 1;
