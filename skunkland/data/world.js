@@ -25,6 +25,13 @@ function infowindow(nation, ntype, motto, capital, bigcity, demonym, government,
   document.getElementById("infowindow").innerHTML = out;
 }
 
+function loadDoc(url, cFunction) {
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {cFunction(this);}
+	xhttp.open("GET", url);
+	xhttp.send();
+}
+
 function pp(city) {
 	return "Uninhabited";
 	if (typeof jobs == 'string') {
