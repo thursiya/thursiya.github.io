@@ -3,34 +3,34 @@ const n = [];
 loadDoc("nations.txt", buildNationArray);
 
 function buildNationArray(xhr) {
-  const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
+	const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
 }
 
 function infowindow(nation, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
-  bigcity = bigcity || capital;
-  
-  function subTable(...arr) {
-    let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-    arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
-    return `${stOut}</table></td></tr>`;
-  }
-  
-  let out = `<table style="width: 300px;"><tr><th>${ntype} of ${nation}</th></tr>
-    <tr><td><img src="../images/${nation} Flag (Wool).png" width="150"><br><i>${motto || "---"}</i></td></tr>
-    <tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="298"></td></tr>
-    ${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
-	  ${subTable(["Demonym", demonym])}
-    ${subTable(["Government", government])}`;
-  const arr = [];
-  if (language) arr.push(["Language", language]);
-  if (money) arr.push(["Currency", money]);
-  if (faith) arr.push(["Religion", faith]);
-  if (arr[0]) out += subTable(arr);
-  if (animal) out += subTable(["Animal", animal]);
-  out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
-    <tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
-  
-  document.getElementById("infowindow").innerHTML = out;
+	bigcity = bigcity || capital;
+	
+	function subTable(...arr) {
+		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
+		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
+		return `${stOut}</table></td></tr>`;
+	}
+	
+	let out = `<table style="width: 300px;"><tr><th>${ntype} of ${nation}</th></tr>
+ 		<tr><td><img src="../images/${nation} Flag (Wool).png" width="150"><br><i>${motto || "---"}</i></td></tr>
+   		<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="298"></td></tr>
+		${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
+		${subTable(["Demonym", demonym])}
+  		${subTable(["Government", government])}`;
+	const arr = [];
+	if (language) arr.push(["Language", language]);
+	if (money) arr.push(["Currency", money]);
+	if (faith) arr.push(["Religion", faith]);
+	if (arr[0]) out += subTable(arr);
+	if (animal) out += subTable(["Animal", animal]);
+	out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
+ 		<tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
+	
+	document.getElementById("infowindow").innerHTML = out;
 }
 
 function loadDoc(url, cFunction) {
@@ -56,7 +56,7 @@ function pp(city) {
 }
 
 function regions(nation, rtype, regions, bigsettles, builds, nflag) {
-  var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
+	var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
 		for (var i = 0; i < regions.length; i++) {
 			var rname = regions[i];
 			if (nflag) rname = nation + " " + regions[i];
