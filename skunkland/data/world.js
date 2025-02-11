@@ -9,7 +9,7 @@ function buildCityArray(xhr) {
 	city.push(...xhr.response.split('\n').filter(v => v).
 		map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 		map(v => ({name: v[0], state: v[1], pop: Math.ceil(((Number(v[2]) / 2 + Number(v[3])) * (Number(v[5]) || 1) + Number(v[4]) / 2) * 10) * 100, date: new Date(v[6], Number(v[7]) - 1, v[8])})).
-		map(v => Object.assign(v, {output: {state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date))));
+		map(v => Object.assign(v, {output: {state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date)}})));
 	console.log(city);
 }
 
