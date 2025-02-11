@@ -1,7 +1,8 @@
+const homepage = "https://thursiya.github.io/skunkland/";
 const n = [];
 
-loadDoc("census.txt", buildCityArray);
-loadDoc("nations.txt", buildNationArray);
+loadDoc(`${homepage}data/census.txt`, buildCityArray);
+loadDoc(`${homepage}data/nations.txt`, buildNationArray);
 
 function buildCityArray(xhr) {
 	const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
