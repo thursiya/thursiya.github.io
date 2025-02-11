@@ -57,7 +57,7 @@
 			function buildCityArray(xhr) {
 				const city = xhr.response.split('\n').filter(v => v).
 					map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
-					map(v => [v[1], v[0], pp(Number(v[2]), Number(v[3]), Number(v[4]), Number(v[5])), new Date(v[6], Number(v[7]) - 1, v[8])]).
+					map(v => [v[1], v[0], Math.ceil(((Number(v[2]) / 2 + Number(v[3])) * (Number(v[5]) || 1) + Number(v[4]) / 2) * 10) * 100, new Date(v[6], Number(v[7]) - 1, v[8])]).
 					map(v => [...v, v[0] ? `<a href="${v[0]}">${v[0]}</a>` : "<i>Skunkland</i>", v[2].toLocaleString("en", {useGrouping: true}), syear(v[3])]);
 				const pop = city.toSorted((a, b) => b[2] - a[2]);
 				const date = city.toSorted((a, b) => b[3] - a[3]);
@@ -77,11 +77,6 @@
 			function list(id = 0) {
 				document.getElementById("censustabledata").innerHTML = tableOutput[id][id == active ? 1 : 0];
 				active = id == active ? -1 : id;
-			}
-
-			// Probably need to move this function to its own .js file (needed by world files?)
-			function pp(jobs, beds, tourbeds = 0, bonus = 1) {
-				return Math.ceil(((jobs / 2 + beds) * bonus + tourbeds / 2) * 10) * 100;
 			}
 		</script>
 	</body>
