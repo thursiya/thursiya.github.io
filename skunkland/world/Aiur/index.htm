@@ -37,6 +37,9 @@
 			infowindow("","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");
 
 			function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
+				const addImage(type, size) {
+					return `<img src="../${type == "map" ? "../maps/regional" : "images"}/${nation}${{flag: " Flag (Wool).png", map: ".jpg", banner: " Banner.png"}[type]}" width="${size}">`;
+				}
 				function subTable(...arr) {
 					let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
 					arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
@@ -44,32 +47,19 @@
 				}
 				bigcity = bigcity || capital;
 				let out = `<table style="width: 300px;"><tr><th>${nfull}</th></tr>
-    					<tr><td><img src="../images/${nation} Flag (Wool).png" width="50%"><br><i>${motto || "---"}</i></td></tr>
-	 				<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="100%"></td></tr>
+    					<tr><td>${addImage("flag", 150)}<br><i>${motto || "---"}</i></td></tr>
+	 				<tr><td style="padding: 0;">${addImage("map", 298)}</td></tr>
       					${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
 	  				${subTable(["Demonym", demonym])}
        					${subTable(["Government", government])}`;
-					const arr = [];
-					if (language) arr.push(["Language", language]);
-					if (money) arr.push(["Currency", money]);
-					if (faith) arr.push(["Religion", faith]);
-					if (arr.length > 1) out += subTable(arr);
-				/*if (language || money || faith) {
-					out += topen;
-					if (language) {
-						out += `Language</b></td><td>${language}</td></tr>`;
-						if (money || faith) out += "<tr><td><b>";
-					}
-					if (money) {
-						out += `Currency</b></td><td>${money}</td></tr>`;
-						if (faith) out += "<tr><td><b>";
-					}
-					if (faith) out += `Religion</b></td><td>${faith}`;
-					out += tclose;
-				}*/
+				const arr = [];
+				if (language) arr.push(["Language", language]);
+				if (money) arr.push(["Currency", money]);
+				if (faith) arr.push(["Religion", faith]);
+				if (arr.length > 1) out += subTable(arr);
 				if (animal) out += subTable(["Animal", animal]);
 				out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
-	 				<tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
+	 				<tr><td>${addImage("banner", 64)}</td></tr></table>`;
 				document.getElementById("infowindow").innerHTML = out;
 			}
 
