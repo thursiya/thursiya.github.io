@@ -6,7 +6,7 @@
 		<title>Aiur</title>
 		<link rel="stylesheet" href="../../data/mc.css">
 		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
-		<script src="../../data/calc.js"></script>
+		<script src="../../data/world.js"></script>
 	</head>
 	<body>
 		<header>
@@ -26,60 +26,7 @@
 			</div>
 		</main>
 		<script>
-			const nation = "Aiur"
-			
-			var topen = `<tr><td style="padding: 5px"><table class="info"><tr><td style="width: 90px"><b>`;
-			var tclose = "</td></tr></table></td></tr>";
-			var nfull = `The $NTYPE of ${nation}`;
-			
-			
-
-			infowindow("","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");
-
-			function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
-				function addImage(type, size) {
-					return `<img src="../${type == "map" ? "../maps/regional" : "images"}/${nation}${{flag: " Flag (Wool).png", map: ".jpg", banner: " Banner.png"}[type]}" width="${size}">`;
-				}
-				function subTable(...arr) {
-					let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-					arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
-					return `${stOut}</table></td></tr>`;
-				}
-				bigcity = bigcity || capital;
-				let out = `<table style="width: 300px;"><tr><th>${nfull}</th></tr>
-    					<tr><td>${addImage("flag", 150)}<br><i>${motto || "---"}</i></td></tr>
-	 				<tr><td style="padding: 0;">${addImage("map", 298)}</td></tr>
-      					${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
-	  				${subTable(["Demonym", demonym])}
-       					${subTable(["Government", government])}`;
-				const arr = [];
-				if (language) arr.push(["Language", language]);
-				if (money) arr.push(["Currency", money]);
-				if (faith) arr.push(["Religion", faith]);
-				if (arr.length > 1) out += subTable(arr);
-				if (animal) out += subTable(["Animal", animal]);
-				out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
-	 				<tr><td>${addImage("banner", 64)}</td></tr></table>`;
-				document.getElementById("infowindow").innerHTML = out;
-			}
-
-	
-	function regions(nation,rtype,regions,bigsettles,builds,nflag) {
-		var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
-		for (var i = 0; i < regions.length; i++) {
-			var rname = regions[i];
-			if (nflag) rname = nation + " " + regions[i];
-			out += "<tr><td><img src='images/" + rname + " Flag.png' height='50' alt='Flag of " + rname + " " + rtype + "'></td>";
-			out += "<td><a href='" + nation + "/" + regions[i] + ".php'><b>" + regions[i] + "</b></a></td>";
-			out += "<td>" + (bigsettles[i] || "-") + "</td><td>";
-			for (var j = 0; j < builds[i].length; j++) {
-				out += builds[i][j] + "<br>"
-			}
-			out += "</td></tr>";
-		}
-		out += "</table><br>";
-		document.write(out);
-	}
+			infowindow("Aiur","Kingdom","","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");
 		</script>
 	</body>
 </html>
