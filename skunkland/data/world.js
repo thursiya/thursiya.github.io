@@ -1,3 +1,11 @@
+const n = [];
+
+loadDoc("nations.txt", buildNationArray);
+
+function buildNationArray(xhr) {
+
+}
+
 function infowindow(nation, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
   bigcity = bigcity || capital;
   
