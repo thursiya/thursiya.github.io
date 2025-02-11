@@ -37,7 +37,7 @@
 			infowindow("","The Unnamed City","","Aiuric","Absentee Monarchy","","","","","Unnamed City Cathedral (34m)","Unnamed City Fortress (54m)");
 
 			function infowindow(motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
-				const addImage(type, size) {
+				function addImage(type, size) {
 					return `<img src="../${type == "map" ? "../maps/regional" : "images"}/${nation}${{flag: " Flag (Wool).png", map: ".jpg", banner: " Banner.png"}[type]}" width="${size}">`;
 				}
 				function subTable(...arr) {
