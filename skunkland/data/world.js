@@ -3,13 +3,13 @@ const n = [];
 loadDoc("nations.txt", buildNationArray);
 
 function buildNationArray(xhr) {
-
+  const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
 }
 
 function infowindow(nation, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
   bigcity = bigcity || capital;
   
-	function subTable(...arr) {
+  function subTable(...arr) {
     let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
     arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
     return `${stOut}</table></td></tr>`;
