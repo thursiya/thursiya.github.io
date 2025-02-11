@@ -1,9 +1,16 @@
 const n = [];
 
+loadDoc("census.txt", buildCityArray);
 loadDoc("nations.txt", buildNationArray);
+
+function buildCityArray(xhr) {
+	const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
+	console.log(arr);
+}
 
 function buildNationArray(xhr) {
 	const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
+	console.log(arr);
 }
 
 function infowindow(nation, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
