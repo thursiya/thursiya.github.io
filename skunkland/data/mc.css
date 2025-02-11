@@ -42,9 +42,6 @@ th.sortable:hover {
   background: #E5C9C0; 
   cursor: pointer; }
 
-table.info img {
-  display: block;
-  margin: auto; }
 table.info td {
   border-style: none;
   font-size: 12px;
@@ -153,3 +150,7 @@ area { outline: none; }
 .title { 
   font-size: 120%; 
   font-weight: bold; }
+
+#infowindow img {
+  display: block;
+  margin: auto; }
