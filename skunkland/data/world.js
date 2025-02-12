@@ -1,6 +1,7 @@
 const city = [];
 const homepage = "https://thursiya.github.io/skunkland/";
 const state = {};
+let nation = "";
 
 loadDoc(homepage + "data/census.txt", buildCityArray);
 
@@ -21,7 +22,8 @@ function buildNationObject(xhr) {
 	console.log(state);
 }
 
-function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
+function drawInfoWindow(setnation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
+	nation = setnation;
 	loadDoc(homepage + "data/nations.txt", buildNationObject);
 	
 	function subTable(...arr) {
