@@ -18,9 +18,9 @@ function insertHeader() {
 		</div>`;
 }
 
-function loadDoc(url, cFunction) {
+function loadDoc(url, cFunction, ...params) {
 	const xhttp = new XMLHttpRequest();
-	xhttp.onload = function() {cFunction(this);}
+	xhttp.onload = function() {cFunction(this, ...params);}
 	xhttp.open("GET", url);
 	xhttp.send();
 }
