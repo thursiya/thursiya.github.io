@@ -12,7 +12,7 @@ function buildCityArray(xhr) {
 	console.log(city);
 }
 
-function buildNationArray(xhr) {
+function buildNationObject(xhr) {
 	Object.assign(state, xhr.response.split('\n').filter(v => v).
 		map(v => v.split(',')).find(v => v[0] == nation));
 		//map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
