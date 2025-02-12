@@ -1,7 +1,7 @@
 const city = [];
 const homepage = "https://thursiya.github.io/skunkland/";
 const state = {};
-let nation = "";
+//let nation = "";
 
 loadDoc(homepage + "data/census.txt", buildCityArray);
 
@@ -13,7 +13,7 @@ function buildCityArray(xhr) {
 	console.log(city);
 }
 
-function buildNationObject(xhr) {
+function buildNationObject(xhr, nation) {
 	Object.assign(state, xhr.response.split('\n').filter(v => v).
 		map(v => v.split(',')).find(v => v[0] == nation));
 		//map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
@@ -22,9 +22,9 @@ function buildNationObject(xhr) {
 	console.log(state);
 }
 
-function drawInfoWindow(setnation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
-	nation = setnation;
-	loadDoc(homepage + "data/nations.txt", buildNationObject);
+function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
+	//nation = setnation;
+	loadDoc(homepage + "data/nations.txt", buildNationObject, nation);
 	
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
@@ -50,9 +50,9 @@ function drawInfoWindow(setnation) {//, ntype, motto, capital, bigcity, demonym,
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-function loadDoc(url, cFunction) {
+function loadDoc(url, cFunction, ...params) {
 	const xhttp = new XMLHttpRequest();
-	xhttp.onload = function() {cFunction(this);}
+	xhttp.onload = function() {cFunction(this, ...params);}
 	xhttp.open("GET", url);
 	xhttp.send();
 }
