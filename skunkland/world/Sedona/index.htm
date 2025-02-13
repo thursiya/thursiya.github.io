@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sedona</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="stateflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div class="gallery">
+					<div id="maininfo" style="flex: 1;">
+						<div id="statetitle" class="contentheader round"></div>
+						<p>
+							The Independent State of Sedona was officially founded in <script>sy(2019,12,20)</script>. Previously, the territory of Sedona was a frontier 
+							colony of Braille, but with the feuding leadership of Braille reaching an impasse, Sedona chose to forge an independent identity. The state has 
+							scattered homesteads and a proper settlement under construction at Tortilla Flat. Oddly, its most significant structure is actually in a foreign 
+							country: the Sedona Embassy in Nexus, Gavel.
+						</p>
+					</div>
+					<div id="infowindow" class="right" style="max-width: 300px;"></div>
+				</div>
+			</div>
+		</main>
+		<script>
+			worldData({ name: "Sedona" });
+		</script>
+	</body>
+</html>
