@@ -4,7 +4,7 @@ const homepage = "https://thursiya.github.io/skunkland/data/";
 function worldData(nation) {
 	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
-		fetch(homepage + "nations.txt").then.(v2 => v2.text()).then(v2 => drawInfoWindow(buildNationObject(v2, nation)));
+		fetch(homepage + "nations.txt").then(v2 => v2.text()).then(v2 => drawInfoWindow(buildNationObject(v2, nation)));
 	});
 }
 
