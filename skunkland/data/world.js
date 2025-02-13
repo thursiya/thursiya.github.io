@@ -34,7 +34,7 @@ function drawInfoWindow(state) {
 	let out = `<table style="width: 300px;"><tr><th>${state.type} of ${state.name}</th></tr>
  		<tr><td><img src="../images/${state.name} Flag (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
-		${subTable(["Capital", state.capital], ["Largest City", `${state.bigcity} (${pp(state.bigcity)})`])}
+		${subTable(["Capital", state.capital], ["Largest City", `${state.bigcity} (${city.find(v => v.name == state.bigcity).output.pop})`])}
 		${subTable(["Demonym", state.demonym])}
   		${subTable(["Government", state.gov])}`;
 	const arr = [];
@@ -49,6 +49,7 @@ function drawInfoWindow(state) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
+/*
 function pp(city) {
 	return "Uninhabited";
 	if (typeof jobs == 'string') {
@@ -62,7 +63,7 @@ function pp(city) {
 	var maxpop = (homes + jobs) / 2;
 	var p = Math.ceil((maxpop * bonus + tourists) * 10) * 100;
 	return p;
-}
+}*/
 
 function regions(nation, rtype, regions, bigsettles, builds, nflag) {
 	var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
