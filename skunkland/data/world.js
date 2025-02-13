@@ -40,7 +40,7 @@ function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, go
 	if (state.money) arr.push(["Currency", state.money]);
 	if (state.faith) arr.push(["Religion", state.faith]);
 	if (arr[0]) out += subTable(arr);
-	if (animal) out += subTable(["Animal", state.animal]);
+	if (state.animal) out += subTable(["Animal", state.animal]);
 	out += `${subTable(["Tallest Building", state.tallest.building], ["Tallest Structure", state.tallest.structure])}
  		<tr><td><img src="../images/${state.name} Banner.png" width="64"></td></tr></table>`;
 	
