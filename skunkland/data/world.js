@@ -56,6 +56,6 @@ function regions(nation) {
 	nation.regions.forEach(r => out += `<tr><td><img src="../images/flags/${nation.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${nation.division}"></td>
  		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
    		<td>${r.city || "-"}</td>
-     		<td>${r.builds}</td></tr>`);
+     		<td>${r.builds || "-"}</td></tr>`);
 	document.getElementById("regioninfo").innerHTML = out + "</table>";
 }
