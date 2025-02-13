@@ -1,14 +1,33 @@
-<?php $nation="Porcinia"; $ntype="Commune"; include '../data/header-world.htm' ?>
-
-	<script>
-		infowindow("","Porcinia City","","Porcinian","Anarcho-syndicalist Commune","","Porcinian Rupee (R)","","Pig","Porcinia Library (36m)","Rainbow (115m)");
-	</script>
-	
-	<p>
-		Porcinia was founded some time around <script>sy(2013,10)</script>.
-	</p>
-	<br>
-
-	<div style="clear:both"></div>
-
-<?php include "../data/footer.htm" ?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Porcinia</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="stateflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div class="gallery">
+					<div id="maininfo" style="flex: 1;">
+						<div id="statetitle" class="contentheader round"></div>
+						<p>
+							Porcinia was founded some time around <script>sy(2013,10)</script>. It is loosely associated with the neighbouring commune of South Shore.
+						</p>
+					</div>
+					<div id="infowindow" class="right" style="max-width: 300px;"></div>
+				</div>
+			</div>
+		</main>
+		<script>
+			worldData({ name: "Porcinia" });
+		</script>
+	</body>
+</html>
