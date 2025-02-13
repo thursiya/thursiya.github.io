@@ -57,7 +57,7 @@ function regions(nation, rtype, regions, bigsettles, builds, nflag) {
 	for (let i = 0; i < regions.length; i++) {
 		let rname = regions[i];
 		if (nflag) rname = `${nation} ${regions[i]}`;
-		out += `<tr><td><img src="images/${rname} Flag.png" height="50" alt="Flag of ${rname} ${rtype}"></td>`;
+		out += `<tr><td><img src="../images/${rname} Flag.png" height="50" alt="Flag of ${rname} ${rtype}"></td>`;
 		out += `<td><a href="${regions[i]}.htm"><b>${regions[i]}</b></a></td>`;
 		out += `<td>${(bigsettles[i] || "-")}</td><td>`;
 		for (let j = 0; j < builds[i].length; j++) {
