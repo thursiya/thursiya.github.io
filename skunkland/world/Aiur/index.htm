@@ -27,7 +27,7 @@
 			</div>
 		</main>
 		<script>
-			drawInfoWindow("Aiur");
+			fetch("../../data/nations.txt").then(v => v.text()).then(v => buildNationObject(v, "Aiur"));
 		</script>
 	</body>
 </html>
