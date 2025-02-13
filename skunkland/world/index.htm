@@ -55,7 +55,7 @@
 				let out = "";
 				for (let i of arr) {
 					out += isNaN(arr[0][0]) ? `<tr><td><img src="images/flags/${i[0]}.png" height="50" alt="Flag of ${i[0]}"></td>
-					<td><a href="${i[0]}"><span class="title">${i[1]} of ${i[0]}</span></a></td>
+					<td><a href="${i[0]}"><span class="title">${i[1].length < 16 ? i[1] : i[1].match(/\b([A-Z])/g).join('.') + "."} of ${i[0]}</span></a></td>
 					<td>${i[2]}</td></tr>` : `<tr><td width="80"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
 				document.getElementById(`${isNaN(arr[0][0]) ? "nation" : "event"}tabledata`).innerHTML = out;
