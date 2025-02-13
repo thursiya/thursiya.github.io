@@ -25,24 +25,24 @@ function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, go
 	
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
+		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" && " font-size: 11px; "}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
 		return `${stOut}</table></td></tr>`;
 	}
 	
-	let out = `<table style="width: 300px;"><tr><th>${ntype} of ${nation}</th></tr>
- 		<tr><td><img src="../images/${nation} Flag (Wool).png" width="150"><br><i>${motto || "---"}</i></td></tr>
-   		<tr><td style="padding: 0;"><img src="../../maps/regional/${nation}.jpg" width="298"></td></tr>
-		${subTable(["Capital", capital], ["Largest City", `${bigcity} (${pp(bigcity)})`])}
-		${subTable(["Demonym", demonym])}
-  		${subTable(["Government", government])}`;
+	let out = `<table style="width: 300px;"><tr><th>${state.type} of ${state.name}</th></tr>
+ 		<tr><td><img src="../images/${state.name} Flag (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
+   		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
+		${subTable(["Capital", state.capital], ["Largest City", `${state.bigcity} (${pp(state.bigcity)})`])}
+		${subTable(["Demonym", state.demonym])}
+  		${subTable(["Government", state.gov])}`;
 	const arr = [];
-	if (language) arr.push(["Language", language]);
-	if (money) arr.push(["Currency", money]);
-	if (faith) arr.push(["Religion", faith]);
+	if (state.lang) arr.push(["Language", state.lang]);
+	if (state.money) arr.push(["Currency", state.money]);
+	if (state.faith) arr.push(["Religion", state.faith]);
 	if (arr[0]) out += subTable(arr);
-	if (animal) out += subTable(["Animal", animal]);
-	out += `${subTable(["Tallest Building", tallbuilding], ["Tallest Structure", tallstructure])}
- 		<tr><td><img src="../images/${nation} Banner.png" width="64"></td></tr></table>`;
+	if (animal) out += subTable(["Animal", state.animal]);
+	out += `${subTable(["Tallest Building", state.tallest.building], ["Tallest Structure", state.tallest.structure])}
+ 		<tr><td><img src="../images/${state.name} Banner.png" width="64"></td></tr></table>`;
 	
 	document.getElementById("infowindow").innerHTML = out;
 }
