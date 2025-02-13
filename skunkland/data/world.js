@@ -52,7 +52,7 @@ function drawInfoWindow(state) {
 
 function regions(nation) {
 	nation.division = nation.division || "Region";
-	let out = `<div class="contentheader round">Regions of ${nation.name}</div><div>
+	let out = `<br><div class="contentheader round">Regions of ${nation.name}</div><div>
  		<table><tr><th>Flag</th><th>${nation.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
 	nation.regions.forEach(r => out += `<tr><td><img src="../images/flags/${nation.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${nation.division}"></td>
  		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
