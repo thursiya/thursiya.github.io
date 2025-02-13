@@ -1,7 +1,6 @@
 const city = [];
 const homepage = "https://thursiya.github.io/skunkland/";
 const state = {};
-//let nation = "";
 
 loadDoc(homepage + "data/census.txt", buildCityArray);
 
@@ -18,12 +17,11 @@ function buildNationObject(xhr, nation) {
 	console.log([xhr.response.split('\n').filter(v => v).map(v => v.split(',')).find(v => v[0] == nation)].
 		map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
 			demonym: v[6] || v[0], gov: v[7] || v[1] || "None", tallest: { building: v[12], structure: v[13] } })).
-		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] }))));
+		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] })));
 	console.log(state);
 }
 
-function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {
-	//nation = setnation;
+function drawInfoWindow(nation) {//, ntype, motto, capital, bigcity, demonym, government, language, money, faith, animal, tallbuilding, tallstructure) {.
 	loadDoc(homepage + "data/nations.txt", buildNationObject, nation);
 	
 	function subTable(...arr) {
