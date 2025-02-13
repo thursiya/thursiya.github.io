@@ -1,10 +1,13 @@
 const city = [];
 const homepage = "https://thursiya.github.io/skunkland/data/";
 
-function worldData(nation) {
+function worldData(state) {
 	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
-		fetch(homepage + "nations.txt").then(v2 => v2.text()).then(v2 => drawInfoWindow(buildNationObject(v2, nation)));
+		fetch(homepage + "nations.txt").then(v2 => v2.text()).then(v2 => {
+			drawInfoWindow(buildStateObject(v2, state));
+			if (state.divisions) regions(state);
+		});
 	});
 }
 
@@ -15,11 +18,11 @@ function buildCityArray(data) {
 		map(v => Object.assign(v, { output: { state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date) } })));
 }
 
-function buildNationObject(data, nation) {
+function buildStateObject(data, state) {
 	return data.split('\n').filter(v => v).map(v => v.split(',')).
 		map(v => Object.assign({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", 
 			demonym: v[5] || v[0], gov: v[6] || v[1] || "None", tallbuilding: v[11], tallstructure: v[12]}, 
-			v[7] && { lang: v[7] }, v[8] && { money: v[8] }, v[9] && { faith: v[9] }, v[10] && { animal: v[10] })).find(v => v.name == nation);
+			v[7] && { lang: v[7] }, v[8] && { money: v[8] }, v[9] && { faith: v[9] }, v[10] && { animal: v[10] })).find(v => v.name == state.name);
 }
 
 function drawInfoWindow(state) {
@@ -50,12 +53,11 @@ function drawInfoWindow(state) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-function regions(...nation) {
-	let out = `<div class="contentheader round">Regions of ${nation[0].name}</div><div>`;
-	for (const n of nation) {
-		n.division = n.division || "Region";
-		out += `<table><tr><th>Flag</th><th>${n.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
-		n.regions.forEach(r => out += `<tr><td><img src="../images/flags/${n.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${n.division}"></td>
+function regions(state) {
+	let out = `<div class="contentheader round">Regions of ${state.name}</div><div>`;
+	for (const d of state.divisions) {
+		out += `<table><tr><th>Flag</th><th>${d.type || "Region"}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
+		d.regions.forEach(r => out += `<tr><td><img src="../images/flags/${state.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${d.type || "Region"}"></td>
  			<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
     			<td>${r.city || "-"}</td>
 			<td>${r.builds || "-"}</td></tr>`);
