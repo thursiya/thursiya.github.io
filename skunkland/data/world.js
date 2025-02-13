@@ -46,7 +46,8 @@ function drawInfoWindow(state) {
 	if (state.animal) out += subTable(["Animal", state.animal]);
 	out += `${subTable(["Tallest Building", state.tallbuilding], ["Tallest Structure", state.tallstructure])}
  		<tr><td><img src="../images/${state.name} Banner.png" width="64"></td></tr></table>`;
-	
+
+	document.getElementById("statetitle").innerHTML = `The ${state.type} of ${state.name}`;
 	document.getElementById("infowindow").innerHTML = out;
 }
 
