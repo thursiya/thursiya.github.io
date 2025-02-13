@@ -52,19 +52,12 @@ function drawInfoWindow(state) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-function regions(nation, rtype, regions, bigsettles, builds, nflag) {
-	let out = `<table><tr><th>Flag</th><th>${rtype}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
-	for (let i = 0; i < regions.length; i++) {
-		let rname = regions[i];
-		if (nflag) rname = `${nation} ${regions[i]}`;
-		out += `<tr><td><img src="../images/${rname} Flag.png" height="50" alt="Flag of ${rname} ${rtype}"></td>`;
-		out += `<td><a href="${regions[i]}.htm"><b>${regions[i]}</b></a></td>`;
-		out += `<td>${(bigsettles[i] || "-")}</td><td>`;
-		for (let j = 0; j < builds[i].length; j++) {
-			out += `${builds[i][j]}<br>`;
-		}
-		out += "</td></tr>";
-	}
-	out += "</table><br>";
-	document.getElementById("regioninfo").innerHTML = out;
+function regions(nation) {
+	nation.division = nation.division || "Region";
+	let out = `<table><tr><th>Flag</th><th>${nation.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
+	nation.regions.forEach(r => out += `<tr><td><img src="../images/${r.name} Flag.png" height="50" alt="Flag of ${r.name} ${nation.division}</td>
+ 		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
+   		<td>${r.city}</td>
+     		<td>${r.builds}</td></tr>`);
+	document.getElementById("regioninfo").innerHTML = out + "</table>";
 }
