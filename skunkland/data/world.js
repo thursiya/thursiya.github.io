@@ -31,7 +31,7 @@ function drawInfoWindow(state) {
 		return `${stOut}</table></td></tr>`;
 	}
 
-	const bigcity = city.toSorted((a, b) => b.pop - a.pop).toSorted((a, b) => a.state.localeCompare(b.state))[0];
+	const bigcity = city.toSorted((a, b) => b.pop - a.pop).toSorted((a, b) => a.state.localeCompare(b.state)).filter(v => v.state == state.name)[0];
 	let out = `<table style="width: 300px;"><tr><th>${state.type} of ${state.name}</th></tr>
  		<tr><td><img src="../images/${state.name} Flag (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
