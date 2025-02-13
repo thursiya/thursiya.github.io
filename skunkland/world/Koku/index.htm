@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Koku</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="stateflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div class="gallery">
+					<div id="maininfo" style="flex: 1;">
+						<div id="statetitle" class="contentheader round"></div>
+						<p>
+							Koku was founded some time around <script>sy(2012,6)</script>. It is located east of Spawn, beyond the Wither Plains, and south of Gavel.
+						</p>
+					</div>
+					<div id="infowindow" class="right" style="max-width: 300px;"></div>
+				</div>
+			</div>
+		</main>
+		<script>
+			worldData("Koku");
+		</script>
+	</body>
+</html>
