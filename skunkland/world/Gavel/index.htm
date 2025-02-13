@@ -28,20 +28,20 @@
 			</div>
 		</main>
 		<script>
-			worldData("Gavel");
-			regions({ name: "Gavel", division: "Province", regions: [
-				{ name: "Anima", builds: "Nexus" },
-				{ name: "Enlil", builds: "Persson Airport, Expo 400, Pyramid" },
-				{ name: "Ghibli", city: "Lunar Hill", builds: "Funland, Ghibli Port, Observatory" },
-				{ name: "Tercomciel", builds: "Celestia Corolla" },
-				{ name: "Vayu" },
-				{ name: "Zephyr", city: "Zefram", builds: "Zephyr Federal Prison" }] });
-			regions({ name: "Gavel", division: "State", regions: [
-				{ name: "Masovia", city: "Mellon Bay", builds: "Baths Palace, Doggy Magical HQ, Operis Warehouse" },
-				{ name: "Pristina", city: "New Kingsburg", builds: "GPC Solar Plant, Great Gate of Gavel" },
-				{ name: "Syldavia", builds: "Ottokar Fortress" }] });
-			regions({ name: "Gavel", division: "Special Administrative Region", regions: [
-				{ name: "Ehecatl" }] });
+			worldData({ name: "Gavel", divisions: [
+				{ type: "Province", regions: [
+					{ name: "Anima", builds: "Nexus" },
+					{ name: "Enlil", builds: "Persson Airport, Expo 400, Pyramid" },
+					{ name: "Ghibli", city: "Lunar Hill", builds: "Funland, Ghibli Port, Observatory" },
+					{ name: "Tercomciel", builds: "Celestia Corolla" },
+					{ name: "Vayu" },
+					{ name: "Zephyr", city: "Zefram", builds: "Zephyr Federal Prison" }] },
+				{ type: "State", regions: [
+					{ name: "Masovia", city: "Mellon Bay", builds: "Baths Palace, Doggy Magical HQ, Operis Warehouse" },
+					{ name: "Pristina", city: "New Kingsburg", builds: "GPC Solar Plant, Great Gate of Gavel" },
+					{ name: "Syldavia", builds: "Ottokar Fortress" }] },
+				{ type: "Special Administrative Region", regions: [
+					{ name: "Ehecatl" }] });
 		</script>
 	</body>
 </html>
