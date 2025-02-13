@@ -52,7 +52,10 @@
 		</main>
 		<script>
 			worldData("Crevatia");
-			regions("Crevatia","Region",["Capital","Provinces","Frontier","Northwest Territory"],["Crevasse","Anderson's Crossing","Gickerville","Pontia"],[["Baetica","Bentley Bay","CPC Power Plant","Eweton","Palace Pyramid","Volcano","William's Harbour"],["Fort Resolution","Dirt Village","Noricum","Stellarton","The Trident"],["Fort Sungard"],["Campania","Narbo"]],1);
+			regions({ name: "Crevatia", regions: [{ name: "Crevatia Capital", city: "Crevasse", builds: "Baetica,Bentley Bay,CPC Power Plant,Eweton,Palace Pyramid,Volcano,William's Harbour" },
+				{ name: "Provinces", city: "Anderson's Crossing", builds: "Fort Resolution,Dirt Village,Noricum,Stellarton,The Trident" },
+				{ name: "Frontier", city: "Gickerville", builds: "Fort Sungard" },
+				{ name: "Northwest Territory", city: "Pontia", builds: "Campania,Narbo" }] });
 		</script>
 	</body>
 </html>
