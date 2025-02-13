@@ -56,7 +56,7 @@ function drawInfoWindow(state) {
 function regions(state) {
 	let out = `<div class="contentheader round">Regions of ${state.name}</div><div>`;
 	for (const d of state.divisions) {
-		out += `<table><tr><th>Flag</th><th>${d.type || "Region"}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
+		out += `<table style="margin-bottom: 20px;"><tr><th>Flag</th><th>${d.type || "Region"}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
 		d.regions.forEach(r => out += `<tr><td><img src="../images/flags/${state.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${d.type || "Region"}"></td>
  			<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
     			<td>${r.city || "-"}</td>
