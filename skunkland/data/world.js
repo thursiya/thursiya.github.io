@@ -12,18 +12,14 @@ function buildCityArray(xhr) {
 	console.log(city);
 }
 
-function buildNationObject(xhr, nation) {
-	Object.assign(state, xhr.response.split('\n').filter(v => v).map(v => v.split(',')).
+function buildNationObject(data, nation) {
+	drawInfoWindow(data.split('\n').filter(v => v).map(v => v.split(',')).
 		map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
 			demonym: v[6] || v[0], gov: v[7] || v[1] || "None", tallbuilding: v[12], tallstructure: v[13] })).
 		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] })).find(v => v.name == nation));
-	console.log(state);
 }
 
-function drawInfoWindow(nation) {
-	//loadDoc(homepage + "data/nations.txt", buildNationObject, nation);
-	fetch(homepage + "data/nations.txt").then(v => v.text()).then(v => buildNationObject(v, nation));
-	
+function drawInfoWindow(state) {
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
 		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" && " font-size: 11px; "}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
@@ -48,12 +44,12 @@ function drawInfoWindow(nation) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-function loadDoc(url, cFunction, ...params) {
+/*function loadDoc(url, cFunction, ...params) {
 	const xhttp = new XMLHttpRequest();
 	xhttp.onload = function() {cFunction(this, ...params);}
 	xhttp.open("GET", url);
 	xhttp.send();
-}
+}*/
 
 function pp(city) {
 	return "Uninhabited";
