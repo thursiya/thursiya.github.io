@@ -2,23 +2,25 @@ const city = [];
 const homepage = "https://thursiya.github.io/skunkland/data/";
 
 function worldData(nation) {
-	fetch(homepage + "census.txt").then(v => v.text()).then(v => buildCityArray(v, nation));
+	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
+		buildCityArray(v);
+		fetch(homepage + "nations.txt").then.(v2 => v2.text()).then(v2 => drawInfoWindow(buildNationObject(v2, nation)));
+	});
 }
 
-function buildCityArray(data, nation) {
+function buildCityArray(data) {
 	city.push(...data.split('\n').filter(v => v).
 		map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 		map(v => ({ name: v[0], state: v[1], pop: Math.ceil(((Number(v[2]) / 2 + Number(v[3])) * (Number(v[5]) || 1) + Number(v[4]) / 2) * 10) * 100, date: new Date(v[6], Number(v[7]) - 1, v[8]) })).
 		map(v => Object.assign(v, { output: { state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date) } })));
 	console.log(city);
-	fetch(homepage + "nations.txt").then(v => v.text()).then(v => buildNationObject(v, nation));
 }
 
 function buildNationObject(data, nation) {
-	drawInfoWindow(data.split('\n').filter(v => v).map(v => v.split(',')).
+	return data.split('\n').filter(v => v).map(v => v.split(',')).
 		map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
 			demonym: v[6] || v[0], gov: v[7] || v[1] || "None", tallbuilding: v[12], tallstructure: v[13] })).
-		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] })).find(v => v.name == nation));
+		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] })).find(v => v.name == nation);
 }
 
 function drawInfoWindow(state) {
@@ -46,13 +48,6 @@ function drawInfoWindow(state) {
 	
 	document.getElementById("infowindow").innerHTML = out;
 }
-
-/*function loadDoc(url, cFunction, ...params) {
-	const xhttp = new XMLHttpRequest();
-	xhttp.onload = function() {cFunction(this, ...params);}
-	xhttp.open("GET", url);
-	xhttp.send();
-}*/
 
 function pp(city) {
 	return "Uninhabited";
