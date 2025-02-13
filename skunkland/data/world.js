@@ -50,22 +50,6 @@ function drawInfoWindow(state) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-/*
-function pp(city) {
-	return "Uninhabited";
-	if (typeof jobs == 'string') {
-		for(var i = 0; i < city.length; i++) {
-			if (city[i].indexOf(jobs) > -1) return (document.write(city[i][2]));
-		}
-		document.write("Uninhabited");
-	}
-	var homes = beds * 2;
-	var tourists = tourbeds / 2;
-	var maxpop = (homes + jobs) / 2;
-	var p = Math.ceil((maxpop * bonus + tourists) * 10) * 100;
-	return p;
-}*/
-
 function regions(nation, rtype, regions, bigsettles, builds, nflag) {
 	var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
 		for (var i = 0; i < regions.length; i++) {
