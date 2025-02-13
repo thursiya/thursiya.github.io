@@ -42,7 +42,7 @@ function drawInfoWindow(state) {
 	if (state.lang) arr.push(["Language", state.lang]);
 	if (state.money) arr.push(["Currency", state.money]);
 	if (state.faith) arr.push(["Religion", state.faith]);
-	if (arr[0]) out += subTable(arr);
+	if (arr[0]) out += subTable(...arr);
 	if (state.animal) out += subTable(["Animal", state.animal]);
 	out += `${subTable(["Tallest Building", state.tallbuilding], ["Tallest Structure", state.tallstructure])}
  		<tr><td><img src="../images/${state.name} Banner.png" width="64"></td></tr></table>`;
