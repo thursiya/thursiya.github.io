@@ -21,7 +21,8 @@ function buildNationObject(xhr, nation) {
 }
 
 function drawInfoWindow(nation) {
-	loadDoc(homepage + "data/nations.txt", buildNationObject, nation);
+	//loadDoc(homepage + "data/nations.txt", buildNationObject, nation);
+	fetch(homepage + "data/nations.txt").then(v => v.text()).then(v => buildNationObject(v, nation));
 	
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
