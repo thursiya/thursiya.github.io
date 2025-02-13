@@ -53,18 +53,18 @@ function drawInfoWindow(state) {
 }
 
 function regions(nation, rtype, regions, bigsettles, builds, nflag) {
-	var out = "<table><tr><th>Flag</th><th>" + rtype + "</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>";
-		for (var i = 0; i < regions.length; i++) {
-			var rname = regions[i];
-			if (nflag) rname = nation + " " + regions[i];
-			out += "<tr><td><img src='images/" + rname + " Flag.png' height='50' alt='Flag of " + rname + " " + rtype + "'></td>";
-			out += "<td><a href='" + nation + "/" + regions[i] + ".php'><b>" + regions[i] + "</b></a></td>";
-			out += "<td>" + (bigsettles[i] || "-") + "</td><td>";
-			for (var j = 0; j < builds[i].length; j++) {
-				out += builds[i][j] + "<br>"
-			}
-			out += "</td></tr>";
+	let out = `<table><tr><th>Flag</th><th>${rtype}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
+	for (let i = 0; i < regions.length; i++) {
+		let rname = regions[i];
+		if (nflag) rname = `${nation} ${regions[i]}`;
+		out += `<tr><td><img src="images/${rname} Flag.png" height="50" alt="Flag of ${rname} ${rtype}"></td>`;
+		out += `<td><a href="${regions[i]}.htm"><b>${regions[i]}</b></a></td>`;
+		out += `<td>${(bigsettles[i] || "-")}</td><td>`;
+		for (let j = 0; j < builds[i].length; j++) {
+			out += `${builds[i][j]}<br>`;
 		}
-		out += "</table><br>";
-		document.write(out);
+		out += "</td></tr>";
+	}
+	out += "</table><br>";
+	document.getElementById("regioninfo").innerHTML = out;
 }
