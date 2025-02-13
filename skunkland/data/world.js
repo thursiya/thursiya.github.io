@@ -18,9 +18,9 @@ function buildCityArray(data) {
 
 function buildNationObject(data, nation) {
 	return data.split('\n').filter(v => v).map(v => v.split(',')).
-		map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", bigcity: v[5] || v[4] || "None", 
-			demonym: v[6] || v[0], gov: v[7] || v[1] || "None", tallbuilding: v[12], tallstructure: v[13] })).
-		map(v => Object.assign(v, v[8] && { lang: v[8] }, v[9] && { money: v[9] }, v[10] && { faith: v[10] }, v[11] && { animal: v[11] })).find(v => v.name == nation);
+		map(v => ({ name: v[0], type: v[1] || "State", player: v[2] || "None", motto: v[3] || "---", capital: v[4] || "None", 
+			demonym: v[5] || v[0], gov: v[6] || v[1] || "None", tallbuilding: v[11], tallstructure: v[12] })).
+		map(v => Object.assign(v, v[7] && { lang: v[7] }, v[8] && { money: v[8] }, v[9] && { faith: v[9] }, v[10] && { animal: v[10] })).find(v => v.name == nation);
 }
 
 function drawInfoWindow(state) {
@@ -30,11 +30,12 @@ function drawInfoWindow(state) {
 		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
 		return `${stOut}</table></td></tr>`;
 	}
-	
+
+	const bigcity = city.toSorted((a, b) => b.pop - a.pop).toSorted((a, b) => a.state.localeCompare(b.state))[0];
 	let out = `<table style="width: 300px;"><tr><th>${state.type} of ${state.name}</th></tr>
  		<tr><td><img src="../images/${state.name} Flag (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
-		${subTable(["Capital", state.capital], ["Largest City", `${state.bigcity} (${city.find(v => v.name == state.bigcity)?.output.pop || "Uninhabited"})`])}
+		${subTable(["Capital", state.capital], ["Largest City", `${bigcity.name || "None"} (${bigcity.output.pop || "Uninhabited"})`])}
 		${subTable(["Demonym", state.demonym])}
   		${subTable(["Government", state.gov])}`;
 	const arr = [];
