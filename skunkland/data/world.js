@@ -1,15 +1,17 @@
 const city = [];
-const homepage = "https://thursiya.github.io/skunkland/";
-const state = {};
+const homepage = "https://thursiya.github.io/skunkland/data/";
 
-loadDoc(homepage + "data/census.txt", buildCityArray);
+function worldData(nation) {
+	fetch(homepage + "census.txt").then(v => v.text()).then(v => buildCityArray(v, nation));
+}
 
-function buildCityArray(xhr) {
-	city.push(...xhr.response.split('\n').filter(v => v).
+function buildCityArray(data, nation) {
+	city.push(...data.split('\n').filter(v => v).
 		map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 		map(v => ({ name: v[0], state: v[1], pop: Math.ceil(((Number(v[2]) / 2 + Number(v[3])) * (Number(v[5]) || 1) + Number(v[4]) / 2) * 10) * 100, date: new Date(v[6], Number(v[7]) - 1, v[8]) })).
 		map(v => Object.assign(v, { output: { state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date) } })));
 	console.log(city);
+	fetch(homepage + "nations.txt").then(v => v.text()).then(v => buildNationObject(v, nation));
 }
 
 function buildNationObject(data, nation) {
@@ -20,6 +22,7 @@ function buildNationObject(data, nation) {
 }
 
 function drawInfoWindow(state) {
+	console.log(state);
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
 		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" && " font-size: 11px; "}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
