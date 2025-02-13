@@ -13,7 +13,6 @@ function buildCityArray(data) {
 		map(v => v.replace(/\s*,\s*/g, ',').trim().split(',')).
 		map(v => ({ name: v[0], state: v[1], pop: Math.ceil(((Number(v[2]) / 2 + Number(v[3])) * (Number(v[5]) || 1) + Number(v[4]) / 2) * 10) * 100, date: new Date(v[6], Number(v[7]) - 1, v[8]) })).
 		map(v => Object.assign(v, { output: { state: v.state ? `<a href="${v.state}">${v.state}</a>` : "<i>Skunkland</i>", pop: v.pop.toLocaleString("en", {useGrouping: true}), date: syear(v.date) } })));
-	console.log(city);
 }
 
 function buildNationObject(data, nation) {
@@ -24,7 +23,6 @@ function buildNationObject(data, nation) {
 }
 
 function drawInfoWindow(state) {
-	console.log(state);
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
 		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
@@ -33,7 +31,7 @@ function drawInfoWindow(state) {
 
 	const bigcity = city.toSorted((a, b) => b.pop - a.pop).toSorted((a, b) => a.state.localeCompare(b.state)).filter(v => v.state == state.name)[0] || { name: "None", output: { pop: "Uninhabited" } };
 	let out = `<table style="width: 300px;"><tr><th>${state.type} of ${state.name}</th></tr>
- 		<tr><td><img src="../images/${state.name} Flag (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
+ 		<tr><td><img src="../images/flags/${state.name} (Wool).png" width="150"><br><i>${state.motto || "---"}</i></td></tr>
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
 		${subTable(["Capital", state.capital], ["Largest City", `${bigcity.name} (${bigcity.output.pop})`])}
 		${subTable(["Demonym", state.demonym])}
@@ -45,9 +43,9 @@ function drawInfoWindow(state) {
 	if (arr[0]) out += subTable(...arr);
 	if (state.animal) out += subTable(["Animal", state.animal]);
 	out += `${subTable(["Tallest Building", state.tallbuilding], ["Tallest Structure", state.tallstructure])}
- 		<tr><td><img src="../images/${state.name} Banner.png" width="64"></td></tr></table>`;
+ 		<tr><td><img src="../images/banners/${state.name}.png" width="64"></td></tr></table>`;
 
-	document.getElementById("stateflag").src = `../images/${state.name} Flag.png`;
+	document.getElementById("stateflag").src = `../images/flags/${state.name}.png`;
 	document.getElementById("statetitle").innerHTML = `The ${state.type} of ${state.name}`;
 	document.getElementById("infowindow").innerHTML = out;
 }
@@ -55,7 +53,7 @@ function drawInfoWindow(state) {
 function regions(nation) {
 	nation.division = nation.division || "Region";
 	let out = `<table><tr><th>Flag</th><th>${nation.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
-	nation.regions.forEach(r => out += `<tr><td><img src="../images/${nation.name} ${r.name} Flag.png" height="50" alt="Flag of ${r.name} ${nation.division}"></td>
+	nation.regions.forEach(r => out += `<tr><td><img src="../images/flags/${nation.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${nation.division}"></td>
  		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
    		<td>${r.city || "-"}</td>
      		<td>${r.builds}</td></tr>`);
