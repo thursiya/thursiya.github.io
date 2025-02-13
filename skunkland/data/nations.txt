@@ -3,7 +3,7 @@ Amahn,Hanse,Jehkoba,,Dragon Ridge,Amahnite,Hanseatic League,,Gold Drake (D),Mult
 Badrum,Imperium,Quackey958,,Imperial City,Imperial Citizen,Constitutional Representative Imperial Monarchy,Demotic,Tremissis,Pagan (Djehuty Worship),Paralititan,Meeting Hall (25m),Imperial Harbour Lighthouse (17m)
 Boatmurdered,Miasma,Jaanke,,None,Hapless Souls,Lawless Frontier State,,Barter Economy,Widespread petitions to various higher powers,,Lut Gholein Workshop (8m),Boatmurdered Skull Entrance (18m)
 Braille,Protectorate,SpaceNerds,,Braille City,Braillish,Big Man City-state,,Barter Economy,,,Wezzie Towers (28m),Braille Fountain (12m)
-Crevatia,D.P.R.,yrsyrs,Senatus populusque crevatiae,Crevasse City,Crevatian,Federal Militarist Totalitarian Democracy,,Denarius (&#x110;),Crevatian Catholic Rite,Eagle,Eweton Cathedral (31m),Hometree (Crevasse 44m)
+Crevatia,Democratic People's Republic,yrsyrs,Senatus populusque crevatiae,Crevasse City,Crevatian,Federal Militarist Totalitarian Democracy,,Denarius (&#x110;),Crevatian Catholic Rite,Eagle,Eweton Cathedral (31m),Hometree (Crevasse 44m)
 Delve,Adhocracy,SpaceSkunks,De terra consurgimus,Delve City,Delvian,Unitary Socialist Pantribal Sodality,,None (Gift Economy),Traditional Norse,Badger,Speurach Torr (Ennist 109m),Arcane Factory (Ennist 34m)
 Faclair,Freenation,Shylilie,,Auverland,Faelish,Unitary Collaborative Socialist Republic,Faelish,Tseles Veridian (&#10183;),Traditional Pantheism,Alpine Marmot,Tseles Bank HQ (West Patria 60m),Kindegard Lighthouse (Auverland 65m)
 Gavel,Republic,thursiya,Opes sine occasu,Nexus,Gaveli,Federal Plutocratic Corporatocracy,,Gaveli Dollar ($),Church of Gavel; Ancestor Worship; Judaism,Bull,Operis Tower (New Kingsburg 65m),Celestia Corolla (122m)
