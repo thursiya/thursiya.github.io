@@ -27,7 +27,7 @@ function drawInfoWindow(state) {
 	console.log(state);
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" && " font-size: 11px; "}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
+		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
 		return `${stOut}</table></td></tr>`;
 	}
 	
