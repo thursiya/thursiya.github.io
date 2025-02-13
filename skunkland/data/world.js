@@ -58,5 +58,7 @@ function regions(nation) {
  		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
    		<td>${r.city || "-"}</td>
      		<td>${r.builds || "-"}</td></tr>`);
-	document.getElementById("regioninfo").innerHTML = out + "</table></div>";
+	out += "</table></div>";
+	
+	document.getElementById("maininfo").innerHTML += out;
 }
