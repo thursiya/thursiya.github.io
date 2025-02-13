@@ -47,16 +47,18 @@
 			</div>
 		</main>
 		<script>
-			loadDoc("../data/nations.txt", drawTable);
-			loadDoc("../data/events.txt", drawTable);
+			//loadDoc("../data/nations.txt", drawTable);
+			fetch("../data/nations.txt").then(v => v.text()).then(drawTable);
+			fetch("../data/events.txt").then(v => v.text()).then(drawTable);
+			//loadDoc("../data/events.txt", drawTable);
 
-			function drawTable(xhr) {
-				const arr = xhr.response.replace("\r", "").split('\n').filter(v => v).map(v => v.split(','));
+			function drawTable(data) {
+				const arr = data.split('\n').filter(v => v).map(v => v.split(','));
 				let out = "";
 				for (let i of arr) {
 					out += isNaN(arr[0][0]) ? `<tr><td><img src="images/flags/${i[0]}.png" height="50" alt="Flag of ${i[0]}"></td>
-					<td><a href="${i[0]}"><span class="title">${i[1].length < 16 ? i[1] : i[1].match(/\b([A-Z])/g).join('.') + "."} of ${i[0]}</span></a></td>
-					<td>${i[2]}</td></tr>` : `<tr><td width="80"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
+					<td><a href="${i[0]}"><span class="title">${i[1].length < 20 ? i[1] : i[1].match(/\b([A-Z])/g).join('.') + "."} of ${i[0]}</span></a></td>
+					<td>${i[2]}</td></tr>` : `<tr><td style="width: 80px;"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
 				document.getElementById(`${isNaN(arr[0][0]) ? "nation" : "event"}tabledata`).innerHTML = out;
 			}
