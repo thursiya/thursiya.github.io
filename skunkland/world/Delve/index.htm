@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Delve</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="stateflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div id="statetitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div style="flex: 1;">
+						<p>
+							The modern state of Delve was founded in <script>sy(2011,11)</script> but traces its history back to <span title="September 2011">12 BS</span>. Delve 
+							is made up of three provinces, once small struggling nations unified by Delve Co. for mutual benefit. Society is highly regionally stratified with the 
+							bulk of Delve's planners coming from Alaris, researchers from Ennist, and its work force from Delve Capital Region. Delve is a member of the Tseles 
+							Protectorate (founded in <script>sy(2014,4,20,12)</script>), along with Braille and Faclair.
+						</p>
+						<p>
+							Prior to <script>sy(2014,3,8)</script>, the three provinces of Delve were their own separate territories, each with a ruling family in a monarchy model. 
+							In <script>sy(2014,3,8)</script>, Delve Co. as an independent entity was amalgamated with the government of Delve, such as it was at the time. This 
+							resulted in the abolition of the ancient monarchies and an adoption of the socialist government model of today. There are many reminders of the old ways 
+							throughout the cities and structures of Delve.
+						</p>
+						<div class="contentheader round">Regions of Crevatia</div>
+						<div id="regioninfo"></div>
+					</div>
+					<div id="infowindow" class="right" style="max-width: 300px;"></div>
+				</div>
+			</div>
+		</main>
+		<script>
+			worldData("Delve");
+			regions("Delve","Province",["Delve Capital","Ennist","Alaris"],["Delve","Ulve",""],[["Castle Gorllewin","Bright Farm"],["Speurach Torr","Ulvenstand","Arcane Factory"],["Guardian Farm","Golden Poppy"]]);
+		</script>
+	</body>
+</html>
