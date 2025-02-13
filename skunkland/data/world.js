@@ -50,15 +50,17 @@ function drawInfoWindow(state) {
 	document.getElementById("infowindow").innerHTML = out;
 }
 
-function regions(nation) {
-	nation.division = nation.division || "Region";
-	let out = `<div class="contentheader round">Regions of ${nation.name}</div><div>
- 		<table><tr><th>Flag</th><th>${nation.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
-	nation.regions.forEach(r => out += `<tr><td><img src="../images/flags/${nation.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${nation.division}"></td>
- 		<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
-   		<td>${r.city || "-"}</td>
-     		<td>${r.builds || "-"}</td></tr>`);
-	out += "</table></div>";
+function regions(...nation) {
+	let out = `<div class="contentheader round">Regions of ${nation[0].name}</div><div>`;
+	for (const n of nation) {
+		n.division = n.division || "Region";
+		out += `<table><tr><th>Flag</th><th>${n.division}</th><th>Largest<br>Settlement</th><th>Notable Builds</th></tr>`;
+		n.regions.forEach(r => out += `<tr><td><img src="../images/flags/${n.name}/${r.name}.png" height="50" alt="Flag of ${r.name} ${n.division}"></td>
+ 			<td><a href="${r.name}.htm"><b>${r.name}</b></a></td>
+    			<td>${r.city || "-"}</td>
+			<td>${r.builds || "-"}</td></tr>`);
+		out += "</table></div>";
+	}
 	
 	document.getElementById("maininfo").innerHTML += out;
 }
