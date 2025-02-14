@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Crevatia Provinces Region</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="regionflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p>
+					The Crevatia Provinces Region stretches from the heartland Capital Region in the south to the Evermoor River in the north that divides it from the Crevatia Frontier 
+					Region. The region is home to a variety of small towns that rely on the cities of the Capital Region for their cultural, political, and educational institutions. 
+					The Crevatia Provinces Region borders Gavel on the east.
+				</p>
+				<script>pic("Fort Resolution")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Crevatia", "Crevatia Provinces", "Region", [
+				{ name: "Anderson's Crossing" },
+				{ name: "Stellarton" },
+				{ name: "Fort Resolution" },
+				{ name: "Noricum" },
+				{ name: "Midgewater" }]);
+		</script>
+	</body>
+</html>
