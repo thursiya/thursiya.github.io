@@ -78,5 +78,5 @@ function settlements(state, region, type = "Region", settleArr = [{ name: "None"
 		document.getElementById("regiontitle").innerHTML = `${region} ${type}`;
 		document.getElementById("regionmap").innerHTML = `<a href="../../maps/regional/${state}/${region}.png" target="_blank"><img src="../../maps/regional/${state}/${region}.png" alt="${state} ${region} Region Map" height="300"  style="display:block; margin: 20px auto"></a>`;
 		document.getElementById("infowindow").innerHTML = out;
-	}
+	});
 }
