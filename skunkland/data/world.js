@@ -66,3 +66,7 @@ function regions(state) {
 	
 	document.getElementById("maininfo").innerHTML += out;
 }
+
+function settlements(state) {
+
+}
