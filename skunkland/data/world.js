@@ -67,6 +67,15 @@ function regions(state) {
 	document.getElementById("maininfo").innerHTML += out;
 }
 
-function settlements(state) {
-
+function settlements(state, region, settleArr || [{ name: "None", founded: "-" }]) {
+	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
+		buildCityArray(v);
+		let out = "<table><tr><th>Settlements</th><th>Population</th><th>Founded</th></tr>";
+		for (const s of settleArr) out += `<tr><td>${s.name}</td><td>${city.find(v => v.name == s.name)?.output.pop || "-"}</td><td>${s.founded || "Unknown"}</td></tr>`;
+		out += "</table>";
+		
+		document.getElementById("regionflag").src = `../images/flags/${state}/${region}.png`;
+		document.getElementById("regionmap").innerHTML = `<a href="../../maps/regional/${state}/${region}.png" target="_blank"><img src="../../maps/regional/${state}/${region}.png" alt="${state} ${region} Region Map" height="300"  style="display:block; margin: 20px auto"></a>`;
+		document.getElementById("infowindow").innerHTML = out;
+	}
 }
