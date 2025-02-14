@@ -67,7 +67,7 @@ function regions(state) {
 	document.getElementById("maininfo").innerHTML += out;
 }
 
-function settlements(state, region, type, settleArr || [{ name: "None", founded: "-" }]) {
+function settlements(state, region, type, settleArr = [{ name: "None", founded: "-" }]) {
 	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
 		let out = "<table><tr><th>Settlements</th><th>Population</th><th>Founded</th></tr>";
