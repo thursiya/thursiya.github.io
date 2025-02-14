@@ -82,5 +82,5 @@ function settlements(state, region, type = "Region", settleArr = [{ name: "None"
 }
 
 function pic(name) {
-	document.write(`<div class="pic"><a href="${homepage}gallery/images/${name}.jpg" target="_blank"><img src="${homepage}gallery/images/${name}.jpg" alt="${name}" height="300"></a></div>`);
+	document.write(`<div><a href="${homepage}gallery/images/${name}.jpg" target="_blank"><img src="${homepage}gallery/images/${name}.jpg" alt="${name}" height="300" style="display: block; margin: 20px auto"></a></div>`);
 }
