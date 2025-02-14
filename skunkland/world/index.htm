@@ -47,10 +47,8 @@
 			</div>
 		</main>
 		<script>
-			//loadDoc("../data/nations.txt", drawTable);
 			fetch("../data/nations.txt").then(v => v.text()).then(drawTable);
 			fetch("../data/events.txt").then(v => v.text()).then(drawTable);
-			//loadDoc("../data/events.txt", drawTable);
 
 			function drawTable(data) {
 				const arr = data.split('\n').filter(v => v).map(v => v.split(','));
