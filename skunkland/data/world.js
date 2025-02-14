@@ -1,10 +1,10 @@
 const city = [];
-const homepage = "https://thursiya.github.io/skunkland/data/";
+const homepage = "https://thursiya.github.io/skunkland/";
 
 function worldData(state) {
-	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
+	fetch(homepage + "data/census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
-		fetch(homepage + "nations.txt").then(v2 => v2.text()).then(v2 => {
+		fetch(homepage + "data/nations.txt").then(v2 => v2.text()).then(v2 => {
 			drawInfoWindow(buildStateObject(v2, state));
 			if (state.divisions) regions(state);
 		});
@@ -68,7 +68,7 @@ function regions(state) {
 }
 
 function settlements(state, region, type = "Region", settleArr = [{ name: "None", founded: "-" }]) {
-	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
+	fetch(homepage + "data/census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
 		let out = "<table><tr><th>Settlements</th><th>Population</th><th>Founded</th></tr>";
 		for (const s of settleArr) out += `<tr><td>${s.name}</td><td>${city.find(v => v.name == s.name)?.output.pop || "-"}</td><td>${s.founded || "Unknown"}</td></tr>`;
@@ -82,5 +82,5 @@ function settlements(state, region, type = "Region", settleArr = [{ name: "None"
 }
 
 function pic(name) {
-	document.write(`<div class="pic"><a href="../../gallery/images/${name}.jpg" target="_blank"><img src="../../gallery/images/${name}.jpg" alt="${name}" height="300"></a></div>`);
+	document.write(`<div class="pic"><a href="${homepage}gallery/images/${name}.jpg" target="_blank"><img src="${homepage}gallery/images/${name}.jpg" alt="${name}" height="300"></a></div>`);
 }
