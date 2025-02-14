@@ -67,7 +67,7 @@ function regions(state) {
 	document.getElementById("maininfo").innerHTML += out;
 }
 
-function settlements(state, region, type = "Region", settleArr || [{ name: "None", founded: "-" }]) {
+function settlements(state, region, type, settleArr || [{ name: "None", founded: "-" }]) {
 	fetch(homepage + "census.txt").then(v => v.text()).then(v => {
 		buildCityArray(v);
 		let out = "<table><tr><th>Settlements</th><th>Population</th><th>Founded</th></tr>";
@@ -75,7 +75,7 @@ function settlements(state, region, type = "Region", settleArr || [{ name: "None
 		out += "</table>";
 		
 		document.getElementById("regionflag").src = `../images/flags/${state}/${region}.png`;
-		document.getElementById("regiontitle").innerHTML = `${region} ${type} (${state})`;
+		document.getElementById("regiontitle").innerHTML = `${region} ${type}`;
 		document.getElementById("regionmap").innerHTML = `<a href="../../maps/regional/${state}/${region}.png" target="_blank"><img src="../../maps/regional/${state}/${region}.png" alt="${state} ${region} Region Map" height="300"  style="display:block; margin: 20px auto"></a>`;
 		document.getElementById("infowindow").innerHTML = out;
 	}
