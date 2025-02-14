@@ -80,3 +80,7 @@ function settlements(state, region, type = "Region", settleArr = [{ name: "None"
 		document.getElementById("infowindow").innerHTML = out;
 	});
 }
+
+function pic(name) {
+	document.write(`<div class="pic"><a href="../../gallery/images/${name}.jpg" target="_blank"><img src="../../gallery/images/${name}.jpg" alt="${name}" height="300"></a></div>`);
+}
