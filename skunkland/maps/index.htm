@@ -44,7 +44,7 @@
 					const date = new Date(m.name.substr(-12, 7));
 					date.setHours(25);
 					out += `<div class="pic"><a href="${sharelink[i] || `political/${m.name}`}" target="_blank"><img src="political/${m.name}" height="180" alt="${m.name}"><div class="caption">${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</div></a></div>`;
-				}
+				});
 				document.getElementById("pastmaps").innerHTML = out;
 			}
 		</script>
