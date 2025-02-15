@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Delve Capital Province</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="regionflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p>
+					The province of Delve Capital was created as part of Delve's entry into the Tseles Protectorate in <script>sy(2014,4,20,12)</script>. It is the oldest region in Delve, 
+					and one of the oldest regions in all of Skunkland, with settlement dating from <script>sy(2011,11)</script>. The grand dragon entrance of the region's namesake, Delve 
+					City, located in the east of the Delve Capital Province, is also the gateway to the nation of Delve and the Tseles Protectorate as a whole. The province is home to 
+					practical, strong-bodied Delvians who form the backbone of Delve's workforce.
+				</p>
+				<script>pic("Delve")</script>
+				<p>
+					In the western region of Delve Capital Province, bordering neighbouring Braille, is Castle Gorllewin. The Delve Co. Farm lays in the center of the province.
+				</p>
+				<script>pic("Castle Gorllewin")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Delve", "Delve Capital", "Province", [
+				{ name: "Delve", founded: sy(2011,10,1) }]);
+		</script>
+	</body>
+</html>
