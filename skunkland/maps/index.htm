@@ -23,7 +23,7 @@
 				<br>
 				
 				<div class="contentheader round">Past Political Maps</div>
-				<table class="gallery" id="pastmaps"></table>
+				<div class="gallery" id="pastmaps"></div>
 			</div>
 		</main>
 		<script>
@@ -41,11 +41,12 @@
 				
 				let out = "";
 				for (let i = 0; i < m.length; i++) {
-					if (i % 3 == 0) out += `<tr>`;
+					//if (i % 3 == 0) out += `<tr>`;
 					const date = new Date(m[i].name.substr(-12, 7));
 					date.setHours(25);
-					out += `<td><a href="${sharelink[i] || `political/${m[i].name}`}" target="_blank"><img src="political/${m[i].name}" height="200" alt="${m[i].name}"><br>${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</a><br></td>`;
-					if (i % 3 == 2 || i == m.length - 1) out += `</tr>`;
+					out += `<div class="pic"><a href="${sharelink[i] || `political/${m[i].name}`}" target="_blank"><img src="political/${m[i].name}" height="150" alt="${m[i].name}"><div class="caption">${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</div></a></div>`;
+					//out += `<td><a href="${sharelink[i] || `political/${m[i].name}`}" target="_blank"><img src="political/${m[i].name}" height="200" alt="${m[i].name}"><br>${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</a><br></td>`;
+					//if (i % 3 == 2 || i == m.length - 1) out += `</tr>`;
 				}
 				document.getElementById("pastmaps").innerHTML = out;
 			}
