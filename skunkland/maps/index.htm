@@ -35,15 +35,15 @@
 			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/maps/political", buildMapArray);
 
 			function buildMapArray(xhr) {
-				const m = JSON.parse(xhr.response);
-				document.getElementById("currentmap").src = `political/${m.pop().name}`;
-				m.reverse();
+				const maps = JSON.parse(xhr.response);
+				document.getElementById("currentmap").src = `political/${maps.pop().name}`;
+				maps.reverse();
 				
 				let out = "";
-				for (let i = 0; i < m.length; i++) {
-					const date = new Date(m[i].name.substr(-12, 7));
+				maps.forEach((m, i) => {
+					const date = new Date(m.name.substr(-12, 7));
 					date.setHours(25);
-					out += `<div class="pic"><a href="${sharelink[i] || `political/${m[i].name}`}" target="_blank"><img src="political/${m[i].name}" height="180" alt="${m[i].name}"><div class="caption">${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</div></a></div>`;
+					out += `<div class="pic"><a href="${sharelink[i] || `political/${m.name}`}" target="_blank"><img src="political/${m.name}" height="180" alt="${m.name}"><div class="caption">${date.toLocaleString("en",{month:"long"})} ${date.getFullYear()}</div></a></div>`;
 				}
 				document.getElementById("pastmaps").innerHTML = out;
 			}
