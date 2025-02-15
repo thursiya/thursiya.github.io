@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ennist Province</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="regionflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p>
+					The province of Ennist was created as part of Delve's entry into the Tseles Protectorate in <script>sy(2014,4,20,12)</script>. It is known throughout Delve as the 
+					"Home of the Clever". The province's most distinguishing feature is the epic tower of Speurach Torr. The central provincial capital of Ulve serves as a gateway to 
+					Delve's vast frontier.
+				</p>
+				<script>pic("Speurach Torr")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Delve", "Ennist", "Province", [
+				{ name: "Ulve", founded: sy(2014,5,1) }]);
+		</script>
+	</body>
+</html>
