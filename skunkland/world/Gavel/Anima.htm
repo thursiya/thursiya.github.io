@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Anima Province</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header>
+			<img id="regionflag" height="150" class="gallery" style="display:block; margin: 20px auto;">
+		</header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p>
+					The province of Anima was formed as part of the transformation of the Animan Empire into a modern republic. The region comprising modern Anima covers the original 
+					homeland of the coastal people that joined the central tribes to form the Animan Empire, as well as many of the central meeting lands. Home to Gavel's navy, largest 
+					planned city, and its capital, the importance of the province justified Anima inheriting the predecessor empire's name. The province of Anima is located in the north 
+					and center of Gavel, bordering the Boreal Ocean to the north.
+				</p>
+				<script>pic("Nexus")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Gavel", "Anima", "Province", [
+				{ name: "Nexus", founded: syear(2019,12,4) }]);
+		</script>
+	</body>
+</html>
