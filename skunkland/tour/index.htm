@@ -28,9 +28,7 @@
 				</p>
 
 				<div id="stationtitle" class="contentheader round"></div>
-				<div class="gallery">
-					<div id="station"></div>
-				</div>
+				<div id="station"></div>
 			</div>
 		</main>
 		<script>
@@ -45,26 +43,28 @@
 			function loadDest(i) {
 				document.getElementById("stationtitle").innerHTML = `${s[i].name} Station`;
 				document.getElementById("station").innerHTML = `
-    					<div><img src="../gallery/images/${s[i].img || s[i].name}.jpg" alt="${s[i].img || s[i].name}" height="275"></div>
-	 				<div>
-      						<table id="stationtable">
-							<tr>
-								<td id="nw"></td>
-								<td id="n"></td>
-								<td id="ne"></td>
-							</tr>
-							<tr>
-								<td id="w"></td>
-								<th>${s[i].name}<br><span style="font-size:80%">Station</span></th>
-								<td id="e"></td>
-							</tr>
-							<tr>
-								<td id="sw"></td>
-								<td id="s"></td>
-								<td id="se"></td>
-							</tr>
-       						</table>
-	     				</div>
+    					<div class="gallery">
+    						<div><img src="../gallery/images/${s[i].img || s[i].name}.jpg" alt="${s[i].img || s[i].name}" height="275"></div>
+	 					<div>
+      							<table id="stationtable">
+								<tr>
+									<td id="nw"></td>
+									<td id="n"></td>
+									<td id="ne"></td>
+								</tr>
+								<tr>
+									<td id="w"></td>
+									<th>${s[i].name}<br><span style="font-size:80%">Station</span></th>
+									<td id="e"></td>
+								</tr>
+								<tr>
+									<td id="sw"></td>
+									<td id="s"></td>
+									<td id="se"></td>
+								</tr>
+       							</table>
+	     					</div>
+	   				</div>
 					<p>${s[i].desc}</p>
 					<p>Close by: ${s[i].near}</p>`;
 				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" class="destination">${["nw","ne","sw","se"].includes(v) && s[i].name != "Celestia" ? "&#9992; " : ""}${s[i].link[v]}</a>`);
