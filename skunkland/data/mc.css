@@ -58,7 +58,6 @@ ul { margin: 0 0 8px 0; }
 div.header {
   height: 150px;
   margin: 10px auto 0;
-  position: relative;
   width: 1000px; }
 img.header {
   display: block;
