@@ -8,6 +8,14 @@
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
 		<script src="../data/time.js"></script>
 		<script src="../data/header.js"></script>
+		<style>
+			.destination { 
+				cursor: pointer;
+				font-weight: bold; }
+			#stationtable td, th { 
+				height: 90px;
+				width: 140px; }
+		</style>
 	</head>
 	<body>
 		<header><script>insertHeader();</script></header>
@@ -15,15 +23,14 @@
 			<div class="content round shadow">
 				<div class="contentheader round">Tour of Skunkland</div>
 				<p>
-					Want to get acquainted with our lovely server? What better way than a tour by way of our subway
-					system! Our tour starts at spawn and you can click subway exits to learn more about the areas 
-					around the subway stations.
+					Want to get acquainted with our lovely server? What better way than a tour by way of our subway	system! Our tour starts at spawn and you can click subway exits to 
+					learn more about the areas around the subway stations.
 				</p>
-				<br>
 
-				<div id="station"></div>
-				
-				<div style="clear:both"></div>
+				<div id="stationtitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="station"></div>
+				</div>
 			</div>
 		</main>
 		<script>
@@ -36,30 +43,31 @@
 			}
 
 			function loadDest(i) {
+				document.getElementById("stationtitle").innerHTML = `${s[i].name} Station`;
 				document.getElementById("station").innerHTML = `
-    					<div class="contentheader round">${s[i].name} Station</div>
-					<table style="float:right">
-						<tr>
-							<td id="nw" width="140" height="90"></td>
-							<td id="n" width="140"></td>
-							<td id="ne" width="140"></td>
-						</tr>
-						<tr>
-							<td id="w" width="140" height="90"></td>
-							<th width="140">${s[i].name}<br><span style="font-size:80%">Station</span></th>
-							<td id="e" width="140"></td>
-						</tr>
-						<tr>
-							<td id="sw" width="140" height="90"></td>
-							<td id="s" width="140"></td>
-							<td id="se" width="140"></td>
-						</tr>
-					</table>
-					<img src="../gallery/images/${s[i].img || s[i].name}.jpg" alt="${s[i].img || s[i].name}" height="275">
-					<br>
+    					<div><img src="../gallery/images/${s[i].img || s[i].name}.jpg" alt="${s[i].img || s[i].name}" height="275"></div>
+	 				<div>
+      						<table>
+							<tr>
+								<td id="nw"></td>
+								<td id="n"></td>
+								<td id="ne"></td>
+							</tr>
+							<tr>
+								<td id="w"></td>
+								<th>${s[i].name}<br><span style="font-size:80%">Station</span></th>
+								<td id="e"></td>
+							</tr>
+							<tr>
+								<td id="sw"></td>
+								<td id="s"></td>
+								<td id="se"></td>
+							</tr>
+       						</table>
+	     				</div>
 					<p>${s[i].desc}</p>
 					<p>Close by: ${s[i].near}</p>`;
-				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" style="cursor:pointer;font-weight:bold">${["nw","ne","sw","se"].includes(v) && s[i].name != "Celestia" ? "&#9992; " : ""}${s[i].link[v]}</a>`);
+				Object.keys(s[i].link).forEach(v => document.getElementById(v).innerHTML = `<a onclick="loadDest(${s.findIndex(x => x.name == s[i].link[v])})" class="destination">${["nw","ne","sw","se"].includes(v) && s[i].name != "Celestia" ? "&#9992; " : ""}${s[i].link[v]}</a>`);
 			}
 		</script>
 	</body>
