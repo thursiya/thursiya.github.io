@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pristina State</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header><img id="regionflag" class="header"></header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p> 
+					The state of Pristina was formed when the Kingdom of Pristina was absorbed into the Animan Empire (later Republic of Gavel). The kingdom predated the upstart empire 
+					by hundreds of years and remains one of the oldest regions in Skunkland (settled in <script>sy(2011,11)</script>). As part of the merger, much of the Pristina 
+					bureaucracy helped form the empire's new governing bodies, and the Pristina elite were guaranteed powerful positions in the empire's strategic council. This council 
+					would later morph into Gavel's highest executive authority, the Presidium (Gavel Board of Directors). Pristina State is in the southwest of Gavel and lies on the 
+					borders of Crevatia to the west and Koku to the south.
+				</p>
+				<script>pic("New Kingsburg")</script>
+				<p>
+					Much of the southern portion of the state is home to the sprawling city of New Kingsburg, the "Gateway to Gavel". Pristina politics are dominated by Operis 
+					Corporation, which was founded in New Kingsburg and is now (arguably) the most powerful megacorporation in Gavel. As the "First City of Skunkland", New Kingsburg 
+					remains a powerful player in Gavel. The northern portion of the state is mostly open to tourist and leisure expansion.
+				</p>
+				<script>pic("Great Gate of Gavel")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Gavel", "Pristina", "State", [
+				{ name: "New Kingsburg", founded: syear(2011,11,1) }]);
+		</script>
+	</body>
+</html>
