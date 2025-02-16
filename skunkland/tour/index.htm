@@ -28,10 +28,10 @@
 		</main>
 		<script>
 			const s = [];
-			loadDoc("../data/tour.txt", buildTourArray);	
+			fetch("../data/tour.txt").then(v => v.text()).then(buildTourArray);	
 
-			function buildTourArray(xhr) {
-				s.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
+			function buildTourArray(data) {
+				s.push(...JSON.parse(data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
 				loadDest(s.findIndex(v => v.name == "Spawn"));
 			}
 
