@@ -7,10 +7,15 @@
 		<link rel="stylesheet" href="../data/mc.css">
 		<link rel="icon" href="../images/pickaxe.png" type="image/x-icon">
 		<script src="../data/time.js"></script>
+		<script>
+			const today = new Date();
+			function pp(jobs, beds, tourbeds, bonus) {
+				return Math.ceil(((Number(jobs) / 2 + Number(beds)) * (Number(bonus) || 1) + Number(tourbeds) / 2) * 10) * 100;
+			}			
+		</script>
 	</head>
 	<body>
 		<main>
-			<script>const today = new Date();</script>
 			<div style="text-align: center"><img src="../images/clock.png"></div>
 			<div class="content round shadow">
 				<div class="contentheader round">Time Calculations</div>
@@ -28,7 +33,7 @@
 				</p>
 				
 				<form action="" id="timeform" onsubmit="return false;">
-					<table style="margin: 0px auto">
+					<table style="margin: 20px auto">
 						<tr>
 							<th>
 								<span style="font-variant:small-caps">Quick Time Calculator</span><br>
@@ -112,7 +117,7 @@
 				</p>
 				
 				<form action="" id="popform" onsubmit="return false;">
-					<table style="margin: 0px auto">
+					<table style="margin: 20px auto">
 						<tr>
 							<th>
 								<span style="font-variant:small-caps">Quick Population Calculator</span><br>
@@ -138,10 +143,6 @@
 			</div>
 		</main>
 		<script>		
-			function pp(jobs, beds, tourbeds, bonus) {
-				return Math.ceil(((Number(jobs) / 2 + Number(beds)) * (Number(bonus) || 1) + Number(tourbeds) / 2) * 10) * 100;
-			}
-			
 			function quickPop() {
 				const theForm = document.forms["popform"];
 				const jobs = Number(theForm.elements["jobs"].value) || 0;
