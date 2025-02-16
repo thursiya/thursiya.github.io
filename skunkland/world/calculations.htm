@@ -161,12 +161,8 @@
 			function quickTime() {
 				const theForm = document.forms["timeform"];
 				const setdate = new Date(theForm.elements["setdate"].value || today);
-				const setHour = Number(theForm.elements["sethour"].value) || 0;
-				const setYear = setdate.getFullYear();
-				const setMonth = setdate.getMonth() + 1;
-				const setDay = setdate.getDate();
-				const result = syear(setYear, setMonth, setDay, setHour);
-				document.getElementById('syDate').innerHTML = result;
+
+				document.getElementById('syDate').innerHTML = syear(setdate.getFullYear(), setdate.getMonth() + 1, setdate.getDate(), Number(theForm.elements["sethour"].value) || 0);
 			}
 			
 			function resetForm() {
