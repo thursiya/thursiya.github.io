@@ -22,21 +22,20 @@
 		</main>
 		<script>
 			const g = [];
-			loadDoc("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images", getRandomImages);	
+			fetch("https://api.github.com/repos/thursiya/thursiya.github.io/contents/skunkland/gallery/images").then(v => v.json()).then(getRandomImages);	
 
-			function getRandomImages(xhr) {
-				let pics = JSON.parse(xhr.response);
+			function getRandomImages(pics) {
 				for (let i = pics.length - 1; i > 0; i--) {
 					let r = ~~(Math.random() * (i + 1));
 					[pics[i], pics[r]] = [pics[r], pics[i]];
 				}
 				pics.splice(-3);
 				g.push({name: "Random Screenshots", type: -1, section: [{img: [pics[0].name.slice(0, -4), pics[1].name.slice(0, -4), pics[2].name.slice(0, -4)]}]});
-				loadDoc("../data/gallery.txt", buildGalleryArray);
+				fetch("../data/gallery.txt").then(v => v.text()).then(buildGalleryArray);
 			}
 
-			function buildGalleryArray(xhr) {
-				g.push(...JSON.parse(xhr.response.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
+			function buildGalleryArray(data) {
+				g.push(...JSON.parse(data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":')));
 				function writeLinks(arr, dest) {
 					let out = "";
 					for (let i of arr) out += `<div class="clickable title"><span onclick="loadGallery(${g.findIndex(v => v.name == i.name)})">${i.name}</span></div>`;
