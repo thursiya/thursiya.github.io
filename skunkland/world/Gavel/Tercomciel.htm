@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tercomciel Province</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header><img id="regionflag" class="header"></header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p> 
+					Unlike the other provinces in Gavel, the province of Tercomciel was not formed during the initial declaration of the Gavel Republic. Tercomciel is the youngest 
+					region in Gavel, formed as a buffer zone between the competing state and national interests in Gavel. The province is primarily home to the city of Celestia, a 
+					utopian project of the nation's disenchanted, who seek to escape the endless vagaries of the market. Celestia is home to the Thurail Corporation and houses its hub 
+					station. The province of Tercomciel is located in the center of western Gavel and is completely surrounded by other regions of Gavel.
+				</p>
+				<script>pic("Celestia Corolla")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Gavel", "Tercomciel", "Province", [
+				{ name: "Celestia", founded: syear(2013,8,1) }]);
+		</script>
+	</body>
+</html>
