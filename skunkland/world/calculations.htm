@@ -10,6 +10,7 @@
 	</head>
 	<body>
 		<main>
+			<script>const today = new Date();</script>
 			<div style="text-align: center"><img src="../images/clock.png"></div>
 			<div class="content round shadow">
 				<div class="contentheader round">Time Calculations</div>
@@ -21,7 +22,7 @@
 				<p>
 					Using this basic conversion we have developed a secondary dating system, Skunkland Years (SY). The server was started in November or December 2011 (we'll figure 
 					that one out eventually), so counting from November 2011, we multiply the time passed by 72 (1 real year = 72 Skunkland Years).	That puts the beginning of today 
-					in <script>sy(thisYear,thisMonth,thisDay)</script>, and right now approximately <script>sy(thisYear,thisMonth,thisDay,thisHour)</script>. You can hover over the 
+					in <script>sy(today.getFullYear(),today.getMonth() + 1,today.getDate())</script>, and right now approximately <script>sy(today)</script>. You can hover over the 
 					Skunkland Year dates on the website to see the equivalent real world dates.
 				</p>
 				
@@ -32,7 +33,7 @@
 								<span style="font-variant:small-caps">Quick Time Calculator</span><br>
 								<input type="date" name="Date" placeholder="Date" id="setdate" onchange="quickTime()" style="width:130px">
 								<input type="number" name="Hour" placeholder="Hour" id="sethour" onchange="quickTime()" min="0" max="23" step="1" maxlength="2" size="2" style="width:50px"><br>
-								SkunkYears: <span id="syDate"><script>sy(thisYear,thisMonth,thisDay,thisHour)</script></span>
+								SkunkYears: <span id="syDate"><script>sy(today)</script></span>
 							</th>
 						</tr>
 					</table>
@@ -136,11 +137,11 @@
 			</div>
 		</main>
 		<script>
-			const today = new Date();
-			const thisYear = today.getFullYear();
-			const thisMonth = today.getMonth() + 1;
-			const thisDay = today.getDate();
-			const thisHour = today.getHours();
+			
+			//const thisYear = today.getFullYear();
+			//const thisMonth = today.getMonth() + 1;
+			//const thisDay = today.getDate();
+			//const thisHour = today.getHours();
 			
 			function quickPop() {
 				const theForm = document.forms["popform"];
