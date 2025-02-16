@@ -16,10 +16,9 @@
 				<div class="contentheader round">The Skunkland Newsletter</div>
 				<p><b>Latest Newsletter:</b> <span id='latestNews'></span></p>
 				<p>
-					As part of the Skunkland server community we release a newsletter about the goings on of the 
-					server every few months. These newsletters keep players up to date on new developments in the 
-					game, what other players are working on, and current build areas. If you would like to include 
-					something in a future newsletter please contact thursiya.
+					As part of the Skunkland server community we release a newsletter about the goings on of the server every few months. These newsletters keep players up to date 
+					on new developments in the game, what other players are working on, and current build areas. If you would like to include something in a future newsletter please 
+					contact thursiya.
 				</p>
 				<br>
 				
@@ -30,10 +29,10 @@
 		</main>
 		<script>
 			const n = [];
-			loadDoc("../data/newsletter.txt", buildNewsletterArray);	
+			fetch("../data/newsletter.txt").then(v => v.text()).then(buildNewsletterArray);	
 
-			function buildNewsletterArray(xhr) {
-				n.push(...xhr.response.split('\n').filter(v => v));
+			function buildNewsletterArray(data) {
+				n.push(...data.split('\n').filter(v => v));
 				document.getElementById('latestNews').innerHTML = `<a href="news${n.length}.htm" target="_blank"><i>${n.at(-1)}</i></a>`;
 				let out = "";
 				for (let i = n.length - 1; i >= 0; i--) out += `<div class="flextile"><a href="news${i+1}.htm" target="_blank">${n[i]}</a></div>`;
