@@ -54,7 +54,7 @@
 				const arr = data.split('\n').filter(v => v).map(v => v.split(','));
 				let out = "";
 				for (let i of arr) {
-					out += isNaN(arr[0][0]) ? `<tr><td><img src="images/flags/${i[0]}.png" height="50" alt="Flag of ${i[0]}"></td>
+					out += isNaN(arr[0][0]) ? `<tr><td><img src="images/flags/${i[0]}.png" height="50" width="75" alt="Flag of ${i[0]}"></td>
 					<td><a href="${i[0]}"><span class="title">${i[1].length < 20 ? i[1] : i[1].match(/\b([A-Z])/g).join('.') + "."} of ${i[0]}</span></a></td>
 					<td>${i[2]}</td></tr>` : `<tr><td style="width: 80px;"><b>${syear(~~i[0], i[1], i[2])}</b></td><td>${i[3]}</td></tr>`;
 				}
