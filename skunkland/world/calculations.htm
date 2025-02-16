@@ -10,7 +10,7 @@
 		<script>
 			const today = new Date();
 			function pp(jobs, beds, tourbeds, bonus) {
-				return Math.ceil(((Number(jobs) / 2 + Number(beds)) * (Number(bonus) || 1) + Number(tourbeds) / 2) * 10) * 100;
+				return (Math.ceil(((Number(jobs) / 2 + Number(beds)) * (Number(bonus) || 1) + Number(tourbeds) / 2) * 10) * 100).toLocaleString("en", {useGrouping: true});
 			}			
 		</script>
 	</head>
@@ -154,10 +154,8 @@
 				const beds = Number(theForm.elements["beds"].value) || 0;
 				const tourbeds = Number(theForm.elements["visitors"].value) || 0;
 				const bonus = theForm.elements["bonus"].value;
-				
-				const p = pp(jobs, beds, tourbeds, bonus);
-				const result = p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				document.getElementById('totalPop').innerHTML = result;
+
+				document.getElementById('totalPop').innerHTML = pp(jobs, beds, tourbeds, bonus);
 			}
 			
 			function quickTime() {
