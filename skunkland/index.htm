@@ -14,55 +14,47 @@
 		<main>
 			<div class="content round shadow">
 				<div class="contentheader round">Welcome</div>
-				<p><b><i><img src="images/pickaxe.png">
-					The Skunkland Server has been retired. The world files have been retained for potential
-					future re-launch and/or integration of portions in another server.
-					Being the only continuous players, Shylilie, SpaceSkunks, and thursiya have moved 
-					onto a new private server, Skyliya, and may open it to select players in the future.
-					Thank you for the decade-long journey. Wherever life takes you - happy building!
-				</b></i></p>
-				<p><img src="images/map.png">
-					The latest political map is <a href="maps">here</a> and now available as an original, 
-					high quality download. Our maps include the names our players give to the lands and places 
-					of Skunkland so if you would like to add names for your region please submit them to 
-					thursiya.
+				<p>
+					<img src="images/pickaxe.png"> <b><i>The Skunkland Server has been retired. The world files have been retained for potential future re-launch and/or integration of 
+					portions in another server. Being the only continuous players, Shylilie, SpaceSkunks, and thursiya have moved onto a new private server, Skyliya, and may open it to 
+					select players in the future. Thank you for the decade-long journey. Wherever life takes you - happy building!</b></i>
 				</p>
-				<p><img src="images/compass.png">
-					New to the server? Planning out a travel route on the subway system? Well you're in luck! 
-					The <a href="tour">Tour section</a> will take you from Spawn to any of the other subway 
-					stations in Skunkland.
+				<p>
+					<img src="images/map.png"> The latest political map is <a href="maps">here</a> and now available as an original, high quality download. Our maps include the names 
+					our players give to the lands and places of Skunkland, so if you would like to add names for your region please submit them to thursiya.
 				</p>
-				<br>
+				<p>
+					<img src="images/compass.png"> New to the server? Planning out a travel route on the subway system? Well you're in luck! The <a href="tour">Tour section</a> will 
+					take you from Spawn to any of the other subway stations in Skunkland.
+				</p>
 			
 				<div class="contentheader round">Random Facts of Skunkland</div>
-				<div id="randomfact" style="margin-left:auto;margin-right:auto;max-width:600px;text-align:center;font:italic 150% Georgia,serif"></div>
-				<br>
+				<div id="randomfact" style="font: italic 150% Georgia,serif; margin: auto; max-width: 600px; text-align: center"></div>
 			
 				<div class="contentheader round">Latest Newsletter</div>
 				<p id="latestNewsletter"></p>
-				<br>
 
 				<div class="contentheader round">News</div>
 				<div id="newsbreak0"></div>
 			</div>
 		</main>
 		<script>
-			loadDoc("data/facts.txt", addRandomFact);
-			loadDoc("data/newsletter.txt", addLatestNewsletter);
-			loadDoc("data/news.txt", printNews);
+			fetch("data/facts.txt").then(v => v.text()).then(addRandomFact);
+			fetch("data/newsletter.txt").then(v => v.text()).then(addLatestNewsletter);
+			fetch("data/news.txt").then(v => v.text()).then(printNews);
 				
-			function addRandomFact(xhr) {
-				const facts = xhr.response.split('\n').filter(v => v);
+			function addRandomFact(data) {
+				const facts = data.split('\n').filter(v => v);
 				document.getElementById("randomfact").innerHTML = facts[~~(Math.random() * facts.length)];
 			}
 
-			function addLatestNewsletter(xhr) {
-				const nl = xhr.response.split('\n').filter(v => v);
+			function addLatestNewsletter(data) {
+				const nl = data.split('\n').filter(v => v);
 				document.getElementById("latestNewsletter").innerHTML = `<a href="newsletters/news${nl.length}.htm" target="_blank"><b>${nl.at(-1)}</b></a>`;
 			}
 
-			function printNews(xhr) {
-				const news = xhr.response.split('\n').filter(v => v);
+			function printNews(data) {
+				const news = data.split('\n').filter(v => v);
 				const last = news.length - 1;
 				const swapcode = {"C": "compass", "G": "painting", "M": "map", "N": "bookshelf", "T": "craft", "W": "pickaxe"};
 				function swap (str, p1) {
@@ -71,6 +63,7 @@
 					if (p1 == '/Q') return `</i></blockquote>`;
 					return `<img src='images/${swapcode[p1]}.png' height='16'>`;
 				}
+				
 				let out = "";
 				for (let i = 0; i <= last; i++) {
 					news[i] = [...news[i].split(",").slice(0, 3), news[i].match(/"(.*?)"/)[1]];
