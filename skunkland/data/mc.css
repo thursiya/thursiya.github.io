@@ -55,11 +55,15 @@ ul { margin: 0 0 8px 0; }
 
 .shadow { box-shadow: 1px 1px 4px #000B; }
 
-.header {
+div.header {
   height: 150px;
   margin: 10px auto 0;
   position: relative;
   width: 1000px; }
+img.header {
+  display: block;
+  height: 150px;
+  margin: 10px auto; }
 
 .server {
   background: #59B;
