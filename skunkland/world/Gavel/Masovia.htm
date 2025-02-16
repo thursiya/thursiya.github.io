@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Masovia State</title>
+		<link rel="stylesheet" href="../../data/mc.css">
+		<link rel="icon" href="../../images/pickaxe.png" type="image/x-icon">
+		<script src="../../data/time.js"></script>
+		<script src="../../data/world.js"></script>
+	</head>
+	<body>
+		<header><img id="regionflag" class="header"></header>
+		<main>
+			<div class="content round shadow">
+				<div id="regiontitle" class="contentheader round"></div>
+				<div class="gallery">
+					<div id="regionmap" style="flex: 1;"></div>
+					<div id="infowindow" class="right" style="max-width: 400px;"></div>
+				</div>
+				<p> 
+					The state of Masovia was formed when the Kingdom of Masovia was annexed by the Animan Empire (later Republic of Gavel). Long past its heyday, at the time of its 
+					annexation the land was mostly filled with nomads and small-time warlords, a kingdom only in name. The empire's new bureaucracy sought symbols of its legitimacy 
+					and invested heavily in rebuilding and restoration projects, particularly in King Asik VIII's Baths Palace, which had fallen into disrepair over the century since 
+					his golden age had ended. Today, the state blends old and new. Due to its central geography, it houses the massive Operis National Distribution Center, the main 
+					warehouse facility for Operis Corporation. Masovia lies in the south of Gavel and borders South Shore to the east.
+				</p>
+				<script>pic("Baths Palace")</script>
+			</div>
+		</main>
+		<script>
+			settlements("Gavel", "Masovia", "State", [
+				{ name: "Mellon Bay", founded: syear(2013,11,18) }]);
+		</script>
+	</body>
+</html>
