@@ -74,7 +74,6 @@ img.header {
 
 .navbar {
   background: #A11 url(../images/red64.png) repeat;
-  color: #FFF;
   display: flex;
   flex-wrap: wrap;
   font: 18px "Times New Roman", serif;
@@ -85,6 +84,7 @@ img.header {
   width: 95vw; }
 
 div.navbar .navitem {
+  color: #FFF;
   height: 40px;
   line-height: 34px;
   margin: 4px 10px -4px;
