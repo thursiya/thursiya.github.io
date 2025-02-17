@@ -58,7 +58,8 @@ ul { margin: 0 0 8px 0; }
 div.header {
   height: 150px;
   margin: 10px auto 0;
-  width: 1000px; }
+  max-width: 1000px; 
+  width: 100vw; }
 img.header {
   display: block;
   height: 150px;
@@ -81,7 +82,7 @@ img.header {
   margin: 10px auto;  
   max-width: 1000px;
   text-align: center;
-  width: 95vw; }
+  width: 100vw; }
 
 div.navbar .navitem {
   color: #FFF;
