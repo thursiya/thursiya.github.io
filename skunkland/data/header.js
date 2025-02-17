@@ -6,7 +6,7 @@ function insertHeader() {
 	document.getElementsByTagName("header")[0].innerHTML = `
 		<div class="server round shadow">
 			<img src="${homepage}images/clock.png" height="50" style="vertical-align: middle">
-			${syear(new Date(),"full")}
+			<span style="vertical-align: middle">${syear(new Date(),"full")}</span>
 		</div>
 
 		<div class="header round shadow" style="background: url(${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg)">
