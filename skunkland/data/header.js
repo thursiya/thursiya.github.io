@@ -2,7 +2,7 @@ function insertHeader() {
 	const homepage = "https://thursiya.github.io/skunkland/";
 	const navitems = ["Home", "Gallery", "Maps", "World", "Newsletters", "Rules", "Tour", "Tools", "Links"];
 	let out = "";
-	navitems.forEach(v => out += `<div class="navitem ${v.toLowerCase().substring(0, 4)}"><a href="${homepage}${v == "Home" ? "" : v.toLowerCase()}">${v}</a></div>`);
+	navitems.forEach(v => out += `<a href="${homepage}${v == "Home" ? "" : v.toLowerCase()}"><div class="navitem ${v.toLowerCase().substring(0, 4)}">${v}</div></a>`);
 	document.getElementsByTagName("header")[0].innerHTML = `
 		<div class="server round shadow">
 			<img src="${homepage}images/clock.png" height="50" style="vertical-align: middle">
