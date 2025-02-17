@@ -9,8 +9,8 @@ function insertHeader() {
 			${syear(new Date(),"full")}
 		</div>
 
-		<div class="header round shadow" style="background:url('${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg')">
-			<img src="${homepage}images/server_name.gif" style="display:block;margin:auto;padding-top:50px">
+		<div class="header round shadow" style="background: url(${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg)">
+			<img src="${homepage}images/server_name.gif" style="display: block; margin: auto; padding-top: 50px">
 		</div>
 
 		<div class="navbar round shadow">
