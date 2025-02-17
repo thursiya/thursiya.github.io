@@ -75,6 +75,8 @@ img.header {
 .navbar {
   background: #A11 url(../images/red64.png) repeat;
   color: #FFF;
+  display: flex;
+  flex-wrap: wrap;
   font: 18px "Times New Roman", serif;
   margin: 10px auto;  
   max-width: 1000px;
