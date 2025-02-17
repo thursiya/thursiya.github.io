@@ -78,6 +78,7 @@ img.header {
   display: flex;
   flex-wrap: wrap;
   font: 18px "Times New Roman", serif;
+  justify-content: space-between;
   margin: 10px auto;  
   max-width: 1000px;
   text-align: center;
