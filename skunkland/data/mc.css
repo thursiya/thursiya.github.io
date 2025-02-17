@@ -76,10 +76,10 @@ img.header {
   background: #A11 url(../images/red64.png) repeat;
   color: #FFF;
   font: 18px "Times New Roman", serif;
-  height: 40px;
-  margin: 10px auto;
+  margin: 10px auto;  
+  max-width: 1000px;
   text-align: center;
-  width: 1000px; }
+  width: 100vw; }
 
 div.navbar .navitem {
   float: left;
