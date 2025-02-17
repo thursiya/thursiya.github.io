@@ -5,8 +5,8 @@ function insertHeader() {
 	navitems.forEach(v => out += `<div class="navitem ${v.toLowerCase().substring(0, 4)}"><a href="${homepage}${v == "Home" ? "" : v.toLowerCase()}">${v}</a></div>`);
 	document.getElementsByTagName("header")[0].innerHTML = `
 		<div class="server round shadow">
-			<img src="${homepage}images/clock.png" height="50" style="vertical-align:middle">
-			<span style="font:bold 36px Georgia,serif;vertical-align:middle">${syear(new Date(),"full")}</span>
+			<img src="${homepage}images/clock.png" height="50" style="vertical-align: middle">
+			${syear(new Date(),"full")}
 		</div>
 
 		<div class="header round shadow" style="background:url('${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg')">
