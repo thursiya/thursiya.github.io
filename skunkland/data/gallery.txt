@@ -1,151 +1,72 @@
 [
-{name: "Skunkland General Gallery", type: 0, section: [
-	{img: [
-		"Desert Town",
-		"Igloo at Spawn",
-		"Welcoming House",
-		"First Century Build Competition Site",
-		"Expo 300",
-		"Red Rock",
-		"Tree Tower"
-	]}]},
+{ name: "Skunkland General Gallery", type: 0, section: [{ img: [
+	"Desert Town", "Igloo at Spawn", "Welcoming House", "First Century Build Competition Site", "Expo 500", "Johnville", "Red Rock", "Tree Tower", "When It's Bigger" ] },
+	{ title: "New Spawn", img: [
+		"Huskguard", "Huskguard (East Gate)" ] }] },
 
-{name: "Nether Gallery", type: 0, section: [
-	{img: [
-		"New Kingsburg Portal",
-		"Nether Hub",
-		"Skaald Fortress"
-	]}]},
+{ name: "Nether Gallery", type: 0, section: [{ img: [
+	"New Kingsburg Portal", "Nether Hub", "Skaald Fortress" ] }] },
 
-{name: "Kingdom of Aiur", type: 1, section: [
-	{img: [
-		"Unnamed City Cathedral",
-		"Unnamed City Mine",
-		"Western Homestead"
-	]}]},
+{ name: "Kingdom of Aiur", type: 1, section: [{ img: [
+	"Unnamed City Cathedral", "Unnamed City Mine", "Western Homestead" ] }] },
 		
-{name: "Hanse of Amahn", type: 1, section: [
-	{img: [
-		"Dragon Ridge",
-		"Sofia"
-	]}]},
+{ name: "Hanse of Amahn", type: 1, section: [{ img: [
+	"Dragon Ridge", "Sofia" ] }] },
 
-{name: "Imperium of Badrum", type: 1, section: [
-	{img: [
-		"Imperial City"
-	]}]},
+{ name: "Imperium of Badrum", type: 1, section: [{ img: [
+	"Imperial City", "Badrum Underdeeps" ] }] },
 
-{name: "Miasma of Boatmurdered", type: 1, section: [
-	{img: [
-		"Boatmurdered",
-		"Boatmurdered Entrance",
-		"Lut Gholein Station"
-	]}]},
+{ name: "Miasma of Boatmurdered", type: 1, section: [{ img: [
+	"Boatmurdered", "Boatmurdered Entrance", "Lut Gholein Station" ] }] },
 
-{name: "Protectorate of Braille", type: 1, section: [
-	{img: [
-		"Braille"
-	]}]},
+{ name: "Protectorate of Braille", type: 1, section: [{ img: [
+	"Braille" ] }] },
 
-{name: "D.P.R. of Crevatia", type: 1, section: [
-	{title: "Democratic People's Republic of Crevatia", img: [
-		"Bentley Bay",
-		"Crevasse Power Company (CPC) Power Plant",
-		"Eweton at Night",
-		"Windmill",
-		"Baetica"]},
-	{title: "Crevasse City", img: [
-		"Crevasse",
-		"Crevasse Graveyard",
-		"Ambassador House",
-		"The Crevasse",
-		"Crevasse Underworks",
-		"Mechwarrior"]},
-	{title: "Northern Frontier", img: [
-		"Dojo at Dawn",
-		"Fort Resolution",
-		"Noricum",
-		"Anderson's Crossing",
-		"Gickerville",
-		"Stellarton"
-	]}]},
+{ name: "D.P.R. of Crevatia", type: 1, section: [
+	{ title: "Democratic People's Republic of Crevatia", img: [
+		"Bentley Bay", "Crevasse Power Company (CPC) Power Plant", "Eweton at Night", "Windmill", "Baetica", "Mechwarrior" ] },
+	{ title: "Crevasse City", img: [
+		"Crevasse", "Crevasse Graveyard", "Ambassador House", "The Crevasse", "Crevasse Underworks", "Crevasse Subway Station" ] },
+	{ title: "North Crevatia", img: [
+		"Dojo at Dawn", "Fort Resolution", "Noricum", "Anderson's Crossing", "Gickerville", "Stellarton" ] }] },
 
-{name: "Adhocracy of Delve", type: 1, section: [
-	{img: [
-		"Delve",
-		"Castle Gorllewin",
-		"Black Jack Farm",
-		"Bright Farm",
-		"Delve Market",
-		"Falling Golem Inn & The Golden Poppy"]},
-	{title: "Ennist Province Gallery", img: [
-		"Ulve",
-		"Ulvenstand",
-		"Speurach Torr",
-		"Savvaerk Great Hall"
-	]}]},
+{ name: "Adhocracy of Delve", type: 1, section: [{ img: [
+	"Delve", "Castle Gorllewin", "Black Jack Farm", "Bright Farm", "Delve City Market", "Bank of Gavel Western Headquarters", "Delve Airport" ] },
+	{ title: "Alaris Province", img: [
+		"Falling Golem Inn & The Golden Poppy", "Alaris", "Star of Alaris" ] },
+	{ title: "Ennist Province", img: [
+		"Ulve",	"Ulvenstand", "Speurach Torr", "Savvaerk Great Hall", "G-Mart (Ulve)", "Home in Ulve" ] }] },
 
-{name: "Freenation of Faclair", type: 1, section: [
-	{img: [
-		"Faclair Airport",
-		"Jungle Tours",
-		"Glorious Farm UFO",
-		"Red Rose Mall",
-		"Red Rose Food Court"]},
-	{title: "Auverland", img: [
-		"Auverland",
-		"Auverland (Downtown)",
-		"Executive Hotel Auverland"]},
-	{title: "Cadwgan", img: [
-		"Cadwgan",
-		"Horse Track",
-		"Rose Garden Inn"
-	]}]},
+{ name: "Freenation of Faclair", type: 1, section: [{ img: [
+	 "Jungle Tours", "Orne", "Sartori", "World Tree" ] },
+	{ title: "Auverland", img: [
+		"Auverland", "Auverland (Downtown)", "Executive Hotel Auverland", "Auverland Market" ] },
+	{ title: "Cadwgan", img: [
+		"Cadwgan", "Horse Track", "Rose Garden Inn" ] },
+	{ title: "Patria", img: [
+		"Faclair Airport", "Red Rose Mall", "Glorious Farm UFO", "Red Rose Food Court", "First Skyscrapers of Skunkland Site" ] }] },
 
-{name: "Republic of Gavel", type: 1, section: [
-	{img: [
+{ name: "Republic of Gavel", type: 1, section: [{ img: [
+	"Nexus", "Gavel Power Company (GPC) Solar Plant", "Baths Palace", "Operis National Distribution Centre", "Persson International Airport", "Celestia Corolla", "Expo 400", "Ottokar Fortress" ] },
+	{ title: "New Kingsburg", img: [
+		"New Kingsburg", "Great Gate of Gavel", "Pristina State Capitol at Dawn", "New Kingsburg Smelter", "Southside (New Kingsburg)", "Northside (New Kingsburg)", "Capitol Centre Mall", "New Kingsburg (Eastern Skyline)", "New Kingsburg Regional Airport" ] },
+	{ title: "Ghibli Province", img: [
+		"Ghibli Port", "Lunar Hill", "Funland", "Cod Piece Fish & Chips" ] },
+	{ title: "Zephyr Province", img: [
+		"Zephyr Federal Mining Penal Colony", "Zefram", "Expo 300", "Zefram at Night" ] }] },
 
-		"Gavel Power Company (GPC) Solar Plant",
-		"Baths Palace",
-		"Operis National Distribution Centre",
-		"Persson International Airport",
-		"Celestia Corolla"]},
-	{title: "New Kingsburg", img: [
-		"New Kingsburg",
-		"Great Gate of Gavel",
-		"Pristina State Capitol at Dawn",
-		"New Kingsburg Smelter",
-		"Southside (New Kingsburg)",
-		"Northside (New Kingsburg)"]},
-	{title: "Ghibli Province", img: [
-		"Ghibli Port",
-		"Lunar Hill",
-		"Cod Piece Fish & Chips"]},
-	{title: "Zephyr Province", img: [
-		"Zephyr Federal Mining Penal Colony",
-		"Zefram",
-		"Zefram at Night"
-	]}]},
+{ name: "Kingdom of Koku", type: 1, section: [{ img: [
+	"Tall Ship", "Pacman Treehouse" ] }] },
 
-{name: "Kingdom of Koku", type: 1, section: [
-	{img: [
-		"Tall Ship",
-		"Pacman Treehouse"
-	]}]},
+{ name: "Prinicipality of Lumina", type: 1, section: [{ img: [
+	"Lumina Port Warehouse" ] }] },
 
-{name: "Commune of Porcinia", type: 1, section: [
-	{img: [
-		"Porcinia",
-		"Porcinia Rowhomes",
-		"Rainbow"
-	]}]},
+{ name: "Commune of Porcinia", type: 1, section: [{ img: [
+	"Porcinia", "Porcinia Rowhomes", "Rainbow" ] }] },
 
-{name: "Commune of South Shore", type: 1, section: [
-	{img: [
-		"South Shore",
-		"South Shore Professional Building",
-		"Moon Base",
-		"Moon Base Interior",
-		"Cutter's Junction"
-	]}]}
+{ name: "Independent State of Sedona", type: 1, section: [{ img: [
+	"Tortilla Flat", "Hidden Valley" ] }] },
+
+{ name: "Commune of South Shore", type: 1, section: [{ img: [
+	"South Shore", "South Shore Professional Building", "Moon Base", "Moon Base Interior", "Cutter's Junction", "Shallow Bend Cattle Ranch" ] }] }
 ]
