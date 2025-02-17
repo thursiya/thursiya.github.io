@@ -9,9 +9,8 @@ function insertHeader() {
 			<span style="vertical-align: middle">${syear(new Date(),"full")}</span>
 		</div>
 
-		<div class="header round shadow" style="background: url(${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg) top; text-align: center">
-  			<span style="display: inline-block; height: 100%; vertical-align: middle"></span>
-			<img src="${homepage}images/server_name.gif" style="height: 60%; max-width: 100%; vertical-align: middle; width: 100vw;">
+		<div class="header round shadow" style="background: url(${homepage}images/vistas/bgvista${~~((Math.random() * 13) + 1)}.jpg) top; display: flex">
+  			<img src="${homepage}images/server_name.gif" style="max-width: 100%; width: 100vw;">
 		</div>
 
 		<div class="navbar round shadow">
