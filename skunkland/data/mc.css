@@ -89,7 +89,7 @@ div.navbar .navitem {
   line-height: 34px;
   margin: 4px 10px -4px;
   padding: 0 0 0 40px;
-  text-shadow: 4px 4px 2px #AAA; }
+  text-shadow: 2px 2px 4px #AAA; }
 
 div.navbar .navitem a:link, div.navbar .navitem a:visited { color: #EEE; }
 div.navbar .navitem a:hover, div.navbar .navitem a:active { color: #FFF; }
