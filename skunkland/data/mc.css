@@ -70,7 +70,7 @@ img.header {
   height: 60px;
   margin: 10px auto 8px;
   padding: 5px; 
-  width: 468px; }
+  width: fit-content; }
 
 .navbar {
   background: #A11 url(../images/red64.png) repeat;
