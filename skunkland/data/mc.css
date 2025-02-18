@@ -135,7 +135,6 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   gap: 20px;
   margin-bottom: 20px; }
 .gallery > div.pic { max-width: min-content; }
-.gallery > div.right { margin-left: auto; }
 .flextile {
   background: #FEE;
   border: 1px outset #888;
