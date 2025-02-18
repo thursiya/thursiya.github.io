@@ -55,6 +55,8 @@ ul { margin: 0 0 8px 0; }
 
 .shadow { box-shadow: 1px 1px 4px #000B; }
 
+.spread { justify-content: space-between; }
+
 div.header {
   height: 150px;
   margin: 10px auto 0;
@@ -142,7 +144,7 @@ div.navbar .navitem.link { background: url("../images/rail.png") no-repeat; }
   margin: 0 -17px -17px 0;
   padding: 10px;
   text-align: center;
-  width: 315px; }
+  width: 320px; }
 .flextile:hover {
   background-color: #EDD;
   border: 2px outset #888; 
