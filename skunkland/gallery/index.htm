@@ -15,9 +15,9 @@
 			<div class="content round shadow">
 				<div id="gallerycontainer"></div>
 				<div class="contentheader round">Galleries</div>
-				<div class="gallery" id="general"></div>
+				<div class="gallery spread" id="general"></div>
 				<hr style="border: 1px solid #999; width: 70%; margin: 0 auto 20px;">
-				<div class="gallery" id="states"></div>
+				<div class="gallery spread" id="states"></div>
 			</div>
 		</main>
 		<script>
@@ -49,7 +49,7 @@
 			function loadGallery(gid) {
 				let out = "";
 				for (let section of g[gid].section) {
-					out += `<div class="contentheader round">${section.title || g[gid].name}</div><div class="gallery">`;
+					out += `<div class="contentheader round">${section.title || g[gid].name}</div><div class="gallery spread">`;
 					section.img.forEach(v => out += `<div class="pic"><a href="images/${v}.jpg" target="_blank"><img src="images/${v}.jpg" height="175" alt="${v}"><div class="caption">${v}</div></a></div>`);
 					out += `</div>`;
 				}
