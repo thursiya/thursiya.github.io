@@ -46,19 +46,12 @@
 	   			<th title="Any expansions available for this game. I do not own expansions in italics.">Expansions</th></tr></thead><tbody></tbody>`;
 			}
 
-			loadDoc("data/gamedata.txt", buildMainArray);
-			loadDoc("data/2pgamedata.txt", build2pArray);
-			loadDoc("data/othergamedata.txt", buildOtherArray);
-			
-			function loadDoc(url, cFunction) {
-				const xhttp = new XMLHttpRequest();
-				xhttp.onload = function() {return cFunction(this);}
-				xhttp.open("GET", url);
-				xhttp.send();
-			}
+			fetch("data/gamedata.txt").then(v => v.text()).then(buildMainArray);
+			fetch("data/2pgamedata.txt").then(v => v.text()).then(build2pArray);
+			fetch("data/othergamedata.txt").then(v => v.text()).then(buildOtherArray);
 
-			function buildMainArray(xhr) {
-				const title = convertToArray(xhr.response).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
+			function buildMainArray(data) {
+				const title = convertToArray(data).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
 				const players = title.toSorted((a, b) => a.minp == b.minp ? a.maxp - b.maxp : a.minp - b.minp);
 				const time = title.toSorted((a, b) => a.time - b.time);
 				const complexity = title.toSorted((a, b) => a.skill - b.skill);
@@ -72,12 +65,12 @@
 				list();
 			}
 
-			function build2pArray(xhr) {
-				document.querySelector('#twoplayer tbody').innerHTML = convertToArray(xhr.response).reduce(reducer, "");				
+			function build2pArray(data) {
+				document.querySelector('#twoplayer tbody').innerHTML = convertToArray(data).reduce(reducer, "");				
 			}
 
-			function buildOtherArray(xhr) {
-				document.querySelector('#other tbody').innerHTML = convertToArray(xhr.response).reduce(reducer, "");
+			function buildOtherArray(data) {
+				document.querySelector('#other tbody').innerHTML = convertToArray(data).reduce(reducer, "");
 			}
 
 			function convertToArray(data) {
