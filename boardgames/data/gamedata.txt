@@ -1,5 +1,5 @@
 [
-{name: "Age of Empires III:<br />The Age of Discovery", num: 22545,
+{name: "Age of Empires III: The Age of Discovery", num: 22545,
 minp: 2, maxp: 5, time: 160, ttext: "60+20&times;P<br />(100-160)", skill: 4, luck: 2,
 exp: "@41261|<i>The Builders</i>@",
 enote: "The game now officially supports six players with this expansion." },
@@ -33,7 +33,7 @@ minp: 2, maxp: 6, time: 60, timenote: "Length varies according to how many expan
 exp: "@5405|Traders & Builders@<br />@2993|Inns & Cathedrals@<br />@31784|Abbey & Mayor@<br />@2591|The River@ &nbsp; @1883|The River II@<br />@12903|The Count of Carcassonne@<br /><i>13 others (Major & Minor)</i>",
 enote: "The River expansion is included in all new printings of Carcassonne." },
 
-{name: "Carcassonne:<br />South Seas", num: 147303,
+{name: "Carcassonne: South Seas", num: 147303,
 minp: 2, maxp: 5, time: 35, skill: 2, luck: 3 },
 
 {name: "Carnegie", num: 310873,
@@ -42,17 +42,17 @@ minp: 1, maxp: 4, time: 120, skill: 4, luck: 1 },
 {name: "Cascadia", num: 295947,
 minp: 1, maxp: 4, time: 30, skill: 3, luck: 4 },
 
-{name: "The Castles<br />of Burgundy", num: 84876,
+{name: "The Castles of Burgundy", num: 84876,
 minp: 2, maxp: 4, time: 90, ttext: "30&times;P", skill: 2, luck: 4,
 exp: "<i>10+ Small Expansions</i>" },
 
 {name: "Catan", num: 13,
 minp: 3, maxp: 6, time: 120, skill: 3, luck: 4,
-exp: "@2807|5-6 Players@<br />@325|Seafarers@<br /><i>2 major expansions</i><br /><i>and 5-6 player versions</i>" },
+exp: "@2807|5-6 Players@<br />@325|Seafarers@<br /><i>2 major expansions and 5-6 player versions</i>" },
 
 {name: "Chicago Express", num: 31730,
 minp: 2, maxp: 6, time: 60, skill: 3, luck: 0,
-exp: "@47400|<i>Narrow Gauge &<br />Erie Railroad Company</i>@" },
+exp: "@47400|<i>Narrow Gauge & Erie Railroad Company</i>@" },
 
 {name: "Citadels", num: 478,
 minp: 2, maxp: 8, time: 60, ttext: "15&times;P<br />(30-120)", skill: 2, luck: 4,
@@ -120,9 +120,9 @@ minp: 2, maxp: 5, time: 30, skill: 1.5, luck: 4 },
 minp: 2, maxp: 4, time: 90, ttext: "30-90", skill: 3, luck: 3,
 exp: "@92898|Echoes of the Past@<br /><i>@122323|Figures in the Sand@</i>" },
 
-{name: "In the Year<br />of the Dragon", num: 31594,
+{name: "In the Year of the Dragon", num: 31594,
 minp: 2, maxp: 5, time: 90, skill: 3, luck: 1,
-exp: "@40688|<i>Alea Treasure Chest</i>@" },
+exp: "<i>@40688|Alea Treasure Chest@</i>" },
 
 {name: "Kanagawa", num: 200147,
 minp: 2, maxp: 4, time: 45, skill: 2, luck: 2,
@@ -155,7 +155,7 @@ minp: 2, maxp: 6, time: 45, skill: 3, luck: 3 },
 {name: "Meuterer", num: 902,
 minp: 3, maxp: 5, ptext: "3-4<br />(5)", pnote: "We usually play with 5 players, despite what the rules say.", time: 60, skill: 3, luck: 3 },
 
-{name: "Minecraft:<br />Builders & Biomes", num: 269603,
+{name: "Minecraft: Builders & Biomes", num: 269603,
 minp: 2, maxp: 4, time: 45, skill: 2, luck: 3,
 exp: "<i>@301055|Farmer's Market@</i>" },
 
@@ -177,7 +177,7 @@ exp: "<i>Various Promos<br />@40849|On the Brink@<br />@137136|In the Lab@<br />
 {name: "Pick-Omino Deluxe", num: 245200,
 minp: 2, maxp: 7, time: 30, skill: 2, luck: 4},
 
-{name: "The Pillars<br />of the Earth", num: 24480,
+{name: "The Pillars of the Earth", num: 24480,
 minp: 2, maxp: 4, time: 90, skill: 3.5, luck: 2.5},
 
 {name: "Point Salad", num: 274960,
@@ -191,7 +191,7 @@ exp: "@2005|Freshly Spiced@" },
 minp: 3, maxp: 5, time: 100, skill: 3.5, luck: 2,
 exp: "<i>@40688|Alea Treasure Chest@<br />1 official</i>" },
 
-{name: "The Quacks of<br />Quedlinburg", num: 244521,
+{name: "The Quacks of Quedlinburg", num: 244521,
 minp: 2, maxp: 4, time: 60, skill: 2.5, luck: 3.5,
 exp: "<i>@269259|The Herb Witches@<br />@316597|The Alchemists@</i>" },
 
@@ -227,7 +227,7 @@ minp: 3, maxp: 6, pnote: "Plays best with 6 only. All missing players are replac
 minp: 3, maxp: 5, time: 120, skill: 4, luck: 2.5,
 exp: "<i>@74823|Tenno's Court@</i>" },
 
-{name: "Sid Meier's<br />Civilization<br />The Board Game", num: 77130,
+{name: "Sid Meier's Civilization: The Board Game", num: 77130,
 minp: 2, maxp: 4, pnote: "Fame and Fortune expansion allows for 5 players.", time: 180, ttext: "120-240", skill: 4, luck: 2.5,
 exp: "<i>@108415|Fame and Fortune@<br />@142708|Wisdom and Warfare@</i>" },
 
@@ -258,7 +258,7 @@ exp: "<i>@270364|Late Preclassic Period@<br />@293473|Shadow of Xitle@<br />@316
 minp: 2, maxp: 5, time: 120, ttext: "30&times;P<br />(60-150)", skill: 3.5, luck: 2,
 exp: "<i>@161317|Fire & Ice@<br />@280885|Merchants of the Sea@</i>" },
 
-{name: "Through the Ages:<br />A Story of Civilization", num: 25613,
+{name: "Through the Ages: A Story of Civilization", num: 25613,
 minp: 2, maxp: 4, time: 120, ttext: "60&times;P<br />(120-240)", skill: 5, luck: 2 },
 
 {name: "Thurn and Taxis", num: 21790,
@@ -268,7 +268,7 @@ exp: "<i>3 official</i>" },
 {name: "Tichu", num: 215,
 minp: 4, maxp: 4, ptext: "4<br />(3-6)", pnote: "Tichu really only plays well with 2 partnerships of 2.", time: 60, skill: 3, luck: 4 },
 
-{name: "Ticket to Ride:<br />Europe", num: 14996,
+{name: "Ticket to Ride: Europe", num: 14996,
 minp: 2, maxp: 5, time: 90, skill: 2, luck: 4,
 exp: "<i>1 official<br />Many variants</i>" },
 
@@ -280,13 +280,13 @@ exp: "<i>The Ziggurut</i>" },
 minp: 2, maxp: 4, time: 120, skill: 3, luck: 2.5,
 exp: "<i>@65712|Jungle Zombie@</i>" },
 
-{name: "Timbuktu<br />(Tombouctou)", num: 691,
+{name: "Timbuktu (Tombouctou)", num: 691,
 minp: 3, maxp: 5, time: 60, ttext: "20&times;P<br />(60-100)", skill: 3, luck: 3 },
 
 {name: "Tongiaki", num: 9028,
 minp: 2, maxp: 6, time: 60, skill: 3, luck: 3 },
 
-{name: "Traders of<br />Carthage", num: 24827,
+{name: "Traders of Carthage", num: 24827,
 minp: 2, maxp: 4, time: 45, skill: 2.5, luck: 3 },
 
 {name: "Transamerica", num: 2842,
@@ -300,7 +300,7 @@ exp: "<i>@127061|The Ladies of Troyes@<br />@94284|Bonus Cards@</i>" },
 {name: "Tsuro", num: 16992,
 minp: 2, maxp: 8, time: 15, skill: 1, luck: 3 },
 
-{name: "Tzolk'in:<br />The Mayan Calendar", num: 126163,
+{name: "Tzolk'in: The Mayan Calendar", num: 126163,
 minp: 2, maxp: 4, pnote: "Tribes & Prophecies allows for 5 players.", time: 120, skill: 4, luck: 2,
 exp: "@143065|<i>Tribes & Prophecies</i>@" },
 
