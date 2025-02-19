@@ -1,4 +1,4 @@
-2025,02,18,"{W} Site is fully rewritten and moved to: thursiya.github.io/skunkland ."
+2025,02,18,"{W} Site is fully rewritten and moved to: thursiya.github.io/skunkland."
 2021,05,01,"{W} The Skunkland Server and website retires."
 2020,06,23,"{W} Massive nether trim to allow new biome generation.{Q}<i>The Second Nether Purge has taken place. This trim was of <b>all</b> the undeveloped nether area. The trim was done to allow much closer access to the new nether biomes in 1.16. Terrain generation code has fundamentally not changed but players may notice biome edges especially if the new biome has tall features.{/Q}"
 2020,05,06,"{N} {news35}February/April 2020 Newsletter</a> is released."
