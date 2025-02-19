@@ -1,6 +1,4 @@
-body {
-  background: #DDD url('../images/marble_9.gif');
-  font-size: 100%; }
+body { background: #DDD url('../images/marble_9.gif'); }
 
 table {
   background: #FFF;
@@ -13,7 +11,7 @@ th {
 td { height: 75px; }
 table, td, th {
   border: 1px solid #000;
-  padding: 4px;
+  padding: 5px;
   text-align: center;
   vertical-align: middle; }
 tr.alt { background: #F0ECE7; }
