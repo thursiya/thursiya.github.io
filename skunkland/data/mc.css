@@ -86,6 +86,8 @@ img.header {
   max-width: 1000px;
   text-align: center;
   width: 100vw; }
+@media screen and (max-width: 992px) { .navbar {max-width: 580px;}}
+@media screen and (max-width: 600px) { .navbar {max-width: 400px;}}
 
 div.navbar .navitem {
   color: #FFF;
