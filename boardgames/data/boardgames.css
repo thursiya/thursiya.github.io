@@ -6,10 +6,10 @@ table {
   background: #FFF;
   border-collapse: collapse;
   font-family: Tahoma, sans-serif; 
-  margin: 1.5em; }
+  margin: 20px; }
 th {
   background: #CBA;
-  font: bold 1.25em "Times New Roman", serif; }
+  font: bold 125% "Times New Roman", serif; }
 td { height: 75px; }
 table, td, th {
   border: 1px solid #000;
@@ -32,11 +32,10 @@ img {
   width: 75px; }
 .picbox {
   background: #A86;
-  padding: 0em }
+  padding: 0; }
 
 div.flexbox {
   display: flex; 
   flex-wrap: wrap;
   gap: 20px; }
-div.col {
-  width: 900px; }
+div.col { width: 900px; }
