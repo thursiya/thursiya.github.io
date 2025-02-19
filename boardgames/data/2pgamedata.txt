@@ -11,7 +11,7 @@ exp: "<i>2 official</i>" },
 ttext: "60-120", skill: 3, luck: 4,
 exp: "<i>Numerous</i>" },
 
-{name: "Lord of the Rings:<br />The Confrontation", num: 3201,
+{name: "Lord of the Rings: The Confrontation", num: 3201,
 time: 30, skill: 3, luck: 2 },
 
 {name: "Mr. Jack", num: 21763,
