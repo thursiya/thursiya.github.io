@@ -4,10 +4,11 @@ table {
   background: #FFF;
   border-collapse: collapse;
   font-family: Tahoma, sans-serif; 
-  margin: 20px; }
+  margin: 1.25rem 0.5vw; }
 th {
   background: #CBA;
-  font: bold 125% "Times New Roman", serif; }
+  font: bold 1.25rem "Times New Roman", serif; 
+  min-width: 2rem; }
 td { height: 75px; }
 table, td, th {
   border: 1px solid #000;
