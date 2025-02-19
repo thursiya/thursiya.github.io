@@ -167,6 +167,9 @@ exp: "<i>@213293|Cooked Books@</i>" },
 minp: 2, maxp: 4, time: 90, skill: 3, luck: 2,
 exp: "<i>Various Promos<br />@183682|Invasion@<br />@204814|Trade & Intrigue@</i>" },
 
+{name: "Pan Am", num: 303057,
+minp: 2, maxp: 4, time: 120, skill: 2.5, luck: 4},
+
 {name: "Pandemic", num: 30549,
 minp: 2, maxp: 4, pnote: "This game is entirely cooperative.", time: 45, skill: 2, luck: 3,
 exp: "<i>Various Promos<br />@40849|On the Brink@<br />@137136|In the Lab@<br />@168703|State of Emergency@</i>" },
