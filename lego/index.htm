@@ -9,35 +9,28 @@
 	<body>
 		<main>
 			<div class="flexbox">
-				<div class="col">
+				<div>
 					<h2>Lego Collection</h2>
 					<table id="main"></table>
 				</div>
-				<div class="col">
+				<div>
 					<h2>Old Lego</h2>
 					<table id="old"></table>
 				</div>
 			</div>
 		</main>
 		<script>
-			loadDoc("data/legodata.txt", buildLegoTable);
-			loadDoc("data/oldlegodata.txt", buildLegoTable);
+			fetch("data/legodata.txt").then(v => v.text()).then(buildLegoTable);
+			fetch("data/oldlegodata.txt").then(v => v.text()).then(buildLegoTable);
 
-			function loadDoc(url, cFunction) {
-				const xhttp = new XMLHttpRequest();
-				xhttp.onload = function() {cFunction(this);}
-				xhttp.open("GET", url);
-				xhttp.send();
-			}
-
-			function buildLegoTable(xhr) {
-				const data = xhr.response.split("\n").filter(v => v).map(v => v.split(","));
+			function buildLegoTable(data) {
+				const tabledata = data.split("\n").filter(v => v).map(v => v.split(","));
 				let out = "";
-				for (const i of data) out += `<tr${data.findIndex(v => v == i) % 2 == 0 ? ' class="alt"' : ''}><td>${i[0]}</td>
+				for (const i of tabledata) out += `<tr${data.findIndex(v => v == i) % 2 == 0 ? ' class="alt"' : ''}><td>${i[0]}</td>
  					<td><img src="images/${i[1]}_logo.png" style="width:75;max-height:50"></td>
    					<td><a href="https://lego.brickinstructions.com/lego_instructions/set/${i[0]}" target="_blank"><img src="https://lego.brickinstructions.com/instructions/${String(i[0]).padStart(5,"0").substring(0,2)}000/${i[0]}/001.jpg" onerror="this.src='https://img.bricklink.com/ItemImage/SN/0/${i[0]}-1.png'"></a></td>
      					<td>${i[2]}</td></tr>`;		
-				document.getElementById(Number(data[0][0]) > 2000 ? "main" : "old").innerHTML = out;
+				document.getElementById(Number(tabledata[0][0]) > 2000 ? "main" : "old").innerHTML = out;
 			}
 		</script>
 	</body>
