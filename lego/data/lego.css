@@ -1,11 +1,9 @@
-body {
-  background: #FFF url("../images/brickfield.jpg");
-  font-size: 100%; }
+body { background: #FFF url("../images/brickfield.jpg"); }
 
 table {
   background: #EEF;
   border-collapse: collapse;
-  font: 24px Tahoma, sans-serif;
+  font: 1.5rem Tahoma, sans-serif;
   margin: 10px; }
 table, td, th {
   padding: 4px 6px;
@@ -20,8 +18,8 @@ a:active { color: #952; }
 
 h2 {
   color: #FFF;
-  font: bold 36px Impact, sans-serif;
-  text-shadow: 5px 5px #0009;
+  font: bold 2.5rem Impact, sans-serif;
+  text-shadow: 0.4rem 0.4rem #0009;
   -webkit-text-stroke: 0.5px #000; }
 
 img {
@@ -32,7 +30,5 @@ img {
 div.flexbox {
   display: flex; 
   flex-wrap: wrap;
+  justify-content: space-around;
   gap: 20px; }
-
-div.col {
-  width: 800px; }
