@@ -26,6 +26,7 @@ img {
   max-height: 110px;
   text-align: center;
   width: 75px; }
+img.logo { max-height: 50px; }
 
 div.flexbox {
   display: flex; 
