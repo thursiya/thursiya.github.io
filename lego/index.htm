@@ -26,8 +26,8 @@
 			function buildLegoTable(data) {
 				const tabledata = data.split("\n").filter(v => v).map(v => v.split(","));
 				let out = "";
-				for (const i of tabledata) out += `<tr${data.findIndex(v => v == i) % 2 == 0 ? ' class="alt"' : ''}><td>${i[0]}</td>
- 					<td><img src="images/${i[1]}_logo.png" style="width:75;max-height:50"></td>
+				for (const i of tabledata) out += `<tr${tabledata.findIndex(v => v == i) % 2 == 0 ? ' class="alt"' : ''}><td>${i[0]}</td>
+ 					<td><img src="images/${i[1]}_logo.png" class="logo"></td>
    					<td><a href="https://lego.brickinstructions.com/lego_instructions/set/${i[0]}" target="_blank"><img src="https://lego.brickinstructions.com/instructions/${String(i[0]).padStart(5,"0").substring(0,2)}000/${i[0]}/001.jpg" onerror="this.src='https://img.bricklink.com/ItemImage/SN/0/${i[0]}-1.png'"></a></td>
      					<td>${i[2]}</td></tr>`;		
 				document.getElementById(Number(tabledata[0][0]) > 2000 ? "main" : "old").innerHTML = out;
