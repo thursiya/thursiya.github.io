@@ -28,7 +28,7 @@ function buildStateObject(data, state) {
 function drawInfoWindow(state) {
 	function subTable(...arr) {
 		let stOut = `<tr><td style="padding: 5px;"><table class="info">`;
-		arr.forEach(v => stOut += `<tr><td style="${v[0] == "Government" ? " font-size: 11px; " : ""}font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
+		arr.forEach(v => stOut += `<tr><td style="font-weight: bold; width: 90px;">${v[0]}</td><td>${v[1]}</td></tr>`);
 		return `${stOut}</table></td></tr>`;
 	}
 
@@ -38,7 +38,7 @@ function drawInfoWindow(state) {
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
 		${subTable(["Capital", state.capital], ["Largest City", `${bigcity.name} (${bigcity.output.pop})`])}
 		${subTable(["Demonym", state.demonym])}
-  		${subTable(["Government", state.gov])}`;
+  		${subTable(["<span style="font-size: 0.7rem">Government</span>", state.gov])}`;
 	const arr = [];
 	if (state.lang) arr.push(["Language", state.lang]);
 	if (state.money) arr.push(["Currency", state.money]);
