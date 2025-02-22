@@ -38,7 +38,7 @@ function drawInfoWindow(state) {
    		<tr><td style="padding: 0;"><img src="../../maps/regional/${state.name}.jpg" width="298"></td></tr>
 		${subTable(["Capital", state.capital], ["Largest City", `${bigcity.name} (${bigcity.output.pop})`])}
 		${subTable(["Demonym", state.demonym])}
-  		${subTable(["<span style="font-size: 0.7rem">Government</span>", state.gov])}`;
+  		${subTable(["<span style=\"font-size: 0.7rem\">Government</span>", state.gov])}`;
 	const arr = [];
 	if (state.lang) arr.push(["Language", state.lang]);
 	if (state.money) arr.push(["Currency", state.money]);
