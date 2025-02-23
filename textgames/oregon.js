@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = {  };
+const oregon = { fortFlag: -1, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 
 function initOregon() {
 	currentApp = "Oregon";
@@ -21,15 +21,18 @@ function submitOregon() {
 		case "Instructions":
 			if (data[0] == "Y") {
 				updateLog(`This program simulates a trip over the Oregon Trail from Independence, Missouri to Oregon City, Oregon in 1847. Your family of five will cover the 2040 mile 
-    					Oregon Trail in 5-6 months - if you make it alive.<br><br>You had saved $900 for the trip and you've just paid $200 for a wagon. You will need to spend the rest 
-	 				of your money on the following items:<br><ul><li>Oxen - You can spend $200-$300 on your team. The more you spend, the faster you'll go, because you'll have better 
-      					animals.<li>Food - The more you have, the less chance there is of getting sick.<li>Ammunition - $1 buys a belt of 50 bullets. You will need bullets for attacks by 
-	   				animals and bandits, and for hunting food.<li>Clothing - This is especially important for the cold weather you will encounter when crossing the mountains.
-					<li>Miscellaneous Supplies - This includes medicine and other things you will need for sickness and emergency repairs.<br><br>You can spend all your money before 
-     					you start your trip - or you can save some of your cash to spend at forts along the way when you run low. However, items cost more at the forts. You can also go 
-	  				hunting along the way to get more food.<br>Whenever you have to use your trusty rifle along the way, you will be told to type in a word (one that sounds like a gun 
-       					shot). The faster you type in that word and press 'Enter', the better luck you'll have with your gun.<br><br>At each turn, all items are shown in dollar amounts, 
-	    				except bullets. When asked to enter money amounts, don't use a '$' (dollar sign).<br><br>Good luck!!!`);
+    					Oregon Trail in 5-6 months - if you make it alive.`);
+				updateLog(`You had saved $900 for the trip and you've just paid $200 for a wagon. You will need to spend the rest of your money on the following items:<ul><li>Oxen - You 
+    					can spend $200-$300 on your team. The more you spend, the faster you'll go, because you'll have better animals.<li>Food - The more you have, the less chance there 
+	 				is of getting sick.<li>Ammunition - $1 buys a belt of 50 bullets. You will need bullets for attacks by animals and bandits, and for hunting food.<li>Clothing - 
+      					This is especially important for the cold weather you will encounter when crossing the mountains.<li>Miscellaneous Supplies - This includes medicine and other 
+	   				things you will need for sickness and emergency repairs.</ul>`);
+				updateLog(`You can spend all your money before you start your trip - or you can save some of your cash to spend at forts along the way when you run low. However, items 
+    					cost more at the forts. You can also go hunting along the way to get more food.`);
+				updateLog(`Whenever you have to use your trusty rifle along the way, you will be told to type in a word (one that sounds like a gun shot). The faster you type in that word 
+    					and press 'Enter', the better luck you'll have with your gun.`);
+				updateLog(`At each turn, all items are shown in dollar amounts, except bullets. When asked to enter money amounts, don't use a '$' (dollar sign).`);
+				updateLog(`Good luck!!!`);
 			}
 			gameState = "IntroRifle";
 			break;
@@ -37,10 +40,63 @@ function submitOregon() {
 			if (num > 0 && num < 6) {
 				oregon.shootingExpertise = num;
 			} else {
-				updateLog(`I'll take that as "Shaky Knees".`);
+				updateLog(`Oh, don't want to brag. Okay.`);
 				oregon.shootingExpertise = 0;
 			}
-			gameState = "InitialPurchases"
+			gameState = "InitialOxen";
+			break;
+		case "InitialOxen":
+			if (num < 200) {
+				updateLog(`Not enough.`);
+			} else if (num > 300) {
+				updateLog(`Too much.`);
+			} else {
+				oregon.oxen = num;
+				gameState = "InitialFood";
+			}
+			break;
+		case "InitialFood":
+			if (num < 0) {
+				updateLog(`Impossible!`);
+			} else {
+				oregon.food = num;
+				gameState = "InitialAmmo";
+			}
+			break;
+		case "InitialAmmo":
+			if (num < 0) {
+				updateLog(`Impossible!`);
+			} else {
+				oregon.ammo = num;
+				gameState = "InitialClothes";
+			}
+			break;
+		case "InitialClothes":
+			if (num < 0) {
+				updateLog(`Impossible!`);
+			} else {
+				oregon.clothes = num;
+				gameState = "InitialMisc";
+			}
+			break;
+		case "InitialMisc":
+			if (num < 0) {
+				updateLog(`Impossible!`);
+			} else {
+				oregon.supplies = num;
+				oregon.cash = 700 - oregon.oxen - oregon.food - oregon.ammo - oregon.clothes - oregon.supplies;
+				if (cash < 0) {
+					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
+					gameState = "InitialOxen";
+				} else {
+					updateLog(`After all your purchases, you now have ${cash} dollars left.`);
+					oregon.ammo *= 50;
+					gameState = "NewWeek";
+				}
+			}
+			break;
+		case "ChoosePath":
+			// Chose hunting: if (oregon.ammo < 40) updateLog(`Tough - you need more bullets to go hunting`);
 			break;
 		default:
 			break;
@@ -48,14 +104,90 @@ function submitOregon() {
 	announceOregon();
 }
 
+function updateOregon() {
+}
+
 function announceOregon() {
 	switch (gameState) {
 		case "IntroRifle":
-			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees<br>Enter one of the above - 
-   				the better you claim you are, the faster you'll have to be with your gun to be successful.`);
+			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees`);
+			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful.`);
 			break;
-		case "InitialPurchases":
-			updateLog(`Buy stuff... DEBUG END`);
+		case "InitialOxen":
+			updateLog(`How much do you want to spend on your oxen team? <i>(200 - 300)</i>`);
+			break;
+		case "InitialFood":
+			updateLog(`How much do you want to spend on food?`);
+			break;
+		case "InitialAmmo":
+			updateLog(`How much do you want to spend on ammunition?`);
+			break;
+		case "InitialClothes":
+			updateLog(`How much do you want to spend on clothing?`);
+			break;
+		case "InitialMisc":
+			updateLog(`How much do you want to spend on miscellaneous supplies?`);
+			break;
+		case "NewWeek":
+			updateLog(`Monday March 29 1847`);
+			if (oregon.food < 1) oregon.food = 0;
+			if (oregon.ammo < 1) oregon.ammo = 0;
+			if (oregon.clothes < 1) oregon.clothes = 0;
+			if (oregon.supplies < 1) oregon.supplies = 0;
+			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
+			// original code rounds off variable values here - necessary?
+			// set "total mileage up from previous turn" to oregon.mileage
+			if (oregon.illnessFlag == 1 || oregon.injuryFlag == 1) {
+				oregon.cash -= 20;
+				if (oregon.cash < 0) {
+					// then 5080 --> You can't afford doctor, you die
+					break;
+				}
+				updateLog(`Doctor's bill is $20`);
+				oregon.illnessFlag = 0;
+				oregon.injuryFlag = 0;
+			}
+			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? oregon.mileage : 950}`);
+			oregon.southPassSettingMileageFlag = 0;
+			updateLog(`Food        Bullets        Clothing        Misc. Supp.        Cash`);
+			updateLog(`${oregon.food}         ${oregon.ammo}           ${oregon.clothes}             ${oregon.supplies}               ${oregon.cash}`);
+			gameState = "ChoosePath";
+		case "ChoosePath":
+			if (oregon.fortFlag == -1) {
+				updateLog(`Do you want to (1) hunt, or (2) continue`);
+			} else {
+				oregon.fortFlag = -1;
+				updateLog(`Do you want to (1) stop at the next fort, (2) hunt, or (3) continue`);
+			}
+2040 PRINT "FOOD", "BULLETS", "CLOTHING", "MISC. SUPP.", "CASH"
+PRINT F, B, C, M1, T
+IF Xl = -1 THEN 2170
+X1 = X1 * (-1)
+2080 PRINT "DO YOU WANT TO (1) STOP AT THE NEXT FORT, (2) HUNT, OR (3) CONTINUE"
+INPUT X
+IF X > 2 THEN 2150
+IF X < 1 THEN 2150
+LET X = INT(X)
+G0T0 2270
+
+2150 LET X = 3
+GOT0 2270
+
+2170 PRINT "DO YOU WANT TO (1) HUNT, OR (2) CONTINUE"
+INPUT X
+IF X = l THEN 2210
+LET X = 2
+2210 LET X = X + 1
+IF X = 3 THEN 2260
+IF B > 39 THEN 2260
+PRINT "T0UGH---Y0U NEED MORE BULLETS T0 G0 HUNTING"
+G0T0 2170
+
+2260 X1 = X1 * (-1)
+
+2270 0N X O0T0 2290, 2540, 2720
+			
+			
 			break;
 		default:
 			break;
