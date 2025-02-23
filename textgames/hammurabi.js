@@ -13,7 +13,7 @@ function initHammurabi () {
 	
 	updateLog(`<b>HAMMURABI</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Try your hand at governing Ancient Sumeria for a ten-year term of office.`);
 	updateSumer();
-	announceState();
+	announceHammurabi();
 }
 
 function submitHammurabi () {
@@ -23,7 +23,7 @@ function submitHammurabi () {
 	switch (gameState) {
 		case "Buying":
 			if (data * acrePrice > grain) {
-				gameError("grain shortage")
+				errorHammurabi("grain shortage")
 			} else if (data == 0) {
 				gameState = "Selling";
 			} else {
@@ -34,7 +34,7 @@ function submitHammurabi () {
 			break;
 		case "Selling":
 			if (data > acres) {
-				gameError("land shortage");
+				errorHammurabi("land shortage");
 			} else {
 				acres -= data;
 				grain += data * acrePrice;
@@ -43,7 +43,7 @@ function submitHammurabi () {
 			break;
 		case "Feeding":
 			if (data > grain) {
-				gameError("grain shortage");
+				errorHammurabi("grain shortage");
 			} else {
 				grain -= data;
 				starved = (data / 20 >= population) ? 0 : population - Math.floor(data / 20);
@@ -52,11 +52,11 @@ function submitHammurabi () {
 			break;
 		case "Planting":
 			if (data > acres) {
-				gameError("land shortage");				
+				errorHammurabi("land shortage");				
 			} else if (data > grain) {
-				gameError("grain shortage");
+				errorHammurabi("grain shortage");
 			} else if (data > population * 10) {
-				gameError("worker shortage");
+				errorHammurabi("worker shortage");
 			} else {
 				grain -= data;
 				// Prepare for next year
@@ -76,7 +76,7 @@ function submitHammurabi () {
 					updateLog(`You starved ${starved} in one year!!!`);
 					gameState = "Game Results";
 					starvedPercent = 50;
-					announceState();
+					announceHammurabi();
 				} else {
 					starvedPercent = ((year - 1) * starvedPercent + starved / population * 100) / year;
 					totalStarved += starved;
@@ -90,7 +90,7 @@ function submitHammurabi () {
 		default:
 			break;
 	}
-	announceState();
+	announceHammurabi();
 }
 
 function updateSumer () {
@@ -118,7 +118,7 @@ function updateSumer () {
 	updateLog(out);
 }
 
-function announceState () {
+function announceHammurabi () {
 	let land = acres / population;
 	switch (gameState) {
 		case "Buying":
@@ -156,7 +156,7 @@ function announceState () {
 	}
 }
 
-function gameError (error) {
+function errorHammurabi (error) {
 	let out = "";
 	switch (error) {
 		case "grain shortage":
