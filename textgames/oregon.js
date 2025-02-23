@@ -1,88 +1,61 @@
-let animalDB = [{text: "Does it swim?", yes: 1, no: 2}, {text: "fish"}, {text: "bird"}];
-let animalArrayStage;
-let guessedAnimal, animalQuestion;
+// Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
+
+const oregon = {  };
 
 function initOregon() {
 	currentApp = "Oregon";
 	gameLog.length = 0;
 	document.getElementById("textInput").type = "text";
-	
-	updateLog(`<b>OREGON TRAIL</b><br><i>Based on the BASIC game by Don Rawitsch, Bill Heinemann, and Paul Dillenberger<br>Published in the May/June 1978 edition of Creative Computing</i><br>`);
-  updateLog(`More intro stuff...`);
-	gameState = "Intro";
+
+	updateLog(`<b>OREGON TRAIL</b><br><i>Based on the BASIC game by Bill Heinemann, Paul Dillenberger, and Don Rawitsch<br>Published in the May/June 1978 edition of Creative Computing</i><br>`);
+	updateLog(`Do you need instructions?`);
+	gameState = "Instructions";
 	announceOregon();
 }
 
 function submitOregon() {
-	let data = textInput.value.toUpperCase();
+	const data = textInput.value.toUpperCase();
 	if (!data) return;
+	const num = Number(data);
 	switch (gameState) {
-		case "Intro":
+		case "Instructions":
 			if (data[0] == "Y") {
-				gameState = "Questions";
-			} else {
-				updateLog(`Animals I already know are:<br><b>${animalDB.filter(v => !v.yes).map(v => v.text).join(", ")}</b>`);
+				updateLog(`This program simulates a trip over the Oregon Trail from Independence, Missouri to Oregon City, Oregon in 1847. Your family of five will cover the 2040 mile 
+    					Oregon Trail in 5-6 months - if you make it alive.<br><br>You had saved $900 for the trip and you've just paid $200 for a wagon. You will need to spend the rest 
+	 				of your money on the following items:<br><ul><li>Oxen - You can spend $200-$300 on your team. The more you spend, the faster you'll go, because you'll have better 
+      					animals.<li>Food - The more you have, the less chance there is of getting sick.<li>Ammunition - $1 buys a belt of 50 bullets. You will need bullets for attacks by 
+	   				animals and bandits, and for hunting food.<li>Clothing - This is especially important for the cold weather you will encounter when crossing the mountains.
+					<li>Miscellaneous Supplies - This includes medicine and other things you will need for sickness and emergency repairs.<br><br>You can spend all your money before 
+     					you start your trip - or you can save some of your cash to spend at forts along the way when you run low. However, items cost more at the forts. You can also go 
+	  				hunting along the way to get more food.<br>Whenever you have to use your trusty rifle along the way, you will be told to type in a word (one that sounds like a gun 
+       					shot). The faster you type in that word and press 'Enter', the better luck you'll have with your gun.<br><br>At each turn, all items are shown in dollar amounts, 
+	    				except bullets. When asked to enter money amounts, don't use a '$' (dollar sign).<br><br>Good luck!!!`);
 			}
+			gameState = "IntroRifle";
 			break;
-		case "Questions":
-			if (animalDB[animalArrayStage].yes) {
-				animalArrayStage = (data[0] == "Y") ? animalDB[animalArrayStage].yes : animalDB[animalArrayStage].no;
+		case "IntroRifle":
+			if (num > 0 && num < 6) {
+				oregon.shootingExpertise = num;
 			} else {
-				if (data[0] == "Y") {
-					updateLog(`Why not try another animal?`);
-					gameState = "Intro";	
-				} else {
-					gameState = "Reveal Animal";
-				}
+				updateLog(`I'll take that as "Shaky Knees".`);
+				oregon.shootingExpertise = 0;
 			}
-			break;
-		case "Reveal Animal":
-			if (data.substring(0,2) == "A " || data.substring(0,3) == "AN ") data = data.split(" ").slice(1).join(" ");
-			guessedAnimal = data.toLowerCase();
-			gameState = "Distinguish";
-			break;
-		case "Distinguish":
-			if (data[data.length - 1] != "?") data += "?";
-			data = data[0] + data.slice(1).toLowerCase();
-			animalQuestion = data;
-			gameState = "Distinguish 2";
-			break;
-		case "Distinguish 2":
-			// Copy old entry to new array position
-			animalDB.push(animalDB[animalArrayStage]);
-			// Add new entry to new array position
-			animalDB.push({text: guessedAnimal});
-			// Change original entry to new question
-			animalDB[animalArrayStage] = {text: animalQuestion, yes: (data[0] == "Y" ? animalDB.length - 1 : animalDB.length - 2), no: (data[0] == "Y" ? animalDB.length - 2 : animalDB.length - 1)};
-			gameState = "Intro";
+			gameState = "InitialPurchases"
 			break;
 		default:
 			break;
 	}
-	announceAnimal();
+	announceOregon();
 }
 
 function announceOregon() {
 	switch (gameState) {
-		case "Intro":
-			updateLog(`<hr>Are you thinking of an animal?`);
-			animalArrayStage = 0;
+		case "IntroRifle":
+			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees<br>Enter one of the above - 
+   				the better you claim you are, the faster you'll have to be with your gun to be successful.`);
 			break;
-		case "Questions":
-			if (animalDB[animalArrayStage].yes) {
-				updateLog(animalDB[animalArrayStage].text);
-			} else {
-				updateLog(`Is it ${animalDB[animalArrayStage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animalDB[animalArrayStage].text}?`);
-			}
-			break;
-		case "Reveal Animal":
-			updateLog(`The animal you were thinking of was a...`);
-			break;
-		case "Distinguish":
-			updateLog(`Please type in a question that would distinguish ${guessedAnimal.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${guessedAnimal} from ${animalDB[animalArrayStage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animalDB[animalArrayStage].text}.`);
-			break;
-		case "Distinguish 2":
-			updateLog(`For ${guessedAnimal.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${guessedAnimal} the answer would be?`);
+		case "InitialPurchases":
+			updateLog(`Buy stuff... DEBUG END`);
 			break;
 		default:
 			break;
@@ -90,18 +63,11 @@ function announceOregon() {
 	setInput();
 }
 
-// PROGRAM NAME - OREGON VERSION 1 01/01/78
-// ORIGINAL PROGRAMMING BY BILL HEINEMANN - 1071
-// SUPP0RT RESEARCH AND MATERIALS BY DON RAVITSCH, MINNES0TA EDUCATIONAL COMPUTING CONSORTIUM STAFF
-// CDC CYBER 70/73-26 BASIC 3-1
-// CREATIVE COMPUTING MAY/JUNE 1978
-// FOR THE MEANING OF THE VARIABLES USED: LIST LINES 6470-6790
-
 /*
-160 PRINT "DO YOU NEED INSTRUCTIONS (YES/NO)"
+//160 PRINT "DO YOU NEED INSTRUCTIONS (YES/NO)"
 170 DIM C$(5)
 190 INPUT C$
-200 IF C$ = "W" THEN 690
+200 IF C$ = "NO" THEN 690
 210 PRINT
 220 PRINT
 // •••INSTRUCTIONS***
