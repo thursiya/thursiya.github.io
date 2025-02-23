@@ -159,6 +159,7 @@ function announceOregon() {
 				oregon.fortFlag = -1;
 				updateLog(`Do you want to (1) stop at the next fort, (2) hunt, or (3) continue`);
 			}
+			/*
 2040 PRINT "FOOD", "BULLETS", "CLOTHING", "MISC. SUPP.", "CASH"
 PRINT F, B, C, M1, T
 IF Xl = -1 THEN 2170
@@ -186,7 +187,7 @@ G0T0 2170
 2260 X1 = X1 * (-1)
 
 2270 0N X O0T0 2290, 2540, 2720
-			
+	*/		
 			
 			break;
 		default:
