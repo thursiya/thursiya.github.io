@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fortFlag: -1, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fortFlag: 0, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 
 function initOregon() {
 	currentApp = "Oregon";
@@ -96,7 +96,17 @@ function submitOregon() {
 			}
 			break;
 		case "ChoosePath":
-			// Chose hunting: if (oregon.ammo < 40) updateLog(`Tough - you need more bullets to go hunting`);
+			if (oregon.fortFlag && num == 1) {
+				// Visit fort
+			} else if (num == 1 || (oregon.fortFlag && num == 2)) {
+				if (oregon.ammo < 40) {
+					updateLog(`Tough - you need more bullets to go hunting`);
+				} else {
+					// Hunting
+				}
+			} else {
+				// Continue
+			}
 			break;
 		default:
 			break;
@@ -137,6 +147,7 @@ function announceOregon() {
 			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
 			// original code rounds off variable values here - necessary?
 			// set "total mileage up from previous turn" to oregon.mileage
+			// Toggle fortFlag here? (start value must equal 1 then) 
 			if (oregon.illnessFlag == 1 || oregon.injuryFlag == 1) {
 				oregon.cash -= 20;
 				if (oregon.cash < 0) {
@@ -153,40 +164,9 @@ function announceOregon() {
 			updateLog(`${oregon.food}         ${oregon.ammo}           ${oregon.clothes}             ${oregon.supplies}               ${oregon.cash}`);
 			gameState = "ChoosePath";
 		case "ChoosePath":
-			if (oregon.fortFlag == -1) {
-				updateLog(`Do you want to (1) hunt, or (2) continue`);
-			} else {
-				oregon.fortFlag = -1;
-				updateLog(`Do you want to (1) stop at the next fort, (2) hunt, or (3) continue`);
-			}
+			updateLog(`Do you want to (1) ${oregon.forFlag ? "stop at the next fort" : "hunt"}, (2) ${oregon.fortFlag ? "hunt, (3)" : ""} continue`);
+			break;
 			/*
-2040 PRINT "FOOD", "BULLETS", "CLOTHING", "MISC. SUPP.", "CASH"
-PRINT F, B, C, M1, T
-IF Xl = -1 THEN 2170
-X1 = X1 * (-1)
-2080 PRINT "DO YOU WANT TO (1) STOP AT THE NEXT FORT, (2) HUNT, OR (3) CONTINUE"
-INPUT X
-IF X > 2 THEN 2150
-IF X < 1 THEN 2150
-LET X = INT(X)
-G0T0 2270
-
-2150 LET X = 3
-GOT0 2270
-
-2170 PRINT "DO YOU WANT TO (1) HUNT, OR (2) CONTINUE"
-INPUT X
-IF X = l THEN 2210
-LET X = 2
-2210 LET X = X + 1
-IF X = 3 THEN 2260
-IF B > 39 THEN 2260
-PRINT "T0UGH---Y0U NEED MORE BULLETS T0 G0 HUNTING"
-G0T0 2170
-
-2260 X1 = X1 * (-1)
-
-2270 0N X O0T0 2290, 2540, 2720
 	*/		
 			
 			break;
