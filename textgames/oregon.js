@@ -63,7 +63,7 @@ function submitOregon() {
 					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
 					gameState = "InitialSupplies";
 				} else {
-					updateLog(`After all your purchases, you now have ${cash} dollars left.`);
+					updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
 					oregon.ammo *= 50;
 					gameState = "NewWeek";
 				}
