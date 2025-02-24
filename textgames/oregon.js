@@ -89,7 +89,10 @@ function submitOregon() {
 				updateLog(`You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}`);
 			} else {
 				oregon.cash -= num;
-				{ 1() { oregon.food += ~~(num * 2 / 3) }, 2() {oregon.ammo += ~~(num * 100 / 3)}, 3() {oregon.clothes += ~~(num * 2 / 3)}, 4() {oregon.supplies += ~~(num * 2 / 3)} }[oregon.fort]();
+				if (oregon.fort == 1) oregon.food += ~~(num * 2 / 3);
+				if (oregon.fort == 2) oregon.ammo += ~~(num * 100 / 3);
+				if (oregon.fort == 3) oregon.clothes += ~~(num * 2 / 3);
+				if (oregon.fort == 4) oregon.supplies += ~~(num * 2 / 3);
 			}
 			oregon.fort++;
 			if (oregon.fort > 4) {
