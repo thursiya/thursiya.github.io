@@ -59,7 +59,7 @@ function submitOregon() {
 			}
 			if (oregon.fort > 4) {
 				oregon.cash = 700 - oregon.oxen - oregon.food - oregon.ammo - oregon.clothes - oregon.supplies;
-				if (cash < 0) {
+				if (oregon.cash < 0) {
 					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
 					gameState = "InitialSupplies";
 				} else {
@@ -146,7 +146,7 @@ function announceOregon() {
 			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful.`);
 			break;
 		case "InitialSupplies":
-			updateLog(`How much do you want to spend on ${["your oxen team? <i>(200 - 300)</i>", ...oregonProvisions][oregon.fort]}`);
+			updateLog(`How much do you want to spend on ${["your oxen team? <i>(200 - 300)</i>", ...oregonProvisions][oregon.fort]}${oregon.fort ? "?" : ""}`);
 			break;
 		case "NewWeek":
 			updateLog(`Monday March 29 1847`);
