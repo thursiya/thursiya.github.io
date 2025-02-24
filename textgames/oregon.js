@@ -1,6 +1,7 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fortFlag: 0, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fort: 0, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
 	currentApp = "Oregon";
@@ -16,7 +17,7 @@ function initOregon() {
 function submitOregon() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
-	const num = Number(data);
+	const num = Math.floor(Number(data));
 	switch (gameState) {
 		case "Instructions":
 			if (data[0] == "Y") {
@@ -40,65 +41,39 @@ function submitOregon() {
 			if (num > 0 && num < 6) {
 				oregon.shootingExpertise = num;
 			} else {
-				updateLog(`Oh, don't want to brag. Okay.`);
+				updateLog(`Okay, "Best in the West".`);
 				oregon.shootingExpertise = 0;
 			}
-			gameState = "InitialOxen";
+			gameState = "InitialSupplies";
 			break;
-		case "InitialOxen":
-			if (num < 200) {
+		case "InitialSupplies":
+			if (oregon.fort == 0 && num < 200) {
 				updateLog(`Not enough.`);
-			} else if (num > 300) {
+			} else if (oregon.fort == 0 && num > 300) {
 				updateLog(`Too much.`);
+			} else if (num < 0) {
+				updateLog(`Impossible!`);			
 			} else {
-				oregon.oxen = num;
-				gameState = "InitialFood";
+				oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort]] = num;
+				oregon.fort++;
 			}
-			break;
-		case "InitialFood":
-			if (num < 0) {
-				updateLog(`Impossible!`);
-			} else {
-				oregon.food = num;
-				gameState = "InitialAmmo";
-			}
-			break;
-		case "InitialAmmo":
-			if (num < 0) {
-				updateLog(`Impossible!`);
-			} else {
-				oregon.ammo = num;
-				gameState = "InitialClothes";
-			}
-			break;
-		case "InitialClothes":
-			if (num < 0) {
-				updateLog(`Impossible!`);
-			} else {
-				oregon.clothes = num;
-				gameState = "InitialMisc";
-			}
-			break;
-		case "InitialMisc":
-			if (num < 0) {
-				updateLog(`Impossible!`);
-			} else {
-				oregon.supplies = num;
+			if (oregon.fort > 4) {
 				oregon.cash = 700 - oregon.oxen - oregon.food - oregon.ammo - oregon.clothes - oregon.supplies;
 				if (cash < 0) {
 					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
-					gameState = "InitialOxen";
+					gameState = "InitialSupplies";
 				} else {
 					updateLog(`After all your purchases, you now have ${cash} dollars left.`);
 					oregon.ammo *= 50;
 					gameState = "NewWeek";
 				}
+				oregon.fort = 0;
 			}
 			break;
 		case "ChoosePath":
-			if (oregon.fortFlag && num == 1) {
-				// Visit fort
-			} else if (num == 1 || (oregon.fortFlag && num == 2)) {
+			if (oregon.fort && num == 1) {
+				gameState = "VisitFort";
+			} else if (num == 1 || (oregon.fort && num == 2)) {
 				if (oregon.ammo < 40) {
 					updateLog(`Tough - you need more bullets to go hunting`);
 				} else {
@@ -108,13 +83,57 @@ function submitOregon() {
 				// Continue
 			}
 			break;
+		case "VisitFort":
+			if (num > oregon.cash) {
+				updateLog(`You don't have that much - keep your spending down.`);
+				updateLog(`You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}`);
+			} else {
+				oregon.cash -= num;
+				{ 1() { oregon.food += ~~(num * 2 / 3) }, 2() {oregon.ammo += ~~(num * 100 / 3)}, 3() {oregon.clothes += ~~(num * 2 / 3)}, 4() {oregon.supplies += ~~(num * 2 / 3)} }[oregon.fort]();
+			}
+			oregon.fort++;
+			if (oregon.fort > 4) {
+				oregon.fort = 1;
+				oregon.mileage -= 45;
+				gameState = "Eating";
+			}
+			break;
+		case "Hunting":
+			oregonShooting();
+			// ACTUAL RESPONSE TIME FOR INPUTTING "BANG"
+			if (oregon.responseTime <= 1) {
+				updateLog(`Right between the eyes - you got a big one!!!!`);
+				updateLog(`Full bellies tonight!`);
+				oregon.food += ~~(Math.random() * 52) * 6;
+				oregon.ammo -= ~~(Math.random() * 4 + 10);
+			} else if (Math.random() * 100 < oregon.responseTime * 13) {
+				updateLog(`Nice shot - right on target - good eatin' tonight!`);
+				oregon.food += ~~(48 - 2 * oregon.responseTime);
+				oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
+			} else {
+				updateLog(`You missed - and your dinner got away.....`);
+			}
+			oregon.mileage -= 45;
+			gameState = "Eating";
+			break;
+		case "Eating":
+			if (num > 0 && num < 4) {
+				if (oregon.food < 8 + 5 * num) {
+					updateLog(`You can't eat that well`);
+				} else {
+					oregon.eating = num;
+					oregon.food -= 8 + 5 * oregon.eating;
+					oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
+					oregon.clothingFlag = 0;
+					oregon.blizzardFlag = 0;
+					gameState = "Riders";
+				}
+			}
+			break;
 		default:
 			break;
 	}
 	announceOregon();
-}
-
-function updateOregon() {
 }
 
 function announceOregon() {
@@ -123,20 +142,8 @@ function announceOregon() {
 			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees`);
 			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful.`);
 			break;
-		case "InitialOxen":
-			updateLog(`How much do you want to spend on your oxen team? <i>(200 - 300)</i>`);
-			break;
-		case "InitialFood":
-			updateLog(`How much do you want to spend on food?`);
-			break;
-		case "InitialAmmo":
-			updateLog(`How much do you want to spend on ammunition?`);
-			break;
-		case "InitialClothes":
-			updateLog(`How much do you want to spend on clothing?`);
-			break;
-		case "InitialMisc":
-			updateLog(`How much do you want to spend on miscellaneous supplies?`);
+		case "InitialSupplies":
+			updateLog(`How much do you want to spend on ${["your oxen team? <i>(200 - 300)</i>", ...oregonProvisions][oregon.fort]}`);
 			break;
 		case "NewWeek":
 			updateLog(`Monday March 29 1847`);
@@ -164,16 +171,36 @@ function announceOregon() {
 			updateLog(`${oregon.food}         ${oregon.ammo}           ${oregon.clothes}             ${oregon.supplies}               ${oregon.cash}`);
 			gameState = "ChoosePath";
 		case "ChoosePath":
-			updateLog(`Do you want to (1) ${oregon.forFlag ? "stop at the next fort" : "hunt"}, (2) ${oregon.fortFlag ? "hunt, (3)" : ""} continue`);
+			updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue`);
 			break;
-			/*
-	*/		
+		case "VisitFort":
+			updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort - 1]}:`);
+			break;
+		case "Eating":
+			if (oregon.food < 13) {
+				// starve to death
+			} else {
+				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well`);
+			}
+			break;
+		case "Riders":
+			
+/*
+
+	
+ 
+ */		
 			
 			break;
 		default:
 			break;
 	}
 	setInput();
+}
+
+function oregonShooting() {
+	// Dummy function
+	oregon.responseTime = ~~(Math.random() * 10);
 }
 
 /*
