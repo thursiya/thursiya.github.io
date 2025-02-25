@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 0, injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fort: 1, injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -77,7 +77,22 @@ function submitOregon() {
 				if (oregon.ammo < 40) {
 					updateLog(`Tough - you need more bullets to go hunting`);
 				} else {
-					gameState = "Hunting";
+					oregonShooting();
+					// ACTUAL RESPONSE TIME FOR INPUTTING "BANG"
+					if (oregon.responseTime <= 1) {
+						updateLog(`Right between the eyes - you got a big one!!!!`);
+						updateLog(`Full bellies tonight!`);
+						oregon.food += ~~(Math.random() * 52) * 6;
+						oregon.ammo -= ~~(Math.random() * 4 + 10);
+					} else if (Math.random() * 100 < oregon.responseTime * 13) {
+						updateLog(`Nice shot - right on target - good eatin' tonight!`);
+						oregon.food += ~~(48 - 2 * oregon.responseTime);
+						oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
+					} else {
+						updateLog(`You missed - and your dinner got away.....`);
+					}
+					oregon.mileage -= 45;
+					gameState = "Eating";
 				}
 			} else {
 				gameState = "Eating";
@@ -100,24 +115,6 @@ function submitOregon() {
 				oregon.mileage -= 45;
 				gameState = "Eating";
 			}
-			break;
-		case "Hunting":
-			oregonShooting();
-			// ACTUAL RESPONSE TIME FOR INPUTTING "BANG"
-			if (oregon.responseTime <= 1) {
-				updateLog(`Right between the eyes - you got a big one!!!!`);
-				updateLog(`Full bellies tonight!`);
-				oregon.food += ~~(Math.random() * 52) * 6;
-				oregon.ammo -= ~~(Math.random() * 4 + 10);
-			} else if (Math.random() * 100 < oregon.responseTime * 13) {
-				updateLog(`Nice shot - right on target - good eatin' tonight!`);
-				oregon.food += ~~(48 - 2 * oregon.responseTime);
-				oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
-			} else {
-				updateLog(`You missed - and your dinner got away.....`);
-			}
-			oregon.mileage -= 45;
-			gameState = "Eating";
 			break;
 		case "Eating":
 			if (num > 0 && num < 4) {
@@ -197,7 +194,7 @@ function announceOregon() {
 			updateLog(`How much do you want to spend on ${["your oxen team? <i>(200 - 300)</i>", ...oregonProvisions][oregon.fort]}${oregon.fort ? "?" : ""}`);
 			break;
 		case "NewTurn":
-			updateLog(`Monday March 29 1847`);
+			updateLog(`<hr>Monday March 29 1847`);
 			if (oregon.food < 1) oregon.food = 0;
 			if (oregon.ammo < 1) oregon.ammo = 0;
 			if (oregon.clothes < 1) oregon.clothes = 0;
@@ -205,7 +202,6 @@ function announceOregon() {
 			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
 			// original code rounds off variable values here - necessary?
 			// set "total mileage up from previous turn" to oregon.mileage
-			// Toggle fortFlag here? (start value must equal 1 then) 
 			if (oregon.illness || oregon.injury) {
 				oregon.cash -= 20;
 				if (oregon.cash < 0) {
@@ -216,9 +212,10 @@ function announceOregon() {
 				oregon.illness = 0;
 				oregon.injury = 0;
 			}
-			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}`);
+			updateLog(`Total mileage is <b>${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}</b>`);
 			oregon.southPassSettingMileageFlag = 0;
-			updateLog(`Food: ${oregon.food}, Bullets: ${oregon.ammo}, Clothing: ${oregon.clothes}, Misc. Supp.: ${oregon.supplies}, Cash: ${oregon.cash}`);
+			updateLog(`Food: <b>${oregon.food}</b>, Bullets: <b>${oregon.ammo}</b>, Clothing: <b>${oregon.clothes}</b>, Misc. Supp.: <b>${oregon.supplies}</b>, Cash: <b>${oregon.cash}</b>`);
+			oregon.fort = oregon.fort ? 0 : 1;
 			oregon.hostility = Math.random();
 			gameState = "ChoosePath";
 		case "ChoosePath":
