@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 1, injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fort: 0, injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -67,7 +67,7 @@ function submitOregon() {
 					oregon.ammo *= 50;
 					gameState = "NewTurn";
 				}
-				oregon.fort = 0;
+				oregon.fort = 1;
 			}
 			break;
 		case "ChoosePath":
