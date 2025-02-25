@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 0, injuryFlag: 0, illnessFlag: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fort: 0, injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -129,8 +129,56 @@ function submitOregon() {
 					oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
 					oregon.clothingFlag = 0;
 					oregon.blizzardFlag = 0;
-					gameState = "Riders";
+					gameState = (Math.random() * 10 > ((oregon.mileage / 100 - 4) ** 2 + 72) / ((oregon.mileage / 100 - 4) ** 2 + 12) - 1) ? "Event" : "Riders";
 				}
+			}
+			break;
+		case "Riders":
+			if (num > 0 && num < 5) {
+				if (oregon.hostility < 0.68) {
+					if (num == 3 && oregon.hostility > 0.543) {
+						updateLog(`They did not attack.`);
+					} else {
+						if (num == 1) {
+							oregon.mileage += 20;
+							oregon.oxen -= 40;
+						}
+						if (num == 1 || num == 3) {
+							oregon.ammo -= 150;
+							oregon.supplies -= 15;
+						} else {
+							oregonShooting();
+							oregon.ammo -= oregon.responseTime * (num == 2 ? 40 : 30) - 80;
+							if (num == 4) oregon.mileage -= 25;
+							if (oregon.responseTime <= 1) {
+								updateLog(`Nice shooting - you drove them off.`);
+							} else if (oregon.responseTime <= 4) {
+								updateLog(`Kinda slow with your Colt .45.`);
+							} else {
+								updateLog(`Lousy shot - you got knifed.<br>You havet o see ol' Doc Blanchard.`);
+								oregon.injury = 1;
+							}		
+						}
+						updateLog(`Riders were hostile - check for losses.`);
+						if (oregon.ammo < 0) {
+							updateLog(`You ran out of bullets and got massacred by the riders.`);
+							// You dead - 5170
+							break;
+						}	
+					}
+				} else {
+					if (num == 1) {
+						oregon.mileage += 15;
+						oregon.oxen -= 10;
+					} else if (num == 2) {
+						oregon.mileage -= 5;
+						oregon.ammo -= 100;
+					} else if (num == 4) {
+						oregon.mileage -= 20;
+					}
+					updateLog(`Riders were friendly, but check for possible losses.`);
+				}
+				gameState = "Event";				
 			}
 			break;
 		default:
@@ -158,20 +206,21 @@ function announceOregon() {
 			// original code rounds off variable values here - necessary?
 			// set "total mileage up from previous turn" to oregon.mileage
 			// Toggle fortFlag here? (start value must equal 1 then) 
-			if (oregon.illnessFlag == 1 || oregon.injuryFlag == 1) {
+			if (oregon.illness || oregon.injury) {
 				oregon.cash -= 20;
 				if (oregon.cash < 0) {
 					// then 5080 --> You can't afford doctor, you die
 					break;
 				}
 				updateLog(`Doctor's bill is $20`);
-				oregon.illnessFlag = 0;
-				oregon.injuryFlag = 0;
+				oregon.illness = 0;
+				oregon.injury = 0;
 			}
 			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? oregon.mileage : 950}`);
 			oregon.southPassSettingMileageFlag = 0;
-			updateLog(`<table><tr><th>Food</th><th>Bullets</th><th>Clothing</th><th>Misc. Supp.</th><th>Cash</th></tr>
+			updateLog(`<table style="padding: 10px"><tr><th>Food</th><th>Bullets</th><th>Clothing</th><th>Misc. Supp.</th><th>Cash</th></tr>
    				<tr><td>${oregon.food}</td><td>${oregon.ammo}</td><td>${oregon.clothes}</td><td>${oregon.supplies}</td><td>${oregon.cash}</td></tr></table>`);
+			oregon.hostility = Math.random();
 			gameState = "ChoosePath";
 		case "ChoosePath":
 			updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue`);
@@ -187,13 +236,11 @@ function announceOregon() {
 			}
 			break;
 		case "Riders":
-			
-/*
-
-	
- 
- */		
-			
+			updateLog(`Riders ahead. They ${oregon.hostility < 0.8 ? "" : "don't "}look hostile.`);
+			updateLog(`Tactics:<br>(1) Run (2) Attack (3) Continue (4) Circle Wagons`);			
+			break;
+		case "Event":
+			updateLog(`A random event happens - END DEBUG`);
 			break;
 		default:
 			break;
