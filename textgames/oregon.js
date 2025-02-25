@@ -17,7 +17,7 @@ function initOregon() {
 function submitOregon() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
-	const num = Math.floor(Number(data));
+	const num = Math.floor(Number(data)) || -1;
 	switch (gameState) {
 		case "Instructions":
 			if (data[0] == "Y") {
