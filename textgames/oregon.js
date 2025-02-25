@@ -102,30 +102,6 @@ function submitOregon() {
 				gameState = "Eating";
 			}
 			break;
-		case "Hunting":
-		case "Shooting":
-			oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) * 3600 - oregon.shootingExpertise + 1;
-			if (oregon.responseTime < 0) oregon.responseTime = 0;
-			if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
-			if (gameState == "Hunting") {
-				if (oregon.responseTime <= 1) {
-					updateLog(`Right between the eyes - you got a big one!!!!`);
-					updateLog(`Full bellies tonight!`);
-					oregon.food += ~~(Math.random() * 52) * 6;
-					oregon.ammo -= ~~(Math.random() * 4 + 10);
-				} else if (Math.random() * 100 < oregon.responseTime * 13) {
-					updateLog(`Nice shot - right on target - good eatin' tonight!`);
-					oregon.food += ~~(48 - 2 * oregon.responseTime);
-					oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
-				} else {
-					updateLog(`You missed - and your dinner got away.....`);
-				}
-				oregon.mileage -= 45;
-				gameState = "Eating";
-			} else {
-			
-			}
-			break;
 		case "Eating":
 			if (num > 0 && num < 4) {
 				if (oregon.food < 8 + 5 * num) {
@@ -140,10 +116,35 @@ function submitOregon() {
 				}
 			}
 			break;
+		case "Hunting":
+		case "Attacking":
+		case "Defending":
+			oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) / 1000 - oregon.shootingExpertise + 1;
+			if (oregon.responseTime < 0) oregon.responseTime = 0;
+			if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
+			if (gameState == "Hunting") {
+				if (oregon.responseTime <= 1) {
+					updateLog(`Right between the eyes - you got a big one!!!!`);
+					updateLog(`Full bellies tonight!`);
+					oregon.food += ~~(Math.random() * 52) * 6;
+					oregon.ammo -= ~~(Math.random() * 4 + 10);
+				} else if (Math.random() * 100 > oregon.responseTime * 13) {
+					updateLog(`Nice shot - right on target - good eatin' tonight!`);
+					oregon.food += ~~(48 - 2 * oregon.responseTime);
+					oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
+				} else {
+					updateLog(`You missed - and your dinner got away.....`);
+				}
+				oregon.mileage -= 45;
+				gameState = "Eating";
+				break;
+			}
 		case "Riders":
-			if (num > 0 && num < 5) {
+			if ((num > 0 && num < 5) || gameState == "Attacking" || gameState == "Defending") {
 				if (oregon.hostility < 0.68) {
-					if (num == 3 && oregon.hostility > 0.543) {
+					if (num == 2 || num == 4) {
+						gameState = num == 2 ? "Attacking" : "Defending";
+					} else if (num == 3 && oregon.hostility > 0.543) {
 						updateLog(`They did not attack.`);
 					} else {
 						if (num == 1) {
@@ -154,15 +155,14 @@ function submitOregon() {
 							oregon.ammo -= 150;
 							oregon.supplies -= 15;
 						} else {
-							oregonShooting();
-							oregon.ammo -= oregon.responseTime * (num == 2 ? 40 : 30) - 80;
-							if (num == 4) oregon.mileage -= 25;
+							oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) - 80;
+							if (gameState == "Defending") oregon.mileage -= 25;
 							if (oregon.responseTime <= 1) {
 								updateLog(`Nice shooting - you drove them off.`);
 							} else if (oregon.responseTime <= 4) {
 								updateLog(`Kinda slow with your Colt .45.`);
 							} else {
-								updateLog(`Lousy shot - you got knifed.<br>You havet o see ol' Doc Blanchard.`);
+								updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
 								oregon.injury = 1;
 							}		
 						}
@@ -235,9 +235,10 @@ function announceOregon() {
 			updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort - 1]}:`);
 			break;
 		case "Hunting":
-		case "Shooting":
+		case "Attacking":
+		case "Defending":
 			oregon.shotType = ["Bang", "Bam", "Pow", "Wham"][~~(Math.random() * 4)];
-			updateLog(`Type: ${oregon.shotType}`);
+			updateLog(`Type: <b>${oregon.shotType}</b>`);
 			oregon.timer[0] = new Date();
 			break;
 		case "Eating":
