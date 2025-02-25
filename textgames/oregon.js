@@ -170,8 +170,8 @@ function announceOregon() {
 			}
 			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? oregon.mileage : 950}`);
 			oregon.southPassSettingMileageFlag = 0;
-			updateLog(`Food        Bullets        Clothing        Misc. Supp.        Cash`);
-			updateLog(`${oregon.food}         ${oregon.ammo}           ${oregon.clothes}             ${oregon.supplies}               ${oregon.cash}`);
+			updateLog(`<table><tr><th>Food</th><th>Bullets</th><th>Clothing</th><th>Misc. Supp.</th><th>Cash</th></tr>
+   				<tr><td>${oregon.food}</td><td>${oregon.ammo}</td><td>${oregon.clothes}</td><td>${oregon.supplies}</td><td>${oregon.cash}</td></tr></table>`);
 			gameState = "ChoosePath";
 		case "ChoosePath":
 			updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue`);
