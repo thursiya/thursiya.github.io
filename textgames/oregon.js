@@ -227,6 +227,9 @@ function announceOregon() {
 		case "VisitFort":
 			updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort - 1]}:`);
 			break;
+		case "Hunting":
+			updateLog(`You're hunting - I think...`);
+			break;
 		case "Eating":
 			if (oregon.food < 13) {
 				// starve to death
