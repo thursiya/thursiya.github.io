@@ -65,7 +65,7 @@ function submitOregon() {
 				} else {
 					updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
 					oregon.ammo *= 50;
-					gameState = "NewWeek";
+					gameState = "NewTurn";
 				}
 				oregon.fort = 0;
 			}
@@ -77,10 +77,10 @@ function submitOregon() {
 				if (oregon.ammo < 40) {
 					updateLog(`Tough - you need more bullets to go hunting`);
 				} else {
-					// Hunting
+					gameState = "Hunting";
 				}
 			} else {
-				// Continue
+				gameState = "Eating";
 			}
 			break;
 		case "VisitFort":
@@ -196,7 +196,7 @@ function announceOregon() {
 		case "InitialSupplies":
 			updateLog(`How much do you want to spend on ${["your oxen team? <i>(200 - 300)</i>", ...oregonProvisions][oregon.fort]}${oregon.fort ? "?" : ""}`);
 			break;
-		case "NewWeek":
+		case "NewTurn":
 			updateLog(`Monday March 29 1847`);
 			if (oregon.food < 1) oregon.food = 0;
 			if (oregon.ammo < 1) oregon.ammo = 0;
@@ -216,10 +216,9 @@ function announceOregon() {
 				oregon.illness = 0;
 				oregon.injury = 0;
 			}
-			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? oregon.mileage : 950}`);
+			updateLog(`Total mileage is ${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}`);
 			oregon.southPassSettingMileageFlag = 0;
-			updateLog(`<table style="padding: 10px"><tr><th>Food</th><th>Bullets</th><th>Clothing</th><th>Misc. Supp.</th><th>Cash</th></tr>
-   				<tr><td>${oregon.food}</td><td>${oregon.ammo}</td><td>${oregon.clothes}</td><td>${oregon.supplies}</td><td>${oregon.cash}</td></tr></table>`);
+			updateLog(`Food: ${oregon.food}, Bullets: ${oregon.ammo}, Clothing: ${oregon.clothes}, Misc. Supp.: ${oregon.supplies}, Cash: ${oregon.cash}`);
 			oregon.hostility = Math.random();
 			gameState = "ChoosePath";
 		case "ChoosePath":
