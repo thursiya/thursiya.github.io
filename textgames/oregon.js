@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 0, timer: [0, 0], injury: 0, illness: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { fort: 0, timer: [0, 0], hurt: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
 const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -163,13 +163,13 @@ function submitOregon() {
 								updateLog(`Kinda slow with your Colt .45.`);
 							} else {
 								updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
-								oregon.injury = 1;
+								oregon.hurt = 2;
 							}		
 						}
 						updateLog(`Riders were hostile - check for losses.`);
 						if (oregon.ammo < 0) {
 							updateLog(`You ran out of bullets and got massacred by the riders.`);
-							// You dead - 5170
+							oregonGameOver();
 							break;
 						}	
 					}
@@ -187,6 +187,12 @@ function submitOregon() {
 				}
 				gameState = "Event";				
 			}
+			break;
+		case "GameOver":
+			oregon.fort++;
+			break;
+		case "Restart":
+			updateLog(`<i>Reload the game to restart</i>`);
 			break;
 		default:
 			break;
@@ -212,15 +218,15 @@ function announceOregon() {
 			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
 			// original code rounds off variable values here - necessary?
 			// set "total mileage up from previous turn" to oregon.mileage
-			if (oregon.illness || oregon.injury) {
+			if (oregon.hurt) {
 				oregon.cash -= 20;
 				if (oregon.cash < 0) {
-					// then 5080 --> You can't afford doctor, you die
+					updateLog(`You can't afford a doctor.<br>You died of ${oregon.hurt == 1 ? "pneumonia" : "injuries"}.`);
+					oregonGameOver();
 					break;
 				}
 				updateLog(`Doctor's bill is $20`);
-				oregon.illness = 0;
-				oregon.injury = 0;
+				oregon.hurt = 0;
 			}
 			updateLog(`Total mileage is <b>${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}</b>`);
 			oregon.southPassSettingMileageFlag = 0;
@@ -243,7 +249,8 @@ function announceOregon() {
 			break;
 		case "Eating":
 			if (oregon.food < 13) {
-				// starve to death
+				updateLog(`You ran out of food and starved to death.`);
+				oregonGameOver();
 			} else {
 				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well`);
 			}
@@ -255,15 +262,27 @@ function announceOregon() {
 		case "Event":
 			updateLog(`A random event happens - END DEBUG`);
 			break;
+		case "GameOver":
+			if (oregon.fort < 3) {
+				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort - 1]}?`);
+			} else {
+				updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
+				updateLog(`We thank you for this information and we are sorry you didn't make it to the great territory of Oregon.<br>Better luck next time.`);
+				updateLog(`<span style="text-align: right">Sincerely,<br>The Oregon City Chamber of Commerce</span>`);
+				gameState = "Restart";
+			}
+			break;
 		default:
 			break;
 	}
 	setInput();
 }
 
-function oregonShooting() {
-	// Dummy function
-	oregon.responseTime = ~~(Math.random() * 10);
+function oregonGameOver() {
+	gameState = "GameOver";
+	oregon.fort = 0;
+	updateLog(`Due to your unfortunate situation, there are a few formalities we must go through.`);
+	updateLog(`Would you like a minister?`);
 }
 
 /*
@@ -812,7 +831,7 @@ PRINT "DON'T ";
 
 // **BELLS IN LINES 5470, 5480**
 5470 PRINT "YOU FINALLY ARRIVED AT OREGON CITY"
-5400 PRINT "AFTER 2040 LONG MILES---HOORAY!!!!!"
+5480 PRINT "AFTER 2040 LONG MILES---HOORAY!!!!!"
 5490 PRINT "A REAL PIONEER!"
 5500 PRINT
 5510 F9 = INT(F9 * 14)
@@ -919,7 +938,7 @@ GOTO 6440
 6410 PRINT "BAD ILLNESS---MEDICINE USED"
 M = M - 5
 Ml = Ml - 5
-IF M1 < 0 THEN 5110 
+6440 IF M1 < 0 THEN 5110 
 IF Ll = l THEN 4940
 GOTO 4710
 
