@@ -17,7 +17,7 @@ function initOregon() {
 function submitOregon() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
-	const num = Math.floor(Number(data)) || -1;
+	const num = isNaN(data) ? -1 || Math.floor(data);
 	oregon.timer[1] = new Date();
 	switch (gameState) {
 		case "Instructions":
@@ -263,13 +263,130 @@ function announceOregon() {
 			break;
 		case "Event":
 			updateLog(`A random event happens - END DEBUG`);
+			/*// ***SELECTION OF EVENTS***
+3550 LET Dl = 0		// Counter in generating events
+REST0RE
+R1 = 100 * RND(-1)	// Random number in choosing events
+3580 LET D1 = D1 + 1
+IF D1 = 16 THEN 4670
+READ D
+IF R1 > D THEN 3580
+DATA 6, 11, 13, 15, 17, 22, 32, 35, 37, 42, 44, 54, 64, 69, 95
+IF D1 > 10 THEN 3650
+ON Dl G0T0 3660, 3700, 3740, 3790, 3820, 3850, 3880, 3960, 4130, 4190
+3650 0N Dl - 10 G0T0 4220, 4290, 4340, 4560, 4610, 4670
+
+3660 PRINT "WAG0N BREAKS DOWN--L0SE TIME AND SUPPLIES FIXING IT"		6%
+LET M = M - 15 - 5 * RND(-1)
+LET Ml = M1 - 8
+G0T0 4710
+3700 PRINT "OX INJURES LEG---SLOWS Y0U DOWN REST OF TRIP"			5%
+LET M = M - 25
+LET A = A - 20
+G0T0 4710
+3740 PRINT "BAD LUCK---YOUR DAUGHTER BROKE HER ARM"				2%
+PRINT "Y0U HAD TO STOP AND USE SUPPLIES T0 MAKE A SLING"
+M = M - 5 - 4 * RND(-l)
+M1 = Ml - 2 - 3 * RND(-1)
+GOTO 4710
+3790 PRINT "OX WANDERS OFF---SPEND TIME L00KING FOR IT"				2%
+M = M - 17
+G0T0 4710
+3820 PRINT "YOUR SON GETS LOST---SPEND HALF THE DAY LOOKING FOR HIM"		2%
+M = M - 10
+G0T0 4710
+3850 PRINT "UNSAFE WATER--LOSE TIME LO0KING FOR CLEAN SPRING"			5%
+LET M = M - 10 * RND(-l) - 2
+GOTO 4710
+3880 IF M > 950 THEN 4490							10% (Rain or cold)
+PRINT "HEAVY RAINS---TIME AND SUPPLIES LOST"
+F = F - 10
+B = B - 500
+M1 = M1 - 15
+M = M - 10 * RND(-l) - 5
+G0TO 4710
+3960 PRINT "BANDITS ATTACK"							3%
+G0SUB 6140
+B = B - 20 * B1
+IF B >= 0 THEN 4030
+PRINT "YOU RAN OUT OF BULLETS---THEY GOT LOTS OF CASH"
+T = T / 3
+GOTO 4040
+IF Bl <= 1 THEN 4100
+4040 PRINT "YOU GOT SHOT IN THE LEG AND THEY TOOK ONE OF YOUR OXEN"
+K8 = l
+PRINT "BETTER HAVE A DOC LOOK AT YOUR WOUND"
+Ml = Ml - 5
+A = A - 20
+GOTO 4710
+4100 PRINT "QUICKEST DRAW OUTSIDE OF DODGE CITY!!!"
+PRINT "YOU GOT 'EM!"
+GOTO 4710
+4130 PRINT "THERE WAS A FIRE IN YOUR WAGON---FOOD AND SUPPLIES DAMAGE!"		2%
+F = F - 40
+B = B - 400
+LET Ml = Ml - RND(-l) * 8 - 3
+M = M - 15
+GOTO 4710
+4190 PRINT "LOSE YOUR WAY IN HEAVY FOG---TIME IS LOST"				5%
+M = M - 10 - 5 * RND(-1)
+GOTO 4710
+4220 PRINT "YOU KILLED A POISONOUS SNAKE AFTER IT BIT YOU"			2%
+B = B - 1O
+Ml = Ml - 5
+IF Ml >= 0 THEN 4710
+PRINT "YOU DIE OF SNAKEBITE SINCE YOU HAVE NO MEDICINE"
+GOTO 5170
+4290 PRINT "WAGON GETS SWAMPED FORDING RIVER--LOSE FOOD AND CLOTHES"		10%
+F = F - 30
+C = C - 20
+M = M - 20 - 20 * RND(-l)
+GOTO 4710
+4340 PRINT "WILD ANIMALS ATTACK!"						10%
+GOSUB 6140
+IF B > 39 THEN 4410
+PRINT "YOU WERE TOO LOW ON BULLETS--"
+PRINT "THE WOLVES OVERPOWERED YOU"
+K8 = 1
+GOTO 5120
+4410 IF Bl > 2 THEN 4440
+PRINT "NICE SHOOTIN' PARTNER---THEY DIDN'T GET MUCH"
+GOTO 4450
+4440 PRINT "SLOW ON THE DRAW---THEY GOT AT YOUR FOOD AND CLOTHES"
+4450 B = B - 20 * B1
+C = C - Bl * 4
+F = F - B1 * 8
+GOTO 4710
+4490 PRINT "COLD WEATHER---BRRRRRRR!---YOU ";
+IF C > 22 + 4 * RND(-l) THEN 4530
+PRINT "DON'T ";
+4520 Cl = 1
+4530 PRINT "HAVE ENOUGH CLOTHING T0 KEEP YOU WARM"
+4540 IF Cl = 0 THEN 4710
+4550 GOTO 6300
+4560 PRINT "HAIL STORM---SUPPLIES DAMAGED"					5%
+4570 M = M - 5 - RND(-1) * 10
+4580 B = B - 200
+4590 Ml = Ml - 4 - RND(-l) * 3
+4600 GOTO 4710
+4610 If E = l THEN 6300			//Eat poorly				26% (100%, 75%, or 50% chance of getting sick, based on eating)
+4620 IF E = 3 THEN 4650			//Eat well
+4630 IF RND(-1) > .25 THEN 6300
+4640 GOTO 4710
+4650 IF RND(-1) < .5 THEN 6300
+4660 GOTO 4710
+4670 PRINT "HELPFUL INDIANS SHOW YOU WHERE T0 FIND MORE FOOD"			5%
+4680 F = F + 14
+4690 GOT0 4710*/
+			break;
+		case "Mountains":
 			break;
 		case "GameOver":
 			if (oregon.fort < 3) {
 				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort - 1]}?`);
 			} else {
-				updateLog(`We thank you for this information and we are sorry you didn't make it to the great territory of Oregon.<br>Better luck next time.`);
-				updateLog(`<span style="text-align: right">Sincerely,<br>The Oregon City Chamber of Commerce</span>`);
+				updateLog(`<i>We thank you for this information and we are sorry you didn't make it to the great territory of Oregon.<br>Better luck next time.</i>`);
+				updateLog(`<span style="float: right; font-style: italic">Sincerely,<br>The Oregon City Chamber of Commerce</span>`);
 				gameState = "Restart";
 			}
 			break;
