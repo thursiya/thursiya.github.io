@@ -53,7 +53,8 @@ function submitOregon() {
 			} else if (oregon.fort == 0 && num > 300) {
 				updateLog(`Too much.`);
 			} else if (num < 0) {
-				updateLog(`Impossible!`);			
+				updateLog(`Impossible!`);
+				console.log(`(Debug) num: ${num}`);
 			} else {
 				oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort]] = num;
 				oregon.fort++;
@@ -189,6 +190,7 @@ function submitOregon() {
 			}
 			break;
 		case "GameOver":
+			if (oregon.fort == 2) updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
 			oregon.fort++;
 			break;
 		case "Restart":
@@ -266,7 +268,6 @@ function announceOregon() {
 			if (oregon.fort < 3) {
 				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort - 1]}?`);
 			} else {
-				updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
 				updateLog(`We thank you for this information and we are sorry you didn't make it to the great territory of Oregon.<br>Better luck next time.`);
 				updateLog(`<span style="text-align: right">Sincerely,<br>The Oregon City Chamber of Commerce</span>`);
 				gameState = "Restart";
