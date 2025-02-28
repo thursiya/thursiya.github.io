@@ -294,49 +294,33 @@ function announceOregon() {
 				{ t: "You killed a poisonous snake after it bit you.", a: -10, s: -5 },
 				{ t: "Wagon gets swamped fording river - lose food and clothes.", f: -30, c: -20, m: -20 - ~~(Math.random() * 20) },
 				{ t: "Wild animals attack!" },
+				{ t: "Hail storm - supplies damaged.", m: -5 - ~~(Math.random() * 10), a: -200, s: -4 - ~~(Math.random() * 3) },
+				{ t: "" },
+				{ t: "Helpful Indians show you where to find more food.", f: 14 }
 			][oregonEventIndex];
+			if (oregonEventIndex == 6 && oregon.mileage > 950) {
+				const oregonCold = oregon.clothes > 22 + Math.random() * 4;
+				updateLog(`Cold weather - brrrrrrr! - you ${oregon.clothes ? "" : "don't "}have enough clothing to keep you warm.`);
+				if (oregonCold) oregonSick();
+				break;
+			}
 			updateLog(oregonEvent.t);
 			oregon.mileage += oregonEvent.m || 0;
 			oregon.supplies += oregonEvent.s || 0;
 			oregon.oxen += oregonEvent.o || 0;
 			oregon.food += oregonEvent.f || 0;
 			oregon.ammo += oregonEvent.a || 0;
-			if (oregonEventIndex == 6) {
-
-// Cold weather subroutine
-//4490 PRINT "COLD WEATHER---BRRRRRRR!---YOU ";
-//IF C > 22 + 4 * RND(-l) THEN 4530
-//PRINT "DON'T ";
-//4520 Cl = 1
-//4530 PRINT "HAVE ENOUGH CLOTHING T0 KEEP YOU WARM"
-//4540 IF Cl = 0 THEN 4710
-//4550 GOTO 6300
-			} else if (oregonEventIndex == 7) {
-				gameState = "Bandits";
-			} else if (oregonEventIndex == 10) {
-				if (oregon.supplies < 0) {
+			if (oregonEventIndex == 7 || oregonEventIndex == 12) {
+				gameState = oregonEventIndex == 7 ? "Bandits" : "WildAnimals";
+			} else {
+				if (oregonEventIndex == 10 && oregon.supplies < 0) {
 					updateLog(`You die of snakebite since you have no medicine.`);
 					oregonGameOver();
+				} else if (oregonEventIndex == 14) {
+					if (Math.random() * 4 > oregon.eating - 1) oregonSick();
 				}
-			} else if (oregonEventIndex == 12) {
-				gameState = "WildAnimals";
+				break;
 			}
-			
-/*
-4560 PRINT "HAIL STORM---SUPPLIES DAMAGED"					5%
-4570 M = M - 5 - RND(-1) * 10
-4580 B = B - 200
-4590 Ml = Ml - 4 - RND(-l) * 3
-4600 GOTO 4710
-4610 If E = l THEN 6300			//Eat poorly				26% (100%, 75%, or 50% chance of getting sick, based on eating)
-4620 IF E = 3 THEN 4650			//Eat well
-4630 IF RND(-1) > .25 THEN 6300
-4640 GOTO 4710
-4650 IF RND(-1) < .5 THEN 6300
-4660 GOTO 4710
-4670 PRINT "HELPFUL INDIANS SHOW YOU WHERE T0 FIND MORE FOOD"			5%
-4680 F = F + 14
-4690 GOT0 4710*/
 		case "Hunting":
 		case "Attacking":
 		case "Defending":
@@ -359,7 +343,48 @@ function announceOregon() {
 			updateLog(`Tactics:<br>(1) Run (2) Attack (3) Continue (4) Circle Wagons`);			
 			break;
 		case "Mountains":
+			if (oregon.mileage <= 950) {
+				gameState = "SettingDate";
+			} else {
+				
+			}
 			break;
+			/*
+   // ***MOUNTAINS***
+4710 IF M <= 950 THEN 1230
+4720 IF RND(-1) * 10 > 9 - ((M / 100 - 15) ** 2 + 72) / ((M / 100 - 15) ** 2 + 12) THEN 4860
+4730 PRINT "RUGGED MOUNTAINS"
+4740 IF RND(-1) > .1 THEN 4780
+4750 PRINT "YOU GOT LOST---LOSE VALUABLE TIME TRYING TO FIND TRAIL!"
+4760 M = M - 60
+4770 GOTO 4860
+4780 IF RND(-1) > .11 THEN 4840
+4790 PRINT "WAGON DAMAGED!---LOSE TIME AND SUPPLIES"
+4800 M1 = M1 - 5
+4810 B = B - 200
+4820 M = M - 20 - 30 * RND(-1)
+4830 GOTO 4860
+4840 PRINT "THE GOING GETS SLOW"
+4850 M = M - 45 - RND(-l) / .02
+4660 IF F1 = 1 THEN 4900
+4870 Fl = l
+4880 IF RND(-1) < .8 THEN 4970
+4690 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
+4900 IF M < 1700 THEN 4940
+4910 IF F2 = 1 THEN 4940
+4920 F2 = l
+4930 IF RND(-1) < .7 THEN 4970
+4940 IF M > 950 THEN 1230
+4950 M9 = 1
+4960 GOTO 1230
+4970 PRINT "BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST"
+4980 L1 = l
+4990 F = F - 25
+5000 M1 = M1 - 10
+5010 B = B - 300
+5020 M = M - 30 - 40 * RND(-1)
+5030 IF C < 18 + 2 * RND(-1) THEN 6300
+5040 GOTO 4940 */
 		case "Died":
 			oregonDied();
 			break;
@@ -376,6 +401,10 @@ function announceOregon() {
 			break;
 	}
 	setInput();
+}
+
+function oregonSick() {
+
 }
 
 function oregonDied() {
