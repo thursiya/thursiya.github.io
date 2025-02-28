@@ -346,30 +346,37 @@ function announceOregon() {
 			if (oregon.mileage <= 950) {
 				gameState = "SettingDate";
 			} else {
-				
+				if (Math.random() * 10 > 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12) {
+				// 4860
+				} else {
+					updateLog(`Rugged Mountains`);
+					if (Math.random() > .1) {
+						if (Math.random() > .11) {
+							updateLog(`The going gets slow.`);
+							oregon.mileage -= 45 + ~~(Math.random() * 50);
+							// 4860
+						} else {
+							updateLog(`Wagon damaged! - lose time and supplies.`);
+							oregon.supplies -= 5;
+							oregon.ammo -= 200;
+							oregon.mileage -= 20 + ~~(Math.random() * 30);
+							// 4860
+						}
+					} else {
+						updateLog(`You got lost - lose valuable time trying to find trail!`);
+						oregon.mileage -= 60;
+						// 4860
+					}
+				}
+				// 4860 --->
 			}
 			break;
 			/*
    // ***MOUNTAINS***
-4710 IF M <= 950 THEN 1230
-4720 IF RND(-1) * 10 > 9 - ((M / 100 - 15) ** 2 + 72) / ((M / 100 - 15) ** 2 + 12) THEN 4860
-4730 PRINT "RUGGED MOUNTAINS"
-4740 IF RND(-1) > .1 THEN 4780
-4750 PRINT "YOU GOT LOST---LOSE VALUABLE TIME TRYING TO FIND TRAIL!"
-4760 M = M - 60
-4770 GOTO 4860
-4780 IF RND(-1) > .11 THEN 4840
-4790 PRINT "WAGON DAMAGED!---LOSE TIME AND SUPPLIES"
-4800 M1 = M1 - 5
-4810 B = B - 200
-4820 M = M - 20 - 30 * RND(-1)
-4830 GOTO 4860
-4840 PRINT "THE GOING GETS SLOW"
-4850 M = M - 45 - RND(-l) / .02
-4660 IF F1 = 1 THEN 4900
+4860 IF F1 = 1 THEN 4900	// Flag for clearing south pass
 4870 Fl = l
 4880 IF RND(-1) < .8 THEN 4970
-4690 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
+4890 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
 4900 IF M < 1700 THEN 4940
 4910 IF F2 = 1 THEN 4940
 4920 F2 = l
