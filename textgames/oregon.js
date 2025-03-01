@@ -17,7 +17,7 @@ function initOregon() {
 function submitOregon() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
-	const num = isNaN(data) ? -1 || Math.floor(data);
+	const num = isNaN(data) ? -1 : Math.floor(data);
 	oregon.timer[1] = new Date();
 	switch (gameState) {
 		case "Instructions":
