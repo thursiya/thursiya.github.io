@@ -176,52 +176,63 @@ function submitOregon() {
 				break;
 			}
 		case "Riders":
-			if ((num > 0 && num < 5) || gameState == "Attacking" || gameState == "Defending") {
+			if (oregon.hostility < 0.68 && (num == 2 || num == 4)) {
+					gameState = num == 2 ? "Attacking" : "Defending";
+			} else if (num > 0 && num < 5 || gameState == "Attacking" || gameState == "Defending") {
+				// Hostile Riders
 				if (oregon.hostility < 0.68) {
-					if (num == 2 || num == 4) {
-						gameState = num == 2 ? "Attacking" : "Defending";
-					} else if (num == 3 && oregon.hostility > 0.543) {
+					if (num == 3 && oregon.hostility > 0.543) {
 						updateLog(`They did not attack.`);
 					} else {
-						if (num == 1) {
-							oregon.mileage += 20;
-							oregon.oxen -= 40;
-						}
-						if (num == 1 || num == 3) {
-							oregon.ammo -= 150;
-							oregon.supplies -= 15;
-						} else {
-							oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) - 80;
-							if (gameState == "Defending") oregon.mileage -= 25;
-							if (oregon.responseTime <= 1) {
-								updateLog(`Nice shooting - you drove them off.`);
-							} else if (oregon.responseTime <= 4) {
-								updateLog(`Kinda slow with your Colt .45.`);
-							} else {
-								updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
-								oregon.hurt = 2;
-							}		
+						switch (true) {
+							case (num == 1):	// Run
+								oregon.mileage += 20;
+								oregon.oxen -= 40;
+							case (num == 3):	// Continue
+								oregon.ammo -= 150;
+								oregon.supplies -= 15;
+								break;
+							case (num == 2 || num == 4 || gameState == "Attacking" || gameState == "Defending"):		// Attack, Defend
+								oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) - 80;
+								if (gameState == "Defending") oregon.mileage -= 25;
+								if (oregon.responseTime <= 1) {
+									updateLog(`Nice shooting - you drove them off.`);
+								} else if (oregon.responseTime <= 4) {
+									updateLog(`Kinda slow with your Colt .45.`);
+								} else {
+									updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
+									oregon.hurt = 2;
+								}		
+							default:
+								break;
 						}
 						updateLog(`Riders were hostile - check for losses.`);
 						if (oregon.ammo < 0) {
 							updateLog(`You ran out of bullets and got massacred by the riders.`);
 							oregonGameOver();
 							break;
-						}	
+						}
+							
 					}
+				// Friendly Riders
 				} else {
-					if (num == 1) {
-						oregon.mileage += 15;
-						oregon.oxen -= 10;
-					} else if (num == 2) {
-						oregon.mileage -= 5;
-						oregon.ammo -= 100;
-					} else if (num == 4) {
-						oregon.mileage -= 20;
+					switch (num) {
+						case 1:		// Run
+							oregon.mileage += 15;
+							oregon.oxen -= 10;
+							break;
+						case 2:		// Attack
+							oregon.mileage -= 5;
+							oregon.ammo -= 100;
+							break;
+						case 4:		// Defend
+							oregon.mileage -= 20;
+						default:	// Continue
+							break;
 					}
 					updateLog(`Riders were friendly, but check for possible losses.`);
 				}
-				gameState = "Event";				
+				gameState = "Event";							
 			}
 			break;
 		case "GameOver":
