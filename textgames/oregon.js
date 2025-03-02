@@ -346,7 +346,7 @@ function announceOregon() {
 			if (oregon.mileage <= 950) {
 				gameState = "SettingDate";
 			} else {
-				if (Math.random() * 10 > 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12) {
+				if (Math.random() * 10 > 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12)) {
 				// 4860
 				} else {
 					updateLog(`Rugged Mountains`);
