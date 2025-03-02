@@ -111,7 +111,11 @@ function submitOregon() {
 				gameState = "VisitFort";
 				oregon.mileage -= 45;
 			}
-			if (num == oregon.fort + 1) gameState = "Hunting";	
+			if (num == oregon.fort + 1) {
+				gameState = "Hunting";
+				oregonShooting();
+				break;
+			}
 		case "VisitFort":
 			if (gameState == "VisitFort" && oregon.fort < 6) {
 				if (oregon.fort > 1) {
@@ -132,17 +136,33 @@ function submitOregon() {
 			}	
 		case "Hunting":
 			if (gameState == "Hunting") {
-				// Hunting
-				if (oregon.responseTime == null) {
-					oregonShooting();
-					break;
+				oregonShootingResolution();
+				if (oregon.responseTime <= 1) {
+					updateLog(`Right between the eyes - you got a big one!!!!`);
+					updateLog(`Full bellies tonight!`);
+					oregon.food += ~~(Math.random() * 52) * 6;
+					oregon.ammo -= ~~(Math.random() * 4 + 10);
+				} else if (Math.random() * 100 > oregon.responseTime * 13) {
+					updateLog(`Nice shot - right on target - good eatin' tonight!`);
+					oregon.food += ~~(48 - 2 * oregon.responseTime);
+					oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
 				} else {
-					oregonShootingResolution();
-					// Hunting resolution from below VVV
+					updateLog(`You missed - and your dinner got away.....`);
 				}
-			}	
+				oregon.mileage -= 45;
+			}
+			if (oregon.food < 13) {
+				updateLog(`You ran out of food and starved to death.`);
+				oregonGameOver();
+				break;
+			}
 		case "Eating":
-			if (num > 0 && num < 4) {
+			// ...Fix this...
+			if (gameState != "Eating" || num < 1 || num > 3) {
+				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well`);
+				gameState = "Eating";
+				break;
+			} else {
 				if (oregon.food < 8 + 5 * num) {
 					updateLog(`You can't eat that well`);
 				} else {
@@ -164,21 +184,7 @@ function submitOregon() {
 			if (oregon.responseTime < 0) oregon.responseTime = 0;
 			if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
 			if (gameState == "Hunting") {
-				if (oregon.responseTime <= 1) {
-					updateLog(`Right between the eyes - you got a big one!!!!`);
-					updateLog(`Full bellies tonight!`);
-					oregon.food += ~~(Math.random() * 52) * 6;
-					oregon.ammo -= ~~(Math.random() * 4 + 10);
-				} else if (Math.random() * 100 > oregon.responseTime * 13) {
-					updateLog(`Nice shot - right on target - good eatin' tonight!`);
-					oregon.food += ~~(48 - 2 * oregon.responseTime);
-					oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
-				} else {
-					updateLog(`You missed - and your dinner got away.....`);
-				}
-				oregon.mileage -= 45;
-				gameState = "Eating";
-				break;
+				
 			} else if (gameState == "Bandits") {
 				oregon.ammo -= ~~(20 * oregon.responseTime);
 				if (oregon.ammo < 0) {
