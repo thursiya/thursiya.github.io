@@ -309,6 +309,7 @@ function announceOregon() {
 				{ t: "" },
 				{ t: "Helpful Indians show you where to find more food.", f: 14 }
 			][oregonEventIndex];
+			console.log(`DEBUG) oregonEventIndex: ${oregonEventIndex}, oregonEvent: ${oregonEvent}`);
 			if (oregonEventIndex == 6 && oregon.mileage > 950) {
 				const oregonCold = oregon.clothes > 22 + Math.random() * 4;
 				updateLog(`Cold weather - brrrrrrr! - you ${oregon.clothes ? "" : "don't "}have enough clothing to keep you warm.`);
