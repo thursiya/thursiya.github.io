@@ -1,7 +1,7 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 0, timer: [0, 0], hurt: 0, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
-const oregonProvisions = ["food", "ammunition", "clothing", "miscellaneous supplies"];
+const oregon = { fort: 0, timer: [0, 0], hurt: 0, responseTime: null, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregonProvisions = ["your oxen team", "food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
 	currentApp = "Oregon";
@@ -11,9 +11,282 @@ function initOregon() {
 	updateLog(`<b>OREGON TRAIL</b><br><i>Based on the BASIC game by Bill Heinemann, Paul Dillenberger, and Don Rawitsch<br>Published in the May/June 1978 edition of Creative Computing</i><br>`);
 	updateLog(`Do you need instructions?`);
 	gameState = "Instructions";
-	announceOregon();
+	setInput();
 }
 
+function submitOregon() {
+	const data = textInput.value.toUpperCase();
+	if (!data) return;
+	const num = isNaN(data) ? -1 : Math.floor(data);
+	oregon.timer[1] = new Date();
+	switch (gameState) {
+		case "Instructions":
+			if (data[0] == "Y") {
+				updateLog(`This program simulates a trip over the Oregon Trail from Independence, Missouri to Oregon City, Oregon in 1847. Your family of five will cover the 2040 mile 
+    					Oregon Trail in 5-6 months - if you make it alive.`);
+				updateLog(`You had saved $900 for the trip and you've just paid $200 for a wagon. You will need to spend the rest of your money on the following items:<ul><li>Oxen - You 
+    					can spend $200-$300 on your team. The more you spend, the faster you'll go, because you'll have better animals.<li>Food - The more you have, the less chance there 
+	 				is of getting sick.<li>Ammunition - $1 buys a belt of 50 bullets. You will need bullets for attacks by animals and bandits, and for hunting food.<li>Clothing - 
+      					This is especially important for the cold weather you will encounter when crossing the mountains.<li>Miscellaneous Supplies - This includes medicine and other 
+	   				things you will need for sickness and emergency repairs.</ul>`);
+				updateLog(`You can spend all your money before you start your trip - or you can save some of your cash to spend at forts along the way when you run low. However, items 
+    					cost more at the forts. You can also go hunting along the way to get more food.`);
+				updateLog(`Whenever you have to use your trusty rifle along the way, you will be told to type in a word (one that sounds like a gun shot). The faster you type in that word 
+    					and press 'Enter', the better luck you'll have with your gun.`);
+				updateLog(`At each turn, all items are shown in dollar amounts, except bullets. When asked to enter money amounts, don't use a '$' (dollar sign).`);
+				updateLog(`Good luck!!!`);
+			}
+			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees`);
+			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful.`);
+			gameState = "IntroRifle";
+			break;	
+		case "IntroRifle":
+			if (num > 0 && num < 6) {
+				oregon.shootingExpertise = num;
+			} else {
+				updateLog(`Okay, "Best in the West".`);
+				oregon.shootingExpertise = 0;
+			}
+			gameState = "InitialSupplies";		
+		case "InitialSupplies":
+			if (oregon.fort < 5) {
+				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
+				if (oregon.fort) {
+					if (oregon.fort == 1 && num < 200) {
+						updateLog(`Not enough.`);
+					} else if (oregon.fort == 1 && num > 300) {
+						updateLog(`Too much.`);
+					} else if (num < 0) {
+						updateLog(`Impossible!`);
+					} else {
+						oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
+						oregon.fort++;
+					}
+				} else {
+					oregon.fort++;
+				}
+				break;
+			} else {
+				oregon.cash = 700 - oregon.oxen - oregon.food - oregon.ammo - oregon.clothes - oregon.supplies;
+				if (oregon.cash < 0) {
+					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
+					oregon.fort = 0;
+					break;
+				}
+				updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
+				oregon.ammo *= 50;
+			}	
+		case "New Turn":
+			updateLog(`<hr>Monday March 29 1847`);
+			if (oregon.food < 1) oregon.food = 0;
+			if (oregon.ammo < 1) oregon.ammo = 0;
+			if (oregon.clothes < 1) oregon.clothes = 0;
+			if (oregon.supplies < 1) oregon.supplies = 0;
+			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
+			// ??? set "total mileage up from previous turn" to oregon.mileage ????
+			if (oregon.hurt) {
+				if (oregon.cash < 20) {
+					updateLog(`You can't afford a doctor.`);
+					oregonDied();
+					break;
+				}
+				updateLog(`Doctor's bill is $20`);
+				oregon.cash -= 20;
+				oregon.hurt = 0;
+			}
+			updateLog(`Total mileage is <b>${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}</b>`);
+			oregon.southPassSettingMileageFlag = 0;
+			updateLog(`Food: <b>${oregon.food}</b>, Bullets: <b>${oregon.ammo}</b>, Clothing: <b>${oregon.clothes}</b>, Misc. Supp.: <b>${oregon.supplies}</b>, Cash: <b>${oregon.cash}</b>`);
+			oregon.fort = oregon.fort ? 0 : 1;
+			oregon.hostility = Math.random();
+		case "ChoosePath":
+			const oregonFailedHunting = gameState == "ChoosePath" && num == oregon.fort + 1 && oregon.ammo < 40;
+			if (gameState != "ChoosePath" || oregonFailedHunting) {
+				if (oregonFailedHunting) updateLog(`Tough - you need more bullets to go hunting.`);
+				updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue`);
+				gameState = "ChoosePath";
+				break;
+			}
+			if (oregon.fort && num == 1) {
+				gameState = "VisitFort";
+				oregon.mileage -= 45;
+			}
+			if (num == oregon.fort + 1) gameState = "Hunting";	
+		case "VisitFort":
+			if (gameState == "VisitFort" && oregon.fort < 6) {
+				if (oregon.fort > 1) {
+					if (num > oregon.cash) {
+						updateLog(`You don't have that much - keep your spending down.`);
+						updateLog(`You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}`);
+					} else {
+						oregon.cash -= num;
+						if (oregon.fort == 2) oregon.food += ~~(num * 2 / 3);
+						if (oregon.fort == 3) oregon.ammo += ~~(num * 100 / 3);
+						if (oregon.fort == 4) oregon.clothes += ~~(num * 2 / 3);
+						if (oregon.fort == 5) oregon.supplies += ~~(num * 2 / 3);
+					}	
+				}
+				updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort]}:`);
+				oregon.fort++;
+				break;
+			}	
+		case "Hunting":
+			if (gameState == "Hunting") {
+				// Hunting
+				if (oregon.responseTime == null) {
+					oregonShooting();
+					break;
+				} else {
+					oregonShootingResolution();
+					// Hunting resolution from below VVV
+				}
+			}	
+		case "Eating":
+			if (num > 0 && num < 4) {
+				if (oregon.food < 8 + 5 * num) {
+					updateLog(`You can't eat that well`);
+				} else {
+					oregon.eating = num;
+					oregon.food -= 8 + 5 * oregon.eating;
+					oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
+					oregon.clothingFlag = 0;
+					oregon.blizzardFlag = 0;
+					gameState = (Math.random() * 10 > ((oregon.mileage / 100 - 4) ** 2 + 72) / ((oregon.mileage / 100 - 4) ** 2 + 12) - 1) ? "Event" : "Riders";
+				}
+			}
+			break;
+		case "Hunting":
+		case "Attacking":
+		case "Defending":
+		case "Bandits":
+		case "WildAnimals":
+			oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) / 1000 - oregon.shootingExpertise + 1;
+			if (oregon.responseTime < 0) oregon.responseTime = 0;
+			if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
+			if (gameState == "Hunting") {
+				if (oregon.responseTime <= 1) {
+					updateLog(`Right between the eyes - you got a big one!!!!`);
+					updateLog(`Full bellies tonight!`);
+					oregon.food += ~~(Math.random() * 52) * 6;
+					oregon.ammo -= ~~(Math.random() * 4 + 10);
+				} else if (Math.random() * 100 > oregon.responseTime * 13) {
+					updateLog(`Nice shot - right on target - good eatin' tonight!`);
+					oregon.food += ~~(48 - 2 * oregon.responseTime);
+					oregon.ammo -= ~~(10 + 3 * oregon.responseTime);
+				} else {
+					updateLog(`You missed - and your dinner got away.....`);
+				}
+				oregon.mileage -= 45;
+				gameState = "Eating";
+				break;
+			} else if (gameState == "Bandits") {
+				oregon.ammo -= ~~(20 * oregon.responseTime);
+				if (oregon.ammo < 0) {
+					updateLog(`You ran out of bullets - they got lots of cash.`);
+					oregon.cash = ~~(oregon.cash / 3);
+				}
+				if (oregon.ammo < 0 || oregon.responseTime > 1) {
+					updateLog(`You got shot in the leg and they took one of your oxen.<br>Better have a doc look at your wound.`);
+					oregon.hurt = 2;
+					oregon.supplies -= 5;
+					oregon.oxen -= 20;
+				} else {
+					updateLog(`Quickest draw outside of Dodge City!!! You got 'em!`);
+				}
+				gameState = "Moutains";
+				break;
+			} else if (gameState == "WildAnimals") {
+				if (oregon.ammo < 40) {
+					updateLog(`You were too low on bullets - the wolves overpowered you.`);
+					oregon.hurt = 2;
+					gameState = "Died";
+				} else {
+					if (oregon.responseTime <= 2) {
+						updateLog(`Nice shootin' partner - they didn't get much.`);
+					} else {
+						updateLog(`Slow on the draw - they got at your food and clothes.`);
+						oregon.clothes -= ~~(oregon.responseTime * 4);
+						oregon.food -= ~~(oregon.responseTime * 8);
+					}
+					oregon.ammo -= ~~(oregon.responseTime * 20);
+					gameState = "Mountains";
+				}
+				break;
+			}
+		case "Riders":
+			if (oregon.hostility < 0.68 && (num == 2 || num == 4)) {
+					gameState = num == 2 ? "Attacking" : "Defending";
+			} else if (num > 0 && num < 5 || gameState == "Attacking" || gameState == "Defending") {
+				// Hostile Riders
+				if (oregon.hostility < 0.68) {
+					if (num == 3 && oregon.hostility > 0.543) {
+						updateLog(`They did not attack.`);
+					} else {
+						switch (true) {
+							case (num == 1):	// Run
+								oregon.mileage += 20;
+								oregon.oxen -= 40;
+							case (num == 3):	// Continue
+								oregon.ammo -= 150;
+								oregon.supplies -= 15;
+								break;
+							case (num == 2 || num == 4 || gameState == "Attacking" || gameState == "Defending"):		// Attack, Defend
+								oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) - 80;
+								if (gameState == "Defending") oregon.mileage -= 25;
+								if (oregon.responseTime <= 1) {
+									updateLog(`Nice shooting - you drove them off.`);
+								} else if (oregon.responseTime <= 4) {
+									updateLog(`Kinda slow with your Colt .45.`);
+								} else {
+									updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
+									oregon.hurt = 2;
+								}		
+							default:
+								break;
+						}
+						updateLog(`Riders were hostile - check for losses.`);
+						if (oregon.ammo < 0) {
+							updateLog(`You ran out of bullets and got massacred by the riders.`);
+							oregonGameOver();
+							break;
+						}
+							
+					}
+				// Friendly Riders
+				} else {
+					switch (num) {
+						case 1:		// Run
+							oregon.mileage += 15;
+							oregon.oxen -= 10;
+							break;
+						case 2:		// Attack
+							oregon.mileage -= 5;
+							oregon.ammo -= 100;
+							break;
+						case 4:		// Defend
+							oregon.mileage -= 20;
+						default:	// Continue
+							break;
+					}
+					updateLog(`Riders were friendly, but check for possible losses.`);
+				}
+				gameState = "Event";							
+			}
+			break;
+		case "GameOver":
+			if (oregon.fort == 2) updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
+			oregon.fort++;
+			break;
+		case "Restart":
+			updateLog(`<i>Reload the game to restart</i>`);
+			break;
+		default:
+			break;
+	}
+	setInput();
+}
+
+/*
 function submitOregon() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
@@ -247,6 +520,7 @@ function submitOregon() {
 	}
 	announceOregon();
 }
+*/
 
 function announceOregon() {
 	switch (gameState) {
@@ -309,28 +583,39 @@ function announceOregon() {
 				{ t: "" },
 				{ t: "Helpful Indians show you where to find more food.", f: 14 }
 			][oregonEventIndex];
-			console.log(`DEBUG) oregonEventIndex: ${oregonEventIndex}, oregonEvent: ${oregonEvent}`);
+			console.log(`DEBUG) oregonEventIndex: ${oregonEventIndex} (${oregonEvent.t})`);
+			
+			// Heavy rains becomes cold weather when past the plains
 			if (oregonEventIndex == 6 && oregon.mileage > 950) {
-				const oregonCold = oregon.clothes > 22 + Math.random() * 4;
-				updateLog(`Cold weather - brrrrrrr! - you ${oregon.clothes ? "" : "don't "}have enough clothing to keep you warm.`);
-				if (oregonCold) oregonSick();
+				updateLog(`Cold weather - brrrrrrr!`);
+				if (oregon.clothes > 22 + Math.random() * 4) {
+					updateLog(`But you have enough clothing to keep you warm.`);
+				} else {
+					updateLog(`You don't have enough clothing to keep you warm.`);
+					oregonSick();
+				}
 				break;
 			}
+			
 			updateLog(oregonEvent.t);
 			oregon.mileage += oregonEvent.m || 0;
 			oregon.supplies += oregonEvent.s || 0;
 			oregon.oxen += oregonEvent.o || 0;
 			oregon.food += oregonEvent.f || 0;
 			oregon.ammo += oregonEvent.a || 0;
+			
 			if (oregonEventIndex == 7 || oregonEventIndex == 12) {
 				gameState = oregonEventIndex == 7 ? "Bandits" : "WildAnimals";
 			} else {
 				if (oregonEventIndex == 10 && oregon.supplies < 0) {
 					updateLog(`You die of snakebite since you have no medicine.`);
 					oregonGameOver();
-				} else if (oregonEventIndex == 14) {
-					if (Math.random() * 4 > oregon.eating - 1) oregonSick();
-				}
+				} else if (oregonEventIndex == 14 && Math.random() * 4 > oregon.eating - 1) {
+					oregonSick();	
+				}				
+				if (gameState == "GameOver") break;
+				// Mountains
+				
 				break;
 			}
 		case "Hunting":
@@ -422,12 +707,35 @@ function announceOregon() {
 	setInput();
 }
 
-function oregonSick() {
+function oregonShooting() {
+	oregon.shotType = ["Bang", "Bam", "Pow", "Wham"][~~(Math.random() * 4)];
+	updateLog(`Type: <b>${oregon.shotType}</b>`);
+	oregon.timer[0] = new Date();
+}
 
+function oregonShootingResolution() {
+	oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) / 1000 - oregon.shootingExpertise + 1;
+	if (oregon.responseTime < 0) oregon.responseTime = 0;
+	if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
+}
+
+function oregonSick() {
+	const oregonIllness = Math.random() * 100 < oregon.eating * 35 - 25 ? "Mild" : Math.random() * 100 < 100 - 40 / 4 ** (oregon.eating - 1) ? "Bad" : "Serious";
+	upateLog(`${oregonIllness} illness -${oregonIllness == "Serious" ? "<br>You must stop for medical attention" : " medicine used"}`);
+	if (oregonIllness == "Serious") {
+		oregon.hurt = 1;
+	} else {
+		oregon.mileage -= 5;
+	}
+	oregon.supplies -= oregonIllness == "Mild" ? 2 : oregonIllness == "Bad" ? 5 : 10;
+	if (oregon.supplies < 0) {
+		updateLog(`You ran out of medical supplies.`);
+		oregonDied();
+	}
 }
 
 function oregonDied() {
-	updateLog(`You died of ${oregon.hurt == 1 ? "pneumonia" : "injuries"}.`);
+	updateLog(`You died of ${oregon.hurt == 2 ? "injuries" : "pneumonia"}.`);
 	oregonGameOver();
 }
 
