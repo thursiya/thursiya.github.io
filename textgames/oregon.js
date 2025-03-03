@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { fort: 0, timer: [0, 0], hurt: 0, responseTime: null, southPassFlag: 0, blueMountainsFlag: 0, mileage: 0, southPassSettingMileageFlag: 0, turnNumber: 0 };
+const oregon = { day: new Date("1847-03-29"), fort: 0, mountain: 0, timer: [0, 0], hurt: 0, responseTime: null, mileage: 0 };
 const oregonProvisions = ["your oxen team", "food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -76,14 +76,18 @@ function submitOregon() {
 				updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
 				oregon.ammo *= 50;
 			}
-		case "Victory":
 		case "NewTurn":
-			updateLog(`<hr>Monday March 29 1847`);
+			updateLog(`<hr>${oregon.day.toLocaleDateString("en", { weekday: "long", year: "numeric", month: "long", day: "numeric"})}`);
 			if (oregon.food < 1) oregon.food = 0;
 			if (oregon.ammo < 1) oregon.ammo = 0;
 			if (oregon.clothes < 1) oregon.clothes = 0;
 			if (oregon.supplies < 1) oregon.supplies = 0;
-			if (gameState == "NewTurn") {
+			if (oregon.mileage < 2041) {
+				if (oregon.day > new Date("1847/12/20")) {
+					updateLog(`You have been on the trail too long -<br>Your family dies in the first blizzard of winter.`);
+					oregonGameOver();
+					break;
+				}
 				if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
 				if (oregon.hurt) {
 					if (oregon.cash < 20) {
@@ -96,11 +100,10 @@ function submitOregon() {
 					oregon.hurt = 0;
 				}
 			}				
-			updateLog(`Total mileage is <b>${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}</b>`);
-			oregon.southPassSettingMileageFlag = 0;
+			updateLog(`Total mileage is <b>${oregon.mileage}</b>`);
 			updateLog(`Food: <b>${oregon.food}</b>, Bullets: <b>${oregon.ammo}</b>, Clothing: <b>${oregon.clothes}</b>, Misc. Supp.: <b>${oregon.supplies}</b>, Cash: <b>${oregon.cash}</b>`);
 			oregon.fort = oregon.fort ? 0 : 1;
-			if (gameState == "Victory") {
+			if (oregon.mileage > 2040) {
 				updateLog(`President James K. Polk sends you his heartiest congratulations and wishes you a prosperous life ahead at your new home!`);
 				gameState = "Restart";
 				break;
@@ -328,134 +331,91 @@ function submitOregon() {
 			}
 
 			// Mountains
-			if (oregon.mileage > 950 {
-				if (Math.random() * 10 > 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12)) {
-					// 4860
-				} else {
+			if (oregon.mountain || oregon.mileage > 950 {
+				if (Math.random() * 10 <= 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12)) {
 					updateLog(`Rugged Mountains`);
 					if (Math.random() > .1) {
 						if (Math.random() > .11) {
 							updateLog(`The going gets slow.`);
 							oregon.mileage -= 45 + ~~(Math.random() * 50);
-							// 4860
 						} else {
 							updateLog(`Wagon damaged! - lose time and supplies.`);
 							oregon.supplies -= 5;
 							oregon.ammo -= 200;
 							oregon.mileage -= 20 + ~~(Math.random() * 30);
-							// 4860
 						}
 					} else {
 						updateLog(`You got lost - lose valuable time trying to find trail!`);
 						oregon.mileage -= 60;
-						// 4860
 					}
 				}
-				// 4860 --->
-			}
-
-			// Check for victory
-			if (oregon.mileage > 2040) {
-				updateLog(`You finally arrived at Oregon City after 2040 long miles - hooray!!!!!<br>A real pioneer!`);
-				gameState = "Victory";
-				submitOregon();
-				break;
-			}
+				if (oregon.mountain == 0) {
+					oregon.mountain++;
+					// 80% blizzard, 20% safe
+				}
 				
-				/*
-    // ***FINAL TURN***
-5430 F9 = (2040 - M2) / (M - M2)
-5440 F = F + (1 - F9) * (8 + 5 * E)
-5450 PRINT
-
-// **BELLS IN LINES 5470, 5480**
-5470 PRINT "YOU FINALLY ARRIVED AT OREGON CITY"
-5480 PRINT "AFTER 2040 LONG MILES---HOORAY!!!!!"
-5490 PRINT "A REAL PIONEER!"
-5500 PRINT
-5510 F9 = INT(F9 * 14)
-5520 D3 = D3 * 14 + F9
-5530 F9 = F9 + 1
-5540 IF F9 < 8 THEN 5560
-5550 F9 = F9 - 7
-5560 ON F9 GOTO 5570, 5590, 5610, 5630, 5650, 5670, 5690
-5570 PRINT "MONDAY ";
-5580 GOTO 5700
-5590 PRINT "TUESDAY ";
-5600 GOTO 5700
-5610 PRINT "WEDNESDAY ";
-5620 GOTO 5700
-5630 PRINT "THURSDAY ";
-5640 GOTO 5700
-5650 PRINT "FRIDAY ";
-5660 GOTO 5700
-5670 PRINT "SATURDAY ";
-5680 GOTO 5700
-5690 PRINT "SUNDAY ";
-5700 IF D3 > 124 THEN 5740
-5710 D3 = D3 - 93
-5720 PRINT "JULY "; D3; " 1847"
-GOTO 5920
-5740 IF D3 > 155 THEN 5780
-D3 = D3 - 124
-PRINT "AUGUST "; D3; " 1847"
-G0TO 5920
-5780 IF D3 > 185 THEN 5820
-D3 = D3 - 155
-PRINT "SEPTEMBER "; D3; " 1847"
-GOTO 5920
-5820 IF D3 > 216 THEN 5860
-D3 = D3 - 185
-PRINT "OCTOBER "; D3; " 1847"
-GOTO 5920
-5860 IF D3 > 246 THEN 5900
-D3 = D3 - 216
-PRINT "NOVEMBER "; D3;" 1847"
-GOTO 5920
-5900 D3 = D3 - 246
-PRINT "DECEMBER "; D3; " 1847"
-PRINT
-PRINT "FOOD", "BULLETS", "CLOTHING", "MISC. SUPP.", "CASH"
-IF B > 0 THEN 5960
-LET B = 0
-5960 IF C > 0 THEN 5980
-LET C = 0
-5980 IF M1 > 0 THEN 6000
-LET M1 = 0
-6000 IF T > 0 THEN 6020
-LET T = 0
-6020 IF F > 0 THEN 6040
-LET F = 0
-6040 PRINT INT(F), INT(B), INT(C), INT(M1), INT(T)
-PRINT
-
-				*/
+				if (oregon.mountain) {
+					// 4900 - check blue mtn
+				} else {
+					oregon.mountain = 1;
+					if (Math.random() < 0.8) {
+						// 4970 - 80% blizzard
+					} else {
+						updateLog(`You made it safely through South Pass - no snow.`);
+						
+						// 4900
+						if (oregon.mileage < 1700) {
+							// done
+						} else {
+							if (oregon.mountain == 2) {
+								// done
+							} else {
+								oregon.mountain = 2;
+								if (Math.random() < 0.7) {
+									// 4970 - 70% blizzard
+								} else {
+									// done
+								}
+							}
+						}
+					}
+				}
+				if (oregon.mileage < 950) oregon.mileage = 950;
 			}
-
-			// Setting Date
-			
-			/*
+						/*
    // ***MOUNTAINS***
 4860 IF F1 = 1 THEN 4900	// Flag for clearing south pass
 4870 Fl = l
 4880 IF RND(-1) < .8 THEN 4970
 4890 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
 4900 IF M < 1700 THEN 4940
-4910 IF F2 = 1 THEN 4940
+4910 IF F2 = 1 THEN 4940	// Flag for clearing Blue Mountains
 4920 F2 = l
 4930 IF RND(-1) < .7 THEN 4970
 4940 IF M > 950 THEN 1230
 4950 M9 = 1
 4960 GOTO 1230
 4970 PRINT "BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST"
-4980 L1 = l
 4990 F = F - 25
 5000 M1 = M1 - 10
 5010 B = B - 300
 5020 M = M - 30 - 40 * RND(-1)
-5030 IF C < 18 + 2 * RND(-1) THEN 6300
+5030 IF C < 18 + 2 * RND(-1) THEN 6300 (Sickness routine)
 5040 GOTO 4940 */
 
+		// Check for victory
+			if (oregon.mileage > 2040) {
+				updateLog(`You finally arrived at Oregon City after 2040 long miles - hooray!!!!!<br>A real pioneer!`);
+				const oregonPartial = (2040 - oregon.lastMileage) / (oregon.mileage - oregon.lastMileage);
+				oregon.day.setDate(oregon.day.getDate() + ~~(14 * oregonPartial));
+				oregon.food += ~~((1 - oregon.partial) * (oregon.eating * 5 + 8));
+			} else {
+				oregon.lastMileage = oregon.mileage;
+				oregon.day.setDate(oregon.day.getDate() + 14);
+			}
+			gameState = "NewTurn";
+			submitOregon();
+			break;
 		case "GameOver":
 			if (oregon.fort < 2) {
 				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort]}?`);
@@ -710,7 +670,7 @@ function submitOregon() {
 }
 */
 
-function announceOregon() {
+/* function announceOregon() {
 	switch (gameState) {
 		case "IntroRifle":
 			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees`);
@@ -855,7 +815,7 @@ function announceOregon() {
 				}
 				// 4860 --->
 			}
-			break;
+			break;		*/
 			/*
    // ***MOUNTAINS***
 4860 IF F1 = 1 THEN 4900	// Flag for clearing south pass
@@ -877,7 +837,7 @@ function announceOregon() {
 5020 M = M - 30 - 40 * RND(-1)
 5030 IF C < 18 + 2 * RND(-1) THEN 6300
 5040 GOTO 4940 */
-		case "Died":
+/*		case "Died":
 			oregonDied();
 			break;
 		case "GameOver":
@@ -893,7 +853,7 @@ function announceOregon() {
 			break;
 	}
 	setInput();
-}
+}	*/
 
 function oregonShooting() {
 	oregon.shotType = ["Bang", "Bam", "Pow", "Wham"][~~(Math.random() * 4)];
