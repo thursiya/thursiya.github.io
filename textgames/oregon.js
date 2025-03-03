@@ -349,9 +349,32 @@ function submitOregon() {
 						oregon.mileage -= 60;
 					}
 				}
-				if (oregon.mountain == 0) {
+
+				switch (oregon.mountain) {
+					case 0:
+					case 1:
+						oregon.mountain++;
+						
+					case 2:
+					default:
+				}
+
+
+				
+				if (oregon.mountain < 2) {
 					oregon.mountain++;
-					// 80% blizzard, 20% safe
+					if (Math.random() * 10 < 8 - oregon.mountain) {
+						updateLog(`Blizzard in mountain pass - time and supplies lost.`);
+						oregon.food -= 15;
+						oregon.supplies -= 10;
+						oregon.ammo -= 300;
+						oregon.mileage -= 30 + ~~(Math.random() * 40);
+						if (oregon.clothes < 18 + Math.random() * 2) {
+							oregonSick();
+						}
+					} else {
+						if (oregon.mountain == 1) updateLog(`You made it safely through South Pass - no snow.`);
+					}
 				}
 				
 				if (oregon.mountain) {
