@@ -75,30 +75,36 @@ function submitOregon() {
 				}
 				updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
 				oregon.ammo *= 50;
-			}	
-		case "New Turn":
+			}
+		case "Victory":
+		case "NewTurn":
 			updateLog(`<hr>Monday March 29 1847`);
 			if (oregon.food < 1) oregon.food = 0;
 			if (oregon.ammo < 1) oregon.ammo = 0;
 			if (oregon.clothes < 1) oregon.clothes = 0;
 			if (oregon.supplies < 1) oregon.supplies = 0;
-			if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
-			// ??? set "total mileage up from previous turn" to oregon.mileage ????
-			if (oregon.hurt) {
-				if (oregon.cash < 20) {
-					updateLog(`You can't afford a doctor.`);
-					oregonDied();
-					break;
+			if (gameState == "NewTurn") {
+				if (oregon.food < 13) updateLog(`You'd better do some hunting or buy food and soon!!!!`);
+				if (oregon.hurt) {
+					if (oregon.cash < 20) {
+						updateLog(`You can't afford a doctor.`);
+						oregonDied();
+						break;
+					}
+					updateLog(`Doctor's bill is $20`);
+					oregon.cash -= 20;
+					oregon.hurt = 0;
 				}
-				updateLog(`Doctor's bill is $20`);
-				oregon.cash -= 20;
-				oregon.hurt = 0;
-			}
+			}				
 			updateLog(`Total mileage is <b>${oregon.southPassSettingMileageFlag ? 950 : oregon.mileage}</b>`);
 			oregon.southPassSettingMileageFlag = 0;
 			updateLog(`Food: <b>${oregon.food}</b>, Bullets: <b>${oregon.ammo}</b>, Clothing: <b>${oregon.clothes}</b>, Misc. Supp.: <b>${oregon.supplies}</b>, Cash: <b>${oregon.cash}</b>`);
 			oregon.fort = oregon.fort ? 0 : 1;
-			oregon.hostility = Math.random();
+			if (gameState == "Victory") {
+				updateLog(`President James K. Polk sends you his heartiest congratulations and wishes you a prosperous life ahead at your new home!`);
+				gameState = "Restart";
+				break;
+			}
 		case "ChoosePath":
 			const oregonFailedHunting = gameState == "ChoosePath" && num == oregon.fort + 1 && oregon.ammo < 40;
 			if (gameState != "ChoosePath" || oregonFailedHunting) {
@@ -157,136 +163,312 @@ function submitOregon() {
 				break;
 			}
 		case "Eating":
-			// ...Fix this...
-			if (gameState != "Eating" || num < 1 || num > 3) {
+			const oregonLowFood = oregon.food < 8 + 5 * num;
+			if (gameState != "Eating" || num < 1 || num > 3 || oregonLowFood) {
+				if (gameState == "Eating" && oregonLowFood) updateLog(`You can't eat that well.`);
 				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well`);
 				gameState = "Eating";
 				break;
-			} else {
-				if (oregon.food < 8 + 5 * num) {
-					updateLog(`You can't eat that well`);
-				} else {
-					oregon.eating = num;
-					oregon.food -= 8 + 5 * oregon.eating;
-					oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
-					oregon.clothingFlag = 0;
-					oregon.blizzardFlag = 0;
-					gameState = (Math.random() * 10 > ((oregon.mileage / 100 - 4) ** 2 + 72) / ((oregon.mileage / 100 - 4) ** 2 + 12) - 1) ? "Event" : "Riders";
-				}
 			}
-			break;
-		case "Hunting":
-		case "Attacking":
-		case "Defending":
-		case "Bandits":
-		case "WildAnimals":
-			oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) / 1000 - oregon.shootingExpertise + 1;
-			if (oregon.responseTime < 0) oregon.responseTime = 0;
-			if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
-			if (gameState == "Hunting") {
-				
-			} else if (gameState == "Bandits") {
-				oregon.ammo -= ~~(20 * oregon.responseTime);
-				if (oregon.ammo < 0) {
-					updateLog(`You ran out of bullets - they got lots of cash.`);
-					oregon.cash = ~~(oregon.cash / 3);
-				}
-				if (oregon.ammo < 0 || oregon.responseTime > 1) {
-					updateLog(`You got shot in the leg and they took one of your oxen.<br>Better have a doc look at your wound.`);
-					oregon.hurt = 2;
-					oregon.supplies -= 5;
-					oregon.oxen -= 20;
-				} else {
-					updateLog(`Quickest draw outside of Dodge City!!! You got 'em!`);
-				}
-				gameState = "Moutains";
-				break;
-			} else if (gameState == "WildAnimals") {
-				if (oregon.ammo < 40) {
-					updateLog(`You were too low on bullets - the wolves overpowered you.`);
-					oregon.hurt = 2;
-					gameState = "Died";
-				} else {
-					if (oregon.responseTime <= 2) {
-						updateLog(`Nice shootin' partner - they didn't get much.`);
-					} else {
-						updateLog(`Slow on the draw - they got at your food and clothes.`);
-						oregon.clothes -= ~~(oregon.responseTime * 4);
-						oregon.food -= ~~(oregon.responseTime * 8);
-					}
-					oregon.ammo -= ~~(oregon.responseTime * 20);
-					gameState = "Mountains";
-				}
+			oregon.eating = num;
+			oregon.food -= 8 + 5 * oregon.eating;
+			oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
+			oregon.clothingFlag = 0;
+			oregon.blizzardFlag = 0;
+
+			// Riders
+			if (Math.random() * 10 <= ((oregon.mileage / 100 - 4) ** 2 + 72) / ((oregon.mileage / 100 - 4) ** 2 + 12) - 1) {
+				gameState = "Riders";
+				oregon.hostility = Math.random();
+				updateLog(`Riders ahead. They ${oregon.hostility < 0.8 ? "" : "don't "}look hostile.`);
+			}
+		case "Tactics":
+			if (gameState == "Riders" || gameState == "Tactics" && (num < 0 || num > 4)) {
+				updateLog(`Tactics:<br>(1) Run (2) Attack (3) Continue (4) Circle Wagons`);
+				gameState = "Tactics";
 				break;
 			}
-		case "Riders":
-			if (oregon.hostility < 0.68 && (num == 2 || num == 4)) {
-					gameState = num == 2 ? "Attacking" : "Defending";
-			} else if (num > 0 && num < 5 || gameState == "Attacking" || gameState == "Defending") {
+			if (gameState == "Tactics" && oregon.hostility < 0.68 && (num == 2 || num == 4)) {
+				gameState = num == 2 ? "Attacking" : "Defending";
+				oregonShooting();
+				break;					
+			}
+			if (["Tactics", "Attacking", "Defending"].includes(gameState)) {
 				// Hostile Riders
 				if (oregon.hostility < 0.68) {
 					if (num == 3 && oregon.hostility > 0.543) {
 						updateLog(`They did not attack.`);
 					} else {
-						switch (true) {
-							case (num == 1):	// Run
-								oregon.mileage += 20;
-								oregon.oxen -= 40;
-							case (num == 3):	// Continue
-								oregon.ammo -= 150;
-								oregon.supplies -= 15;
-								break;
-							case (num == 2 || num == 4 || gameState == "Attacking" || gameState == "Defending"):		// Attack, Defend
-								oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) - 80;
-								if (gameState == "Defending") oregon.mileage -= 25;
-								if (oregon.responseTime <= 1) {
-									updateLog(`Nice shooting - you drove them off.`);
-								} else if (oregon.responseTime <= 4) {
-									updateLog(`Kinda slow with your Colt .45.`);
-								} else {
-									updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
-									oregon.hurt = 2;
-								}		
-							default:
-								break;
+						if (num == 1) {
+							oregon.mileage += 20;
+							oregon.oxen -= 40;
+						}
+						if (num == 1 || num == 3) {
+							oregon.ammo -= 150;
+							oregon.supplies -= 15;
+						} else {
+							oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) + 80;
+							if (gameState == "Defending") oregon.mileage -= 25;
+							if (oregon.responseTime <= 1) {
+								updateLog(`Nice shooting - you drove them off.`);
+							} else if (oregon.responseTime <= 4) {
+								updateLog(`Kinda slow with your Colt .45.`);
+							} else {
+								updateLog(`Lousy shot - you got knifed.<br>You have to see ol' Doc Blanchard.`);
+								oregon.hurt = 2;
+							}
 						}
 						updateLog(`Riders were hostile - check for losses.`);
 						if (oregon.ammo < 0) {
 							updateLog(`You ran out of bullets and got massacred by the riders.`);
 							oregonGameOver();
 							break;
-						}
-							
+						}		
 					}
 				// Friendly Riders
 				} else {
-					switch (num) {
-						case 1:		// Run
-							oregon.mileage += 15;
-							oregon.oxen -= 10;
-							break;
-						case 2:		// Attack
-							oregon.mileage -= 5;
-							oregon.ammo -= 100;
-							break;
-						case 4:		// Defend
-							oregon.mileage -= 20;
-						default:	// Continue
-							break;
-					}
+					const oregonFriendly = [{ m: 15, o: -10 }, { m: -5, a: -100 }, {}, { m: -20 }];
+					oregon.mileage += oregonFriendly[num - 1].m || 0;
+					oregon.oxen += oregonFriendly[num - 1].o || 0;
+					oregon.ammo += oregonFriendly[num - 1].a || 0;
 					updateLog(`Riders were friendly, but check for possible losses.`);
+				}							
+			}
+
+			// Event
+			const oregonRandomEvent = Math.random() * 100;
+			const oregonEventIndex = [6, 11, 13, 15, 17, 22, 32, 35, 37, 42, 44, 54, 64, 69, 95, 100].findIndex(v => v > oregonRandomEvent);
+			const oregonEvent = [
+				{ t: "Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
+				{ t: "Ox injures leg - slows down rest of trip.", m: -25, o: -20 },
+				{ t: "Bad luck - your daughter broker her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
+				{ t: "Ox wanders off - spend time looking for it.", m: -17 },
+				{ t: "Your son gets lost - spend half the day looking for him.", m: -10 },
+				{ t: "Unsafe water - lose time looking for clean spring.", m: -2 - ~~(Math.random() * 10) },
+				{ t: "Heavy rains - time and supplies lost.", f: -10, a: -500, s: -15, m: -5 - ~~(Math.random() * 10) },
+				{ t: "Bandits attack." },
+				{ t: "There was a fire in your wagon - food and supplies damage!", f: -40, a: -400, s: -3 - ~~(Math.random() * 8), m: -15 },
+				{ t: "Lose your way in heavy fog - time is lost.", m: -10 - ~~(Math.random() * 5) },
+				{ t: "You killed a poisonous snake after it bit you.", a: -10, s: -5 },
+				{ t: "Wagon gets swamped fording river - lose food and clothes.", f: -30, c: -20, m: -20 - ~~(Math.random() * 20) },
+				{ t: "Wild animals attack!" },
+				{ t: "Hail storm - supplies damaged.", m: -5 - ~~(Math.random() * 10), a: -200, s: -4 - ~~(Math.random() * 3) },
+				{ t: "" },
+				{ t: "Helpful Indians show you where to find more food.", f: 14 }
+			][oregonEventIndex];
+			console.log(`DEBUG) oregonEventIndex: ${oregonEventIndex} (${oregonEvent.t})`);
+			
+			// Heavy rains becomes cold weather when past the plains
+			if (oregonEventIndex == 6 && oregon.mileage > 950) {
+				updateLog(`Cold weather - brrrrrrr!`);
+				if (oregon.clothes > 22 + Math.random() * 4) {
+					updateLog(`But you have enough clothing to keep you warm.`);
+				} else {
+					updateLog(`You don't have enough clothing to keep you warm.`);
+					oregonSick();
 				}
-				gameState = "Event";							
+				break;
+			}
+			
+			updateLog(oregonEvent.t);
+			oregon.mileage += oregonEvent.m || 0;
+			oregon.supplies += oregonEvent.s || 0;
+			oregon.oxen += oregonEvent.o || 0;
+			oregon.food += oregonEvent.f || 0;
+			oregon.ammo += oregonEvent.a || 0;
+			
+			if (oregonEventIndex == 7 || oregonEventIndex == 12) {
+				gameState = oregonEventIndex == 7 ? "Bandits" : "WildAnimals";
+				oregonShooting();
+				break;
+			}
+			if (oregonEventIndex == 10 && oregon.supplies < 0) {
+				updateLog(`You die of snakebite since you have no medicine.`);
+				oregonGameOver();
+			} else if (oregonEventIndex == 14 && Math.random() * 4 > oregon.eating - 1) {
+				oregonSick();	
+			}				
+			if (gameState == "GameOver") break;
+			
+		case "Bandits":
+		case "WildAnimals":
+			if (gameState == "Bandits" || gameState == "WildAnimals") {
+				oregonShootingResolution();
+				if (gameState == "Bandits") {
+					oregon.ammo -= ~~(oregon.responseTime * 20);
+					if (oregon.ammo < 0) {
+						updateLog(`You ran out of bullets - they got lots of cash.`);
+						oregon.cash = ~~(oregon.cash / 3);
+					}
+					if (oregon.ammo < 0 || oregon.responseTime > 1) {
+						updateLog(`You got shot in the leg and they took one of your oxen.<br>Better have a doc look at your wound.`);
+						oregon.hurt = 2;
+						oregon.supplies -= 5;
+						oregon.oxen -= 20;
+					} else {
+						updateLog(`Quickest draw outside of Dodge City!!! You got 'em!`);
+					}
+				} else {
+					if (oregon.ammo < 40) {
+						updateLog(`You were too low on bullets - the wolves overpowered you.`);
+						oregon.hurt = 2;
+						oregonDied();
+						break;
+					} else {
+						if (oregon.responseTime <= 2) {
+							updateLog(`Nice shootin' partner - they didn't get much.`);
+						} else {
+							updateLog(`Slow on the draw - they got at your food and clothes.`);
+							oregon.clothes -= ~~(oregon.responseTime * 4);
+							oregon.food -= ~~(oregon.responseTime * 8);
+						}
+						oregon.ammo -= ~~(oregon.responseTime * 20);
+					}
+				}
+			}
+
+			// Mountains
+			if (oregon.mileage > 950 {
+				if (Math.random() * 10 > 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12)) {
+					// 4860
+				} else {
+					updateLog(`Rugged Mountains`);
+					if (Math.random() > .1) {
+						if (Math.random() > .11) {
+							updateLog(`The going gets slow.`);
+							oregon.mileage -= 45 + ~~(Math.random() * 50);
+							// 4860
+						} else {
+							updateLog(`Wagon damaged! - lose time and supplies.`);
+							oregon.supplies -= 5;
+							oregon.ammo -= 200;
+							oregon.mileage -= 20 + ~~(Math.random() * 30);
+							// 4860
+						}
+					} else {
+						updateLog(`You got lost - lose valuable time trying to find trail!`);
+						oregon.mileage -= 60;
+						// 4860
+					}
+				}
+				// 4860 --->
+			}
+
+			// Check for victory
+			if (oregon.mileage > 2040) {
+				updateLog(`You finally arrived at Oregon City after 2040 long miles - hooray!!!!!<br>A real pioneer!`);
+				gameState = "Victory";
+				submitOregon();
+				break;
+			}
+				
+				/*
+    // ***FINAL TURN***
+5430 F9 = (2040 - M2) / (M - M2)
+5440 F = F + (1 - F9) * (8 + 5 * E)
+5450 PRINT
+
+// **BELLS IN LINES 5470, 5480**
+5470 PRINT "YOU FINALLY ARRIVED AT OREGON CITY"
+5480 PRINT "AFTER 2040 LONG MILES---HOORAY!!!!!"
+5490 PRINT "A REAL PIONEER!"
+5500 PRINT
+5510 F9 = INT(F9 * 14)
+5520 D3 = D3 * 14 + F9
+5530 F9 = F9 + 1
+5540 IF F9 < 8 THEN 5560
+5550 F9 = F9 - 7
+5560 ON F9 GOTO 5570, 5590, 5610, 5630, 5650, 5670, 5690
+5570 PRINT "MONDAY ";
+5580 GOTO 5700
+5590 PRINT "TUESDAY ";
+5600 GOTO 5700
+5610 PRINT "WEDNESDAY ";
+5620 GOTO 5700
+5630 PRINT "THURSDAY ";
+5640 GOTO 5700
+5650 PRINT "FRIDAY ";
+5660 GOTO 5700
+5670 PRINT "SATURDAY ";
+5680 GOTO 5700
+5690 PRINT "SUNDAY ";
+5700 IF D3 > 124 THEN 5740
+5710 D3 = D3 - 93
+5720 PRINT "JULY "; D3; " 1847"
+GOTO 5920
+5740 IF D3 > 155 THEN 5780
+D3 = D3 - 124
+PRINT "AUGUST "; D3; " 1847"
+G0TO 5920
+5780 IF D3 > 185 THEN 5820
+D3 = D3 - 155
+PRINT "SEPTEMBER "; D3; " 1847"
+GOTO 5920
+5820 IF D3 > 216 THEN 5860
+D3 = D3 - 185
+PRINT "OCTOBER "; D3; " 1847"
+GOTO 5920
+5860 IF D3 > 246 THEN 5900
+D3 = D3 - 216
+PRINT "NOVEMBER "; D3;" 1847"
+GOTO 5920
+5900 D3 = D3 - 246
+PRINT "DECEMBER "; D3; " 1847"
+PRINT
+PRINT "FOOD", "BULLETS", "CLOTHING", "MISC. SUPP.", "CASH"
+IF B > 0 THEN 5960
+LET B = 0
+5960 IF C > 0 THEN 5980
+LET C = 0
+5980 IF M1 > 0 THEN 6000
+LET M1 = 0
+6000 IF T > 0 THEN 6020
+LET T = 0
+6020 IF F > 0 THEN 6040
+LET F = 0
+6040 PRINT INT(F), INT(B), INT(C), INT(M1), INT(T)
+PRINT
+
+				*/
+			}
+
+			// Setting Date
+			
+			/*
+   // ***MOUNTAINS***
+4860 IF F1 = 1 THEN 4900	// Flag for clearing south pass
+4870 Fl = l
+4880 IF RND(-1) < .8 THEN 4970
+4890 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
+4900 IF M < 1700 THEN 4940
+4910 IF F2 = 1 THEN 4940
+4920 F2 = l
+4930 IF RND(-1) < .7 THEN 4970
+4940 IF M > 950 THEN 1230
+4950 M9 = 1
+4960 GOTO 1230
+4970 PRINT "BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST"
+4980 L1 = l
+4990 F = F - 25
+5000 M1 = M1 - 10
+5010 B = B - 300
+5020 M = M - 30 - 40 * RND(-1)
+5030 IF C < 18 + 2 * RND(-1) THEN 6300
+5040 GOTO 4940 */
+
+		case "GameOver":
+			if (oregon.fort < 2) {
+				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort]}?`);
+				oregon.fort++;
+			} else {
+				updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
+				updateLog(`<i>We thank you for this information and we are sorry you didn't make it to the great territory of Oregon.<br>Better luck next time.</i>`);
+				updateLog(`<span style="float: right; font-style: italic">Sincerely,<br>The Oregon City Chamber of Commerce</span>`);
+				gameState = "Restart";
 			}
 			break;
-		case "GameOver":
-			if (oregon.fort == 2) updateLog(data[0] == "Y" ? `That will be $4.50 for the telegraph charge.` : `But your aunt Sadie in St. Louis is really worried about you.`);
-			oregon.fort++;
-			break;
-		case "Restart":
-			updateLog(`<i>Reload the game to restart</i>`);
-			break;
 		default:
+			updateLog(`<i>Reload the game to restart</i>`);
 			break;
 	}
 	setInput();
