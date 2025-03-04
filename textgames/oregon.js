@@ -279,6 +279,7 @@ function submitOregon() {
 			oregon.oxen += oregonEvent.o || 0;
 			oregon.food += oregonEvent.f || 0;
 			oregon.ammo += oregonEvent.a || 0;
+			oregon.clothes += oregonEvent.c || 0;
 			
 			if (oregonEventIndex == 7 || oregonEventIndex == 12) {
 				gameState = oregonEventIndex == 7 ? "Bandits" : "WildAnimals";
