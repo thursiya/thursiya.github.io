@@ -184,8 +184,6 @@ function submitOregon() {
 				oregon.hostility = Math.random();
 				updateLog(`Riders ahead. They ${oregon.hostility < 0.8 ? "" : "don't "}look hostile.`);
 			}
-		case "Attacking":
-		case "Defending":
 		case "Tactics":
 			if (gameState == "Riders" || gameState == "Tactics" && (num < 0 || num > 4)) {
 				updateLog(`Tactics:<br>(1) Run (2) Attack (3) Continue (4) Circle Wagons`);
@@ -197,6 +195,8 @@ function submitOregon() {
 				oregonShooting();
 				break;					
 			}
+		case "Attacking":
+		case "Defending":
 			if (["Tactics", "Attacking", "Defending"].includes(gameState)) {
 				// Hostile Riders
 				if (oregon.hostility < 0.68) {
