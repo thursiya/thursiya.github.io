@@ -86,7 +86,7 @@ function submitOregon() {
 			if (oregon.supplies < 1) oregon.supplies = 0;
 			if (oregon.mileage < 2041) {
 				if (oregon.day > new Date("1847/12/20")) {
-					updateLog(`You have been on the trail too long -<br>Your family dies in the first blizzard of winter.`);
+					updateLog(`You have been on the trail too long -<br>🥶 Your family dies in the first blizzard of winter.`);
 					oregonGameOver();
 					break;
 				}
@@ -243,26 +243,26 @@ function submitOregon() {
 			}
 
 			// Event
-			updateLog(`<span style="text-align: center">* * *</span>`);
+			updateLog(`<div style="text-align: center">* &nbsp; * &nbsp; *</div>`);
 			const oregonRandomEvent = Math.random() * 100;
 			const oregonEventIndex = [6, 11, 13, 15, 17, 22, 32, 35, 37, 42, 44, 54, 64, 69, 95, 100].findIndex(v => v > oregonRandomEvent);
 			const oregonEvent = [
-				{ t: "Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
-				{ t: "Ox injures leg - slows down rest of trip.", m: -25, o: -20 },
-				{ t: "Bad luck - your daughter broke her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
-				{ t: "Ox wanders off - spend time looking for it.", m: -17 },
-				{ t: "Your son gets lost - spend half the day looking for him.", m: -10 },
-				{ t: "Unsafe water - lose time looking for clean spring.", m: -2 - ~~(Math.random() * 10) },
-				{ t: "Heavy rains - time and supplies lost.", f: -10, a: -500, s: -15, m: -5 - ~~(Math.random() * 10) },
-				{ t: "Bandits attack." },
-				{ t: "There was a fire in your wagon - food and supplies damage!", f: -40, a: -400, s: -3 - ~~(Math.random() * 8), m: -15 },
-				{ t: "Lose your way in heavy fog - time is lost.", m: -10 - ~~(Math.random() * 5) },
-				{ t: "You killed a poisonous snake after it bit you.", a: -10, s: -5 },
-				{ t: "Wagon gets swamped fording river - lose food and clothes.", f: -30, c: -20, m: -20 - ~~(Math.random() * 20) },
-				{ t: "Wild animals attack!" },
-				{ t: "Hail storm - supplies damaged.", m: -5 - ~~(Math.random() * 10), a: -200, s: -4 - ~~(Math.random() * 3) },
+				{ t: "&#128734; Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
+				{ t: "🐂 Ox injures leg - slows down rest of trip.", m: -25, o: -20 },
+				{ t: "&#129660; Bad luck - your daughter broke her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
+				{ t: "🐂 Ox wanders off - spend time looking for it.", m: -17 },
+				{ t: "🚶 Your son gets lost - spend half the day looking for him.", m: -10 },
+				{ t: "🚱 Unsafe water - lose time looking for clean spring.", m: -2 - ~~(Math.random() * 10) },
+				{ t: "⛆ Heavy rains - time and supplies lost.", f: -10, a: -500, s: -15, m: -5 - ~~(Math.random() * 10) },
+				{ t: "&#129399; Bandits attack." },
+				{ t: "🔥 There was a fire in your wagon - food and supplies damage!", f: -40, a: -400, s: -3 - ~~(Math.random() * 8), m: -15 },
+				{ t: "🌫 Lose your way in heavy fog - time is lost.", m: -10 - ~~(Math.random() * 5) },
+				{ t: "🐍 You killed a poisonous snake after it bit you.", a: -10, s: -5 },
+				{ t: "🌊 Wagon gets swamped fording river - lose food and clothes.", f: -30, c: -20, m: -20 - ~~(Math.random() * 20) },
+				{ t: "🐺 Wild animals attack!" },
+				{ t: "⛈ Hail storm - supplies damaged.", m: -5 - ~~(Math.random() * 10), a: -200, s: -4 - ~~(Math.random() * 3) },
 				{ t: "" },
-				{ t: "Helpful Indians show you where to find more food.", f: 14 }
+				{ t: "&#129744; Helpful Indians show you where to find more food.", f: 14 }
 			][oregonEventIndex];
 			
 			// Heavy rains becomes cold weather when past the plains
@@ -277,7 +277,7 @@ function submitOregon() {
 				break;
 			}
 			
-			updateLog(`⍟ ${oregonEvent.t}`);
+			updateLog(`${oregonEvent.t}`);
 			oregon.mileage += oregonEvent.m || 0;
 			oregon.supplies += oregonEvent.s || 0;
 			oregon.oxen += oregonEvent.o || 0;
