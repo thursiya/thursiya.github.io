@@ -51,14 +51,15 @@ function submitOregon() {
 		case "InitialSupplies":
 			if (oregon.fort < 5) {
 				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
-				if (oregon.fort == 0 && num < 200) {
+				if (!oregon.fort) break;
+				if (oregon.fort == 1 && num < 200) {
 					updateLog(`Not enough.`);
-				} else if (oregon.fort == 0 && num > 300) {
+				} else if (oregon.fort == 1 && num > 300) {
 					updateLog(`Too much.`);
 				} else if (num < 0) {
 					updateLog(`Impossible!`);
 				} else {
-					oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort]] = num;
+					oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
 					oregon.fort++;
 				}
 				break;
@@ -830,7 +831,7 @@ function oregonShootingResolution(data) {
 
 function oregonSick() {
 	const oregonIllness = Math.random() * 100 < oregon.eating * 35 - 25 ? "Mild" : Math.random() * 100 < 100 - 40 / 4 ** (oregon.eating - 1) ? "Bad" : "Serious";
-	upateLog(`${oregonIllness} illness -${oregonIllness == "Serious" ? "<br>You must stop for medical attention" : " medicine used"}`);
+	updateLog(`${oregonIllness} illness -${oregonIllness == "Serious" ? "<br>You must stop for medical attention" : " medicine used"}`);
 	if (oregonIllness == "Serious") {
 		oregon.hurt = 1;
 	} else {
