@@ -331,7 +331,7 @@ function submitOregon() {
 			}
 
 			// Mountains
-			if (oregon.mountain || oregon.mileage > 950 {
+			if (oregon.mountain || oregon.mileage > 950) {
 				if (Math.random() * 10 <= 9 - ((oregon.mileage / 100 - 15) ** 2 + 72) / ((oregon.mileage / 100 - 15) ** 2 + 12)) {
 					updateLog(`Rugged Mountains`);
 					if (Math.random() > .1) {
