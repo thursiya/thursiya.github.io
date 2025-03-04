@@ -51,18 +51,14 @@ function submitOregon() {
 		case "InitialSupplies":
 			if (oregon.fort < 5) {
 				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
-				if (oregon.fort) {
-					if (oregon.fort == 1 && num < 200) {
-						updateLog(`Not enough.`);
-					} else if (oregon.fort == 1 && num > 300) {
-						updateLog(`Too much.`);
-					} else if (num < 0) {
-						updateLog(`Impossible!`);
-					} else {
-						oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
-						oregon.fort++;
-					}
+				if (oregon.fort == 0 && num < 200) {
+					updateLog(`Not enough.`);
+				} else if (oregon.fort == 0 && num > 300) {
+					updateLog(`Too much.`);
+				} else if (num < 0) {
+					updateLog(`Impossible!`);
 				} else {
+					oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort]] = num;
 					oregon.fort++;
 				}
 				break;
@@ -145,7 +141,7 @@ function submitOregon() {
 			}	
 		case "Hunting":
 			if (gameState == "Hunting") {
-				oregonShootingResolution();
+				oregonShootingResolution(data);
 				if (oregon.responseTime <= 1) {
 					updateLog(`Right between the eyes - you got a big one!!!!`);
 					updateLog(`Full bellies tonight!`);
@@ -296,7 +292,7 @@ function submitOregon() {
 		case "Bandits":
 		case "WildAnimals":
 			if (gameState == "Bandits" || gameState == "WildAnimals") {
-				oregonShootingResolution();
+				oregonShootingResolution(data);
 				if (gameState == "Bandits") {
 					oregon.ammo -= ~~(oregon.responseTime * 20);
 					if (oregon.ammo < 0) {
@@ -826,7 +822,7 @@ function oregonShooting() {
 	oregon.timer[0] = new Date();
 }
 
-function oregonShootingResolution() {
+function oregonShootingResolution(data) {
 	oregon.responseTime = (oregon.timer[1] - oregon.timer[0]) / 1000 - oregon.shootingExpertise + 1;
 	if (oregon.responseTime < 0) oregon.responseTime = 0;
 	if (data != oregon.shotType.toUpperCase()) oregon.responseTime = 9;
