@@ -211,7 +211,7 @@ function submitOregon() {
 							oregon.ammo -= 150;
 							oregon.supplies -= 15;
 						} else {
-							oregon.ammo -= oregon.responseTime * (gameState == "Attacking" ? 40 : 30) + 80;
+							oregon.ammo -= ~~(oregon.responseTime * (gameState == "Attacking" ? 40 : 30) + 80);
 							if (gameState == "Defending") oregon.mileage -= 25;
 							if (oregon.responseTime <= 1) {
 								updateLog(`Nice shooting - you drove them off.`);
@@ -260,7 +260,6 @@ function submitOregon() {
 				{ t: "" },
 				{ t: "Helpful Indians show you where to find more food.", f: 14 }
 			][oregonEventIndex];
-			console.log(`DEBUG) oregonEventIndex: ${oregonEventIndex} (${oregonEvent.t})`);
 			
 			// Heavy rains becomes cold weather when past the plains
 			if (oregonEventIndex == 6 && oregon.mileage > 950) {
