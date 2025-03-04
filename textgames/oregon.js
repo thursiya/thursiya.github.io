@@ -94,7 +94,7 @@ function submitOregon() {
 				if (oregon.hurt) {
 					if (oregon.cash < 20) {
 						updateLog(`You can't afford a doctor.`);
-						oregonDied();
+						oregonGameOver(1);
 						break;
 					}
 					updateLog(`Doctor's bill is $20`);
@@ -320,7 +320,7 @@ function submitOregon() {
 					if (oregon.ammo < 40) {
 						updateLog(`You were too low on bullets - the wolves overpowered you.`);
 						oregon.hurt = 2;
-						oregonDied();
+						oregonGameOver(1);
 						break;
 					} else {
 						if (oregon.responseTime <= 2) {
@@ -839,7 +839,7 @@ function oregonShootingResolution(data) {
 
 function oregonSick() {
 	const oregonIllness = Math.random() * 100 < oregon.eating * 35 - 25 ? "Mild" : Math.random() * 100 < 100 - 40 / 4 ** (oregon.eating - 1) ? "Bad" : "Serious";
-	updateLog(`${oregonIllness} illness -${oregonIllness == "Serious" ? "<br>You must stop for medical attention" : " medicine used"}`);
+	updateLog(`🤒 ${oregonIllness} illness -${oregonIllness == "Serious" ? "<br>You must stop for medical attention" : " medicine used"}`);
 	if (oregonIllness == "Serious") {
 		oregon.hurt = 1;
 	} else {
@@ -848,18 +848,14 @@ function oregonSick() {
 	oregon.supplies -= oregonIllness == "Mild" ? 2 : oregonIllness == "Bad" ? 5 : 10;
 	if (oregon.supplies < 0) {
 		updateLog(`You ran out of medical supplies.`);
-		oregonDied();
+		oregonGameOver(1);
 	}
 }
 
-function oregonDied() {
-	updateLog(`☠ You died of ${oregon.hurt == 2 ? "injuries" : "pneumonia"}.`);
-	oregonGameOver();
-}
-
-function oregonGameOver() {
+function oregonGameOver(cause) {
 	gameState = "GameOver";
 	oregon.fort = 0;
+	if (cause) updateLog(`☠ You died of ${oregon.hurt == 2 ? "injuries" : "pneumonia"}.`);
 	updateLog(`Due to your unfortunate situation, there are a few formalities we must go through.`);
 	updateLog(`Would you like a minister?`);
 }
