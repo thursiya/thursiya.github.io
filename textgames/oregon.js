@@ -98,8 +98,8 @@ function submitOregon() {
 					oregon.cash -= 20;
 					oregon.hurt = 0;
 				}
+				updateLog(`Total mileage is <b>${oregon.mileage}</b>`);
 			}				
-			updateLog(`Total mileage is <b>${oregon.mileage}</b>`);
 			updateLog(`Food: <b>${oregon.food}</b>, Bullets: <b>${oregon.ammo}</b>, Clothing: <b>${oregon.clothes}</b>, Misc. Supp.: <b>${oregon.supplies}</b>, Cash: <b>${oregon.cash}</b>`);
 			oregon.fort = oregon.fort ? 0 : 1;
 			if (oregon.mileage > 2040) {
@@ -245,7 +245,7 @@ function submitOregon() {
 			const oregonEvent = [
 				{ t: "Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
 				{ t: "Ox injures leg - slows down rest of trip.", m: -25, o: -20 },
-				{ t: "Bad luck - your daughter broker her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
+				{ t: "Bad luck - your daughter broke her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
 				{ t: "Ox wanders off - spend time looking for it.", m: -17 },
 				{ t: "Your son gets lost - spend half the day looking for him.", m: -10 },
 				{ t: "Unsafe water - lose time looking for clean spring.", m: -2 - ~~(Math.random() * 10) },
