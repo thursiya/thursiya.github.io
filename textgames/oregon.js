@@ -349,21 +349,9 @@ function submitOregon() {
 						oregon.mileage -= 60;
 					}
 				}
-
-				switch (oregon.mountain) {
-					case 0:
-					case 1:
-						oregon.mountain++;
-						
-					case 2:
-					default:
-				}
-
-
-				
-				if (oregon.mountain < 2) {
+				if (oregon.mountain == 0 || (oregon.mountain == 1 && oregon.mileage > 1699)) {
 					oregon.mountain++;
-					if (Math.random() * 10 < 8 - oregon.mountain) {
+					if (Math.random() * 10 < 9 - oregon.mountain) {
 						updateLog(`Blizzard in mountain pass - time and supplies lost.`);
 						oregon.food -= 15;
 						oregon.supplies -= 10;
@@ -371,62 +359,16 @@ function submitOregon() {
 						oregon.mileage -= 30 + ~~(Math.random() * 40);
 						if (oregon.clothes < 18 + Math.random() * 2) {
 							oregonSick();
+							if (gameState == "GameOver") break;
 						}
 					} else {
 						if (oregon.mountain == 1) updateLog(`You made it safely through South Pass - no snow.`);
 					}
 				}
-				
-				if (oregon.mountain) {
-					// 4900 - check blue mtn
-				} else {
-					oregon.mountain = 1;
-					if (Math.random() < 0.8) {
-						// 4970 - 80% blizzard
-					} else {
-						updateLog(`You made it safely through South Pass - no snow.`);
-						
-						// 4900
-						if (oregon.mileage < 1700) {
-							// done
-						} else {
-							if (oregon.mountain == 2) {
-								// done
-							} else {
-								oregon.mountain = 2;
-								if (Math.random() < 0.7) {
-									// 4970 - 70% blizzard
-								} else {
-									// done
-								}
-							}
-						}
-					}
-				}
 				if (oregon.mileage < 950) oregon.mileage = 950;
 			}
-						/*
-   // ***MOUNTAINS***
-4860 IF F1 = 1 THEN 4900	// Flag for clearing south pass
-4870 Fl = l
-4880 IF RND(-1) < .8 THEN 4970
-4890 PRINT "YOU MADE IT SAFELY THR0UGH SOUTH PASS--N0 SN0W"
-4900 IF M < 1700 THEN 4940
-4910 IF F2 = 1 THEN 4940	// Flag for clearing Blue Mountains
-4920 F2 = l
-4930 IF RND(-1) < .7 THEN 4970
-4940 IF M > 950 THEN 1230
-4950 M9 = 1
-4960 GOTO 1230
-4970 PRINT "BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST"
-4990 F = F - 25
-5000 M1 = M1 - 10
-5010 B = B - 300
-5020 M = M - 30 - 40 * RND(-1)
-5030 IF C < 18 + 2 * RND(-1) THEN 6300 (Sickness routine)
-5040 GOTO 4940 */
-
-		// Check for victory
+			
+			// Check for victory
 			if (oregon.mileage > 2040) {
 				updateLog(`You finally arrived at Oregon City after 2040 long miles - hooray!!!!!<br>A real pioneer!`);
 				const oregonPartial = (2040 - oregon.lastMileage) / (oregon.mileage - oregon.lastMileage);
