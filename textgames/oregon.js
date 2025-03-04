@@ -48,7 +48,7 @@ function submitOregon() {
 				oregon.shootingExpertise = 0;
 			}		
 		case "InitialSupplies":
-			if (gameState == "InitialSupplies";) {
+			if (gameState == "InitialSupplies") {
 				if (oregon.fort == 0 && num < 200) {
 					updateLog(`Not enough.`);
 				} else if (oregon.fort == 0 && num > 300) {
