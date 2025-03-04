@@ -49,8 +49,8 @@ function submitOregon() {
 			}
 			gameState = "InitialSupplies";		
 		case "InitialSupplies":
-			if (oregon.fort < 5) {
-				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
+			if (oregon.fort < 6) {
+				if (oregon.fort < 5) updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
 				if (oregon.fort) {
 					if (oregon.fort == 1 && num < 200) {
 						updateLog(`Not enough.`);
