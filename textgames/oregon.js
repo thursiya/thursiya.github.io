@@ -247,14 +247,14 @@ function submitOregon() {
 			const oregonRandomEvent = Math.random() * 100;
 			const oregonEventIndex = [6, 11, 13, 15, 17, 22, 32, 35, 37, 42, 44, 54, 64, 69, 95, 100].findIndex(v => v > oregonRandomEvent);
 			const oregonEvent = [
-				{ t: "&#128734; Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
+				{ t: "🔨 Wagon breaks down - lose time and supplies fixing it.", m: -15 - ~~(Math.random() * 5), s: -8 },
 				{ t: "🐂 Ox injures leg - slows down rest of trip.", m: -25, o: -20 },
-				{ t: "&#129660; Bad luck - your daughter broke her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
+				{ t: "🤸 Bad luck - your daughter broke her arm. You had to stop and use supplies to make a sling.", m: -5 - ~~(Math.random() * 4), s: -2 - ~~(Math.random() * 3) },
 				{ t: "🐂 Ox wanders off - spend time looking for it.", m: -17 },
 				{ t: "🚶 Your son gets lost - spend half the day looking for him.", m: -10 },
 				{ t: "🚱 Unsafe water - lose time looking for clean spring.", m: -2 - ~~(Math.random() * 10) },
 				{ t: "⛆ Heavy rains - time and supplies lost.", f: -10, a: -500, s: -15, m: -5 - ~~(Math.random() * 10) },
-				{ t: "&#129399; Bandits attack." },
+				{ t: "👺 Bandits attack." },
 				{ t: "🔥 There was a fire in your wagon - food and supplies damage!", f: -40, a: -400, s: -3 - ~~(Math.random() * 8), m: -15 },
 				{ t: "🌫 Lose your way in heavy fog - time is lost.", m: -10 - ~~(Math.random() * 5) },
 				{ t: "🐍 You killed a poisonous snake after it bit you.", a: -10, s: -5 },
@@ -357,7 +357,7 @@ function submitOregon() {
 				if (oregon.mountain == 0 || (oregon.mountain == 1 && oregon.mileage > 1699)) {
 					oregon.mountain++;
 					if (Math.random() * 10 < 9 - oregon.mountain) {
-						updateLog(`🏔 Blizzard in mountain pass - time and supplies lost.`);
+						updateLog(`❄❄❄ Blizzard in mountain pass - time and supplies lost.`);
 						oregon.food -= 15;
 						oregon.supplies -= 10;
 						oregon.ammo -= 300;
