@@ -9,7 +9,7 @@ function initOregon() {
 	document.getElementById("textInput").type = "text";
 
 	Object.keys(oregon).forEach(key => delete oregon[key]);
-	Object.assign(oregon, { day: new Date("1847-03-29"), fort: 0, mountain: 0, timer: [0, 0], hurt: 0, responseTime: null, mileage: 0});
+	Object.assign(oregon, { day: new Date("1847/03/29"), fort: 0, mountain: 0, timer: [0, 0], hurt: 0, responseTime: null, mileage: 0});
 	
 	updateLog(`<b>OREGON TRAIL</b><br><i>Based on the BASIC game by Bill Heinemann, Paul Dillenberger, and Don Rawitsch<br>Published in the May/June 1978 edition of Creative Computing</i><br>`);
 	updateLog(`Do you need instructions?`);
