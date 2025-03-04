@@ -46,36 +46,34 @@ function submitOregon() {
 			} else {
 				updateLog(`Okay, "Best in the West".`);
 				oregon.shootingExpertise = 0;
-			}
-			gameState = "InitialSupplies";		
+			}		
 		case "InitialSupplies":
-			if (oregon.fort < 6) {
-				if (oregon.fort < 5) updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
-				if (oregon.fort) {
-					if (oregon.fort == 1 && num < 200) {
-						updateLog(`Not enough.`);
-					} else if (oregon.fort == 1 && num > 300) {
-						updateLog(`Too much.`);
-					} else if (num < 0) {
-						updateLog(`Impossible!`);
-					} else {
-						oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
-						oregon.fort++;
-					}
+			if (gameState == "InitialSupplies";) {
+				if (oregon.fort == 0 && num < 200) {
+					updateLog(`Not enough.`);
+				} else if (oregon.fort == 0 && num > 300) {
+					updateLog(`Too much.`);
+				} else if (num < 0) {
+					updateLog(`Impossible!`);
 				} else {
+					oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort]] = num;
 					oregon.fort++;
 				}
-				break;
-			} else {
+			}
+			if (oregon.fort > 4) {
 				oregon.cash = 700 - oregon.oxen - oregon.food - oregon.ammo - oregon.clothes - oregon.supplies;
 				if (oregon.cash < 0) {
 					updateLog(`You overspent - you only had $700 to spend. Buy again.`);
 					oregon.fort = 0;
-					break;
+				} else {
+					updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
+					oregon.ammo *= 50;
 				}
-				updateLog(`After all your purchases, you now have ${oregon.cash} dollars left.`);
-				oregon.ammo *= 50;
 			}
+			if (oregon.fort < 5) {
+				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
+				break;
+			} 
 		case "NewTurn":
 			updateLog(`<hr>${oregon.day.toLocaleDateString("en", { weekday: "long", year: "numeric", month: "long", day: "numeric"})}`);
 			if (oregon.food < 1) oregon.food = 0;
