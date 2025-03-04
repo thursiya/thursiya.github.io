@@ -72,6 +72,7 @@ function submitOregon() {
 			}
 			if (oregon.fort < 5) {
 				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
+				gameState = "InitialSupplies";
 				break;
 			} 
 		case "NewTurn":
