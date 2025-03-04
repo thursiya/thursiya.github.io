@@ -51,15 +51,18 @@ function submitOregon() {
 		case "InitialSupplies":
 			if (oregon.fort < 5) {
 				updateLog(`How much do you want to spend on ${oregonProvisions[oregon.fort]}?${oregon.fort ? "" : " <i>(200 - 300)</i>"}`);
-				if (!oregon.fort) break;
-				if (oregon.fort == 1 && num < 200) {
-					updateLog(`Not enough.`);
-				} else if (oregon.fort == 1 && num > 300) {
-					updateLog(`Too much.`);
-				} else if (num < 0) {
-					updateLog(`Impossible!`);
+				if (oregon.fort) {
+					if (oregon.fort == 1 && num < 200) {
+						updateLog(`Not enough.`);
+					} else if (oregon.fort == 1 && num > 300) {
+						updateLog(`Too much.`);
+					} else if (num < 0) {
+						updateLog(`Impossible!`);
+					} else {
+						oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
+						oregon.fort++;
+					}
 				} else {
-					oregon[["oxen", "food", "ammo", "clothes", "supplies"][oregon.fort - 1]] = num;
 					oregon.fort++;
 				}
 				break;
