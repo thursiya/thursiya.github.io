@@ -1,6 +1,6 @@
 // Original BASIC code: https://archive.org/details/creativecomputing-1978-05/page/n139/mode/2up
 
-const oregon = { day: new Date("1847-03-29"), fort: 0, mountain: 0, timer: [0, 0], hurt: 0, responseTime: null, mileage: 0 };
+const oregon = {};
 const oregonProvisions = ["your oxen team", "food", "ammunition", "clothing", "miscellaneous supplies"];
 
 function initOregon() {
@@ -8,6 +8,9 @@ function initOregon() {
 	gameLog.length = 0;
 	document.getElementById("textInput").type = "text";
 
+	Object.keys(oregon).forEach(key => delete oregon[key]);
+	Object.assign(oregon, { day: new Date("1847-03-29"), fort: 0, mountain: 0, timer: [0, 0], hurt: 0, responseTime: null, mileage: 0});
+	
 	updateLog(`<b>OREGON TRAIL</b><br><i>Based on the BASIC game by Bill Heinemann, Paul Dillenberger, and Don Rawitsch<br>Published in the May/June 1978 edition of Creative Computing</i><br>`);
 	updateLog(`Do you need instructions?`);
 	gameState = "Instructions";
@@ -240,6 +243,7 @@ function submitOregon() {
 			}
 
 			// Event
+			updateLog(`<span style="text-align: center">* * *</span>`);
 			const oregonRandomEvent = Math.random() * 100;
 			const oregonEventIndex = [6, 11, 13, 15, 17, 22, 32, 35, 37, 42, 44, 54, 64, 69, 95, 100].findIndex(v => v > oregonRandomEvent);
 			const oregonEvent = [
@@ -263,7 +267,7 @@ function submitOregon() {
 			
 			// Heavy rains becomes cold weather when past the plains
 			if (oregonEventIndex == 6 && oregon.mileage > 950) {
-				updateLog(`Cold weather - brrrrrrr!`);
+				updateLog(`🌨 Cold weather - brrrrrrr!`);
 				if (oregon.clothes > 22 + Math.random() * 4) {
 					updateLog(`But you have enough clothing to keep you warm.`);
 				} else {
@@ -273,7 +277,7 @@ function submitOregon() {
 				break;
 			}
 			
-			updateLog(oregonEvent.t);
+			updateLog(`⍟ ${oregonEvent.t}`);
 			oregon.mileage += oregonEvent.m || 0;
 			oregon.supplies += oregonEvent.s || 0;
 			oregon.oxen += oregonEvent.o || 0;
@@ -287,7 +291,7 @@ function submitOregon() {
 				break;
 			}
 			if (oregonEventIndex == 10 && oregon.supplies < 0) {
-				updateLog(`You die of snakebite since you have no medicine.`);
+				updateLog(`🐍 You die of snakebite since you have no medicine.`);
 				oregonGameOver();
 			} else if (oregonEventIndex == 14 && Math.random() * 4 > oregon.eating - 1) {
 				oregonSick();	
@@ -353,7 +357,7 @@ function submitOregon() {
 				if (oregon.mountain == 0 || (oregon.mountain == 1 && oregon.mileage > 1699)) {
 					oregon.mountain++;
 					if (Math.random() * 10 < 9 - oregon.mountain) {
-						updateLog(`Blizzard in mountain pass - time and supplies lost.`);
+						updateLog(`🏔 Blizzard in mountain pass - time and supplies lost.`);
 						oregon.food -= 15;
 						oregon.supplies -= 10;
 						oregon.ammo -= 300;
@@ -849,7 +853,7 @@ function oregonSick() {
 }
 
 function oregonDied() {
-	updateLog(`You died of ${oregon.hurt == 2 ? "injuries" : "pneumonia"}.`);
+	updateLog(`☠ You died of ${oregon.hurt == 2 ? "injuries" : "pneumonia"}.`);
 	oregonGameOver();
 }
 
