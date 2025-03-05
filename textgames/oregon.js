@@ -128,7 +128,7 @@ function submitOregon() {
 				break;
 			}
 		case "VisitFort":
-			if (gameState == "VisitFort" && oregon.fort < 6) {
+			if (gameState == "VisitFort") {
 				if (oregon.fort > 1) {
 					if (num > oregon.cash) {
 						updateLog(`<i>You don't have that much - keep your spending down.</i>`);
@@ -141,9 +141,11 @@ function submitOregon() {
 						if (oregon.fort == 5) oregon.supplies += ~~(num * 2 / 3);
 					}	
 				}
-				updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort]}:`);
-				oregon.fort++;
-				break;
+				if (oregon.fort < 5) {
+					updateLog(`Enter what you wish to spend on ${oregonProvisions[oregon.fort]}:`);
+					oregon.fort++;
+					break;
+				}
 			}	
 		case "Hunting":
 			if (gameState == "Hunting") {
