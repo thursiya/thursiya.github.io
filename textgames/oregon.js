@@ -90,7 +90,7 @@ function submitOregon() {
 					oregonGameOver();
 					break;
 				}
-				if (oregon.food < 13) updateLog(`<b>You'd better do some hunting or buy food and soon!!!!</b>`);
+				if (oregon.food < 13) updateLog(`<b><i>You'd better do some hunting or buy food and soon!!!!</i></b>`);
 				if (oregon.hurt) {
 					if (oregon.cash < 20) {
 						updateLog(`You can't afford a doctor.`);
