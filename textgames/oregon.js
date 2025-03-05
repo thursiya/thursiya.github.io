@@ -131,8 +131,7 @@ function submitOregon() {
 			if (gameState == "VisitFort") {
 				if (oregon.fort > 1) {
 					if (num > oregon.cash) {
-						updateLog(`<i>You don't have that much - keep your spending down.</i>`);
-						updateLog(`<i>You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}.</i>`);
+						updateLog(`<i>You don't have that much - keep your spending down.<br>You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}.</i>`);
 					} else {
 						oregon.cash -= num;
 						if (oregon.fort == 2) oregon.food += ~~(num * 2 / 3);
