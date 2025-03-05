@@ -102,7 +102,7 @@ function updateSumer() {
 		<br> &nbsp; Rats ate ${hammurabi.ratLoss} bushels.
        		<br> &nbsp; You now have <span style="font-size: 125%"><b>${hammurabi.grain}</b></span> bushels in store.
 	   	${hammurabi.year < 11 ? `<br> &nbsp; Land is trading at <b>${hammurabi.acrePrice} bushels per acre</b>.<br>` : ""}`);
-	gameState = (year > 10) "GameOver" : "Buying";
+	gameState = (year > 10) ? "GameOver" : "Buying";
 }
 
 function announceHammurabi() {
