@@ -12,8 +12,8 @@ function initHammurabi() {
 					get worker() {return `But you have only ${hammurabi.pop} people to tend the fields (10 acres/person)! Now then,`} } });
 	
 	updateLog(`<b>HAMMURABI</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Try your hand at governing Ancient Sumeria for a ten-year term of office.`);
-	updateSumer();
-	announceHammurabi();
+	gameState = "UpdateSumer";
+	submitHammurabi();
 }
 
 function submitHammurabi() {
@@ -60,7 +60,7 @@ function submitHammurabi() {
 				hammurabi.grain -= num;
 				// Prepare for next year
 				// Rats
-				const rval = Math.ceil(Math.random() * 5);
+				const rval = ~~(Math.random() * 5 + 1);
 				hammurabi.ratLoss = (rval % 2 == 0) ? ~~(hammurabi.grain / rval) : 0;
 				hammurabi.grain -= hammurabi.ratLoss;
 				// Immigrants
@@ -68,41 +68,38 @@ function submitHammurabi() {
 				// Plague (15% chance)
 				hammurabi.plague = Math.random() < 0.15;
 				// Random harvest
-				hammurabi.harvestYield = Math.ceil(Math.random() * 5);
+				hammurabi.harvestYield = ~~(Math.random() * 5 + 1);
 				hammurabi.grain += num * hammurabi.harvestYield;	
 				
 				if (hammurabi.starved > hammurabi.pop * 0.45) {
 					updateLog(`You starved ${hammurabi.starved} in one year!!!`);
 					gameState = "GameResults";
 					hammurabi.starvedPercent = 50;
-				} else {
-					hammurabi.starvedPercent = ((hammurabi.year - 1) * hammurabi.starvedPercent + hammurabi.starved / hammurabi.pop * 100) / hammurabi.year;
-					hammurabi.totalStarved += hammurabi.starved;
-					updateSumer();
+					break;
 				}
+				hammurabi.starvedPercent = ((hammurabi.year - 1) * hammurabi.starvedPercent + hammurabi.starved / hammurabi.pop * 100) / hammurabi.year;
+				hammurabi.totalStarved += hammurabi.starved;
 			}
+		case "UpdateSumer":
+			hammurabi.pop += hammurabi.immigrants - hammurabi.starved;
+			if (hammurabi.plague) hammurabi.pop = ~~(hammurabi.pop / 2);
+			hammurabi.acrePrice = ~~(Math.random() * 10 + 17);
+			updateLog(`<hr><i>Hammurabi:</i> I beg to report to you in <b>Year ${++hammurabi.year}</b>...
+				<br> &nbsp; ${hammurabi.starved} people starved.
+    				<br> &nbsp; ${hammurabi.immigrants} ${hammurabi.immigrants == 1 ? "person" : "people"} came to the city.
+				${hammurabi.plague ? "<br> &nbsp; A horrible plague struck! Half the people died." : ""}
+				<br> &nbsp; Population is now <b>${hammurabi.pop}</b>.
+   				<br> &nbsp; The city now owns <b>${hammurabi.acres} acres</b>.
+       				<br> &nbsp; You harvested ${hammurabi.harvestYield} bushels per acre.
+				<br> &nbsp; Rats ate ${hammurabi.ratLoss} bushels.
+       				<br> &nbsp; You now have <span style="font-size: 125%"><b>${hammurabi.grain}</b></span> bushels in store.
+	   			${hammurabi.year < 11 ? `<br> &nbsp; Land is trading at <b>${hammurabi.acrePrice} bushels per acre</b>.<br>` : ""}`);
+			gameState = (hammurabi.year > 10) ? "GameOver" : "Buying";
 			break;
 		default:
 			updateLog(`<i>Reload the game to restart</i>`);
 	}
 	announceHammurabi();
-}
-
-function updateSumer() {
-	hammurabi.pop += hammurabi.immigrants - hammurabi.starved;
-	if (hammurabi.plague) hammurabi.pop = ~~(hammurabi.pop / 2);
-	hammurabi.acrePrice = ~~(Math.random() * 10 + 17);
-	updateLog(`<hr><i>Hammurabi:</i> I beg to report to you in <b>Year ${++hammurabi.year}</b>...
-		<br> &nbsp; ${hammurabi.starved} people starved.
-    		<br> &nbsp; ${hammurabi.immigrants} ${hammurabi.immigrants == 1 ? "person" : "people"} came to the city.
-		${hammurabi.plague ? "<br> &nbsp; A horrible plague struck! Half the people died." : ""}
-		<br> &nbsp; Population is now <b>${hammurabi.pop}</b>.
-   		<br> &nbsp; The city now owns <b>${hammurabi.acres} acres</b>.
-       		<br> &nbsp; You harvested ${hammurabi.harvestYield} bushels per acre.
-		<br> &nbsp; Rats ate ${hammurabi.ratLoss} bushels.
-       		<br> &nbsp; You now have <span style="font-size: 125%"><b>${hammurabi.grain}</b></span> bushels in store.
-	   	${hammurabi.year < 11 ? `<br> &nbsp; Land is trading at <b>${hammurabi.acrePrice} bushels per acre</b>.<br>` : ""}`);
-	gameState = (hammurabi.year > 10) ? "GameOver" : "Buying";
 }
 
 function announceHammurabi() {
