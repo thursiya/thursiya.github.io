@@ -1,11 +1,5 @@
-//const rooms = [[1, 4, 7], [0, 2, 9], [1, 3, 11], [2, 4, 13], [0, 3, 5], [4, 6, 14], [5, 7, 16], [0, 6, 8], [7, 9, 17], [1, 8, 10], [9, 11, 18], [2, 10, 12], [11, 13, 19], [3, 12, 14], [5, 3, 15], [14, 16, 19], [6, 15, 17], [8, 16, 18], [10, 17, 19], [12, 15, 18]];
-const phi = 1.618033988749895;
-//const coords = [[-1/phi,0,phi], [1/phi,0,phi], [1,-1,1], [0,-phi,1/phi], [-1,-1,1], [-phi,-1/phi,0], [-phi,1/phi,0], [-1,1,1], [0,phi,1/phi], [1,1,1], [phi,1/phi,0], [phi,-1/phi,0], [1,-1,-1], [0,-phi,-1/phi], [-1,-1,-1], [-1/phi,0,-phi], [-1,1,-1], [0,phi,-1/phi], [1,1,-1], [1/phi,0,-phi]];
-
-//let wumpusLocation, playerLocation, bat1Location, bat2Location, pit1Location, pit2Location;
-//let wumpusDistance, oldDistance;
-
 const wumpus = {};
+const phi = 1.618033988749895;
 
 function initWumpus () {
 	currentApp = "Wumpus";
@@ -18,13 +12,6 @@ function initWumpus () {
 		coord: [[-1/phi,0,phi], [1/phi,0,phi], [1,-1,1], [0,-phi,1/phi], [-1,-1,1], [-phi,-1/phi,0], [-phi,1/phi,0], [-1,1,1], [0,phi,1/phi], [1,1,1], [phi,1/phi,0], [phi,-1/phi,0], [1,-1,-1], [0,-phi,-1/phi], [-1,-1,-1], [-1/phi,0,-phi], [-1,1,-1], [0,phi,-1/phi], [1,1,-1], [1/phi,0,-phi]] });
 	
 	const roomsLeft = shuffle(Array.from(wumpus.room, (v, i) => i));
-	/*wumpusLocation = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	playerLocation = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	bat1Location = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	bat2Location = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	pit1Location = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	pit2Location = roomsLeft.splice(Math.floor(Math.random() * roomsLeft.length), 1)[0];
-	oldDistance = null;*/
 	["wumpus", "player", "bat1", "bat2", "pit1", "pit2"].forEach(v => wumpus[v] = roomsLeft.pop());
 		
 	updateLog(`<b>WUMPUS</b><br><i>Based on the Creative Computing game</i><br><br>* * * &nbsp; H U N T &nbsp; T H E &nbsp; W U M P U S &nbsp; * * *`);
@@ -39,24 +26,14 @@ function submitWumpus() {
 	const num = parseInt(data);
 	switch (gameState) {
 		case "Action Choice":
-			if (data[0] == "M") {
-				//gameState = "Move";
-				//gameLog[gameLog.length - 1] += ` <b><i>${gameState}</i></b>`;
-				appendLog(gameState = "Move");
-			}
-			if (data[0] == "S") {
-				//gameState = "Shoot";
-				//gameLog[gameLog.length - 1] += ` <b><i>${gameState}</i></b>`;
-				appendLog(gameState = "Shoot");
+			if (data[0] == "M" || data[0] == "S") {
+				appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
 			}
 			break;
 		case "Move":
 			if (wumpus.room[wumpus.player].includes(num)) {
 				wumpus.oldLoc = wumpus.player;
 				appendLog(wumpus.player = num);
-				//gameLog[gameLog.length - 1] += ` <b><i>${data}</i></b>`;
-				//oldLocation = playerLocation;
-				//playerLocation = data;
 				gameState = "Update Location";
 				if (wumpus.player == wumpus.wumpus) gameState = "Wumpus Snack";
 				if ([wumpus.pit1, wumpus.pit2].includes(wumpus.player)) gameState = "Pit Fall";
@@ -66,13 +43,10 @@ function submitWumpus() {
 		case "Shoot":
 			if (wumpus.room[wumpus.player].includes(num)) {
 				appendLog(num);
-				//gameLog[gameLog.length - 1] += ` <b><i>${data}</i></b>`;
 				if (num == wumpus.wumpus) {
 					updateLog(`Hurrah! One less Wumpus!`);
 					gameState = "Restart";
 				} else {
-					//const rval = Math.floor(Math.random() * 4);
-					//wumpus.wumpus = (rval == 3) ? wumpus.wumpus : wumpus.room[wumpus.wumpus][rval];
 					wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
 					updateLog(`Missed! The Wumpus is moving...`);
 					gameState = "Update Location";
@@ -96,8 +70,9 @@ function announceWumpus() {
 	switch (gameState) {
 		case "Bat Transport":
 			updateLog(`Super Bats!!!<br>Whoooooosh`);
-			let roomsLeft = Array.from(rooms, (v, i) => i).filter(v => ![wumpusLocation, bat1Location, bat2Location, pit1Location, pit2Location].includes(v));
-			playerLocation = roomsLeft[Math.floor(Math.random() * roomsLeft.length)];
+			//let roomsLeft = Array.from(rooms, (v, i) => i).filter(v => ![wumpusLocation, bat1Location, bat2Location, pit1Location, pit2Location].includes(v));
+			//wumpus.player = roomsLeft[Math.floor(Math.random() * roomsLeft.length)];
+			wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
 		case "Update Location":
 			updateLog(`<hr style="width:50%"`);
 			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
