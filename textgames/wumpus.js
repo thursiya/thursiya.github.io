@@ -28,11 +28,11 @@ function submitWumpus() {
 		case "Action Choice":
 			if (data[0] == "M" || data[0] == "S") {
 				appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
+				updateLog(`Into which room?`);
 			}
 			break;
 		case "Move":
 			if (wumpus.room[wumpus.player].includes(num)) {
-				wumpus.oldLoc = wumpus.player;
 				appendLog(wumpus.player = num);
 				gameState = "Update Location";
 				if (wumpus.player == wumpus.wumpus) gameState = "Wumpus Snack";
@@ -44,11 +44,11 @@ function submitWumpus() {
 			if (wumpus.room[wumpus.player].includes(num)) {
 				appendLog(num);
 				if (num == wumpus.wumpus) {
-					updateLog(`Hurrah! One less Wumpus!`);
+					updateLog(`🎯 Hurrah! One less Wumpus!`);
 					gameState = "Restart";
 				} else {
 					wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
-					updateLog(`Missed! The Wumpus is moving...`);
+					updateLog(`💨 Missed! The Wumpus is moving...`);
 					gameState = "Update Location";
 					if (wumpus.wumpus == wumpus.player) {
 						updateLog(`... Right into this room! You've been eaten.`);
@@ -57,11 +57,8 @@ function submitWumpus() {
 				}
 			}
 			break;
-		case "Restart":
-			updateLog(`<i>Reload the game to restart</i>`);
-			break;
 		default:
-			break;
+			updateLog(`<i>Reload the game to restart</i>`);
 	}
 	announceWumpus();
 }
@@ -70,8 +67,6 @@ function announceWumpus() {
 	switch (gameState) {
 		case "Bat Transport":
 			updateLog(`Super Bats!!!<br>Whoooooosh`);
-			//let roomsLeft = Array.from(rooms, (v, i) => i).filter(v => ![wumpusLocation, bat1Location, bat2Location, pit1Location, pit2Location].includes(v));
-			//wumpus.player = roomsLeft[Math.floor(Math.random() * roomsLeft.length)];
 			wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
 		case "Update Location":
 			updateLog(`<hr style="width:50%"`);
@@ -85,24 +80,9 @@ function announceWumpus() {
 			if ([wumpus.pit1, wumpus.pit2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I feel a draft of pits...`);
 			wumpus.oldDist = wumpus.dist;
 			updateLog(`This is room ${wumpus.player}, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
-			gameState = "Action Choice";
-		case "Action Choice":
 			updateLog(`Move or Shoot?`);
-			break;
-		case "Move":
-		case "Shoot":
-			updateLog(`Into which room?`);
-			break;
-		case "Pit Fall":
-			updateLog(`Look out! Bottomless pit! Aaaaaaaaa......`);
-			gameState = "Restart";
-			break;
-		case "Wumpus Snack":
-			updateLog(`Look out, it's the Wumpus room!!!!<br>Too late. You've been eaten.`);
-			gameState = "Restart";
-			break;
-		default:
-			break;
+			gameState = "Action Choice";
+		default:			
 	}
 	setInput();
 }
