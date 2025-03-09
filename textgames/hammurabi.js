@@ -24,8 +24,9 @@ function submitHammurabi() {
 			if (num * hammurabi.acrePrice > hammurabi.grain) {
 				updateLog(hammurabi.error.grain);
 			} else if (num == 0) {
-				gameState = "Selling";
+				appendLog(gameState = "Selling");
 			} else {
+				appendLog(num);
 				hammurabi.grain -= num * hammurabi.acrePrice;
 				hammurabi.acres += num;
 				gameState = "Feeding";
@@ -35,6 +36,7 @@ function submitHammurabi() {
 			if (num > hammurabi.acres) {
 				updateLog(hammurabi.error.land);
 			} else {
+				appendLog(num);
 				hammurabi.acres -= num;
 				hammurabi.grain += num * hammurabi.acrePrice;
 				gameState = "Feeding";
@@ -44,6 +46,7 @@ function submitHammurabi() {
 			if (num > hammurabi.grain) {
 				updateLog(hammurabi.error.grain);
 			} else {
+				appendLog(num);
 				hammurabi.grain -= num;
 				hammurabi.starved = (num / 20 >= hammurabi.pop) ? 0 : hammurabi.pop - ~~(num / 20);
 				gameState = "Planting";
@@ -57,6 +60,7 @@ function submitHammurabi() {
 			} else if (num > hammurabi.pop * 10) {
 				updateLog(hammurabi.error.worker);
 			} else {
+				appendLog(num);
 				hammurabi.grain -= num;
 				// Prepare for next year
 				// Rats
