@@ -22,8 +22,7 @@ function initWumpus () {
 function submitWumpus(state) {
 	const data = textInput.value.toUpperCase();
 	const num = parseInt(data);
-	if (state) gameState = state;
-	switch (gameState) {
+	switch (state || gameState) {
 		case "Action Choice":
 			if (data[0] != "M" && data[0] != "S") break;
 			appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
