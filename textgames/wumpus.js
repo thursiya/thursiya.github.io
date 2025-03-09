@@ -20,7 +20,7 @@ function initWumpus () {
 }
 
 function submitWumpus(state) {
-	console.log(state);
+	console.log(`DEBUG) state: ${state}`);
 	if (!state) {
 		const data = textInput.value.toUpperCase();
 		if (!data) return;
