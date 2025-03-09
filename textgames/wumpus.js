@@ -24,6 +24,42 @@ function submitWumpus(state) {
 	const num = parseInt(data);
 	if (state) gameState = state;
 	switch (gameState) {
+		case "Action Choice":
+			if (data[0] != "M" && data[0] != "S") break;
+			appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
+			updateLog(`Into which room?`);
+			break;
+		case "Move":
+		case "Shoot":
+			if (!wumpus.room[wumpus.player].includes(num)) break;
+			appendLog(num);
+			if (num == wumpus.wumpus) {
+				updateLog(gameState == "Move" ? `Look out, it's the Wumpus room!!!!<br>Too late. You've been eaten.` : `🎯 Hurrah! One less Wumpus!`);
+				gameState = "Restart";
+				break;
+			} else {
+				if (gameState == "Move") {
+					if ([wumpus.pit1, wumpus.pit2].includes(num)) {
+						updateLog(`🕳 Look out! Bottomless pit! Aaaaaaaaa......`);
+						gameState = "Restart";
+						break;
+					}
+					if ([wumpus.bat1, wumpus.bat2].includes(num)) {
+						updateLog(`🦇 Super Bats!!!<br>Whoooooosh`);
+						wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
+					} else {
+						wumpus.player = num;
+					}
+				} else {
+					updateLog(`💨 Missed! The Wumpus is moving...`);
+					wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
+					if (wumpus.wumpus == wumpus.player) {
+						updateLog(`... Right into this room! You've been eaten.`);
+						gameState = "Restart";
+						break;
+					}
+				}
+			}
 		case "Update Location":
 			updateLog(`<hr style="width:50%"`);
 			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
@@ -38,46 +74,6 @@ function submitWumpus(state) {
 			updateLog(`This is room <b>${wumpus.player}</b>, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
 			updateLog(`Move or Shoot?`);
 			gameState = "Action Choice";
-			break;
-		case "Action Choice":
-			if (data[0] == "M" || data[0] == "S") {
-				appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
-				updateLog(`Into which room?`);
-			}
-			break;
-		case "Move":
-		case "Shoot":
-			if (wumpus.room[wumpus.player].includes(num)) {
-				appendLog(num);
-				if (num == wumpus.wumpus) {
-					updateLog(gameState == "Move" ? `Look out, it's the Wumpus room!!!!<br>Too late. You've been eaten.` : `🎯 Hurrah! One less Wumpus!`);
-					gameState = "Restart";
-					break;
-				} else {
-					if (gameState == "Move") {
-						if ([wumpus.pit1, wumpus.pit2].includes(num)) {
-							updateLog(`🕳 Look out! Bottomless pit! Aaaaaaaaa......`);
-							gameState = "Restart";
-							break;
-						}
-						if ([wumpus.bat1, wumpus.bat2].includes(num)) {
-							updateLog(`🦇 Super Bats!!!<br>Whoooooosh`);
-							wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
-						} else {
-							wumpus.player = num;
-						}
-					} else {
-						updateLog(`💨 Missed! The Wumpus is moving...`);
-						wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
-						if (wumpus.wumpus == wumpus.player) {
-							updateLog(`... Right into this room! You've been eaten.`);
-							gameState = "Restart";
-							break;
-						}
-					}
-				}
-				gameState = "Update Location";
-			}
 			break;
 		default:
 			updateLog(`<i>Reload the game to restart</i>`);
