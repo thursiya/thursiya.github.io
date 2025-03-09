@@ -27,15 +27,20 @@
 			<h3>Text-Based Game Console</h3>
 			<div id="gameWindow">
 				<div id="textLog"></div>
-				<input id="textInput" type="text" autofocus></input>
-				<button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button>
+				<div style="display: flex">
+					<div><input id="textInput" type="text" autofocus></input></div>
+					<div><button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button></div>
+					<div><button id="visualStyle" type="submit" onclick="changeStyles();">◑</button></div>
+				</div>
 			</div>
+			<hr style="width: 80%">
 			<div>
-				Play:
-				<button type="button" onClick="initAnimal();">Animal</button>
-				<button type="button" onClick="initHammurabi();">Hammurabi</button>
-				<button type="button" onClick="initOregon();">Oregon</button>
-				<button type="button" onClick="initWumpus();">Wumpus</button>
+				<div style="display: flex; flex-wrap: wrap">
+					<div><button type="button" onClick="initAnimal();">Animal</button></div>
+					<div><button type="button" onClick="initHammurabi();">Hammurabi</button></div>
+					<div><button type="button" onClick="initOregon();">Oregon</button></div>
+					<div><button type="button" onClick="initWumpus();">Wumpus</button></div>
+				</div>
 			</div>
 		</main>
 		<script>
@@ -44,6 +49,16 @@
 			// Globals used by the apps
 			let currentApp = "MainScreen";
 			let gameState;
+
+			function changeStyles() {
+				const el = document.getElementById("textLog");
+				el.classList.toggle("dark");
+				if (el.classList.contains("dark")) {
+					el.style = "background: #000; color: #0F0; font-family: Courier, monospace";
+				} else {
+					el.style = "background: #FFF; color: #000; font-family: Times, serif";
+				}
+			}
 		
 			function submitMainScreen() {
 				updateLog(`<i>Click on a button to load a title.</i>`);
