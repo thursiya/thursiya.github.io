@@ -44,6 +44,7 @@ function submitOregon() {
 			gameState = "IntroRifle";
 			break;	
 		case "IntroRifle":
+			appendLog(num);
 			if (num > 0 && num < 6) {
 				oregon.shootingExpertise = num;
 			} else {
@@ -52,6 +53,7 @@ function submitOregon() {
 			}		
 		case "InitialSupplies":
 			if (gameState == "InitialSupplies") {
+				appendLog(num);
 				if (oregon.fort == 0 && num < 200) {
 					updateLog(`<i>Not enough.</i>`);
 				} else if (oregon.fort == 0 && num > 300) {
@@ -118,6 +120,7 @@ function submitOregon() {
 				gameState = "ChoosePath";
 				break;
 			}
+			appendLog(num);
 			if (oregon.fort && num == 1) {
 				gameState = "VisitFort";
 				oregon.mileage -= 45;
@@ -130,6 +133,7 @@ function submitOregon() {
 		case "VisitFort":
 			if (gameState == "VisitFort") {
 				if (oregon.fort > 1) {
+					appendLog(num);
 					if (num > oregon.cash) {
 						updateLog(`<i>You don't have that much - keep your spending down.<br>You miss your chance to spend on ${oregonProvisions[oregon.fort - 1]}.</i>`);
 					} else {
@@ -176,7 +180,7 @@ function submitOregon() {
 				gameState = "Eating";
 				break;
 			}
-			oregon.eating = num;
+			appendLog(oregon.eating = num);
 			oregon.food -= 8 + 5 * oregon.eating;
 			oregon.mileage += 200 + ~~((oregon.oxen - 220) / 5 + Math.random() * 10);
 			oregon.clothingFlag = 0;
@@ -194,6 +198,7 @@ function submitOregon() {
 				gameState = "Tactics";
 				break;
 			}
+			appendLog(num);
 			if (gameState == "Tactics" && oregon.hostility < 0.68 && (num == 2 || num == 4)) {
 				gameState = num == 2 ? "Attacking" : "Defending";
 				oregonShooting();
@@ -388,6 +393,7 @@ function submitOregon() {
 			submitOregon();
 			break;
 		case "GameOver":
+			appendLog(data);
 			if (oregon.fort < 2) {
 				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort]}?`);
 				oregon.fort++;
