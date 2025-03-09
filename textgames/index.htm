@@ -15,7 +15,13 @@
 			  height: 400px;
 			  overflow-y: auto;
 			  padding: 2px;
-			  width: 500px; }			  
+			  width: 100%; }
+			.flex {
+			  display: flex;
+			  align-items: baseline;
+			  flex-wrap: wrap;
+			  gap: 5px; }
+			.mainbody { width: 500px; }
 		</style>
 		<script src="animal.js"></script>
 		<script src="hammurabi.js"></script>
@@ -25,17 +31,17 @@
 	<body onload="addEnterKeySubmitFunctionality()">
 		<main>
 			<h3>Text-Based Game Console</h3>
-			<div id="gameWindow">
-				<div id="textLog"></div>
-				<div style="display: flex">
-					<div><input id="textInput" type="text" autofocus></input></div>
-					<div><button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button></div>
-					<div><button id="visualStyle" type="submit" onclick="changeStyles();">◑</button></div>
+			<div class="mainbody">
+				<div id="gameWindow">
+					<div id="textLog"></div>
+					<div class="flex">
+						<div><input id="textInput" type="text" autofocus></input></div>
+						<div><button id="textButton" type="submit" onClick="window[`submit${currentApp}`]();">Submit</button></div>
+						<div style="margin-left: auto"><button id="visualStyle" type="submit" onclick="changeStyles();">◑</button></div>
+					</div>
 				</div>
-			</div>
-			<hr style="width: 80%">
-			<div>
-				<div style="display: flex; flex-wrap: wrap">
+				<hr style="width: 80%">
+				<div class="flex">
 					<div><button type="button" onClick="initAnimal();">Animal</button></div>
 					<div><button type="button" onClick="initHammurabi();">Hammurabi</button></div>
 					<div><button type="button" onClick="initOregon();">Oregon</button></div>
