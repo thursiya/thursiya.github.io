@@ -20,13 +20,10 @@ function initWumpus () {
 }
 
 function submitWumpus(state) {
-	console.log(`DEBUG) state: ${state}`);
-	if (!state) {
-		const data = textInput.value.toUpperCase();
-		if (!data) return;
-		const num = parseInt(data);
-	}
-	switch (state || gameState) {
+	const data = textInput.value.toUpperCase();
+	const num = parseInt(data);
+	if (state) gameState = state;
+	switch (gameState) {
 		case "Update Location":
 			updateLog(`<hr style="width:50%"`);
 			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
@@ -87,15 +84,6 @@ function submitWumpus(state) {
 	}
 	setInput();
 }
-
-/*function announceWumpus() {
-	switch (gameState) {
-		case "Update Location":
-			
-		default:			
-	}
-	setInput();
-}*/
 
 function dist3d (x1, y1, z1, x2, y2, z2) {
 	return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2);
