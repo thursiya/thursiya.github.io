@@ -32,29 +32,35 @@ function submitWumpus() {
 			}
 			break;
 		case "Move":
-			if (wumpus.room[wumpus.player].includes(num)) {
-				appendLog(wumpus.player = num);
-				gameState = "Update Location";
-				if (wumpus.player == wumpus.wumpus) gameState = "Wumpus Snack";
-				if ([wumpus.pit1, wumpus.pit2].includes(wumpus.player)) gameState = "Pit Fall";
-				if ([wumpus.bat1, wumpus.bat2].includes(wumpus.player)) gameState = "Bat Transport";
-			}
-			break;
 		case "Shoot":
 			if (wumpus.room[wumpus.player].includes(num)) {
 				appendLog(num);
 				if (num == wumpus.wumpus) {
-					updateLog(`🎯 Hurrah! One less Wumpus!`);
+					updateLog(gameState == "Move" ? `Look out, it's the Wumpus room!!!!<br>Too late. You've been eaten.` : `🎯 Hurrah! One less Wumpus!`);
 					gameState = "Restart";
 				} else {
-					wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
-					updateLog(`💨 Missed! The Wumpus is moving...`);
-					gameState = "Update Location";
-					if (wumpus.wumpus == wumpus.player) {
-						updateLog(`... Right into this room! You've been eaten.`);
-						gameState = "Restart";
+					if (gameState == "Move") {
+						if ([wumpus.pit1, wumpus.pit2].includes(wumpus.player)) {
+							updateLog(`Look out! Bottomless pit! Aaaaaaaaa......`);
+							gameState = "Restart";
+							break;
+						}
+						if ([wumpus.bat1, wumpus.bat2].includes(wumpus.player)) {
+							gameState = "Bat Transport";
+							break;
+						}
+						wumpus.player = num;
+					} else {
+						updateLog(`💨 Missed! The Wumpus is moving...`);
+						wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
+						if (wumpus.wumpus == wumpus.player) {
+							updateLog(`... Right into this room! You've been eaten.`);
+							gameState = "Restart";
+							break;
+						}
 					}
 				}
+				gameState = "Update Location";
 			}
 			break;
 		default:
