@@ -127,6 +127,7 @@ function announceHammurabi() {
 				hammurabi.starvedPercent > 3 || hammurabiLand < 10 ? `Your performance could have been somewhat better, but really wasn't too bad at all. ${~~(Math.random() * 0.8 * hammurabi.pop)} people would dearly like to see you assassinated, but we all have our trivial problems.` :
 				`A fantastic performance!!! Charlemagne, Disraeli, and Jefferson combined could not have done better!`);
 			updateLog(`**********<br>So long for now.`);
+			gameState = "Restart";
 		default:
 			break;
 	}
