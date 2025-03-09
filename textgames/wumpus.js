@@ -17,7 +17,7 @@ function initWumpus () {
 	updateLog(`<b>WUMPUS</b><br><i>Based on the Creative Computing game</i><br><br>* * * &nbsp; H U N T &nbsp; T H E &nbsp; W U M P U S &nbsp; * * *`);
 	updateLog(`<hr>The Wumpus is running to hide...`);
 	gameState = "Update Location";
-	announceWumpus();
+	submitWumpus();
 }
 
 function submitWumpus() {
@@ -25,6 +25,21 @@ function submitWumpus() {
 	if (!data) return;
 	const num = parseInt(data);
 	switch (gameState) {
+		case "Update Location":
+			updateLog(`<hr style="width:50%"`);
+			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
+			if (wumpus.dist < 1.3) {
+				updateLog(`I smell a Wumpus!`);
+			} else if (wumpus.oldDist && wumpus.oldDist != wumpus.dist) {
+				updateLog(`You are ${wumpus.oldDist > wumpus.dist ? "closer to" : "farther from"} the Wumpus.`);
+			}
+			if ([wumpus.bat1, wumpus.bat2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I hear bats...`);
+			if ([wumpus.pit1, wumpus.pit2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I feel a draft of pits...`);
+			wumpus.oldDist = wumpus.dist;
+			updateLog(`This is room <b>${wumpus.player}</b>, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
+			updateLog(`Move or Shoot?`);
+			gameState = "Action Choice";
+			break;
 		case "Action Choice":
 			if (data[0] == "M" || data[0] == "S") {
 				appendLog(gameState = data[0] == "M" ? "Move" : "Shoot");
@@ -42,15 +57,16 @@ function submitWumpus() {
 				} else {
 					if (gameState == "Move") {
 						if ([wumpus.pit1, wumpus.pit2].includes(num)) {
-							updateLog(`Look out! Bottomless pit! Aaaaaaaaa......`);
+							updateLog(`🕳 Look out! Bottomless pit! Aaaaaaaaa......`);
 							gameState = "Restart";
 							break;
 						}
 						if ([wumpus.bat1, wumpus.bat2].includes(num)) {
-							gameState = "Bat Transport";
-							break;
+							updateLog(`🦇 Super Bats!!!<br>Whoooooosh`);
+							wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
+						} else {
+							wumpus.player = num;
 						}
-						wumpus.player = num;
 					} else {
 						updateLog(`💨 Missed! The Wumpus is moving...`);
 						wumpus.wumpus = shuffle([wumpus.wumpus, ...wumpus.room[wumpus.wumpus]]).pop();
@@ -67,32 +83,17 @@ function submitWumpus() {
 		default:
 			updateLog(`<i>Reload the game to restart</i>`);
 	}
-	announceWumpus();
+	setInput();
 }
 
-function announceWumpus() {
+/*function announceWumpus() {
 	switch (gameState) {
-		case "Bat Transport":
-			updateLog(`Super Bats!!!<br>Whoooooosh`);
-			wumpus.player = shuffle(Array.from(wumpus.room, (v, i) => i)).find(v => ![wumpus.wumpus, wumpus.bat1, wumpus.bat2, wumpus.pit1, wumpus.pit2].includes(v));
 		case "Update Location":
-			updateLog(`<hr style="width:50%"`);
-			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
-			if (wumpus.dist < 1.3) {
-				updateLog(`I smell a Wumpus!`);
-			} else if (wumpus.oldDist && wumpus.oldDist != wumpus.dist) {
-				updateLog(`You are ${wumpus.oldDist > wumpus.dist ? "closer to" : "farther from"} the Wumpus.`);
-			}
-			if ([wumpus.bat1, wumpus.bat2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I hear bats...`);
-			if ([wumpus.pit1, wumpus.pit2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I feel a draft of pits...`);
-			wumpus.oldDist = wumpus.dist;
-			updateLog(`This is room <b>${wumpus.player}</b>, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
-			updateLog(`Move or Shoot?`);
-			gameState = "Action Choice";
+			
 		default:			
 	}
 	setInput();
-}
+}*/
 
 function dist3d (x1, y1, z1, x2, y2, z2) {
 	return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2);
