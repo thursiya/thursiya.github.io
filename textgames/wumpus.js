@@ -40,12 +40,12 @@ function submitWumpus() {
 					gameState = "Restart";
 				} else {
 					if (gameState == "Move") {
-						if ([wumpus.pit1, wumpus.pit2].includes(wumpus.player)) {
+						if ([wumpus.pit1, wumpus.pit2].includes(num)) {
 							updateLog(`Look out! Bottomless pit! Aaaaaaaaa......`);
 							gameState = "Restart";
 							break;
 						}
-						if ([wumpus.bat1, wumpus.bat2].includes(wumpus.player)) {
+						if ([wumpus.bat1, wumpus.bat2].includes(num)) {
 							gameState = "Bat Transport";
 							break;
 						}
