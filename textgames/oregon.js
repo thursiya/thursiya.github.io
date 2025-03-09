@@ -24,6 +24,7 @@ function submitOregon() {
 	oregon.timer[1] = new Date();
 	switch (gameState) {
 		case "Instructions":
+			appendLog(data);
 			if (data[0] == "Y") {
 				updateLog(`This program simulates a trip over the Oregon Trail from Independence, Missouri to Oregon City, Oregon in 1847. Your family of five will cover the 2040 mile 
     					Oregon Trail in 5-6 months - if you make it alive.`);
@@ -40,7 +41,7 @@ function submitOregon() {
 				updateLog(`Good luck!!!`);
 			}
 			updateLog(`How good a shot are you with your rifle?<br> (1) Ace Marksman, (2) Good Shot, (3) Fair to Middlin', (4) Need More Practice, (5) Shaky Knees`);
-			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful.`);
+			updateLog(`Enter one of the above - the better you claim you are, the faster you'll have to be with your gun to be successful:`);
 			gameState = "IntroRifle";
 			break;	
 		case "IntroRifle":
@@ -116,7 +117,7 @@ function submitOregon() {
 			const oregonFailedHunting = gameState == "ChoosePath" && num == oregon.fort + 1 && oregon.ammo < 40;
 			if (gameState != "ChoosePath" || oregonFailedHunting) {
 				if (oregonFailedHunting) updateLog(`<i>Tough - you need more bullets to go hunting.</i>`);
-				updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue`);
+				updateLog(`Do you want to (1) ${oregon.fort ? "stop at the next fort, (2) hunt, (3)" : "hunt, (2)"} continue?`);
 				gameState = "ChoosePath";
 				break;
 			}
@@ -176,7 +177,7 @@ function submitOregon() {
 			const oregonLowFood = oregon.food < 8 + 5 * num;
 			if (gameState != "Eating" || num < 1 || num > 3 || oregonLowFood) {
 				if (gameState == "Eating" && oregonLowFood) updateLog(`You can't eat that well.`);
-				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well`);
+				updateLog(`Do you want to eat (1) poorly (2) moderately or (3) well?`);
 				gameState = "Eating";
 				break;
 			}
@@ -198,7 +199,7 @@ function submitOregon() {
 				gameState = "Tactics";
 				break;
 			}
-			appendLog(num);
+			if (gameState == "Tactics") appendLog(num);
 			if (gameState == "Tactics" && oregon.hostility < 0.68 && (num == 2 || num == 4)) {
 				gameState = num == 2 ? "Attacking" : "Defending";
 				oregonShooting();
