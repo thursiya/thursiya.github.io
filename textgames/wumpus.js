@@ -38,6 +38,7 @@ function submitWumpus() {
 				if (num == wumpus.wumpus) {
 					updateLog(gameState == "Move" ? `Look out, it's the Wumpus room!!!!<br>Too late. You've been eaten.` : `🎯 Hurrah! One less Wumpus!`);
 					gameState = "Restart";
+					break;
 				} else {
 					if (gameState == "Move") {
 						if ([wumpus.pit1, wumpus.pit2].includes(num)) {
@@ -85,7 +86,7 @@ function announceWumpus() {
 			if ([wumpus.bat1, wumpus.bat2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I hear bats...`);
 			if ([wumpus.pit1, wumpus.pit2].some(v => wumpus.room[wumpus.player].includes(v))) updateLog(`I feel a draft of pits...`);
 			wumpus.oldDist = wumpus.dist;
-			updateLog(`This is room ${wumpus.player}, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
+			updateLog(`This is room <b>${wumpus.player}</b>, adjacent to rooms ${wumpus.room[wumpus.player].join(", ")}.`);
 			updateLog(`Move or Shoot?`);
 			gameState = "Action Choice";
 		default:			
