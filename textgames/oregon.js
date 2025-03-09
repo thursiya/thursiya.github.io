@@ -24,7 +24,7 @@ function submitOregon() {
 	oregon.timer[1] = new Date();
 	switch (gameState) {
 		case "Instructions":
-			appendLog(data);
+			appendLog(data[0] == "Y" ? "Yes" : "No");
 			if (data[0] == "Y") {
 				updateLog(`This program simulates a trip over the Oregon Trail from Independence, Missouri to Oregon City, Oregon in 1847. Your family of five will cover the 2040 mile 
     					Oregon Trail in 5-6 months - if you make it alive.`);
@@ -394,7 +394,7 @@ function submitOregon() {
 			submitOregon();
 			break;
 		case "GameOver":
-			appendLog(data);
+			appendLog(data[0] == "Y" ? "Yes" : "No");
 			if (oregon.fort < 2) {
 				updateLog(`Would you like ${["a fancy funeral", "us to inform your next of kin"][oregon.fort]}?`);
 				oregon.fort++;
