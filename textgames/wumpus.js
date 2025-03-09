@@ -16,15 +16,16 @@ function initWumpus () {
 		
 	updateLog(`<b>WUMPUS</b><br><i>Based on the Creative Computing game</i><br><br>* * * &nbsp; H U N T &nbsp; T H E &nbsp; W U M P U S &nbsp; * * *`);
 	updateLog(`<hr>The Wumpus is running to hide...`);
-	gameState = "Update Location";
-	submitWumpus();
+	submitWumpus("Update Location");
 }
 
-function submitWumpus() {
-	const data = textInput.value.toUpperCase();
-	if (!data) return;
-	const num = parseInt(data);
-	switch (gameState) {
+function submitWumpus(state) {
+	if (!state) {
+		const data = textInput.value.toUpperCase();
+		if (!data) return;
+		const num = parseInt(data);
+	}
+	switch (state || gameState) {
 		case "Update Location":
 			updateLog(`<hr style="width:50%"`);
 			wumpus.dist = dist3d(...wumpus.coord[wumpus.player], ...wumpus.coord[wumpus.wumpus]);
