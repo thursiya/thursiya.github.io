@@ -49,41 +49,36 @@ function submitHammurabi() {
 				appendLog(num);
 				hammurabi.grain -= num;
 				hammurabi.starved = (num / 20 >= hammurabi.pop) ? 0 : hammurabi.pop - ~~(num / 20);
-				gameState = "Planting";
-			}
-			break;
-		case "Planting":
-			if (num > hammurabi.acres) {
-				updateLog(hammurabi.error.land);
-			} else if (num > hammurabi.grain) {
-				updateLog(hammurabi.error.grain);
-			} else if (num > hammurabi.pop * 10) {
-				updateLog(hammurabi.error.worker);
-			} else {
-				appendLog(num);
-				hammurabi.grain -= num;
-				// Prepare for next year
-				// Rats
-				const rval = ~~(Math.random() * 5 + 1);
-				hammurabi.ratLoss = (rval % 2 == 0) ? ~~(hammurabi.grain / rval) : 0;
-				hammurabi.grain -= hammurabi.ratLoss;
-				// Immigrants
-				hammurabi.immigrants = ~~((Math.random() * 5 + 1) * (20 * hammurabi.acres + hammurabi.grain) / hammurabi.pop / 100 + 1);
-				// Plague (15% chance)
-				hammurabi.plague = Math.random() < 0.15;
-				// Random harvest
-				hammurabi.harvestYield = ~~(Math.random() * 5 + 1);
-				hammurabi.grain += num * hammurabi.harvestYield;	
-				
 				if (hammurabi.starved > hammurabi.pop * 0.45) {
 					updateLog(`You starved ${hammurabi.starved} in one year!!!`);
 					gameState = "GameResults";
 					hammurabi.starvedPercent = 50;
 					break;
 				}
-				hammurabi.starvedPercent = ((hammurabi.year - 1) * hammurabi.starvedPercent + hammurabi.starved / hammurabi.pop * 100) / hammurabi.year;
-				hammurabi.totalStarved += hammurabi.starved;
+				gameState = "Planting";
 			}
+			break;
+		case "Planting":
+			if (num > Math.min(hammurabi.acres, hammurabi.grain, hammurabi.pop * 10)) {
+				updateLog(hammurabi.error[num > hammurabi.acres ? "land" : num > hammurabi.grain ? "grain" : "worker"]);
+				break;
+			}
+			appendLog(num);
+			hammurabi.grain -= num;
+			// Prepare for next year
+			// Rats
+			const rval = ~~(Math.random() * 5 + 1);
+			hammurabi.ratLoss = (rval % 2 == 0) ? ~~(hammurabi.grain / rval) : 0;
+			hammurabi.grain -= hammurabi.ratLoss;
+			// Immigrants
+			hammurabi.immigrants = ~~((Math.random() * 5 + 1) * (20 * hammurabi.acres + hammurabi.grain) / hammurabi.pop / 100 + 1);
+			// Plague (15% chance)
+			hammurabi.plague = Math.random() < 0.15;
+			// Random harvest
+			hammurabi.harvestYield = ~~(Math.random() * 5 + 1);
+			hammurabi.grain += num * hammurabi.harvestYield;	
+			hammurabi.starvedPercent = ((hammurabi.year - 1) * hammurabi.starvedPercent + hammurabi.starved / hammurabi.pop * 100) / hammurabi.year;
+			hammurabi.totalStarved += hammurabi.starved;
 		case "UpdateSumer":
 			hammurabi.pop += hammurabi.immigrants - hammurabi.starved;
 			if (hammurabi.plague) hammurabi.pop = ~~(hammurabi.pop / 2);
