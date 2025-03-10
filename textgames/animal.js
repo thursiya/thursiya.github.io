@@ -1,15 +1,15 @@
 //let animalDB = [{text: "Does it swim?", yes: 1, no: 2}, {text: "fish"}, {text: "bird"}];
 //let animalArrayStage;
 //let guessedAnimal, animalQuestion;
-const animal = {};
+const animal = { db: [{ text: "Does it swim?", yes: 1, no: 2 }, { text: "fish" }, { text: "bird" }] };
 
 function initAnimal () {
 	currentApp = "Animal";
 	gameLog.length = 0;
 	document.getElementById("textInput").type = "text";
 
-	Object.keys(animal).forEach(key => delete animal[key]);
-	Object.assign(animal, { db: [{ text: "Does it swim", yes: 1, no: 2 }, { text: "fish" }, { text: "bird" }] });
+	//Object.keys(animal).forEach(key => delete animal[key]);
+	//Object.assign(animal, { db: [{ text: "Does it swim", yes: 1, no: 2 }, { text: "fish" }, { text: "bird" }] });
 	
 	updateLog(`<b>ANIMAL</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Play 'Guess the Animal'.<br>Think of an animal and the computer will try to guess it.`);
 	gameState = "Intro";
@@ -36,27 +36,19 @@ function submitAnimal() {
 			}
 			break;
 		case "Reveal Animal":
-			//if (data.substring(0,2) == "A " || data.substring(0,3) == "AN ") data = data.split(" ").slice(1).join(" ");
-			//guessedAnimal = data.toLowerCase();
 			animal.guess = data.match(/(A |AN )*(.+)/i)[2].toLowerCase();
 			gameState = "Distinguish";
 			break;
 		case "Distinguish":
-			//if (data[data.length - 1] != "?") data += "?";
-			//data = data[0] + data.slice(1).toLowerCase();
-			//animalQuestion = data;
 			animal.question = data.match(/\W*(\w)/)[1] + data.replace(/\W*\w((\w|\s)+)\W*/, "$1").toLowerCase() + "?";
 			gameState = "Distinguish 2";
 			break;
 		case "Distinguish 2":
 			// Copy old entry to new array position
-			//animalDB.push(animalDB[animalArrayStage]);
 			animal.db.push(animal.db[animal.stage]);
 			// Add new entry to new array position
-			//animalDB.push({text: guessedAnimal});
 			animal.db.push({ text: animal.guess });
 			// Change original entry to new question
-			//animalDB[animalArrayStage] = {text: animalQuestion, yes: (data[0] == "Y" ? animalDB.length - 1 : animalDB.length - 2), no: (data[0] == "Y" ? animalDB.length - 2 : animalDB.length - 1)};
 			animal.db[animal.stage] = { text: animal.question, yes: animal.db.length - (data[0] == "Y" ? 1 : 2), no: animal.db.length - (data[0] == "Y" ? 2 : 1) };
 			gameState = "Intro";
 			break;
