@@ -73,7 +73,7 @@ function announceAnimal() {
 			animal.stage = 0;
 			break;
 		case "Questions":
-			updateLog(animal.db[animal.stage].yes ? `${animal.db[animal.stage].text}?` : `Is it ${animal.db[animal.stage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.db[animal.stage].text}?`);
+			updateLog(animal.db[animal.stage].yes ? animal.db[animal.stage].text : `Is it ${animal.db[animal.stage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.db[animal.stage].text}?`);
 			break;
 		case "Reveal Animal":
 			updateLog(`The animal you were thinking of was a...`);
