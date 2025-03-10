@@ -13,9 +13,9 @@ function initAnimal () {
 function submitAnimal() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
-	appendLog(data[0] == "Y" ? "Yes" : "No");
 	switch (gameState) {
 		case "Intro":
+			appendLog(data[0] == "Y" ? "Yes" : "List");
 			if (data[0] == "Y") {
 				gameState = "Questions";
 			} else {
@@ -23,6 +23,7 @@ function submitAnimal() {
 			}
 			break;
 		case "Questions":
+			appendLog(data[0] == "Y" ? "Yes" : "No");
 			if (animal.db[animal.stage].yes) {
 				animal.stage = animal.db[animal.stage][data[0] == "Y" ? "yes" : "no"];
 			} else {
@@ -31,14 +32,15 @@ function submitAnimal() {
 			}
 			break;
 		case "Reveal Animal":
-			animal.guess = data.match(/(A |AN )*(.+)/i)[2].toLowerCase();
+			appendLog(animal.guess = data.match(/(A |AN )*(.+)/i)[2].toLowerCase());
 			gameState = "Distinguish";
 			break;
 		case "Distinguish":
-			animal.question = data.match(/\W*(\w)/)[1] + data.replace(/\W*\w((\w|\s)+)\W*/, "$1").toLowerCase() + "?";
+			appendLog(animal.question = data.match(/\W*(\w)/)[1] + data.replace(/\W*\w((\w|\s)+)\W*/, "$1").toLowerCase() + "?");
 			gameState = "Distinguish 2";
 			break;
 		case "Distinguish 2":
+			appendLog(data[0] == "Y" ? "Yes" : "No");
 			// Copy old entry to new array position
 			animal.db.push(animal.db[animal.stage]);
 			// Add new entry to new array position
