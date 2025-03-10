@@ -14,6 +14,7 @@ function initAnimal () {
 function submitAnimal() {
 	const data = textInput.value.toUpperCase();
 	if (!data) return;
+	appendLog(data[0] == "Y" ? "Yes" : "No");
 	switch (gameState) {
 		case "Intro":
 			if (data[0] == "Y") {
