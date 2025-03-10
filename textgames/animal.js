@@ -6,7 +6,6 @@ function initAnimal () {
 	document.getElementById("textInput").type = "text";
 
 	updateLog(`<b>ANIMAL</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Play 'Guess the Animal'.<br>Think of an animal and the computer will try to guess it.`);
-	animal.stage = 0;
 	gameState = "Intro";
 	announceAnimal();
 }
@@ -59,6 +58,7 @@ function announceAnimal() {
 	switch (gameState) {
 		case "Intro":
 			updateLog(`<hr>Are you thinking of an animal?`);
+			animal.stage = 0;
 			break;
 		case "Questions":
 			updateLog(animal.db[animal.stage].yes ? animal.db[animal.stage].text : `Is it ${animalArticle(animal.db[animal.stage].text)}?`);
