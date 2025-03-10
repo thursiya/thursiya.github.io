@@ -1,6 +1,3 @@
-//let animalDB = [{text: "Does it swim?", yes: 1, no: 2}, {text: "fish"}, {text: "bird"}];
-//let animalArrayStage;
-//let guessedAnimal, animalQuestion;
 const animal = { db: [{ text: "Does it swim?", yes: 1, no: 2 }, { text: "fish" }, { text: "bird" }] };
 
 function initAnimal () {
@@ -8,10 +5,8 @@ function initAnimal () {
 	gameLog.length = 0;
 	document.getElementById("textInput").type = "text";
 
-	//Object.keys(animal).forEach(key => delete animal[key]);
-	//Object.assign(animal, { db: [{ text: "Does it swim", yes: 1, no: 2 }, { text: "fish" }, { text: "bird" }] });
-	
 	updateLog(`<b>ANIMAL</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Play 'Guess the Animal'.<br>Think of an animal and the computer will try to guess it.`);
+	animal.stage = 0;
 	gameState = "Intro";
 	announceAnimal();
 }
@@ -59,22 +54,22 @@ function submitAnimal() {
 }
 
 function announceAnimal() {
+	const animalArticle = str => `${str.match(/^[aeiou]/i) ? "an" : "a"} ${str}`;
 	switch (gameState) {
 		case "Intro":
 			updateLog(`<hr>Are you thinking of an animal?`);
-			animal.stage = 0;
 			break;
 		case "Questions":
-			updateLog(animal.db[animal.stage].yes ? animal.db[animal.stage].text : `Is it ${animal.db[animal.stage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.db[animal.stage].text}?`);
+			updateLog(animal.db[animal.stage].yes ? animal.db[animal.stage].text : `Is it ${animalArticle(animal.db[animal.stage].text)}?`);
 			break;
 		case "Reveal Animal":
 			updateLog(`The animal you were thinking of was a...`);
 			break;
 		case "Distinguish":
-			updateLog(`Please type in a question that would distinguish ${animal.guess.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.guess} from ${animal.db[animal.stage].text.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.db[animal.stage].text}.`);
+			updateLog(`Please type in a question that would distinguish ${animalArticle(animal.guess)} from ${animalArticle(animal.db[animal.stage].text)}.`);
 			break;
 		case "Distinguish 2":
-			updateLog(`For ${animal.guess.match(/^[aeiouAEIOU]/) ? "an" : "a"} ${animal.guess} the answer would be?`);
+			updateLog(`For ${animalArticle(animal.guess)} the answer would be?`);
 			break;
 		default:
 			break;
