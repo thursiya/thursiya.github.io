@@ -24,5 +24,6 @@ div.flexbox {
   gap: 20px; }
 div.header {
   align-items: center;	
-  background: #9CBA; }
+  background: #9CBA;
+  padding-top: 2px; }
 div.flexbox > div.right { margin-left: auto; }
