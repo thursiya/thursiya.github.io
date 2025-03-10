@@ -38,7 +38,7 @@ function submitAnimal() {
 		case "Reveal Animal":
 			//if (data.substring(0,2) == "A " || data.substring(0,3) == "AN ") data = data.split(" ").slice(1).join(" ");
 			//guessedAnimal = data.toLowerCase();
-			animal.guess = (data.substring(0, 2) == "A" || data.substring(0, 3) == "AN") ? data.replace(/^\S+\s+/, "").toLowerCase() : data.toLowerCase();
+			animal.guess = data.match(/(A |AN )*(.+)/i)[2].toLowerCase();
 			gameState = "Distinguish";
 			break;
 		case "Distinguish":
