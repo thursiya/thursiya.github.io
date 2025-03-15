@@ -1,0 +1,1 @@
+- change hull images to just original full hull file, then reduce it using "clip-path" CSS (#clip { clip-path: polygon(0 0,0 100%,100% 100%); })
