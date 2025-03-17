@@ -32,7 +32,7 @@ function submitNicoma(state) {
           updateLog(`Let me think a moment...`);
           nicoma.num = nicoma[3] * 70 + nicoma[5] * 21 + nicoma[7] * 15;
           if (nicoma.num > 100) nicoma.num -= 105;
-          updateLog(`Your number was <b>${nicoma.num}</b>, right?`);
+          setTimeout(updateLog(`Your number was <b>${nicoma.num}</b>, right?`), 5000);
           gameState = "Approve Guess";
         }
       }
