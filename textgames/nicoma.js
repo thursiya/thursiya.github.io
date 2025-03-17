@@ -5,7 +5,7 @@ function initNicoma() {
   gameLog.length = 0;
   document.getElementById("textInput").type = "text";
 	
-  updateLog(`<b>NICOMA</b><br><i>Based on the Creative Computing game</i><br><br>Boomerang Puzzle from Arithmetica of Nicomachus -- A.D. 90!`);
+  updateLog(`<b>NICOMA</b><br><i>Based on the BASIC game by David Ahl</i><br><br>Boomerang Puzzle from Arithmetica of Nicomachus -- A.D. 90!`);
 	
   submitNicoma("Intro");
 }
