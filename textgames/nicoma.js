@@ -7,7 +7,7 @@ function initNicoma() {
 	
   updateLog(`<b>NICOMA</b><br><i>Based on the Creative Computing game</i><br><br>Boomerang Puzzle from Arithmetica of Nicomachus -- A.D. 90!`);
 	
-  sumbitNicoma("Intro");
+  submitNicoma("Intro");
 }
 
 function submitNicoma(state) {
