@@ -12,15 +12,14 @@ function initNicoma() {
 
 function submitNicoma(state) {
   const data = textInput.value.toUpperCase();
-	if (!data) return;
-	const num = isNaN(data) ? -1 : Math.floor(data);
-	switch (state || gameState) {
+  const num = parseInt(data);
+  switch (state || gameState) {
     case "Intro":
       updateLog(`<hr>Please think of a number between 1 and 100.`);
       updateLog(`Your number divided by <b>3</b> has a remainder of:`);
       gameState = 3;
       break;
-		case 3:
+    case 3:
     case 5:
     case 7:
       if (num >= 0 && num < gameState) {
@@ -37,15 +36,15 @@ function submitNicoma(state) {
           gameState = "Approve Guess";
         }
       }
-			break;
-		case "Approve Guess":
+      break;
+    case "Approve Guess":
       appendLog(data[0] == "Y" ? "Yes" : "No");
       updateLog(data[0] == "Y" ? `How about that!!` : `I feel your arithmetic is in error.`);
       updateLog(`Let's try another!`);
       submitNicoma("Intro");
-			break;
-		default:
-			updateLog(`<i>Reload the game to restart</i>`);
-	}
-	setInput();
+      break;
+    default:
+      updateLog(`<i>Reload the game to restart</i>`);
+  }
+  setInput();
 }
