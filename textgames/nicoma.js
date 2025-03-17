@@ -1,11 +1,11 @@
 const nicoma = {};
 
-function initNicoma () {
-	currentApp = "Nicoma";
-	gameLog.length = 0;
-	document.getElementById("textInput").type = "text";
+function initNicoma() {
+  currentApp = "Nicoma";
+  gameLog.length = 0;
+  document.getElementById("textInput").type = "text";
 	
-	updateLog(`<b>NICOMA</b><br><i>Based on the Creative Computing game</i><br><br>Boomerang Puzzle from Arithmetica of Nicomachus -- A.D. 90!`);
+  updateLog(`<b>NICOMA</b><br><i>Based on the Creative Computing game</i><br><br>Boomerang Puzzle from Arithmetica of Nicomachus -- A.D. 90!`);
 	
   sumbitNicoma("Intro");
 }
