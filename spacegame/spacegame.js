@@ -312,16 +312,19 @@ function adjacentSystem (distance, origin = here, query) {
 	return rnd(jump[distance]);
 }
 
-// Randomly choose 1 item from an array
-function rnd (arr) {
+// Randomly choose 1 item from an array, character from a string, integer in a range, or letter of the alphabet (depending on input)
+function rnd(arr) {
 	if (!arr) return false;
 	const randFloat = Math.random();
-	if (!(isNaN(arr))) return Math.ceil(randFloat * Math.abs(Math.trunc(arr)));
-	if (arr === 'A' || arr === 'a') return String.fromCharCode(Math.ceil(randFloat * 26) + (arr === 'A' ? 64 : 96));
+	// If arr is a number, return a random value in the range 1 to arr
+	if (!(isNaN(arr))) return Math.floor(randFloat * Math.abs(Math.trunc(arr)) + 1);
+	// Special case: return a random letter of the alphabet
+	if (arr === 'A' || arr === 'a') return String.fromCharCode(Math.floor(randFloat * 26 + 1) + (arr === 'A' ? 64 : 96));
+	// Default: return a random array element, or character in a string
 	return arr[Math.floor(randFloat * arr.length)];
 }
-function capitalize (string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+function capitalize(str) {
+	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 function* times (n) {
 	for (let i = 0; i < n; i++) yield i;
