@@ -1,49 +1,41 @@
 <!DOCTYPE html>
-
-<html><head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<link rel="stylesheet" href="spacegame.css" />
-<link rel="stylesheet" href="spacegame-extended.css" />
-<link rel="icon" href="images/icons/spaceship.png" type="image/x-icon" />
-
-<title>Simple Space Game</title>
-
-</head>
-<body>
-
-
-
-<h2>Simple Space Game (ver. 0.190907)</h2>
-
-<div id='GameWindow'>
-	<div id='LoadingWindow' style='position: absolute; top: 45%; left: 45%; font-style: italic'>
-		<h1>. . . LOADING . . .</h1>
-	</div>
-</div>
-
-<div id='GameCredits'>
-	<p class='small'>Simple Space Game uses icons from <a href='https://icons8.com/' target='_blank'>icons8.com</a></p>
-	<p class='small'>"Himalayan Mind", "Starlight", "Trouble in a Digital City", "Urban Jungle" by Eric Matyas (<a href="http://www.soundimage.org" target='_blank'>www.soundimage.org</a>), Other audio royalty-free, no author</p>
-</div>
-
-<div id='GameScripts'>
-	<script src="loadgame.js"></script>
-	<script src="info.js"></script>
-	<script src="people.js"></script>
-	<script src="mission.js"></script>
-	<script src="comm.js"></script>
-	<script src="goods.js"></script>
-	<script src="story.js"></script>
-	<script src="ship.js"></script>
-	<script src="display.js"></script>
-	<script src="graphics.js"></script>
-	<script src="audio.js"></script>
-	<script src="spacegame.js"></script>
-	<script>loadGame()</script>
-</div>
-
-
-
-</body></html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Simple Space Game</title>
+		<link rel="stylesheet" href="spacegame.css">
+		<link rel="stylesheet" href="spacegame-extended.css">
+		<link rel="icon" href="images/icons/spaceship.png" type="image/x-icon">
+	</head>
+	<body>
+		<header><h2>Simple Space Game (ver. 0.190907)</h2></header>
+		<main>
+			<div id='GameWindow'>
+				<div id='LoadingWindow' style='position: absolute; top: 45%; left: 45%; font-style: italic'>
+					<h1>. . . LOADING . . .</h1>
+				</div>
+			</div>
+			<div id='GameCredits'>
+				<p class='small'>Simple Space Game uses icons from <a href='https://icons8.com/' target='_blank'>icons8.com</a></p>
+				<p class='small'>"Himalayan Mind", "Starlight", "Trouble in a Digital City", "Urban Jungle" by Eric Matyas (<a href="http://www.soundimage.org" target="_blank">www.soundimage.org</a>), 
+					Other audio royalty-free, no author</p>
+			</div>
+		</main>
+		<script src="loadgame.js"></script>
+		<script src="info.js"></script>
+		<script src="people.js"></script>
+		<script src="mission.js"></script>
+		<script src="comm.js"></script>
+		<script src="goods.js"></script>
+		<script src="story.js"></script>
+		<script src="ship.js"></script>
+		<script src="display.js"></script>
+		<script src="graphics.js"></script>
+		<script src="audio.js"></script>
+		<script src="spacegame.js"></script>
+		<script>
+			loadGame();
+		</script>
+	</body>
+</html>
