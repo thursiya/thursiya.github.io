@@ -76,7 +76,7 @@ const storyFramework = {
 	personN: ["#occupationN#<occupation>", "person{fem: 'woman', masc: 'man', s: 'people'}", "youth{s: 'young people'}", "#groupN[!child,!outdoor]#"],
 	personGeneralN: ["individual{fem: 'girl', masc: 'dude'}", "person{fem: 'lady', masc: 'fellow', s: 'folks'}", "one{fem: 'gal', masc: 'guy', s: 'guys'}"],
 	pictureN: ["#sizeAdj|color|# cat", "woman #locV.ing# #locP# #indoorLocN.a#", "local band|local sports team", "£abstract #thingN.s#", "battle on #world#", "#plantAdj# forest"],
-	plantN: ["bamboo", "cactus{s: 'cacti'}", "bonzai", "fern", "ivy", "laurel", "leafy plant<general>", "snakeplant", "spiderplant", "palm", "plant<inf><general>", "bush<general>", "orchid", "lily", "geranium", "jasmine", "maple", "begonia", "hibiscus", "anthurium", "yucca"],
+	plantN: ["bamboo", "cactus{s: 'cacti'}", "bonzai", "fern", "ivy", "laurel", "leafy plant<general>", "snake plant", "spider plant", "palm", "plant<inf><general>", "bush<general>", "orchid", "lily", "geranium", "jasmine", "maple", "begonia", "hibiscus", "anthurium", "yucca"],
 	predatorN: ["anaconda", "barracuda", "cobra", "cougar", "coyote", "crocodile", "devil", "dragon", "eagle", "falcon", "fox", "grizzly", "hammerhead", "hawk", "hyena", "jaguar", "leopard", "lion", "mamba", "moray", "owl", "orca", "piranha", "python", "scorpion", "shark", "spider", "stingray", "tiger", "viper", "wasp", "wolf", "wolverine"],
 	productN: ["soft drink|soda", "liquor", "travel service", "£fast food", "painkiller|antidepressant", "#vehicleN#", "video game", "exotic dancer<seedy>", "hand gun", "cybernetic enhancement", "couch", "apartment"],
 	smellN: [""],
@@ -205,21 +205,21 @@ function parse (text) {
 					choice = choice.slice(0, vmatch);
 				}
 				p1.shift();
-				for (let i of p1) {
-					choice = variant[i] ? variant[i] : (_ => {switch (i) {
+				for (const i of p1) {
+					choice = variant[i] ? variant[i] : (() => {switch (i) {
 						case "a":
 							return `${choice[0] == '£' ? "some" : choice.match(/^[aeiouøAEIOU]/) ? "an" : "a"} ${choice}`;
 						case "caps":
 							return choice[0] == '£' ? `£${capitalize(choice.slice(1))}` : capitalize(choice);
 						case "ed":
 						case "ing":
-							return `${choice.slice(-1).match(/e/i) ? choice.slice(0, -1) : choice + (choice.slice(-1) == '×' ? choice.slice(-2, -1) : "")}${i}`;
+							return `${choice.match(/e$/i) ? choice.slice(0, -1) : choice + (choice.slice(-1) == '×' ? choice.slice(-2, -1) : "")}${i}`;
 						case "ly":
-							return `${choice.slice(-1).match(/y/i) ? choice.slice(0, -1) + "i" : choice}ly`;
+							return `${choice.match(/y$/i) ? choice.slice(0, -1) + "i" : choice}ly`;
 						case "s":
 							return choice[0] == '£' ? choice : choice.match(/y$/i) ? `${choice.slice(0, -1)}ies` : `${choice}${choice.match(/(s|z|sh|ch)$/i) ? 'es' : 's'}`;
 						default:
-							return (i in refValues && variant[refValues[i]]) ? variant[refValues[i]] : choice;}})();
+							return (i in refValues && variant[refValues[i]]) ? variant[refValues[i]] : choice; } })();
 				}
 			}
 			return choice + ending;
