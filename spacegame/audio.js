@@ -36,7 +36,7 @@ function forkliftSound() {
 		} else {
 			clearInterval(cSFX);
 		} }, 300);
-	int = setTimeout(() => {
+	let int = setTimeout(() => {
 		let cSFX = setInterval(() => {
 			if (cargoSFX.volume >= 0.1) {
 				cargoSFX.volume -= 0.05;
