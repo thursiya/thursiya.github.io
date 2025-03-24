@@ -119,7 +119,7 @@ function displayMarket() {
 	let c = 0
 	
 	function displayMarketWares(arr) {
-		function displayWare(forSale = false) {		// Rewrite this code to take advantage of flexboxes
+		function displayWare(forSale = false) {		// Rewrite this code (flexboxes and scrollbar are not going to work) - maybe mediaquery for different table layouts
 			if (c % 3 == 0) mText += `</tr><tr>`;
 			const g = gArr[0];
 			mText += `<td class="tooltip" width="90px"`;
@@ -201,7 +201,7 @@ function displayPlanet() {
 	document.getElementById('wbdText').innerHTML = `<span class="huge worldname">${w.name}</span><span style="float:right; text-align: right"><span style="font-variant: small-caps">${w.gov.toLowerCase()}</span><br>${w.poptext}</span><br>${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	let pText = `<table width='100%'>`;
-	let pFacts = [ ["Name", w.name],
+	const pFacts = [ ["Name", w.name],
 		["Government", w.gov],
 		["Population", w.poptext],
 		["Economy", w.focus],
@@ -216,17 +216,19 @@ function displayPlanet() {
 	document.getElementById('planettab').innerHTML = `${pText}</table>`;
 }
 
-function displayLocales () {
+function displayLocales() {
 	let out = "";
-	for (let [i, loc] of world[here].locales.entries()) if ('name' in loc && !loc.hidden) out += `<img id='locale${i}' class='locale' src='images/locales/${loc.file}.png' title="${loc.name}" draggable='false' style='left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px' onclick='localeClick(${i})'>`;
+	for (const [i, loc] of world[here].locales.entries()) if ('name' in loc && !loc.hidden) out += `<img id="locale${i}" class="locale" src="images/locales/${loc.file}.png" title="${loc.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`;
 	document.getElementById('localeContainer').innerHTML = out;
 }
 
-function chooseTab (evt, tab) {
-	for (let i of document.getElementsByClassName('tablink')) i.className = i.className.replace(" active", "");
-	for (let i of document.getElementsByClassName('tabcontent')) i.style.display = "none";
-	document.getElementById(tabsList[tab] + 'tab').style.display = "block";
-	evt.currentTarget.className += " active";
+function chooseTab(evt, tab) {
+	//for (const i of document.getElementsByClassName('tablink')) i.className = i.className.replace(" active", "");
+	for (const i of document.getElementsByClassName('tablink')) i.classList.toggle("active", false);
+	for (const i of document.getElementsByClassName('tabcontent')) i.style.display = "none";
+	document.getElementById(`${tabsList[tab]}tab`).style.display = "block";
+	//evt.currentTarget.className += " active";
+	evt.currentTarget.classList.toggle("active");
 }
 
 
