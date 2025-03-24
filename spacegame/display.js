@@ -1,8 +1,11 @@
-function displayCurrentSystem (planetID) {
+function displayCurrentSystem(planetID) {
 	// Cancel function if to same planet
 	if (here == planetID) return false;
 	// Cancel function if destination not connected to origin by starlane
-	if (world[lastVisited].links.indexOf(planetID) == -1) {alert(world[planetID].name + " is too far away to travel to from " + world[lastVisited].name + "."); return false;}
+	if (world[lastVisited].links.indexOf(planetID) == -1) {
+		alert(`${world[planetID].name} is too far away to travel to from ${world[lastVisited].name}.`);
+		return false;
+	}
 	
 	// Reset player location
 	player.locale = "";
@@ -11,7 +14,7 @@ function displayCurrentSystem (planetID) {
 	killCalls();
 	
 	// Increment each world's age since last visit
-	world.forEach(v => (v.known > 0) && v.known++);
+	world.forEach(v => (v.known > -1) && v.known++);
 	
 	// Increment previously visited starlanes' age since last use and hide all starlane icons
 	starlane.forEach((s, i) => {
@@ -29,7 +32,7 @@ function displayCurrentSystem (planetID) {
 	systemArrival(planetID);
 }
 
-function systemArrival (planetID) {
+function systemArrival(planetID) {
 	const w = world[planetID];
 	here = lastVisited = planetID;
 	w.known = 0;
@@ -37,8 +40,10 @@ function systemArrival (planetID) {
 
 	// Update world tooltip text
 	let dist;
-	world.forEach((v, i) => document.getElementById(`planet${i}info`).innerHTML = `<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br><i>` + 
-		(v.links.includes(planetID) ? (dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : i == planetID ? `Current world` : `This world is not connected to ${w.name} by a starlane.`) + `</i>`);
+	world.forEach((v, i) => document.getElementById(`planet${i}info`).innerHTML = `<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br><i>
+		${v.links.includes(planetID) ? (dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : 
+		  i == planetID ? `Current world` : 
+		  `This world is not connected to ${w.name} by a starlane.`}</i>`);
 	
 	// Discover all connected worlds
 	w.links.forEach(v => {document.getElementById("planet" + v).style.display = "block"; if(world[v].known < -1) world[v].known = -1});
