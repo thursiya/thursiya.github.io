@@ -19,7 +19,7 @@ function displayComm(which, sfxFlag = true) {
 	// Display chosen comm section
 	if (comm.pick < 2) {
 		console.log("comm.pick: " + comm.pick);		// DEBUG comm.pick
-		if (call.queue.length) {
+		if (comm.queue.length) {
 			if (comm.pick == 1.1 && comm.current > 0) comm.current--;
 			if (comm.pick == 1.2 && comm.current < comm.queue.length - 1) comm.current++;
 			if (comm.current < 0) comm.current = 0;
