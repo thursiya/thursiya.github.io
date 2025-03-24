@@ -173,6 +173,7 @@ function displayMarket() {
 			mText += `<br><i>ILLEGAL</i></span></td>`;
 		} else {
 			mText += `<td class="tooltiptext" onclick="displayComm(7); displayInfo('gov', '${world[here].gov}')">ILLEGAL GOODS<br><i>Check government (${world[here].gov}) description</i></td>`;
+		}
 		mText += `</tr></table>`;
 	}
 	document.getElementById('markettab').innerHTML = mText;
