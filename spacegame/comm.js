@@ -223,7 +223,7 @@ function contactPerson(pID, shipFlag) {
 	let preText = callback ? `${rnd(["You just contacted me", "I just heard from you", "We just spoke"])} - did you ${rnd(["forget the directions", "miss something", "need a reminder"])}? ` : "";
 	
 	// Call mission contactChar if doing a mission involving pID
-	if (mChar) return timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
+	if (mChar) return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
 
 	let call;
 	// Call mission contact if doing a mission for pID
