@@ -1,11 +1,12 @@
-const callQueue = [];
-const timeouts = [];
+//const callQueue = [];
+//const timeouts = [];
 // Consider changing these two lets into a "const comm = {pick: 0, current: 0};" object. ...and adding comm.queue to replace callQueue
-let commPicker = 0;
-let currentCall = 0;
+//let commPicker = 0;
+//let currentCall = 0;
+const comm = { current: 0, pick: 0, queue: [], timeouts: [] };
 
 function displayComm(which, sfxFlag = true) {
-	timeouts.forEach(v => { clearTimeout(v) });
+	comm.timeouts.forEach(v => { clearTimeout(v) });
 	// Handle UI comm button closing comm
 	if (!which && document.getElementById('commScreen').style.zIndex > 0) {
 		hideComm();
@@ -13,23 +14,23 @@ function displayComm(which, sfxFlag = true) {
 	}
 	if (sfxFlag) selectSFX.play();
 	
-	commPicker = which || commPicker;
+	comm.pick = which || comm.pick;
 	
 	// Display chosen comm section
-	if (commPicker < 2) {
-		console.log("commPicker: " + commPicker);	// DEBUG commPicker
-		if (callQueue.length) {
-			if (commPicker == 1.1 && currentCall > 0) currentCall--;
-			if (commPicker == 1.2 && currentCall < callQueue.length - 1) currentCall++;
-			if (currentCall < 0) currentCall = 0;
-			commPicker = 1;
-			openCall(currentCall);
+	if (comm.pick < 2) {
+		console.log("comm.pick: " + comm.pick);		// DEBUG comm.pick
+		if (call.queue.length) {
+			if (comm.pick == 1.1 && comm.current > 0) comm.current--;
+			if (comm.pick == 1.2 && comm.current < comm.queue.length - 1) comm.current++;
+			if (comm.current < 0) comm.current = 0;
+			comm.pick = 1;
+			openCall(comm.current);
 			return;
 		} else {
-			commPicker = 1;
+			comm.pick = 1;
 		}
 	}
-	chooseComm(commPicker);
+	chooseComm(comm.pick);
 }
 
 function chooseComm(which) {
@@ -37,13 +38,13 @@ function chooseComm(which) {
 	for (const i of times(section.length)) section[i].style.display = (which == section.length - i) ? "block" : "none";
 	document.getElementById('commScreen').style.zIndex = 6;
 	const tab = document.getElementsByClassName('commTab');
-	for (let i of times(tab.length - 4)) tab[i].style.filter = (which == tab.length - i - 3) ? "hue-rotate(225deg) brightness(2)" : "";
-	document.getElementById('previousMessage').style.opacity = (currentCall > 0) ? 1 : 0.2;
+	for (const i of times(tab.length - 4)) tab[i].style.filter = (which == tab.length - i - 3) ? "hue-rotate(225deg) brightness(2)" : "";
+	document.getElementById('previousMessage').style.opacity = (comm.current > 0) ? 1 : 0.2;
 	const msgBtn = document.getElementById('messagesButton');
-	msgBtn.style.filter = (which < 2 && callQueue.length > 0) ? "hue-rotate(225deg) brightness(2)" : "";
-	msgBtn.style.opacity = (callQueue.length > 0) ? 1 : 0.2;
-	document.getElementById('nextMessage').style.opacity = (currentCall < callQueue.length - 1 && callQueue.length > 1) ? 1 : 0.2;
-	document.getElementById('commButton').style.filter = (callQueue.length > 0) ? "hue-rotate(225deg) brightness(2)" : "";
+	msgBtn.style.filter = (which < 2 && comm.queue.length > 0) ? "hue-rotate(225deg) brightness(2)" : "";
+	msgBtn.style.opacity = (comm.queue.length > 0) ? 1 : 0.2;
+	document.getElementById('nextMessage').style.opacity = (comm.current < comm.queue.length - 1 && comm.queue.length > 1) ? 1 : 0.2;
+	document.getElementById('commButton').style.filter = (comm.queue.length > 0) ? "hue-rotate(225deg) brightness(2)" : "";
 }
 
 // callQueue object: {text, (choice), (speaker), (mission), (prereq)}
@@ -64,9 +65,9 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 	if (!('speaker' in call)) call.speaker = ('mission' in call) ? mission.find(v => v.id == call.mission).client : -1;
 	
 	if (insertFlag) {
-		callQueue.splice(currentCall + 1, 0, call);
+		comm.queue.splice(comm.current + 1, 0, call);
 	} else {
-		callQueue.unshift(call);
+		comm.queue.unshift(call);
 	}
 	if ('inc' in call && 'mission' in call) mission[mission.findIndex(v => v.id == call.mission)].stage += call.inc;
 	commSFX.play();
@@ -75,12 +76,13 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 
 function openCall(index = 0) {
 	console.log(`Opening call ${index}...`);	// DEBUG which call
-	console.log(callQueue[index]);
-	currentCall = index;
+	console.log(comm.queue[index]);
+	comm.current = index;
+	const call = comm.queue[comm.current];
 	let out = "";
 	
 	// Display speaker image and info
-	const speaker = person[callQueue[index].speaker];
+	const speaker = person[call.speaker];
 	if (speaker) {
 		out += `<div style="overflow: auto;">
 				<img src="images/people/${speaker.image}.png" class="speaker" style="filter: hue-rotate(${speaker.color}deg) brightness(${speaker.brightness})" draggable="false">
@@ -92,11 +94,11 @@ function openCall(index = 0) {
 	}
 	
 	// Display conversation
-	out += `<div>${callQueue[index].text}</div><br><div style='text-align: center; clear: both'>`;
+	out += `<div>${comm.queue[index].text}</div><br><div style='text-align: center; clear: both'>`;
 
 	// Display response
-	const a = callQueue[index].text.length % 4;
-	switch (callQueue[index].choice) {
+	const a = call.text.length % 4;
+	switch (call.choice) {
 		case 0:		// proceed	(Locale1, Locale2, Locale3, Locale4)
 			out += `<button class='commButton' type='button' onclick="proceedCall('locale')">${["Continue", "Go on", "Find out more", "And..."][a]}</button>`;
 			break;
@@ -114,13 +116,13 @@ function openCall(index = 0) {
 				<button class='commButton' type='button' onclick='rejectCall()'>${["No Thanks", "Sorry", "Not for Me", "Maybe Next Time"][a]}</button>`;
 			break;
 		case 4:		// (choice 0)/(choice 1)/.../end call/reject	(LocaleDonating)
-			mission.find(v => v.id == callQueue[index].mission).choices.forEach((v, i) => {
+			mission.find(v => v.id == call.mission).choices.forEach((v, i) => {
 				out += `<button class='commButton' type='button' onclick='proceedCall(${i})'>${v}</button> `; });
 			out += `<button class='commButton' type='button' onclick='endCall()'>${["Hold On", "I'll Get back to You", "I'll Think about It", "Wait on Me"][a]}</button> 
 				<button class='commButton' type='button' onclick='rejectCall()'>${["No Thanks", "Sorry", "Not for Me", "Maybe Next Time"][a]}</button>`;
 			break;
 		case 5:		// (choice 0)/(choice 1)/...	(Story mission proceed)
-			mission.find(v => v.id == callQueue[index].mission).choices.forEach((v, i) => {
+			mission.find(v => v.id == call.mission).choices.forEach((v, i) => {
 				out += `<button class='commButton' type='button' onclick='proceedCall(${i})'>${v}</button> `; });
 			break;
 		default:	// end call
@@ -131,23 +133,25 @@ function openCall(index = 0) {
 }
 
 function proceedCall(variant = 0) {
-	const m = mission.find(v => v.id == callQueue[currentCall].mission);
+	const call = comm.queue[comm.current];
+	const m = mission.find(v => v.id == call.mission);
 	console.log(`Proceed Call...`);		// DEBUG callQueue
-	console.log(callQueue);
+	console.log(comm.queue);
 	if (variant == "locale") {
-		addCall('setComm' in callQueue[currentCall] ? m.commData[callQueue[currentCall].setComm] : m.comm, true);
+		addCall('setComm' in call ? m.commData[call.setComm] : m.comm, true);
 	} else if ('proceed' in m && m.proceed.length > 0) {
 		m.stage += variant;
-		if ('prereq' in callQueue[currentCall]) {
-			if (callQueue[currentCall].prereq[variant].every(v => parseValue(m, v))) parseCommands(m.proceed, m);
+		if ('prereq' in call) {
+			if (call.prereq[variant].every(v => parseValue(m, v))) parseCommands(m.proceed, m);
 			else addCall({speaker: m.client, text: "Oh, I see you can't take this on right now. Get back to me if things change."}, true);
 		} else parseCommands(m.proceed, m);
 	}
 	endCall();
 }
 function rejectCall(flag) {
-	const m = mission.find(v => v.id == callQueue[currentCall].mission);
-	if ([1, 2, 3, 4].includes(callQueue[currentCall].choice) && m) {	// Reject avail. if choice = 1, 2, or 4
+	const call = comm.queue[comm.current];
+	const m = mission.find(v => v.id == call.mission);
+	if ([1, 2, 3, 4].includes(call.choice) && m) {		// Reject avail. if choice = 1, 2, or 4
 		if ('reject' in m && m.reject.length > 0) {
 			parseCommands(m.reject, m);
 		} else {
@@ -159,13 +163,16 @@ function rejectCall(flag) {
 }
 function endCall() {
 	click2SFX.play();
-	callQueue.splice(currentCall, 1);
-	if (callQueue.length > 0) openCall(currentCall > callQueue.length - 1 ? callQueue.length - 1 : currentCall);
-	else killCalls();
+	comm.queue.splice(comm.current, 1);
+	if (comm.queue.length > 0) {
+		openCall(comm.current > comm.queue.length - 1 ? comm.queue.length - 1 : comm.current);
+	} else {
+		killCalls();
+	}
 }
 function killCalls() {
 	// Reject all unanswered propositions
-	while (callQueue.length > 0) rejectCall();
+	while (comm.queue.length > 0) rejectCall();
 	document.getElementById('commButton').style.filter = "";
 	hideComm();
 	document.getElementById('commCall').innerHTML = `<h2 style='text-align: center'><i>... The Comm Line is Currently Closed ...</i></h2>`;
@@ -180,7 +187,7 @@ function contactPerson(pID, shipFlag) {
 	if (!p) return false;	
 	
 	// Redirect to calls in progress if already talking to pID
-	const inConv = callQueue.findIndex(v => v.speaker == pID);
+	const inConv = comm.queue.findIndex(v => v.speaker == pID);
 	if (inConv > -1) {
 		openCall(inConv); 
 		return;
@@ -200,12 +207,12 @@ function contactPerson(pID, shipFlag) {
 	chooseComm(1);	
 	const screen = document.getElementById('commCall');
 	screen.innerHTML = `Contacting: <b>${p.name}</b><br><br><img src='images/buttons/contact.png' style='vertical-align: middle' draggable=false> `;
-	const typewriter = (textArr) => timeouts.push(setTimeout(_ => {
+	const typewriter = (textArr) => comm.timeouts.push(setTimeout(_ => {
 		screen.innerHTML += textArr.shift();
 		if (textArr.length > 0) typewriter(textArr); }, 800));
-	timeouts = [];
+	comm.timeouts = [];
 	typewriter([" )", " )", " )", " )", " )", `<br><br><i>${busy ? `"Sorry, I'm busy right now. Please try again later."` : "FAILED (No response)"}</i>`]);
-	timeouts.push(setTimeout(_ => failSFX.play(), 4500));
+	comm.timeouts.push(setTimeout(_ => failSFX.play(), 4500));
 	
 	// Fail if 'p.status' != 'active'
 	if (p.status != 'active') return;
@@ -261,6 +268,6 @@ function contactPerson(pID, shipFlag) {
 		// Person not happy (if contacted again so soon)
 		if (callback) moodSwing(pID, -10);
 		// Launch call
-		timeouts.push(setTimeout(() => {addCall(call, false, preText)}, 4000));
+		comm.timeouts.push(setTimeout(() => {addCall(call, false, preText)}, 4000));
 	}
-}	
+}
