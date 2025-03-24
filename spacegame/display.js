@@ -179,41 +179,41 @@ function displayMarket() {
 	document.getElementById('markettab').innerHTML = mText;
 }
 
-function displayShipyard () {
+function displayShipyard() {
 	document.getElementById('shipyardtab').innerHTML = `<br><i>&nbsp; 'Shipyard' not yet implemented... </i><br>&nbsp;`;
 }
 
-function displayNotices () {
+function displayNotices() {
 	let nText = `<p>&nbsp; <i>There are currently no notices</i></p>`;
 	// Remove expired notices
 	world[here].notices.slice().forEach(v => {if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1)});
 	if (world[here].notices.length > 0) {
-		nText = `<table class='menutable hoverable' width='100%'><tr></tr>`;
-		world[here].notices.forEach((v, i) => {nText += `<tr style='cursor: pointer' onclick='selectNotice(${i})'><td><span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ``}>&#9655;</span> ${v.advert}</td></tr>`});
+		nText = `<table class="menutable hoverable" width="100%"><tr></tr>`;
+		world[here].notices.forEach((v, i) => {nText += `<tr style="cursor: pointer" onclick="selectNotice(${i})"><td><span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}</td></tr>`});
 		nText += `</table>`;
 	}
 	document.getElementById('noticestab').innerHTML = nText;
 }
 
-function displayPlanet () {
+function displayPlanet() {
 	const w = world[here];
 	document.getElementById('worldboxImg').src = `images/scapes/${w.file}scape.jpg`;
-	document.getElementById('wbdText').innerHTML = `<span class='huge worldname'>${w.name}</span><span style='float:right; text-align: right'><span style='font-variant: small-caps'>${w.gov.toLowerCase()}</span><br>${w.poptext}</span><br>${w.text}`;
+	document.getElementById('wbdText').innerHTML = `<span class="huge worldname">${w.name}</span><span style="float:right; text-align: right"><span style="font-variant: small-caps">${w.gov.toLowerCase()}</span><br>${w.poptext}</span><br>${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	let pText = `<table width='100%'>`;
-	let pFacts = [["Name", w.name],
-				["Government", w.gov],
-				["Population", w.poptext],
-				["Economy", w.focus],
-				["Size", ["Small", "Medium", "Large"][w.size - 1]],
-				["Planet Type", w.type],
-				["Orbital Period", Math.ceil(seed / (here + 1) % 500 + 60 + here) + " days"],
-				["Largest Settlement", w.city[0]]];
-	if (w.gov == 'Corporate') pFacts[1][1] += `<br><span class='reduced' onclick='displayComm(7); displayInfo("corp", "${w.govdesc}")'>(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
-	for (let i of pFacts) {
-		pText += `<tr><td style='vertical-align: top'>${i[0]}</td><td class='big' style='text-align: right'>${i[1]}</td></tr>`
+	let pFacts = [ ["Name", w.name],
+		["Government", w.gov],
+		["Population", w.poptext],
+		["Economy", w.focus],
+		["Size", ["Small", "Medium", "Large"][w.size - 1]],
+		["Planet Type", w.type],
+		["Orbital Period", Math.ceil(seed / (here + 1) % 500 + 60 + here) + " days"],
+		["Largest Settlement", w.city[0]] ];
+	if (w.gov == "Corporate") pFacts[1][1] += `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
+	for (const i of pFacts) {
+		pText += `<tr><td style="vertical-align: top">${i[0]}</td><td class="big" style="text-align: right">${i[1]}</td></tr>`
 	}
-	document.getElementById('planettab').innerHTML = pText + `</table>`;
+	document.getElementById('planettab').innerHTML = `${pText}</table>`;
 }
 
 function displayLocales () {
