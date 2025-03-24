@@ -42,8 +42,7 @@ function systemArrival(planetID) {
 	let dist;
 	world.forEach((v, i) => document.getElementById(`planet${i}info`).innerHTML = `<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br><i>
 		${v.links.includes(planetID) ? (dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : 
-		  i == planetID ? `Current world` : 
-		  `This world is not connected to ${w.name} by a starlane.`}</i>`);
+		  i == planetID ? `Current world` : `This world is not connected to ${w.name} by a starlane.`}</i>`);
 	
 	// Discover all connected worlds
 	w.links.forEach(v => {
@@ -133,29 +132,32 @@ function displayMarket() {
 			gArr = [];
 		}
 		const forSale = (arr == offers);
-		for (let g of arr) {
+		for (const g of arr) {
 			if (gArr.length > 0 && gArr[0].name != g.name) displayWare(forSale);
 			gArr.push(g);
 		}
 		if (arr.length > 0) displayWare(forSale);
 	}
 	
-	world[here].goods.forEach((v, index) => {
-		v.index = index;
-		v.pText = v.price < 10000 ? v.price : v.price < 100000 ? `${(v.price / 1000).toFixed(1)}k` : `${(v.price / 1000000).toFixed(1)}M`;
-		v.stat == 'illegal' ? illegals.push(v) : v.supply > 0 ? offers.push(v) : demands.push(v)});
+	world[here].goods.forEach((v, i) => {
+		v.index = i;
+		v.pText = v.price < 10000 ? v.price : 
+			v.price < 100000 ? `${(v.price / 1000).toFixed(1)}k` : `${(v.price / 1000000).toFixed(1)}M`;
+		v.stat == 'illegal' ? illegals.push(v) : 
+			v.supply > 0 ? offers.push(v) : demands.push(v) });
 	
 	let mText = ``;
-	if (document.getElementById('spaceship').style.zIndex > 0) mText += `<div id='trashzone' ondrop='dropGood(event, "trash")' ondragover='event.preventDefault()' onclick='clickSelect("trash", this)'><img class='middle' src='images/goods/waste-products.png' style='width:50%' draggable='false'></div>`;
-	mText += `<div ondrop='dropGood(event, "market")' ondragover='event.preventDefault()' onclick='clickSelect("market", this)'><div id='marketOffers'><table class='market'><tr>`;
+	if (document.getElementById('spaceship').style.zIndex > 0) mText += `<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)"><img class="middle" src="images/goods/waste-products.png" style="width:50%" draggable="false"></div>`;
+	mText += `<div ondrop="dropGood(event, 'market')" ondragover="event.preventDefault()" onclick="clickSelect('market', this)"><div id="marketOffers"><table class="market"><tr>`;
 	displayMarketWares(offers);
-	mText += `</tr></table><div id='marketDemands' style='background-color: #522'><table class='market'><tr>`;
-	c += c % 3 == 2 ? 1 : c % 3 == 1 ? 2 : 0;
+	mText += `</tr></table><div id="marketDemands" style="background: #522"><table class="market"><tr>`;
+	c += c % 3 == 2 ? 1 : 
+		c % 3 == 1 ? 2 : 0;
 	displayMarketWares(demands);
 	mText += "</tr></table>";
 	
 	if (illegals.length > 0) {
-		mText += `<div id='marketIllegals' style='background-image: url("images/backgrounds/hazard-stripes.png"); background-color: #552'${Math.ceil(c / 3) > 7 ? " class='tooltip'" : ""}><table class='market' style='margin: 0px auto'><tr>`;
+		mText += `<div id="marketIllegals" style="background: url('images/backgrounds/hazard-stripes.png'), #522"${Math.ceil(c / 3) > 7 ? ` class="tooltip"` : ""}><table class="market" style="margin: 0 auto"><tr>`;
 		if (Math.ceil(c / 3) < 8) {	// Don't list illlegals if there's no room
 			c = 0;
 			for (let i = 0; i < illegals.length; i++) {			
@@ -163,14 +165,15 @@ function displayMarket() {
 				if (i == 0 || g.name != illegals[i - 1].name) {
 					if (i > 0) mText += "<br><i>ILLEGAL</i></span></td>";
 					//if (i > 0 && c % 6 == 0) mText += "</tr><tr>";	// Only relevant if worlds could have more than 6 illegal goods
-					mText += `<td class='tooltip' width='36px'><div class='marketicon' style='background-color: #EEE; opacity: 1' draggable='false'><img class='marketicon' src='images/goods/${g.file}.png' draggable='false'></div><span class='tooltiptext'><b>${g.name}</b><br>`;
+					mText += `<td class="tooltip" width="36px"><div class="marketicon" style="background: #EEE; opacity: 1" draggable="false"><img class="marketicon" src="images/goods/${g.file}.png" draggable="false"></div><span class="tooltiptext"><b>${g.name}</b><br>`;
 					c++;
 				}
 				mText += `&#9655; ${capitalize(g.type)}<br>`;
 			}
-			mText += "<br><i>ILLEGAL</i></span></td>";
-		} else mText += `<td class='tooltiptext' onclick='displayComm(7); displayInfo("gov", "${world[here].gov}")'>ILLEGAL GOODS<br><i>Check government (${world[here].gov}) description</i></td>`;
-		mText += "</tr></table>";
+			mText += `<br><i>ILLEGAL</i></span></td>`;
+		} else {
+			mText += `<td class="tooltiptext" onclick="displayComm(7); displayInfo('gov', '${world[here].gov}')">ILLEGAL GOODS<br><i>Check government (${world[here].gov}) description</i></td>`;
+		mText += `</tr></table>`;
 	}
 	document.getElementById('markettab').innerHTML = mText;
 }
