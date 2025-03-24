@@ -85,7 +85,7 @@ function openCall(index = 0) {
 		out += `<div style="overflow: auto;">
 				<img src="images/people/${speaker.image}.png" class="speaker" style="filter: hue-rotate(${speaker.color}deg) brightness(${speaker.brightness})" draggable="false">
 				<span class="big"><b>${speaker.name}</b></span><br>
-				<span class="reduced">${speaker.title}<br>${s.org}</span>
+				<span class="reduced">${speaker.title}<br>${speaker.org}</span>
 			</div>`;
 		s.contact = time.full;
 		updateContactsDisplay();
