@@ -63,8 +63,8 @@ function systemArrival(planetID) {
 	noticeMission(w.pop / 6 + rnd(3));
 	
 	// Reset market stocks & prices
-	w.goods.forEach(v => {v.stock = v.supply});
-	w.goods.forEach(v => {v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100))});	// Prices float around baseprice +2-11% of base price
+	w.goods.forEach(v => { v.stock = v.supply; });
+	w.goods.forEach(v => { v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100)) });	// Prices float around baseprice +2-11% of base price
 	
 	// Display starlanes
 	displayStarlanes();
@@ -80,7 +80,7 @@ function systemArrival(planetID) {
 	update = setInterval(updateGFX, 50, w);
 }
 
-function displayStarlanes () {
+function displayStarlanes() {
 	const w = world[here];
 	// Draw starlanes
 	const c = document.getElementById("starmapCanvas").getContext("2d");
@@ -89,7 +89,7 @@ function displayStarlanes () {
 	c.lineWidth = 4;
 	c.setLineDash([]);
 	c.globalAlpha = 0.2;
-	for (let v of w.links) {
+	for (const v of w.links) {
 		c.beginPath();
 		c.moveTo(w.x + 16, w.y + 16);
 		c.lineTo(world[v].x + 16, world[v].y + 16);
@@ -101,19 +101,24 @@ function displayStarlanes () {
 	}
 	
 	// Add starlane icons
-	for (let v of w.links) {
+	for (const v of w.links) {
 		const lane = findLane(v, here);
 		if (starlane[lane].status >= 0) {
-			const s = document.getElementById('starlane' + lane);
-			s.src = `images/icons/${['construction', 'pirates', 'distress', 'construction2', 'mission'][starlane[lane].status]}.png`;
+			const s = document.getElementById(`starlane${lane}`);
+			s.src = `images/icons/${["construction", "pirates", "distress", "construction2", "mission"][starlane[lane].status]}.png`;
 			s.title = ["Construction on this starlane\nis delaying travel by 2h.", "Pirates are known to\nwork on this starlane.", "A ship is in distress some-\nwhere on this starlane.", "Repairs on this starlane are\ndelaying travel by 4h.", "A mission objective\nis on this starlane.", "-"][starlane[lane].status];
 			s.style.display = 'block';
 		}
 	}
 }
 
-function displayMarket () {
-	let offers = [], demands = [], illegals = [], c = 0, gArr = [];
+function displayMarket() {
+	const offers = [];
+	const demands = [];
+	const illegals = [];
+	const gArr = [];
+	let c = 0
+	
 	function displayMarketWares(arr) {
 		function displayWare(forSale = false) {
 			if (c % 3 == 0) mText += `</tr><tr>`;
