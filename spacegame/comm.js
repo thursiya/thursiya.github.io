@@ -1,8 +1,3 @@
-//const callQueue = [];
-//const timeouts = [];
-// Consider changing these two lets into a "const comm = {pick: 0, current: 0};" object. ...and adding comm.queue to replace callQueue
-//let commPicker = 0;
-//let currentCall = 0;
 const comm = { current: 0, pick: 0, queue: [], timeouts: [] };
 
 function displayComm(which, sfxFlag = true) {
