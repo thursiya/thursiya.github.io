@@ -39,8 +39,9 @@ function systemArrival(planetID) {
 	console.log(`----------------- Arriving in ${w.name} (${here}) ----------------`);
 
 	// Update world tooltip text
+	let dist;
 	world.forEach((v, i) => document.getElementById(`planet${i}info`).innerHTML = `<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br><i>
-		${v.links.includes(planetID) ? (const dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : 
+		${v.links.includes(planetID) ? (dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : 
 		  i == planetID ? `Current world` : 
 		  `This world is not connected to ${w.name} by a starlane.`}</i>`);
 	
