@@ -87,7 +87,7 @@ function openCall(index = 0) {
 				<span class="big"><b>${speaker.name}</b></span><br>
 				<span class="reduced">${speaker.title}<br>${speaker.org}</span>
 			</div>`;
-		s.contact = time.full;
+		speaker.contact = time.full;
 		updateContactsDisplay();
 	}
 	
