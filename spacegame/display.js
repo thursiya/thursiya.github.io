@@ -116,18 +116,18 @@ function displayMarket() {
 	const offers = [];
 	const demands = [];
 	const illegals = [];
-	const gArr = [];
+	let gArr = [];
 	let c = 0
 	
 	function displayMarketWares(arr) {
-		function displayWare(forSale = false) {
+		function displayWare(forSale = false) {		// Rewrite this code to take advantage of flexboxes
 			if (c % 3 == 0) mText += `</tr><tr>`;
 			const g = gArr[0];
-			mText += `<td class='tooltip' width='90px'`;
-				if (forSale && ['live', 'cold'].includes(g.stat)) mText += ` style='background-color: #${g.stat == 'live' ? '363' : '449'}'`;
-			mText += `><div class='wares marketicon' data-good='${g.index}' draggable=${forSale} ${forSale ? `ondragstart='drag(event)' onclick='clickSelect("waremain", this)'` : ""}><img class='marketicon' src='images/goods/${g.file}.png' draggable='false'><span style='float:right'></div> &nbsp;${g.pText}
-				<div class='tooltiptext'><table class='markettable hoverable'><tr><th colspan=2><b>${g.name}</b></th></tr>`;
-			for (let i of gArr) mText += `<tr class='wares' data-good='${i.index}' draggable=${forSale} ${forSale ? `ondragstart='drag(event)' onclick='clickSelect("ware", this)'` : ""} ${forSale && i.stock < 1 ? "style='filter: brightness(0.5)'" : ""}><td width="100%">&#9655; ${capitalize(i.type)}</td><td>${i.pText}</td></tr>`;
+			mText += `<td class="tooltip" width="90px"`;
+			if (forSale && ["live", "cold"].includes(g.stat)) mText += ` style="background: #${g.stat == "live" ? "363" : "449"}"`;
+			mText += `><div class="wares marketicon" data-good="${g.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('waremain', this)"` : ""}><img class="marketicon" src="images/goods/${g.file}.png" draggable="false"><span style="float:right"></div> &nbsp;${g.pText}
+				<div class="tooltiptext"><table class="markettable hoverable"><tr><th colspan=2><b>${g.name}</b></th></tr>`;
+			for (const i of gArr) mText += `<tr class="wares" data-good="${i.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('ware', this)"` : ""} ${forSale && i.stock < 1 ? `style="filter: brightness(0.5)"` : ""}><td width="100%">&#9655; ${capitalize(i.type)}</td><td>${i.pText}</td></tr>`;
 			mText += `</table></div></td>`;
 			c++;
 			gArr = [];
