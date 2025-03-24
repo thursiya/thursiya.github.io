@@ -25,7 +25,7 @@ function localeClick (i) {
 		updateTime(1);	
 	}
 	// Redirect to calls in progress if locale already open/talking to client at locale
-	const inConv = callQueue.findIndex(v => v.mission == loc.mission);
+	const inConv = comm.queue.findIndex(v => v.mission == loc.mission);
 	if (inConv > -1) {openCall(inConv); return}
 	addCall(loc.call);
 }
@@ -36,7 +36,7 @@ function localeClick (i) {
 function selectNotice (which) {
 	const mID = world[here].notices[which].mission;
 	const m = mission.find(m => m.id == mID);
-	const c = callQueue.findIndex(v => v.speaker == m.client);
+	const c = comm.queue.findIndex(v => v.speaker == m.client);
 	if (c > -1) {openCall(c); return}
 	addCall(m.comm);
 	world[here].notices.splice(which, 1);
