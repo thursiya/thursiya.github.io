@@ -181,7 +181,10 @@ function generateWorlds () {
 		// Calculate population
 		w.pop = ["Ice", "Ocean", "Rocky", "Desert"].indexOf(w.type) * 3 + w.size + (w.focus.match(/^(Mining|Terraforming|Prison|Frontier)$/i) ? 0 : w.focus.match(/^(Agricultural|Industrial|Manufacturing)$/i) ? 9 : 18);
 		temp = rnd(10) - 1;
-		w.poptext = w.pop < 10 ? `${w.pop}${temp}0k` : w.pop < 19 ? `${w.pop - 9}.${temp}M` : (temp = Math.floor(1.8 ** (w.pop + temp / 10) / 12700), temp < 1000 ? `${temp}M` : `${(temp / 1000).toFixed(1)}B`);
+		//w.poptext = w.pop < 10 ? `${w.pop}${temp}0k` : w.pop < 19 ? `${w.pop - 9}.${temp}M` : (temp = Math.floor(1.8 ** (w.pop + temp / 10) / 12700), temp < 1000 ? `${temp}M` : `${(temp / 1000).toFixed(1)}B`);
+		w.poptext = w.pop < 10 ? `${w.pop}${temp}0k` : 
+			w.pop < 19 ? `${w.pop - 9}.${temp}M` : 
+			(temp = Math.ceil((1.65 ** (w.pop - 18 + temp / 10) - 0.65) * 10), temp < 1000 ? `${temp}M` : `${(temp / 1000).toFixed(1)}B`);
 		
 		// Generate text description
 		if (scapes.length < 1) scapes = shuffle(scapeList.slice(0));
