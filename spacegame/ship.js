@@ -145,7 +145,7 @@ function damage (x, y) {
 
 // Graphics
 function drawShip() {
-	let out = `<div id='shiparea' onclick='clickSelect("ship", this)' style='width: 1200px; height: 700px; position: relative; left: 75px; top: 50px'>`;
+	let out = `<div id='shiparea' onclick='clickSelect("ship", this)' style='width: ${starmapWidth - 75}px; height: 700px; position: relative; left: 75px; top: 50px'>`;
 	for (let x of times(ship.length)) {
 		for (let y of times(ship[0].length)) {
 			const s = ship[x][y];
