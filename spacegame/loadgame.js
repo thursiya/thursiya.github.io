@@ -1,5 +1,5 @@
 const seed = Math.floor(Math.random() * 1e12);
-const starmapWidth = 1330; //screen.availWidth - 350;
+const starmapWidth = screen.width < 700 ? screen.width : screen.width - 350; //1330; //screen.availWidth - 350;
 const starmapHeight = 770;
 const tabsList = ['market', 'shipyard', 'notices', 'planet'];
 const totalPlanets = 32;
