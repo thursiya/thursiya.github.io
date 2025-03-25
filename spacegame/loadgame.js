@@ -3,22 +3,23 @@ const starmapWidth = screen.width < 700 ? screen.width : screen.width - 350; //1
 document.querySelector('body').style.setProperty('--starmapWidth', `${starmapWidth}px`);
 const starmapHeight = 770;
 const tabsList = ['market', 'shipyard', 'notices', 'planet'];
-const totalPlanets = 32;
+const totalPlanets = 32;		// Is this used?
 const cellWidth = Math.floor(starmapWidth / 7);
 const cellHeight = Math.floor((starmapHeight - 20) / 5); // Leave 20px for name under planet
 const minDistance = 80;
 const maxDistance = 192; //(cellWidth + cellHeight) * 0.6;
 const travelSpeed = maxDistance / 24;
 const differentFadables = 6;	// Number of different animation states for starlanes - set to 0 to keep all animations in sync
+const world = [];
+const starlane = [];
 
-let world = [];
-let starlane = [];
-function World (coords) {
+function World(coords) {
 	this.x = coords.x;
 	this.y = coords.y;
 }
-function Starlane (origin, dest) {
-	const w1 = world[origin], w2 = world[dest];
+function Starlane(origin, dest) {
+	const w1 = world[origin];
+	const w2 = world[dest];
 	this.origin = origin;
 	this.dest = dest;
 	this.x = Math.round((w1.x + w2.x) / 2);
