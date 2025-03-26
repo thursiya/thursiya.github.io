@@ -230,7 +230,7 @@ function displayNotices() {
 	// Remove expired notices
 	world[here].notices.slice().forEach(v => {
 		if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
-	if (world[here].notices.length > 0) {
+	/*if (world[here].notices.length > 0) {
 		nText = `<table class="menutable hoverable" width="100%">`;
 		world[here].notices.forEach((v, i) => {
 			nText += `
@@ -242,7 +242,15 @@ function displayNotices() {
 		});
 		nText += `</table>`;
 	}
-	document.getElementById('noticestab').innerHTML = nText;
+	document.getElementById('noticestab').innerHTML = nText; */
+	document.getElementById('noticestab').innerHTML = (world[here].notices.length > 0) ? `<table class="menutable hoverable" width="100%">
+		${world[here].notices.reduce((t, v, i) =>
+			`${t}<tr style="cursor: pointer" onclick="selectNotice(${i})">
+       				<td>
+	    				<span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}
+	  			</td>
+       			</tr>`, "")}
+		</table>` : `<p>&nbsp; <i>There are currently no notices</i></p>`;
 }
 
 function displayPlanet() {
