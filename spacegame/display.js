@@ -275,7 +275,7 @@ function displayLocales() {
 		}
 	}*/
 	document.getElementById('localeContainer').innerHTML = world[here].locales.reduce((t, v, i) =>
-		`${t}<img id="locale${i}" class="locale" src="images/locales/${v.file}.png" title="${v.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`, "");
+		`${t}${('name' in v && !v.hidden) ? `<img id="locale${i}" class="locale" src="images/locales/${v.file}.png" title="${v.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">` : ""}`, "");
 }
 
 function chooseTab(evt, tab) {
