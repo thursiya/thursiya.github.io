@@ -293,7 +293,7 @@ function displayInfo(type, which) {
 		//	if (g.type == c.name) out2 += `<li onclick="displayInfo('good', '${g.name}')">${g.name}</li>`; });
 		//out = `<h2>${c.fullname}</h2>${out2 ? `<p>Associated Goods:</p>${out2}` : ""}`;
 		out = `<h2>${c.fullname}</h2>${goods.some(v => v.type == c.name) ? `<p>Associated Goods:</p>${goods.reduce((t, v, i) =>
-			`${t}<li onclick="displayInfo('good', '${v.name}')">${v.name}</li>`, "")}` : ""}`;
+			`${t}${v.type == c.name ? `<li onclick="displayInfo('good', '${v.name}')">${v.name}</li>}` : ""}`, "")}` : ""}`;
 	}
 	if (type == "world") {
 		const w = world.find(v => v.name == which);
