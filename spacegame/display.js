@@ -258,23 +258,21 @@ function displayPlanet() {
 		<br>
   		${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
-	let pText = "";
-	for (const i of [
+	document.getElementById('planettab').innerHTML = `<table width="100%">${[
 		["Name", w.name],
 		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
 		["Population", w.poptext],
 		["Economy", w.focus],
 		["Size", ["Small", "Medium", "Large"][w.size - 1]],
 		["Planet Type", w.type],
-		["Orbital Period", `$(Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
-		["Largest Settlement", w.city[0]] ]) {
-		pText += `
-  			<tr>
-     				<td style="vertical-align: top">${i[0]}</td>
-	  			<td class="big" style="text-align: right">${i[1]}</td>
-      			</tr>`;
-	}
-	document.getElementById('planettab').innerHTML = `<table width="100%">${pText}</table>`;
+		["Orbital Period", `${Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
+		["Largest Settlement", w.city[0]] ].reduce((t, v) =>
+            		`${t}
+			<tr>
+   				<td style="vertical-align: top">${v[0]}</td>
+       				<td class="big" style="text-align: right">${v[1]}</td>
+	   		</tr>`, "")}
+      		</table>`;
 }
 
 function displayLocales() {
