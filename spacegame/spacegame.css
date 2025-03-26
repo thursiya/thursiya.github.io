@@ -124,6 +124,8 @@ div.tab button.active { background: #CCC; }
 	98% {left: 50px; top: 8px;}
 	100% {left: 53px; top: 8px;} }
 
+.clickable { cursor: pointer; }
+
 .commTab { cursor: pointer; }
 
 .commWindow {
