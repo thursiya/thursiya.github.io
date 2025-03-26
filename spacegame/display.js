@@ -268,12 +268,6 @@ function displayPlanet() {
 }
 
 function displayLocales() {
-	/*let out = "";
-	for (const [i, loc] of world[here].locales.entries()) {
-		if ('name' in loc && !loc.hidden) {
-			out += `<img id="locale${i}" class="locale" src="images/locales/${loc.file}.png" title="${loc.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`;
-		}
-	}*/
 	document.getElementById('localeContainer').innerHTML = world[here].locales.reduce((t, v, i) =>
 		`${t}${('name' in v && !v.hidden) ? `<img id="locale${i}" class="locale" src="images/locales/${v.file}.png" title="${v.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">` : ""}`, "");
 }
@@ -292,79 +286,82 @@ function chooseTab(evt, tab) {
 function displayInfo(type, which) {
 	if (!type || !which) return false;
 	let out = "";
-	if (type == "corp") {
-		const c = [...oldCorps, ...newCorps].find(v => v.name == which);
-		let out2 = "";
-		goods.forEach(g => {
-			if (g.type == c.name) out2 += `<li onclick="displayInfo('good', '${g.name}')">${g.name}</li>`; });
-		out = `<h2>${c.fullname}</h2>${out2 ? `<p>Associated Goods:</p>${out2}` : ""}`;
-	}
-	if (type == "world") {
-		const w = world.find(v => v.name == which);
-		out = `<img class='rotatingPlanet' src="images/planets/planet${w.planetImage}.png" draggable='false'>
-			<div class='rotatingPlanetShadow'></div>
-			<p class='huge worldname' style="position:absolute; left:150px"><b>${w.name}</b></p>
-			<img src="images/scapes/${w.file}scape.jpg" style='float: right; vertical-align: top' draggable='false'>
-			<br style='clear:both'>
-   			<p>${w.text}</p>
-			<table>`;
-		for (const i of [
-			["Government", `<span onclick="displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick="displayInfo('corp', '${w.govdesc}')">${w.govdesc}</span>)` : ""}`],
-			["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")],
-			["Economic Focus", `<span onclick="displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
-			["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
-			["Settlements", w.city.join("<br>")] ]) {
-			out += `<tr>
-					<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
-					<td class='enlarged'><b>${i[1]}</b></td>
-				</tr>`;
-		}
-		out += `</table>`;
-	}
-	if (type == "gov") {
-		const g = illegalGoods(which);
-		out = `<h2>
-  				<img src="images/govs/${which}.png" draggable="false" style="vertical-align:middle"> ${which}
-      			</h2>
-	 		<p>
-    				Tax Rates: <i>${which == "Anarchy" ? "Low" : which == "Democracy" ? "High" : "Average"}</i>
-			</p>
-   			<p>
-      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p>
+	switch (type) {
+		case "corp":
+			const c = [...oldCorps, ...newCorps].find(v => v.name == which);
+			let out2 = "";
+			goods.forEach(g => {
+				if (g.type == c.name) out2 += `<li onclick="displayInfo('good', '${g.name}')">${g.name}</li>`; });
+			out = `<h2>${c.fullname}</h2>${out2 ? `<p>Associated Goods:</p>${out2}` : ""}`;
+			break;
+		case "world":
+			const w = world.find(v => v.name == which);
+			out = `<img class='rotatingPlanet' src="images/planets/planet${w.planetImage}.png" draggable='false'>
+				<div class='rotatingPlanetShadow'></div>
+				<p class='huge worldname' style="position:absolute; left:150px"><b>${w.name}</b></p>
+				<img src="images/scapes/${w.file}scape.jpg" style='float: right; vertical-align: top' draggable='false'>
+				<br style='clear:both'>
+   				<p>${w.text}</p>
+				<table>`;
+			for (const i of [
+				["Government", `<span onclick="displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick="displayInfo('corp', '${w.govdesc}')">${w.govdesc}</span>)` : ""}`],
+				["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")],
+				["Economic Focus", `<span onclick="displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
+				["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
+				["Settlements", w.city.join("<br>")] ]) {
+				out += `<tr>
+						<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
+						<td class='enlarged'><b>${i[1]}</b></td>
+					</tr>`;
+			}
+			out += `</table>`;
+			break;
+		case "gov":
+			const g = illegalGoods(which);
+			out = `<h2>
+  					<img src="images/govs/${which}.png" draggable="false" style="vertical-align:middle"> ${which}
+      				</h2>
+	 			<p>
+    					Tax Rates: <i>${which == "Anarchy" ? "Low" : which == "Democracy" ? "High" : "Average"}</i>
+				</p>
+   				<p>
+      					Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p>
 	  				<img src="images/goods/${goods[g[0]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[0]].name} (${goods[g[0]].type}`}`;
-		for (let i = 1; i < g.length; i++) {
-			out += (goods[g[i - 1]].name == goods[g[i]].name) ? `, ${goods[g[i]].type}` : `)<br><img src="images/goods/${goods[g[i]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[i]].name} (${goods[g[i]].type}`;
-		}
-		if (g.length > 0) out += `)`;
-		if (which == "Military") out += `<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>`;
-	}
-	if (type == "economy") {
-		const e = ({"Affluent": [[72, 17, 55, 60], `Affluent worlds do not normally produce goods unless they are a corporate world, in which case they will produce their own branded perishable goods, consumer goods, liquor, luxury goods, and robots.</p><p>They demand a lot. Affluent society requires lots of high-end vehicles, medicine, robots, animal meat, liquor, luxury goods, consumer goods, government artifacts, and fruit & vegetables. They also need gemstones, grain, hydrogen fuel cells, lumber, top-grade hydroponic farms and perishable goods, and all types of live animals. Democratic worlds will demand better quality goods, while others will pay for upper-end hand weapons and narcotics, large quantities of animal skins, and child, regular, and especially Luxorian slaves.`],
-			"Agricultural": [[33, 36, 56, 7, 10, 53, 67, 72, 43], `Agricultural planets supply variable amounts of fruit & vegetables, grain, and either bio-engineered, Terran, or Lacotian live animals, meat, and skins. They also produce some minor narcotics and cheap perishable goods. Agricultural worlds will produce hydroponic farms and liquor (high-grade on democratic worlds, and low-grade on others). Corporate worlds will produce more minor narcotics and more of their own branded goods. Expect small-scale forestry on rocky planets and more hydroponic farms on ocean worlds.</p><p>Demand is for low-grade automobiles and robots, fertilizer, lumber, cheap medicine, and lots of farming equipment. Democratic planets will demand better medicine and robots, while others demand adult forced labour. Agricultural worlds will also buy live animals that are not produced there.`],
-			"Cultural": [[54, 62, 72, 17], `Cultural worlds are more likely to attract visitors.</p><p>They produce expensive liquor and luxury goods, and cheap perishable and consumer goods on non-democratic planets. Corporate worlds will produce more of their own branded goods.</p><p>The people of cultural worlds demand a variety of vehicles, animal meat and skins, fancier live animals, upper-end robots, consumer and perishable goods, fruit & vegetables, grain, precious metals, lumber, luxury goods, minor narcotics, and all grades of medicine. Democratic worlds will demand better quality goods, while others will pay for a range of narcotics as well as regular and Luxorian slaves.`],
-			"Frontier": [[53, 77, 85, 56, 7, 10, 16, 36, 76, 67, 17, 72], `Frontier worlds produce small amounts of cheap liquor, precious metals, slaves, and either bio-engineered, Terran, or Lacotian live animals, meat, and skins. They may produce a small amount of chemicals, grain, petroleum, minor narcotics, or cheap consumer or perishable goods. Corporate worlds will produce more of their own branded goods.</p><p>The frontier needs fertilizer, fruit & vegetables, synthetic meat, water, low-end automobiles, and basic medicine, probes, and robots. These worlds also demand mid-grade consumer and perishable goods, narcotics and liquor (just better than what would be produced there). Democratic worlds will demand better quality goods and cheap electronics, while others will pay for industrial explosives, low to mid-grade hand weapons, and cheap perishable goods.`],
-			"High Tech": [[23, 63, 81, 78, 90, 92, 17, 68, 61, 94], `High Tech worlds produce all types of electronics, medicines, robots, and probes, plus bio-engineered slaves, synthetic meat, low-grade consumer goods, moderate and high-grade narcotics, and high-grade luxury goods. Ocean worlds will also sell some water. Corporate worlds will produce more of their own branded goods.</p><p>Being on the cutting edge of technology creates a populous yearning for all types of vehicles, perishable goods, liquors and animal meats, high-grade consumer goods, low-grade luxury goods, fruit & vegetables, grain, and hydroponic farms. High tech chip factories need chemicals, industrial goods, and lots of precious metals. Democratic worlds will demand better quality goods, while others are able to use bacteria farms and even a few regular or Luxorian slaves.`],
-			"Industrial": [[46, 13, 27, 29, 41, 52, 42], `Industrial worlds produce all types of industrial equipment, bacteria farms, and explosives, plus fertilizer, heavy plastics, liquid oxygen, and hydrogen fuel cells. Corporate worlds will produce more of their own branded goods.</p><p>Industrial planets need cheap electronics, low-grade robots, all non-Luxorian slaves, and lots of chemicals, iron ore, minerals, and petroleum to supply their industries. The population demand synthetic meat, low-grade vehicles, consumer goods, medicine, narcotics, liquor, and animal meat, as well as lots of low-grade perishable goods.`],
-			"Manufacturing": [[2, 0, 30, 37, 49, 60, 81], `Manufacturing worlds produce all types of automobiles, air processors, farming equipment, hand weapons, industrial and luxury goods. They also make basic manufacturing robots. Corporate worlds will produce more of their own branded goods.</p><p>Manufacturing planets will demand all types of animal and synthetic meat, liquor, low-grade consumer goods, medicine, narcotics, and lots of perishable goods. Their factories will need a regular supply of grain, fruit & vegetables, gemstones, precious metals, liquid oxygen, uneducated or regular slaves, all types of industrial equipment, and lots of low to mid-grade robots.`],
-			"Mining": [[16, 34, 51, 66, 76, 77, 59, 94], `Mining worlds produce variable amounts of chemicals, gemstones, iron ore, minerals, petroleum, and precious metals. Expect forestry on desert and especially rocky planets and water extraction on ice worlds.</p><p>Mining infrastructure demands air processors, probes, adult forced labourers (especially bio-engineered), low-grade automobiles, robots, and lots of industrial equipment and industrial explosives. The populous eats mostly cheap perishable goods and some synthetic and cheap animal meat. They need a regular supply of low-grade consumer goods, narcotics, and lots of cheap liquor.`],
-			"Mixed": [[17, 59, 94], `Mixed economies could produce and demand anything. They will either demand a variety of consumer goods or produce some consumer goods and demand chemicals, plastics, or lumber. Expect forestry on desert and especially rocky planets and some water sold on ocean worlds.`],
-			"Prison": [[17, 51, 66, 86, 59, 94], `Prison worlds produce low-grade consumer goods, iron ore, minerals, and large numbers of forced labourers (especially uneducated and bio-engineered). Expect forestry on desert and especially rocky planets and water extraction on ocean and especially ice worlds. Corporate worlds will produce more of their own branded goods.</p><p>The prison economy buys cheap vehicles, chemicals, heavy plastics, lumber (if not in ready supply), and all types of electronics. The populous subsist off of grain, cheap perishable goods, and lots of synthetic meat.`],
-			"Slum": [[17, 73, 60, 85, 59], `Slum economies produce high-grade consumer goods, moderate to high-grade perishable goods and all types of luxury goods. They will sell all types of slaves, especially children and uneducated, and even a rare Luxorian. Expect forestry on desert and especially rocky planets. Corporate worlds will produce more of their own branded goods.</p><p>Slum worlds demand cheap vehicles and perishable goods, chemicals, gemstones, lumber (on ocean or ice planets), heavy plastics, hydrogen fuel cells, grain, low-grade consumer goods, synthetic meat, all types of electronics, and lots of low quality liquor. Democratic worlds will demand slightly better quality goods, while others buy explosives and lots of hand weapons and narcotics (especially high-grade) where legal.`],
-			"Terraforming": [[16, 51, 66], `Terraforming worlds produce variable amounts of chemicals, iron ore, and minerals.</p><p>These planets demand air processors, farming equipment, fruit & vegetables, hydroponic farms, probes, liquid oxygen, all types of live animals, low-grade robots, and lots of fertilizer and water. The people need low-grade consumer goods, perishable goods, animal and synthetic meat, and cheap medicine. Democratic worlds will demand some better quality goods, while other worlds will buy bacteria farms, explosives, and regular or bio-engineered slaves.`]})[which];
-		out = `<h2>${which} `;
-		for (let i of e[0]) out += `<img src="images/goods/${goods[i].file}.png" draggable="false" style="vertical-align: middle"> `;
-		out += `</h2><p>${e[1]}</p>`;
-	}
-	if (type == "good") {
-		const g = goods.filter(v => v.name == which);
-		out = `<h2><img src="images/goods/${goods.find(g => g.name == which).file}.png" draggable="false" style="vertical-align: middle; width: 64px"> ${which}</h2><p>${g[0].desc}</p>`;
-		if ('stat' in g[0]) out += `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({"cold": "must be kept in cold storage",
-			"dangerous": "damaged cargo poses a threat to ship",
-			"live": "must be kept in life support",
-			"sensitive": "damaged cargo is not salvageable"})[g[0].stat]})</i></p>`;
-		out += `<table class="menutable greenheader hoverable"><tr><th>Variety</th><th>Base Price</th><th>Supply</th><th>Demand</th></tr>`;
-		for (let i of g) out += `<tr><td>${i.type}</td><td style="text-align: center">${i.price}</td><td style="text-align: center">${i.produce}</td><td style="text-align: center">${i.demand}</td></tr>`;
-		out += `</table><p class="reduced" style="font-variant: small-caps"><i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming</p>`;
+			for (let i = 1; i < g.length; i++) {
+				out += (goods[g[i - 1]].name == goods[g[i]].name) ? `, ${goods[g[i]].type}` : `)<br><img src="images/goods/${goods[g[i]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[i]].name} (${goods[g[i]].type}`;
+			}
+			if (g.length > 0) out += `)`;
+			if (which == "Military") out += `<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>`;
+			break;
+		case "economy":
+			const e = ({"Affluent": [[72, 17, 55, 60], `Affluent worlds do not normally produce goods unless they are a corporate world, in which case they will produce their own branded perishable goods, consumer goods, liquor, luxury goods, and robots.</p><p>They demand a lot. Affluent society requires lots of high-end vehicles, medicine, robots, animal meat, liquor, luxury goods, consumer goods, government artifacts, and fruit & vegetables. They also need gemstones, grain, hydrogen fuel cells, lumber, top-grade hydroponic farms and perishable goods, and all types of live animals. Democratic worlds will demand better quality goods, while others will pay for upper-end hand weapons and narcotics, large quantities of animal skins, and child, regular, and especially Luxorian slaves.`],
+				"Agricultural": [[33, 36, 56, 7, 10, 53, 67, 72, 43], `Agricultural planets supply variable amounts of fruit & vegetables, grain, and either bio-engineered, Terran, or Lacotian live animals, meat, and skins. They also produce some minor narcotics and cheap perishable goods. Agricultural worlds will produce hydroponic farms and liquor (high-grade on democratic worlds, and low-grade on others). Corporate worlds will produce more minor narcotics and more of their own branded goods. Expect small-scale forestry on rocky planets and more hydroponic farms on ocean worlds.</p><p>Demand is for low-grade automobiles and robots, fertilizer, lumber, cheap medicine, and lots of farming equipment. Democratic planets will demand better medicine and robots, while others demand adult forced labour. Agricultural worlds will also buy live animals that are not produced there.`],
+				"Cultural": [[54, 62, 72, 17], `Cultural worlds are more likely to attract visitors.</p><p>They produce expensive liquor and luxury goods, and cheap perishable and consumer goods on non-democratic planets. Corporate worlds will produce more of their own branded goods.</p><p>The people of cultural worlds demand a variety of vehicles, animal meat and skins, fancier live animals, upper-end robots, consumer and perishable goods, fruit & vegetables, grain, precious metals, lumber, luxury goods, minor narcotics, and all grades of medicine. Democratic worlds will demand better quality goods, while others will pay for a range of narcotics as well as regular and Luxorian slaves.`],
+				"Frontier": [[53, 77, 85, 56, 7, 10, 16, 36, 76, 67, 17, 72], `Frontier worlds produce small amounts of cheap liquor, precious metals, slaves, and either bio-engineered, Terran, or Lacotian live animals, meat, and skins. They may produce a small amount of chemicals, grain, petroleum, minor narcotics, or cheap consumer or perishable goods. Corporate worlds will produce more of their own branded goods.</p><p>The frontier needs fertilizer, fruit & vegetables, synthetic meat, water, low-end automobiles, and basic medicine, probes, and robots. These worlds also demand mid-grade consumer and perishable goods, narcotics and liquor (just better than what would be produced there). Democratic worlds will demand better quality goods and cheap electronics, while others will pay for industrial explosives, low to mid-grade hand weapons, and cheap perishable goods.`],
+				"High Tech": [[23, 63, 81, 78, 90, 92, 17, 68, 61, 94], `High Tech worlds produce all types of electronics, medicines, robots, and probes, plus bio-engineered slaves, synthetic meat, low-grade consumer goods, moderate and high-grade narcotics, and high-grade luxury goods. Ocean worlds will also sell some water. Corporate worlds will produce more of their own branded goods.</p><p>Being on the cutting edge of technology creates a populous yearning for all types of vehicles, perishable goods, liquors and animal meats, high-grade consumer goods, low-grade luxury goods, fruit & vegetables, grain, and hydroponic farms. High tech chip factories need chemicals, industrial goods, and lots of precious metals. Democratic worlds will demand better quality goods, while others are able to use bacteria farms and even a few regular or Luxorian slaves.`],
+				"Industrial": [[46, 13, 27, 29, 41, 52, 42], `Industrial worlds produce all types of industrial equipment, bacteria farms, and explosives, plus fertilizer, heavy plastics, liquid oxygen, and hydrogen fuel cells. Corporate worlds will produce more of their own branded goods.</p><p>Industrial planets need cheap electronics, low-grade robots, all non-Luxorian slaves, and lots of chemicals, iron ore, minerals, and petroleum to supply their industries. The population demand synthetic meat, low-grade vehicles, consumer goods, medicine, narcotics, liquor, and animal meat, as well as lots of low-grade perishable goods.`],
+				"Manufacturing": [[2, 0, 30, 37, 49, 60, 81], `Manufacturing worlds produce all types of automobiles, air processors, farming equipment, hand weapons, industrial and luxury goods. They also make basic manufacturing robots. Corporate worlds will produce more of their own branded goods.</p><p>Manufacturing planets will demand all types of animal and synthetic meat, liquor, low-grade consumer goods, medicine, narcotics, and lots of perishable goods. Their factories will need a regular supply of grain, fruit & vegetables, gemstones, precious metals, liquid oxygen, uneducated or regular slaves, all types of industrial equipment, and lots of low to mid-grade robots.`],
+				"Mining": [[16, 34, 51, 66, 76, 77, 59, 94], `Mining worlds produce variable amounts of chemicals, gemstones, iron ore, minerals, petroleum, and precious metals. Expect forestry on desert and especially rocky planets and water extraction on ice worlds.</p><p>Mining infrastructure demands air processors, probes, adult forced labourers (especially bio-engineered), low-grade automobiles, robots, and lots of industrial equipment and industrial explosives. The populous eats mostly cheap perishable goods and some synthetic and cheap animal meat. They need a regular supply of low-grade consumer goods, narcotics, and lots of cheap liquor.`],
+				"Mixed": [[17, 59, 94], `Mixed economies could produce and demand anything. They will either demand a variety of consumer goods or produce some consumer goods and demand chemicals, plastics, or lumber. Expect forestry on desert and especially rocky planets and some water sold on ocean worlds.`],
+				"Prison": [[17, 51, 66, 86, 59, 94], `Prison worlds produce low-grade consumer goods, iron ore, minerals, and large numbers of forced labourers (especially uneducated and bio-engineered). Expect forestry on desert and especially rocky planets and water extraction on ocean and especially ice worlds. Corporate worlds will produce more of their own branded goods.</p><p>The prison economy buys cheap vehicles, chemicals, heavy plastics, lumber (if not in ready supply), and all types of electronics. The populous subsist off of grain, cheap perishable goods, and lots of synthetic meat.`],
+				"Slum": [[17, 73, 60, 85, 59], `Slum economies produce high-grade consumer goods, moderate to high-grade perishable goods and all types of luxury goods. They will sell all types of slaves, especially children and uneducated, and even a rare Luxorian. Expect forestry on desert and especially rocky planets. Corporate worlds will produce more of their own branded goods.</p><p>Slum worlds demand cheap vehicles and perishable goods, chemicals, gemstones, lumber (on ocean or ice planets), heavy plastics, hydrogen fuel cells, grain, low-grade consumer goods, synthetic meat, all types of electronics, and lots of low quality liquor. Democratic worlds will demand slightly better quality goods, while others buy explosives and lots of hand weapons and narcotics (especially high-grade) where legal.`],
+				"Terraforming": [[16, 51, 66], `Terraforming worlds produce variable amounts of chemicals, iron ore, and minerals.</p><p>These planets demand air processors, farming equipment, fruit & vegetables, hydroponic farms, probes, liquid oxygen, all types of live animals, low-grade robots, and lots of fertilizer and water. The people need low-grade consumer goods, perishable goods, animal and synthetic meat, and cheap medicine. Democratic worlds will demand some better quality goods, while other worlds will buy bacteria farms, explosives, and regular or bio-engineered slaves.`]})[which];
+			out = `<h2>${which} `;
+			for (let i of e[0]) out += `<img src="images/goods/${goods[i].file}.png" draggable="false" style="vertical-align: middle"> `;
+			out += `</h2><p>${e[1]}</p>`;
+			break;
+		case "good":
+			const g = goods.filter(v => v.name == which);
+			out = `<h2><img src="images/goods/${goods.find(g => g.name == which).file}.png" draggable="false" style="vertical-align: middle; width: 64px"> ${which}</h2><p>${g[0].desc}</p>`;
+			if ('stat' in g[0]) out += `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({"cold": "must be kept in cold storage",
+				"dangerous": "damaged cargo poses a threat to ship",
+				"live": "must be kept in life support",
+				"sensitive": "damaged cargo is not salvageable"})[g[0].stat]})</i></p>`;
+			out += `<table class="menutable greenheader hoverable"><tr><th>Variety</th><th>Base Price</th><th>Supply</th><th>Demand</th></tr>`;
+			for (let i of g) out += `<tr><td>${i.type}</td><td style="text-align: center">${i.price}</td><td style="text-align: center">${i.produce}</td><td style="text-align: center">${i.demand}</td></tr>`;
+			out += `</table><p class="reduced" style="font-variant: small-caps"><i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming</p>`;
+			break;
+		default:
 	}
 	
 	document.getElementById('infoDBText').innerHTML = out;
