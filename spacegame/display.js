@@ -63,7 +63,7 @@ function systemArrival(planetID) {
 	
 	// Reset market stocks & prices
 	w.goods.forEach(v => { v.stock = v.supply; });
-	w.goods.forEach(v => { v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100)) });	// Prices float around baseprice +2-11% of base price
+	w.goods.forEach(v => { v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100)); });	// Prices float around baseprice +2-11% of base price
 	
 	// Display starlanes
 	displayStarlanes();
@@ -105,7 +105,12 @@ function displayStarlanes() {
 		if (starlane[lane].status >= 0) {
 			const s = document.getElementById(`starlane${lane}`);
 			s.src = `images/icons/${["construction", "pirates", "distress", "construction2", "mission"][starlane[lane].status]}.png`;
-			s.title = ["Construction on this starlane\nis delaying travel by 2h.", "Pirates are known to\nwork on this starlane.", "A ship is in distress some-\nwhere on this starlane.", "Repairs on this starlane are\ndelaying travel by 4h.", "A mission objective\nis on this starlane.", "-"][starlane[lane].status];
+			s.title = [ "Construction on this starlane\nis delaying travel by 2h.", 
+				   "Pirates are known to\nwork on this starlane.", 
+				   "A ship is in distress some-\nwhere on this starlane.", 
+				   "Repairs on this starlane are\ndelaying travel by 4h.", 
+				   "A mission objective\nis on this starlane.", 
+				   "-" ][starlane[lane].status];
 			s.style.display = 'block';
 		}
 	}
@@ -143,16 +148,16 @@ function displayMarket() {
 		v.index = i;
 		v.pText = v.price < 10000 ? v.price : 
 			v.price < 100000 ? `${(v.price / 1000).toFixed(1)}k` : `${(v.price / 1000000).toFixed(1)}M`;
-		v.stat == 'illegal' ? illegals.push(v) : 
-			v.supply > 0 ? offers.push(v) : demands.push(v) });
+		(v.stat == 'illegal' ? illegals : 
+			v.supply > 0 ? offers : demands).push(v); };
 	
 	let mText = ``;
 	if (document.getElementById('spaceship').style.zIndex > 0) mText += `<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)"><img class="middle" src="images/goods/waste-products.png" style="width:50%" draggable="false"></div>`;
 	mText += `<div ondrop="dropGood(event, 'market')" ondragover="event.preventDefault()" onclick="clickSelect('market', this)"><div id="marketOffers"><table class="market"><tr>`;
 	displayMarketWares(offers);
 	mText += `</tr></table><div id="marketDemands" style="background: #522"><table class="market"><tr>`;
-	c += c % 3 == 2 ? 1 : 
-		c % 3 == 1 ? 2 : 0;
+	c += (c % 3 == 2) ? 1 : 
+		(c % 3 == 1) ? 2 : 0;
 	displayMarketWares(demands);
 	mText += "</tr></table>";
 	
@@ -160,8 +165,9 @@ function displayMarket() {
 		mText += `<div id="marketIllegals" style="background: url('images/backgrounds/hazard-stripes.png'), #522"${Math.ceil(c / 3) > 7 ? ` class="tooltip"` : ""}><table class="market" style="margin: 0 auto"><tr>`;
 		if (Math.ceil(c / 3) < 8) {	// Don't list illlegals if there's no room
 			c = 0;
-			for (let i = 0; i < illegals.length; i++) {			
-				const g = illegals[i];
+			//for (let i = 0; i < illegals.length; i++) {
+			for (const [i, g] of illegals.entries()) {
+				//const g = illegals[i];
 				if (i == 0 || g.name != illegals[i - 1].name) {
 					if (i > 0) mText += "<br><i>ILLEGAL</i></span></td>";
 					//if (i > 0 && c % 6 == 0) mText += "</tr><tr>";	// Only relevant if worlds could have more than 6 illegal goods
