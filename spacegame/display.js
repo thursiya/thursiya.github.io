@@ -289,9 +289,9 @@ function displayInfo(type, which) {
 	if (type == "corp") {
 		const c = [...oldCorps, ...newCorps].find(v => v.name == which);
 		out = `<h2>${c.fullname}</h2>
-  			${goods.some(v => v.type == c.name) ? `<p>Associated Goods:</p>
+  			${goods.some(v => v.type == c.name) ? `<p>Associated Goods:</p><div style="margin-left: 20px">
      				${goods.filter(v => v.type == c.name).reduce((t, v, i) =>
-					`${t}<p><span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="vertical-align: middle"> ${v.name}</span></p>`, "")}` : ""}`;
+					`${t}<p><span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="vertical-align: middle"> ${v.name}</span></p>`, "")}</div>` : ""}`;
 	}
 	if (type == "world") {
 		const w = world.find(v => v.name == which);
@@ -301,19 +301,17 @@ function displayInfo(type, which) {
 			<img src="images/scapes/${w.file}scape.jpg" style="float: right; vertical-align: top" draggable="false">
 			<br style="clear: both">
    			<p>${w.text}</p>
-			<table>`;
-		for (const i of [
-			["Government", `<span onclick="displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick="displayInfo('corp', '${w.govdesc}')">${w.govdesc}</span>)` : ""}`],
-			["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")],
-			["Economic Focus", `<span onclick="displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
-			["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
-			["Settlements", w.city.join("<br>")] ]) {
-			out += `<tr>
-					<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
-					<td class='enlarged'><b>${i[1]}</b></td>
-				</tr>`;
-		}
-		out += `</table>`;
+			<table>
+   				${[ ["Government", `<span onclick="displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick="displayInfo('corp', '${w.govdesc}')">${w.govdesc}</span>)` : ""}`],
+					["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")],
+					["Economic Focus", `<span onclick="displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
+					["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
+					["Settlements", w.city.join("<br>")] ].reduce((t, v) =>
+						`${t}<tr>
+							<td style="width: 170px; text-align: right; vertical-align: top">${v[0]}</td>
+							<td class="enlarged"><b>${v[1]}</b></td>
+						</tr>`, "")}
+			</table>`;
 	}
 	if (type == "gov") {
 		const g = illegalGoods(which);
