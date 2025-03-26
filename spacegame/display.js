@@ -138,12 +138,8 @@ function displayMarket() {
 					<span style="float:right">
      				</div> &nbsp;${g.pText}
 				<div class="tooltiptext">
-    					<table class="markettable hoverable">
-	 					<tr>
-       							<th colspan=2>
-	      							<b>${g.name}</b>
-	      						</th>
-	     					</tr>`;
+    					<b>${g.name}</b>
+    					<table class="markettable hoverable">`;
 			for (const i of gArr) mText += `
    				<tr class="wares" data-good="${i.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('ware', this)"` : ""} ${forSale && i.stock < 1 ? `style="filter: brightness(0.5)"` : ""}>
        					<td width="100%">&#9655; ${capitalize(i.type)}</td>
