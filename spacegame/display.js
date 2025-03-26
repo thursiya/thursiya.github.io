@@ -192,10 +192,10 @@ function displayShipyard() {
 function displayNotices() {
 	let nText = `<p>&nbsp; <i>There are currently no notices</i></p>`;
 	// Remove expired notices
-	world[here].notices.slice().forEach(v => {if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1)});
+	world[here].notices.slice().forEach(v => { if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
 	if (world[here].notices.length > 0) {
 		nText = `<table class="menutable hoverable" width="100%"><tr></tr>`;
-		world[here].notices.forEach((v, i) => {nText += `<tr style="cursor: pointer" onclick="selectNotice(${i})"><td><span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}</td></tr>`});
+		world[here].notices.forEach((v, i) => { nText += `<tr style="cursor: pointer" onclick="selectNotice(${i})"><td><span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}</td></tr>`; });
 		nText += `</table>`;
 	}
 	document.getElementById('noticestab').innerHTML = nText;
@@ -204,36 +204,46 @@ function displayNotices() {
 function displayPlanet() {
 	const w = world[here];
 	document.getElementById('worldboxImg').src = `images/scapes/${w.file}scape.jpg`;
-	document.getElementById('wbdText').innerHTML = `<span class="huge worldname">${w.name}</span><span style="float:right; text-align: right"><span style="font-variant: small-caps">${w.gov.toLowerCase()}</span><br>${w.poptext}</span><br>${w.text}`;
+	document.getElementById('wbdText').innerHTML = `
+ 		<span class="huge worldname">${w.name}</span>
+   		<span style="float:right; text-align: right">
+     			<span style="font-variant: small-caps">${w.gov.toLowerCase()}</span>
+			<br>
+   			${w.poptext}
+      		</span>
+		<br>
+  		${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
-	let pText = `<table width='100%'>`;
+	let pText = "";
 	const pFacts = [ ["Name", w.name],
 		["Government", w.gov],
 		["Population", w.poptext],
 		["Economy", w.focus],
 		["Size", ["Small", "Medium", "Large"][w.size - 1]],
 		["Planet Type", w.type],
-		["Orbital Period", Math.ceil(seed / (here + 1) % 500 + 60 + here) + " days"],
+		["Orbital Period", `$(Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
 		["Largest Settlement", w.city[0]] ];
 	if (w.gov == "Corporate") pFacts[1][1] += `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
 	for (const i of pFacts) {
 		pText += `<tr><td style="vertical-align: top">${i[0]}</td><td class="big" style="text-align: right">${i[1]}</td></tr>`
 	}
-	document.getElementById('planettab').innerHTML = `${pText}</table>`;
+	document.getElementById('planettab').innerHTML = `<table width="100%">${pText}</table>`;
 }
 
 function displayLocales() {
 	let out = "";
-	for (const [i, loc] of world[here].locales.entries()) if ('name' in loc && !loc.hidden) out += `<img id="locale${i}" class="locale" src="images/locales/${loc.file}.png" title="${loc.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`;
+	for (const [i, loc] of world[here].locales.entries()) {
+		if ('name' in loc && !loc.hidden) {
+			out += `<img id="locale${i}" class="locale" src="images/locales/${loc.file}.png" title="${loc.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`;
+		}
+	}
 	document.getElementById('localeContainer').innerHTML = out;
 }
 
 function chooseTab(evt, tab) {
-	//for (const i of document.getElementsByClassName('tablink')) i.className = i.className.replace(" active", "");
 	for (const i of document.getElementsByClassName('tablink')) i.classList.toggle("active", false);
 	for (const i of document.getElementsByClassName('tabcontent')) i.style.display = "none";
 	document.getElementById(`${tabsList[tab]}tab`).style.display = "block";
-	//evt.currentTarget.className += " active";
 	evt.currentTarget.classList.toggle("active");
 }
 
