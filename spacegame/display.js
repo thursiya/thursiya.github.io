@@ -168,7 +168,7 @@ function displayMarket() {
 		(v.stat == 'illegal' ? illegals : 
 			v.supply > 0 ? offers : demands).push(v); });
 	
-	let mText = `${document.getElementById('spaceship').style.zIndex > 0 ? `
+	let mText = `${(document.getElementById('spaceship').style.zIndex > 0) ? `
  		<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)">
    			<img class="middle" src="images/goods/waste-products.png" style="width: 50%" draggable="false">
       		</div>` : ""}
@@ -226,23 +226,11 @@ function displayShipyard() {
 }
 
 function displayNotices() {
-	let nText = `<p>&nbsp; <i>There are currently no notices</i></p>`;
 	// Remove expired notices
 	world[here].notices.slice().forEach(v => {
 		if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
-	/*if (world[here].notices.length > 0) {
-		nText = `<table class="menutable hoverable" width="100%">`;
-		world[here].notices.forEach((v, i) => {
-			nText += `
-   				<tr style="cursor: pointer" onclick="selectNotice(${i})">
-       					<td>
-	    					<span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}
-	  				</td>
-       				</tr>`;
-		});
-		nText += `</table>`;
-	}
-	document.getElementById('noticestab').innerHTML = nText; */
+	
+	// Build notice table (or print no notices)
 	document.getElementById('noticestab').innerHTML = (world[here].notices.length > 0) ? `<table class="menutable hoverable" width="100%">
 		${world[here].notices.reduce((t, v, i) =>
 			`${t}<tr style="cursor: pointer" onclick="selectNotice(${i})">
@@ -284,13 +272,14 @@ function displayPlanet() {
 }
 
 function displayLocales() {
-	let out = "";
+	/*let out = "";
 	for (const [i, loc] of world[here].locales.entries()) {
 		if ('name' in loc && !loc.hidden) {
 			out += `<img id="locale${i}" class="locale" src="images/locales/${loc.file}.png" title="${loc.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`;
 		}
-	}
-	document.getElementById('localeContainer').innerHTML = out;
+	}*/
+	document.getElementById('localeContainer').innerHTML = world[here].locales.reduce((t, v, i) =>
+		`${t}<img id="locale${i}" class="locale" src="images/locales/${v.file}.png" title="${v.name}" draggable="false" style="left: ${[20, 96, 172, 248][i]}px; top: ${[80, 20, 60, 40][(i + here) % 4]}px" onclick="localeClick(${i})">`, "");
 }
 
 function chooseTab(evt, tab) {
