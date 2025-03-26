@@ -291,15 +291,15 @@ function displayInfo(type, which) {
 		out = `<h2>${c.fullname}</h2>
   			${goods.some(v => v.type == c.name) ? `<p>Associated Goods:</p>
      				${goods.filter(v => v.type == c.name).reduce((t, v, i) =>
-					`${t}<li onclick="displayInfo('good', '${v.name}')">${v.name}</li>`, "")}` : ""}`;
+					`${t}<p><span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="vertical-align: middle"> ${v.name}</span></p>`, "")}` : ""}`;
 	}
 	if (type == "world") {
 		const w = world.find(v => v.name == which);
-		out = `<img class='rotatingPlanet' src="images/planets/planet${w.planetImage}.png" draggable='false'>
-			<div class='rotatingPlanetShadow'></div>
-			<p class='huge worldname' style="position:absolute; left:150px"><b>${w.name}</b></p>
-			<img src="images/scapes/${w.file}scape.jpg" style='float: right; vertical-align: top' draggable='false'>
-			<br style='clear:both'>
+		out = `<img class="rotatingPlanet" src="images/planets/planet${w.planetImage}.png" draggable="false">
+			<div class="rotatingPlanetShadow"></div>
+			<p class="huge worldname" style="position: absolute; left: 150px"><b>${w.name}</b></p>
+			<img src="images/scapes/${w.file}scape.jpg" style="float: right; vertical-align: top" draggable="false">
+			<br style="clear: both">
    			<p>${w.text}</p>
 			<table>`;
 		for (const i of [
