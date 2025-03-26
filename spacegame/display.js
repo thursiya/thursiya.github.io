@@ -149,7 +149,7 @@ function displayMarket() {
 		v.pText = v.price < 10000 ? v.price : 
 			v.price < 100000 ? `${(v.price / 1000).toFixed(1)}k` : `${(v.price / 1000000).toFixed(1)}M`;
 		(v.stat == 'illegal' ? illegals : 
-			v.supply > 0 ? offers : demands).push(v); };
+			v.supply > 0 ? offers : demands).push(v); });
 	
 	let mText = ``;
 	if (document.getElementById('spaceship').style.zIndex > 0) mText += `<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)"><img class="middle" src="images/goods/waste-products.png" style="width:50%" draggable="false"></div>`;
