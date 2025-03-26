@@ -259,15 +259,6 @@ function displayPlanet() {
   		${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	let pText = "";
-	//const pFacts = [ ["Name", w.name],
-		["Government", w.gov],
-		["Population", w.poptext],
-		["Economy", w.focus],
-		["Size", ["Small", "Medium", "Large"][w.size - 1]],
-		["Planet Type", w.type],
-		["Orbital Period", `$(Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
-		["Largest Settlement", w.city[0]] ];
-	//if (w.gov == "Corporate") pFacts[1][1] += `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
 	for (const i of [
 		["Name", w.name],
 		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
