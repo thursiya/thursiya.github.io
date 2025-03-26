@@ -39,10 +39,13 @@ function systemArrival(planetID) {
 	console.log(`----------------- Arriving in ${w.name} (${here}) ----------------`);
 
 	// Update world tooltip text
-	let dist;
-	world.forEach((v, i) => document.getElementById(`planet${i}info`).innerHTML = `<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br><i>
-		${v.links.includes(planetID) ? (dist = starlane[findLane(i, planetID)].distance, `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)`) : 
-		  i == planetID ? `Current world` : `This world is not connected to ${w.name} by a starlane.`}</i>`);
+	world.forEach((v, i) => {
+		const dist = starlane[findLand(i, planetID)]?.distance;
+		document.getElementById(`planet${i}info`).innerHTML = `
+  			<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br>
+     			<i>${dist ? `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)` :
+				i == planetID ? `Current world` : `This world is not connected to ${w.name} by a starlane.`}</i>`;
+	});
 	
 	// Discover all connected worlds
 	w.links.forEach(v => {
@@ -62,8 +65,8 @@ function systemArrival(planetID) {
 	noticeMission(w.pop / 6 + rnd(3));
 	
 	// Reset market stocks & prices
-	w.goods.forEach(v => { v.stock = v.supply; });
-	w.goods.forEach(v => { v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100)); });	// Prices float around baseprice +2-11% of base price
+	w.goods.forEach(v => v.stock = v.supply );
+	w.goods.forEach(v => v.price = Math.floor(v.baseprice * (1 + rnd(Math.floor((36 - w.pop) / 3)) / 100)) );	// Prices float around baseprice +2-11% of base price
 	
 	// Display starlanes
 	displayStarlanes();
@@ -129,9 +132,23 @@ function displayMarket() {
 			const g = gArr[0];
 			mText += `<td class="tooltip" width="90px"`;
 			if (forSale && ["live", "cold"].includes(g.stat)) mText += ` style="background: #${g.stat == "live" ? "363" : "449"}"`;
-			mText += `><div class="wares marketicon" data-good="${g.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('waremain', this)"` : ""}><img class="marketicon" src="images/goods/${g.file}.png" draggable="false"><span style="float:right"></div> &nbsp;${g.pText}
-				<div class="tooltiptext"><table class="markettable hoverable"><tr><th colspan=2><b>${g.name}</b></th></tr>`;
-			for (const i of gArr) mText += `<tr class="wares" data-good="${i.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('ware', this)"` : ""} ${forSale && i.stock < 1 ? `style="filter: brightness(0.5)"` : ""}><td width="100%">&#9655; ${capitalize(i.type)}</td><td>${i.pText}</td></tr>`;
+			mText += `>
+   				<div class="wares marketicon" data-good="${g.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('waremain', this)"` : ""}>
+   					<img class="marketicon" src="images/goods/${g.file}.png" draggable="false">
+					<span style="float:right">
+     				</div> &nbsp;${g.pText}
+				<div class="tooltiptext">
+    					<table class="markettable hoverable">
+	 					<tr>
+       							<th colspan=2>
+	      							<b>${g.name}</b>
+	      						</th>
+	     					</tr>`;
+			for (const i of gArr) mText += `
+   				<tr class="wares" data-good="${i.index}" draggable=${forSale} ${forSale ? `ondragstart="drag(event)" onclick="clickSelect('ware', this)"` : ""} ${forSale && i.stock < 1 ? `style="filter: brightness(0.5)"` : ""}>
+       					<td width="100%">&#9655; ${capitalize(i.type)}</td>
+	    				<td>${i.pText}</td>
+	 			</tr>`;
 			mText += `</table></div></td>`;
 			c++;
 			gArr = [];
@@ -151,34 +168,53 @@ function displayMarket() {
 		(v.stat == 'illegal' ? illegals : 
 			v.supply > 0 ? offers : demands).push(v); });
 	
-	let mText = ``;
-	if (document.getElementById('spaceship').style.zIndex > 0) mText += `<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)"><img class="middle" src="images/goods/waste-products.png" style="width:50%" draggable="false"></div>`;
-	mText += `<div ondrop="dropGood(event, 'market')" ondragover="event.preventDefault()" onclick="clickSelect('market', this)"><div id="marketOffers"><table class="market"><tr>`;
+	let mText = `${document.getElementById('spaceship').style.zIndex > 0 ? `
+ 		<div id="trashzone" ondrop="dropGood(event, 'trash')" ondragover="event.preventDefault()" onclick="clickSelect('trash', this)">
+   			<img class="middle" src="images/goods/waste-products.png" style="width: 50%" draggable="false">
+      		</div>` : ""}
+		<div ondrop="dropGood(event, 'market')" ondragover="event.preventDefault()" onclick="clickSelect('market', this)">
+  			<div id="marketOffers">
+     				<table class="market">
+	 				<tr>`;
 	displayMarketWares(offers);
-	mText += `</tr></table><div id="marketDemands" style="background: #522"><table class="market"><tr>`;
+	mText += `</tr></table>
+ 		<div id="marketDemands" style="background: #522">
+   			<table class="market">
+      				<tr>`;
 	c += (c % 3 == 2) ? 1 : 
 		(c % 3 == 1) ? 2 : 0;
 	displayMarketWares(demands);
 	mText += "</tr></table>";
 	
 	if (illegals.length > 0) {
-		mText += `<div id="marketIllegals" style="background: url('images/backgrounds/hazard-stripes.png'), #522"${Math.ceil(c / 3) > 7 ? ` class="tooltip"` : ""}><table class="market" style="margin: 0 auto"><tr>`;
+		mText += `
+  			<div id="marketIllegals" style="background: url('images/backgrounds/hazard-stripes.png'), #522"${Math.ceil(c / 3) > 7 ? ` class="tooltip"` : ""}>
+     				<table class="market" style="margin: 0 auto">
+	 				<tr>`;
 		if (Math.ceil(c / 3) < 8) {	// Don't list illlegals if there's no room
 			c = 0;
-			//for (let i = 0; i < illegals.length; i++) {
 			for (const [i, g] of illegals.entries()) {
-				//const g = illegals[i];
 				if (i == 0 || g.name != illegals[i - 1].name) {
 					if (i > 0) mText += "<br><i>ILLEGAL</i></span></td>";
 					//if (i > 0 && c % 6 == 0) mText += "</tr><tr>";	// Only relevant if worlds could have more than 6 illegal goods
-					mText += `<td class="tooltip" width="36px"><div class="marketicon" style="background: #EEE; opacity: 1" draggable="false"><img class="marketicon" src="images/goods/${g.file}.png" draggable="false"></div><span class="tooltiptext"><b>${g.name}</b><br>`;
+					mText += `
+     						<td class="tooltip" width="36px">
+	   						<div class="marketicon" style="background: #EEE; opacity: 1" draggable="false">
+	  							<img class="marketicon" src="images/goods/${g.file}.png" draggable="false">
+	  						</div>
+	 						<span class="tooltiptext">
+								<b>${g.name}</b><br>`;
 					c++;
 				}
 				mText += `&#9655; ${capitalize(g.type)}<br>`;
 			}
 			mText += `<br><i>ILLEGAL</i></span></td>`;
 		} else {
-			mText += `<td class="tooltiptext" onclick="displayComm(7); displayInfo('gov', '${world[here].gov}')">ILLEGAL GOODS<br><i>Check government (${world[here].gov}) description</i></td>`;
+			mText += `
+   				<td class="tooltiptext" onclick="displayComm(7); displayInfo('gov', '${world[here].gov}')">
+       					ILLEGAL GOODS<br>
+       					<i>Check government (${world[here].gov}) description</i>
+	    			</td>`;
 		}
 		mText += `</tr></table>`;
 	}
@@ -192,10 +228,18 @@ function displayShipyard() {
 function displayNotices() {
 	let nText = `<p>&nbsp; <i>There are currently no notices</i></p>`;
 	// Remove expired notices
-	world[here].notices.slice().forEach(v => { if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
+	world[here].notices.slice().forEach(v => {
+		if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
 	if (world[here].notices.length > 0) {
 		nText = `<table class="menutable hoverable" width="100%"><tr></tr>`;
-		world[here].notices.forEach((v, i) => { nText += `<tr style="cursor: pointer" onclick="selectNotice(${i})"><td><span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}</td></tr>`; });
+		world[here].notices.forEach((v, i) => {
+			nText += `
+   				<tr style="cursor: pointer" onclick="selectNotice(${i})">
+       					<td>
+	    					<span${v.expiry - time.full < 3 ? ` style="color: #F66"` : ""}>&#9655;</span> ${v.advert}
+	  				</td>
+       				</tr>`;
+		});
 		nText += `</table>`;
 	}
 	document.getElementById('noticestab').innerHTML = nText;
@@ -215,7 +259,7 @@ function displayPlanet() {
   		${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	let pText = "";
-	const pFacts = [ ["Name", w.name],
+	//const pFacts = [ ["Name", w.name],
 		["Government", w.gov],
 		["Population", w.poptext],
 		["Economy", w.focus],
@@ -223,9 +267,21 @@ function displayPlanet() {
 		["Planet Type", w.type],
 		["Orbital Period", `$(Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
 		["Largest Settlement", w.city[0]] ];
-	if (w.gov == "Corporate") pFacts[1][1] += `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
-	for (const i of pFacts) {
-		pText += `<tr><td style="vertical-align: top">${i[0]}</td><td class="big" style="text-align: right">${i[1]}</td></tr>`
+	//if (w.gov == "Corporate") pFacts[1][1] += `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>`;
+	for (const i of [
+		["Name", w.name],
+		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
+		["Population", w.poptext],
+		["Economy", w.focus],
+		["Size", ["Small", "Medium", "Large"][w.size - 1]],
+		["Planet Type", w.type],
+		["Orbital Period", `$(Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
+		["Largest Settlement", w.city[0]] ]) {
+		pText += `
+  			<tr>
+     				<td style="vertical-align: top">${i[0]}</td>
+	  			<td class="big" style="text-align: right">${i[1]}</td>
+      			</tr>`;
 	}
 	document.getElementById('planettab').innerHTML = `<table width="100%">${pText}</table>`;
 }
@@ -251,15 +307,15 @@ function chooseTab(evt, tab) {
 
 // ------ Comm Displays -------
 
-function displayInfo (type, which) {
+function displayInfo(type, which) {
 	if (!type || !which) return false;
 	let out = "";
 	if (type == "corp") {
 		const c = [...oldCorps, ...newCorps].find(v => v.name == which);
-		out = `<h2>${c.fullname}</h2>`;
 		let out2 = "";
-		goods.forEach(g => {if (g.type == c.name) out2 += `<li onclick='displayInfo("good", "${g.name}")'>${g.name}</li>`});
-		if (out2) out += `<p>Associated Goods:</p>${out2}`;
+		goods.forEach(g => {
+			if (g.type == c.name) out2 += `<li onclick="displayInfo('good', '${g.name}')">${g.name}</li>`; });
+		out = `<h2>${c.fullname}</h2>${out2 ? `<p>Associated Goods:</p>${out2}` : ""}`;
 	}
 	if (type == "world") {
 		const w = world.find(v => v.name == which);
@@ -267,14 +323,20 @@ function displayInfo (type, which) {
 			<div class='rotatingPlanetShadow'></div>
 			<p class='huge worldname' style="position:absolute; left:150px"><b>${w.name}</b></p>
 			<img src="images/scapes/${w.file}scape.jpg" style='float: right; vertical-align: top' draggable='false'>
-			<br style='clear:both'><p>${w.text}</p>
+			<br style='clear:both'>
+   			<p>${w.text}</p>
 			<table>`;
-				for (let i of [["Government", `<span onclick='displayInfo("gov", "${w.gov}")'>${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick='displayInfo("corp", "${w.govdesc}")'>${w.govdesc}</span>)` : ""}`], ["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")], ["Economic Focus", `<span onclick='displayInfo("economy", "${w.focus}")'>${w.focus}</span>`], ["Planet Type", `${['Small','Medium','Large'][w.size - 1]} ${w.type} world`], ["Settlements", w.city.join("<br>")]]) {
-					out += `<tr>
-						<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
-						<td class='enlarged'><b>${i[1]}</b></td>
-					</tr>`
-				}
+		for (const i of [
+			["Government", `<span onclick="displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == 'Corporate' ? ` (Owned by <span onclick="displayInfo('corp', '${w.govdesc}')">${w.govdesc}</span>)` : ""}`],
+			["Population", w.poptext.replace(/k/, ",000").replace(/M/, " million").replace(/B/, " billion")],
+			["Economic Focus", `<span onclick="displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
+			["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
+			["Settlements", w.city.join("<br>")] ]) {
+			out += `<tr>
+				<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
+				<td class='enlarged'><b>${i[1]}</b></td>
+			</tr>`;
+		}
 		out += `</table>`;
 	}
 	if (type == "gov") {
