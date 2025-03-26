@@ -252,9 +252,9 @@ function displayPlanet() {
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	document.getElementById('planettab').innerHTML = `<table width="100%">${[
 		["Name", `<span class="clickable" onclick="displayComm(7); displayInfo('world', '${w.name}')">${w.name}</span>`],
-		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="clickable reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
+		["Government", `<span class="clickable" onclick="displayComm(7); displayInfo('gov', '${w.gov}')">${w.gov}</span>${w.gov == "Corporate" ? `<br><span class="clickable reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
 		["Population", w.poptext],
-		["Economy", `<span class="clickable" onclick="displayComm(7); displayInfo('economy', '${w.focus}')">${w.name}</span>`],
+		["Economy", `<span class="clickable" onclick="displayComm(7); displayInfo('economy', '${w.focus}')">${w.focus}</span>`],
 		["Size", ["Small", "Medium", "Large"][w.size - 1]],
 		["Planet Type", w.type],
 		["Orbital Period", `${Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
