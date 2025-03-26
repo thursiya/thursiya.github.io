@@ -359,7 +359,7 @@ function drawUI () {
 									Forthcoming...
 								</div>
 							</td>
-							<td id='infoDBText' style='width: 810px; vertical-align: top; overflow-y: auto; position: relative'>
+							<td id='infoDBText' style='vertical-align: top; overflow-y: auto; position: relative'>
 							<br><br><i>Choose a topic to view information...</i>
 							</td>
 						</tr></table>
