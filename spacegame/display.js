@@ -231,7 +231,7 @@ function displayNotices() {
 	world[here].notices.slice().forEach(v => {
 		if (v.expiry <= time.full) world[here].notices.splice(world[here].notices.findIndex(n => n == v), 1); });
 	if (world[here].notices.length > 0) {
-		nText = `<table class="menutable hoverable" width="100%"><tr></tr>`;
+		nText = `<table class="menutable hoverable" width="100%">`;
 		world[here].notices.forEach((v, i) => {
 			nText += `
    				<tr style="cursor: pointer" onclick="selectNotice(${i})">
@@ -324,16 +324,26 @@ function displayInfo(type, which) {
 			["Planet Type", `${['Small', 'Medium', 'Large'][w.size - 1]} ${w.type} world`],
 			["Settlements", w.city.join("<br>")] ]) {
 			out += `<tr>
-				<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
-				<td class='enlarged'><b>${i[1]}</b></td>
-			</tr>`;
+					<td style='width: 170px; text-align: right; vertical-align: top'>${i[0]}</td>
+					<td class='enlarged'><b>${i[1]}</b></td>
+				</tr>`;
 		}
 		out += `</table>`;
 	}
 	if (type == "gov") {
 		const g = illegalGoods(which);
-		out = `<h2><img src="images/govs/${which}.png" draggable="false" style="vertical-align:middle"> ${which}</h2><p>Tax Rates: <i>${which == "Anarchy" ? "Low" : which == "Democracy" ? "High" : "Average"}</i></p><p>Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p><img src="images/goods/${goods[g[0]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[0]].name} (${goods[g[0]].type}`}`;
-		for (let i = 1; i < g.length; i++) out += (goods[g[i - 1]].name == goods[g[i]].name) ? `, ${goods[g[i]].type}` : `)<br><img src="images/goods/${goods[g[i]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[i]].name} (${goods[g[i]].type}`;
+		out = `<h2>
+  				<img src="images/govs/${which}.png" draggable="false" style="vertical-align:middle"> ${which}
+      			</h2>
+	 		<p>
+    				Tax Rates: <i>${which == "Anarchy" ? "Low" : which == "Democracy" ? "High" : "Average"}</i>
+			</p>
+   			<p>
+      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p>
+	  				<img src="images/goods/${goods[g[0]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[0]].name} (${goods[g[0]].type}`}`;
+		for (let i = 1; i < g.length; i++) {
+			out += (goods[g[i - 1]].name == goods[g[i]].name) ? `, ${goods[g[i]].type}` : `)<br><img src="images/goods/${goods[g[i]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[i]].name} (${goods[g[i]].type}`;
+		}
 		if (g.length > 0) out += `)`;
 		if (which == "Military") out += `<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>`;
 	}
