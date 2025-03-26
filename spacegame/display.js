@@ -251,10 +251,10 @@ function displayPlanet() {
   		${w.text}`;
 	document.getElementById('wbmTaxrate').innerHTML = (w.tax * 100).toFixed(0);
 	document.getElementById('planettab').innerHTML = `<table width="100%">${[
-		["Name", w.name],
-		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
+		["Name", `<span class="clickable" onclick="displayComm(7); displayInfo('world', '${w.name}')">${w.name}</span>`],
+		["Government", `${w.gov}${w.gov == "Corporate" ? `<br><span class="clickable reduced" onclick="displayComm(7); displayInfo('corp', '${w.govdesc}')">(${oldCorps.find(v => v.name == w.govdesc).fullname})</span>` : ""}`],
 		["Population", w.poptext],
-		["Economy", w.focus],
+		["Economy", `<span class="clickable" onclick="displayComm(7); displayInfo('economy', '${w.focus}')">${w.name}</span>`],
 		["Size", ["Small", "Medium", "Large"][w.size - 1]],
 		["Planet Type", w.type],
 		["Orbital Period", `${Math.ceil(seed / (here + 1) % 500 + 60 + here)} days`],
