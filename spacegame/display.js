@@ -40,7 +40,7 @@ function systemArrival(planetID) {
 
 	// Update world tooltip text
 	world.forEach((v, i) => {
-		const dist = starlane[findLand(i, planetID)]?.distance;
+		const dist = starlane[findLane(i, planetID)]?.distance;
 		document.getElementById(`planet${i}info`).innerHTML = `
   			<span style='color: #CCF; font-variant: small-caps'>${v.gov}</span><br>
      			<i>${dist ? `Dist: ${dist}<br>(${Math.ceil(dist / travelSpeed)} h)` :
