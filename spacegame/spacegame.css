@@ -16,7 +16,7 @@ th { color: #DDD; }
 	padding: 2px;
 	text-align: left; }
 
-table.hoverable tr:not(:first-child):hover { background-color: #999; }
+table.hoverable tr:hover { background-color: #999; }
 
 table.redheader th { background: #633; }
 table.greenheader th { background: #363; }
