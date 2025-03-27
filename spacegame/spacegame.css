@@ -4,7 +4,9 @@ body { cursor: default; }
 
 .menutable { border-collapse: collapse; }
 .menutable td, .menutable th { border: 1px solid #000; }
-th, td { padding: 5px; }
+th, td { 
+	padding: 5px;
+	text-align: top; }
 th { color: #DDD; }
 
 .market {
