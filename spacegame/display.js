@@ -417,7 +417,7 @@ function updateAccountsDisplay() {
 		   			<td rowspan="${v.length}"><i>${v[0].name}</i></td>
        					${v.reduce((t2, v2) => `${t2}
 	   					<td><i>${v2.note}</i></td>
-						<td style="text-align: right">${v2.amount}</td>`, "")}
+						<td style="text-align: right">${v2.amount}</td></tr><tr>`, "")}
      				</tr>`, "")
 			}
   		</table>`;
