@@ -416,30 +416,9 @@ function updateAccountsDisplay() {
 	}
 
 function updateManifest() {
-	//let out = "";
 	const passengers = ship.flat().filter(v => v.name && v.room == "living");
 	const cargo = ship.flat().filter(v => v.name && v.room == "cargohold");
-	/*for (const x of ship) {
-		for (const s of x) {
-			if ('name' in s) {
-				if (s.room == 'living') passengers.push(s);
-				if (s.room == 'cargohold') cargo.push(s);
-			}
-		}
-	}
-	if (passengers.length) {
-		out += "<table class='menutable blueheader hoverable'><tr><th width='300px'>Passenger</th><th width='150px'>Origin</th><th width='150px'>Destination</th></tr>";
-		passengers.forEach(v => {out += `<tr><td>${person[v.name].name}</td><td>${world[v.origin].name}</td><td>${world[v.dest].name}</td></tr>`});
-		out += "</table><br><br>";
-	}
-	if (cargo.length) {
-		out += `<table class='menutable greenheader hoverable'><tr><th width='500px'>Cargo</th><th width='120px'>Origin</th><th width='120px'>Destination</th><th width='90px'>Price</th></tr>`;
-		cargo.forEach(v => {out += `<tr><td>${capitalize(v.type)} ${v.name}${v.id ? ` (<span style='font-variant: small-caps'>id:</span> <span style='font-family: monospace'>${v.id}</span>)` : ``}</td><td>${world[v.origin].name}</td><td>${Number.isInteger(v.dest) ? world[v.dest].name : v.dest}</td><td style='text-align: right'>${v.price}</td></tr>`});
-		out += `</table>`;
-	}
-	if (!passengers.length && !cargo.length) out = `<h2 style='text-align: center'><i>... Ship is Currently Empty ...</i></h2>`;
-	document.getElementById('commManifest').innerHTML = out; */
-	document.getElementById('commManifest').innerHTML = (!passengers.length && !cargo.length) ? `<h2 style='text-align: center'><i>... Ship is Currently Empty ...</i></h2>` :
+	document.getElementById('commManifest').innerHTML = (!passengers.length && !cargo.length) ? `<h2 style="text-align: center"><i>... Ship is Currently Empty ...</i></h2>` :
 		`${passengers.length ? `<table class="menutable blueheader hoverable">
   				<tr>
      					<th width="300px">Passenger</th>
@@ -447,7 +426,7 @@ function updateManifest() {
      					<th width="150px">Destination</th>
 		 		</tr>
     				${passengers.reduce((t, v) => `${t}<tr>
-       					<td>${v.name}</td>
+       					<td>${person[v.name].name}</td>
 	   				<td>${world[v.origin].name}</td>
 					<td>${world[v.dest].name}</td>
     				</tr>`, "")}
