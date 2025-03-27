@@ -378,10 +378,18 @@ function displayInfo(type, which) {
 	document.getElementById('commContent').scrollTop = 0;
 }
 
-function updateNewsfeed () {
-	let out = "";
-	for (let n of newsItem) out += `<tr><td>${displayTime(n.time)}</td><td>${n.headline}</td></tr>`;
-	document.getElementById('commNewsfeed').innerHTML = `<table class='menutable redheader hoverable'><tr><th width='120px'>Time</th><th width='500px'>News Headline</th></tr>${out}</table>`;
+function updateNewsfeed() {
+	document.getElementById('commNewsfeed').innerHTML = `
+ 		<table class="menutable redheader hoverable">
+   			<tr>
+      				<th width="120px">Time</th>
+	  			<th width="100%">News Headline</th>
+      			</tr>
+	 		${newsItem.reduce((t, v) => `${t}<tr>
+    				<td>${displayTime(v.time)}</td>
+				<td>${v.headline}</td>
+    			</tr>`, "")}
+    		</table>`;
 }
 
 function updateAccountsDisplay () {
