@@ -344,7 +344,35 @@ function displayInfo(type, which) {
 	}
 	if (type == "good") {
 		const g = goods.filter(v => v.name == which);
-		out = `<h2><img src="images/goods/${goods.find(g => g.name == which).file}.png" draggable="false" style="vertical-align: middle; width: 64px"> ${which}</h2><p>${g[0].desc}</p>`;
+		out = `<h2>
+  				<img src="images/goods/${g[0].file}.png" draggable="false" style="image-rendering: pixelated; vertical-align: middle; width: 64px"> ${which}
+     			</h2>
+			<p>${g[0].desc}</p>
+   			${"stat" in g[0] ? `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({ 
+				"cold": "must be kept in cold storage",
+				"dangerous": "damaged cargo poses a threat to ship",
+				"live": "must be kept in life support",
+				"sensitive": "damaged cargo is not salvageable" })[g[0].stat]})</i></p>` : ""}
+			<table class="menutable greenheader hoverable">
+   				<tr>
+       					<th>Variety</th>
+	    				<th>Base Price</th>
+	 				<th>Supply</th>
+      					<th>Demand</th>
+	   			</tr>
+       				${g.reduce((t, v) =>
+					`${t}<tr>
+     						<td>${v.type}</td>
+	   					<td style="text-align: center">${v.price}</td>
+	 					<td style="text-align: center">${v.produce}</td>
+       						<td style="text-align: center">${v.demand}</td>
+	     				</tr>`, "")}
+			</table>
+   			<p class="reduced" style="font-variant: small-caps">
+      				<i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming
+	  		</p>`;
+
+		/*
 		if ('stat' in g[0]) out += `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({"cold": "must be kept in cold storage",
 			"dangerous": "damaged cargo poses a threat to ship",
 			"live": "must be kept in life support",
@@ -352,6 +380,7 @@ function displayInfo(type, which) {
 		out += `<table class="menutable greenheader hoverable"><tr><th>Variety</th><th>Base Price</th><th>Supply</th><th>Demand</th></tr>`;
 		for (let i of g) out += `<tr><td>${i.type}</td><td style="text-align: center">${i.price}</td><td style="text-align: center">${i.produce}</td><td style="text-align: center">${i.demand}</td></tr>`;
 		out += `</table><p class="reduced" style="font-variant: small-caps"><i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming</p>`;
+  */
 	}
 	
 	document.getElementById('infoDBText').innerHTML = out;
