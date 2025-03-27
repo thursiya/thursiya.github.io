@@ -289,9 +289,10 @@ function displayInfo(type, which) {
 	if (type == "corp") {
 		const c = [...oldCorps, ...newCorps].find(v => v.name == which);
 		out = `<h2>${c.fullname}</h2>
-  			${goods.some(v => v.type == c.name) ? `<p>Associated Goods:</p><div style="margin-left: 20px">
+  			${goods.some(v => v.type == c.name) ? `<div>Associated Goods:</div><div style="margin-left: 20px">
      				${goods.filter(v => v.type == c.name).reduce((t, v, i) =>
-					`${t}<p><span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v.name}</span></p>`, "")}</div>` : ""}`;
+					`${t}<span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v.name}</span><br>`, "")}
+     				</div>` : ""}`;
 	}
 	if (type == "world") {
 		const w = world.find(v => v.name == which);
@@ -324,7 +325,7 @@ function displayInfo(type, which) {
    			<div>
       				Illegal Goods:${which == "Anarchy" ? " <i>None</i></div>" : `</div><div style="margin-left: 20px">
 	  				${Object.values(illegalGoods(which).map(v => goods[v]).reduce((t, v) => Object.assign(t, { [v.name]: t[v.name] ? [...t[v.name], v] : [v] }), {})).reduce((t, v) =>
-						`${t}<img src="images/goods/${v[0].file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v[0].name} (${v.map(v2 => v2.type).join(", ")})<br>`, "")}</div>`}
+						`${t}<span class="clickable" onclick="displayInfo('good', '${v[0].name}')"><img src="images/goods/${v[0].file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v[0].name} (${v.map(v2 => v2.type).join(", ")})</span><br>`, "")}</div>`}
       			${which == "Military" ? "<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>" : ""}`;
 	}
 	if (type == "economy") {
@@ -362,7 +363,7 @@ function displayInfo(type, which) {
 	   			</tr>
        				${g.reduce((t, v) =>
 					`${t}<tr>
-     						<td>${v.type}</td>
+     						<td>${oldCorps.maps(v => v.name).includes(v.type) ? `<span class="clickable" onclick="displayInfo('corp', '${v.type}')">${v.type}</span>` : v.type}</td>
 	   					<td style="text-align: center">${v.price}</td>
 	 					<td style="text-align: center">${v.produce}</td>
        						<td style="text-align: center">${v.demand}</td>
@@ -371,16 +372,6 @@ function displayInfo(type, which) {
    			<p class="reduced" style="font-variant: small-caps">
       				<i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming
 	  		</p>`;
-
-		/*
-		if ('stat' in g[0]) out += `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({"cold": "must be kept in cold storage",
-			"dangerous": "damaged cargo poses a threat to ship",
-			"live": "must be kept in life support",
-			"sensitive": "damaged cargo is not salvageable"})[g[0].stat]})</i></p>`;
-		out += `<table class="menutable greenheader hoverable"><tr><th>Variety</th><th>Base Price</th><th>Supply</th><th>Demand</th></tr>`;
-		for (let i of g) out += `<tr><td>${i.type}</td><td style="text-align: center">${i.price}</td><td style="text-align: center">${i.produce}</td><td style="text-align: center">${i.demand}</td></tr>`;
-		out += `</table><p class="reduced" style="font-variant: small-caps"><i><b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming</p>`;
-  */
 	}
 	
 	document.getElementById('infoDBText').innerHTML = out;
