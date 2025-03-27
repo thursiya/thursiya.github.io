@@ -393,14 +393,6 @@ function updateNewsfeed() {
 }
 
 function updateAccountsDisplay() {
-	/*let out = "", p;
-	transactionRecord.forEach((v, i) => {
-		if (i > 0) p = transactionRecord[i - 1];
-		out += `<tr>${(i > 0 && p.time == v.time && p.name == v.name) ? `<td colspan='3' style='text-align: center'>` : `<td>${v.time}</td><td>${v.location}</td><td>${v.name}`}</td><td><i>${v.note}</i></td><td style='text-align: right'>${v.amount}</td></tr>`;
-	});
-	document.getElementById('commAccounts').innerHTML = `<table class='menutable yellowheader hoverable'><tr><th width='120px'>Time</th><th width='120px'>Location</th><th width='200px'>Name</th><th width='500px'>Note</th><th width='80px'>Amount</th></tr>${out}</table>`;
-	*/
-	
 	document.getElementById('commAccounts').innerHTML = `<table class='menutable yellowheader hoverable'>
  			<tr>
    				<th width="120px">Time</th>
@@ -423,10 +415,12 @@ function updateAccountsDisplay() {
   		</table>`;
 	}
 
-function updateManifest () {
-	let out = "", passengers = [], cargo = [];
-	for (let x of ship) {
-		for (let s of x) {
+function updateManifest() {
+	//let out = "";
+	const passengers = ship.flat().filter(v => v.name && v.room == "living");
+	const cargo = ship.flat().filter(v => v.name && v.room == "cargohold");
+	/*for (const x of ship) {
+		for (const s of x) {
 			if ('name' in s) {
 				if (s.room == 'living') passengers.push(s);
 				if (s.room == 'cargohold') cargo.push(s);
@@ -444,7 +438,34 @@ function updateManifest () {
 		out += `</table>`;
 	}
 	if (!passengers.length && !cargo.length) out = `<h2 style='text-align: center'><i>... Ship is Currently Empty ...</i></h2>`;
-	document.getElementById('commManifest').innerHTML = out;
+	document.getElementById('commManifest').innerHTML = out; */
+	document.getElementById('commManifest').innerHTML = (!passengers.length && !cargo.length) ? `<h2 style='text-align: center'><i>... Ship is Currently Empty ...</i></h2>` :
+		`${passengers.length ? `<table class="menutable blueheader hoverable">
+  				<tr>
+     					<th width="300px">Passenger</th>
+	 				<th width="150px">Origin</th>
+     					<th width="150px">Destination</th>
+		 		</tr>
+    				${passengers.reduce((t, v) => `${t}<tr>
+       					<td>${v.name}</td>
+	   				<td>${world[v.origin].name}</td>
+					<td>${world[v.dest].name}</td>
+    				</tr>`, "")}
+			</table><br><br>` : ""}
+  		${cargo.length ? `<table class="menutable greenheader hoverable">
+    				<tr>
+					<th width="500px">Cargo</th>
+     					<th width="120px">Origin</th>
+	  				<th width="120px">Destination</th>
+       					<th width="90px">Price</th>
+	    			</tr>
+				${cargo.reduce((t, v) => `${t}<tr>
+    					<td>${capitalize(v.type)} ${v.name}${v.id ? ` (<span style="font-variant: small-caps">id:</span> <span style="font-family: monospace">${v.id}</span>)` : ""}</td>
+	 				<td>${world[v.origin].name}</td>
+      					<td>${world[v.dest]?.name || v.dest}</td>
+	   				<td style="text-align: right">${v.price}</td>
+				</tr>
+    			</table>` : ""}`;
 }
 
 function updateMissionsDisplay () {
