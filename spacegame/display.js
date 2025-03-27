@@ -363,7 +363,7 @@ function displayInfo(type, which) {
 	   			</tr>
        				${g.reduce((t, v) =>
 					`${t}<tr>
-     						<td>${oldCorps.maps(v => v.name).includes(v.type) ? `<span class="clickable" onclick="displayInfo('corp', '${v.type}')">${v.type}</span>` : v.type}</td>
+     						<td>${oldCorps.map(v => v.name).includes(v.type) ? `<span class="clickable" onclick="displayInfo('corp', '${v.type}')">${v.type}</span>` : v.type}</td>
 	   					<td style="text-align: center">${v.price}</td>
 	 					<td style="text-align: center">${v.produce}</td>
        						<td style="text-align: center">${v.demand}</td>
