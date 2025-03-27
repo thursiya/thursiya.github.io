@@ -314,21 +314,27 @@ function displayInfo(type, which) {
 			</table>`;
 	}
 	if (type == "gov") {
-		const g = illegalGoods(which);
+		//const g = Object.values(illegalGoods(which).map(v => goods[v]).reduce((t, v) => Object.assign(t, { [v.name]: t[v.name] ? [...t[v.name], v] : [v] }), {}));
 		out = `<h2>
-  				<img src="images/govs/${which}.png" draggable="false" style="vertical-align:middle"> ${which}
+  				<img src="images/govs/${which}.png" draggable="false" style="vertical-align: middle"> ${which}
       			</h2>
 	 		<p>
-    				Tax Rates: <i>${which == "Anarchy" ? "Low" : which == "Democracy" ? "High" : "Average"}</i>
+    				Tax Rates: <i>${which == "Anarchy" ? "Low" : 
+					which == "Democracy" ? "High" : "Average"}</i>
 			</p>
    			<p>
-      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p>
-	  			<img src="images/goods/${goods[g[0]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[0]].name} (${goods[g[0]].type}`}`;
+      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p><div style="margin-left: 20px">
+	  				${Object.values(illegalGoods(which).map(v => goods[v]).reduce((t, v) => Object.assign(t, { [v.name]: t[v.name] ? [...t[v.name], v] : [v] }), {})).reduce((t, v) =>
+						`${t}<p><img src="images/goods/${v[0].file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v[0].name} (${v.map(v2 => v2.type).join(", ")})</p>`, "")}</div>`}
+      			${which == "Military" ? "<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>" : ""}`;
+		
+	  	/*		`}`;
 		for (let i = 1; i < g.length; i++) {
 			out += (goods[g[i - 1]].name == goods[g[i]].name) ? `, ${goods[g[i]].type}` : `)<br><img src="images/goods/${goods[g[i]].file}.png" draggable="false" style="vertical-align:middle;margin:5px"> ${goods[g[i]].name} (${goods[g[i]].type}`;
 		}
 		if (g.length > 0) out += `)`;
 		if (which == "Military") out += `<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>`;
+  		*/
 	}
 	if (type == "economy") {
 		const e = ({"Affluent": [[72, 17, 55, 60], `Affluent worlds do not normally produce goods unless they are a corporate world, in which case they will produce their own branded perishable goods, consumer goods, liquor, luxury goods, and robots.</p><p>They demand a lot. Affluent society requires lots of high-end vehicles, medicine, robots, animal meat, liquor, luxury goods, consumer goods, government artifacts, and fruit & vegetables. They also need gemstones, grain, hydrogen fuel cells, lumber, top-grade hydroponic farms and perishable goods, and all types of live animals. Democratic worlds will demand better quality goods, while others will pay for upper-end hand weapons and narcotics, large quantities of animal skins, and child, regular, and especially Luxorian slaves.`],
