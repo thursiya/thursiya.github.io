@@ -464,7 +464,7 @@ function updateManifest() {
 	 				<td>${world[v.origin].name}</td>
       					<td>${world[v.dest]?.name || v.dest}</td>
 	   				<td style="text-align: right">${v.price}</td>
-				</tr>
+				</tr>`, "")}
     			</table>` : ""}`;
 }
 
