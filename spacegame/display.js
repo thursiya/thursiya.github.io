@@ -321,8 +321,8 @@ function displayInfo(type, which) {
     				Tax Rates: <i>${which == "Anarchy" ? "Low" : 
 					which == "Democracy" ? "High" : "Average"}</i>
 			</p>
-   			<p>
-      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></p>" : `</p><div style="margin-left: 20px">
+   			<div>
+      				Illegal Goods:${which == "Anarchy" ? " <i>None</i></div>" : `</div><div style="margin-left: 20px">
 	  				${Object.values(illegalGoods(which).map(v => goods[v]).reduce((t, v) => Object.assign(t, { [v.name]: t[v.name] ? [...t[v.name], v] : [v] }), {})).reduce((t, v) =>
 						`${t}<img src="images/goods/${v[0].file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v[0].name} (${v.map(v2 => v2.type).join(", ")})<br>`, "")}</div>`}
       			${which == "Military" ? "<p>Military worlds will demand hand weapons and bacteria farms (if they don't produce them).</p>" : ""}`;
@@ -340,9 +340,10 @@ function displayInfo(type, which) {
 			"Prison": [[17, 51, 66, 86, 59, 94], `Prison worlds produce low-grade consumer goods, iron ore, minerals, and large numbers of forced labourers (especially uneducated and bio-engineered). Expect forestry on desert and especially rocky planets and water extraction on ocean and especially ice worlds. Corporate worlds will produce more of their own branded goods.</p><p>The prison economy buys cheap vehicles, chemicals, heavy plastics, lumber (if not in ready supply), and all types of electronics. The populous subsist off of grain, cheap perishable goods, and lots of synthetic meat.`],
 			"Slum": [[17, 73, 60, 85, 59], `Slum economies produce high-grade consumer goods, moderate to high-grade perishable goods and all types of luxury goods. They will sell all types of slaves, especially children and uneducated, and even a rare Luxorian. Expect forestry on desert and especially rocky planets. Corporate worlds will produce more of their own branded goods.</p><p>Slum worlds demand cheap vehicles and perishable goods, chemicals, gemstones, lumber (on ocean or ice planets), heavy plastics, hydrogen fuel cells, grain, low-grade consumer goods, synthetic meat, all types of electronics, and lots of low quality liquor. Democratic worlds will demand slightly better quality goods, while others buy explosives and lots of hand weapons and narcotics (especially high-grade) where legal.`],
 			"Terraforming": [[16, 51, 66], `Terraforming worlds produce variable amounts of chemicals, iron ore, and minerals.</p><p>These planets demand air processors, farming equipment, fruit & vegetables, hydroponic farms, probes, liquid oxygen, all types of live animals, low-grade robots, and lots of fertilizer and water. The people need low-grade consumer goods, perishable goods, animal and synthetic meat, and cheap medicine. Democratic worlds will demand some better quality goods, while other worlds will buy bacteria farms, explosives, and regular or bio-engineered slaves.`]})[which];
-		out = `<h2>${which} `;
+		out = `<h2>${which} ${e[0].reduce((t, v) => `${t}<img src="images/goods/${goods[v].file}.png" draggable="false" style="vertical-align: middle"> `, "")}</h2><p>${e[1]}</p>`;
+		/*out = `<h2>${which} `;
 		for (let i of e[0]) out += `<img src="images/goods/${goods[i].file}.png" draggable="false" style="vertical-align: middle"> `;
-		out += `</h2><p>${e[1]}</p>`;
+		out += `</h2><p>${e[1]}</p>`;*/
 	}
 	if (type == "good") {
 		const g = goods.filter(v => v.name == which);
