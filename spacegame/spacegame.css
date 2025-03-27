@@ -6,7 +6,7 @@ body { cursor: default; }
 .menutable td, .menutable th { border: 1px solid #000; }
 th, td { 
 	padding: 5px;
-	text-align: top; }
+	vertical-align: top; }
 th { color: #DDD; }
 
 .market {
