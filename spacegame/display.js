@@ -392,14 +392,36 @@ function updateNewsfeed() {
     		</table>`;
 }
 
-function updateAccountsDisplay () {
-	let out = "", p;
+function updateAccountsDisplay() {
+	/*let out = "", p;
 	transactionRecord.forEach((v, i) => {
 		if (i > 0) p = transactionRecord[i - 1];
 		out += `<tr>${(i > 0 && p.time == v.time && p.name == v.name) ? `<td colspan='3' style='text-align: center'>` : `<td>${v.time}</td><td>${v.location}</td><td>${v.name}`}</td><td><i>${v.note}</i></td><td style='text-align: right'>${v.amount}</td></tr>`;
 	});
 	document.getElementById('commAccounts').innerHTML = `<table class='menutable yellowheader hoverable'><tr><th width='120px'>Time</th><th width='120px'>Location</th><th width='200px'>Name</th><th width='500px'>Note</th><th width='80px'>Amount</th></tr>${out}</table>`;
-}
+	*/
+	
+	document.getElementById('commAccounts').innerHTML = `<table class='menutable yellowheader hoverable'>
+ 			<tr>
+   				<th width="120px">Time</th>
+    	  			<th width="120px">Location</th>
+	 			<th width="200px">Name</th>
+    				<th width="500px">Note</th>
+       				<th width="80px">Amount</th>
+		  	</tr>
+    			${transactionRecord.reduce((t, v, i) => {
+				(i > 0 && t[t.length - 1][0].name == v.name) ? t[t.length - 1].push(v) : t.push([v]);
+				return t; }, []).reduce((t, v) => `${t}<tr>
+   					<td rowspan="${v.length}">${v[0].time}</td>
+       					<td rowspan="${v.length}">${v[0].location}</td>
+		   			<td rowspan="${v.length}"><i>${v[0].name}</i></td>
+       					${v.reduce((t2, v2) => `${t2}
+	   					<td><i>${v2.note}</i></td>
+						<td style="text-align: right">${v2.amount}</td>`, "")}
+     				</tr>`, "")
+			}
+  		</table>`;
+	}
 
 function updateManifest () {
 	let out = "", passengers = [], cargo = [];
