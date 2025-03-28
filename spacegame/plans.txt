@@ -1,1 +1,4 @@
 - change hull images to just original full hull file, then reduce it using "clip-path" CSS (#clip { clip-path: polygon(0 0,0 100%,100% 100%); })
+- fix main mission (when client goes missing and you question people at the bar, the people are all the client!)
+- fix pickup setting dest data as the same as origin data (maybe only affects packages)
+- hacking/net access feature
