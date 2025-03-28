@@ -471,7 +471,7 @@ function updateMissionsDisplay() {
        			<td onclick="contactPerson(${v.client})" style="cursor: url('images/buttons/contact.png'), auto">${person[v.client].name}</td>
 	  		<td>${v.summary}</td>
      		</tr>` : "";
-	const tableHeader = `${<table class="menutable redheader hoverable">
+	const tableHeader = `<table class="menutable redheader hoverable">
  			<tr>
     				<th width="170px">Type</th>
 				<th width="120px">Time</th>
