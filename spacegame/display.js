@@ -416,47 +416,52 @@ function updateAccountsDisplay() {
 	}
 
 function updateManifest() {
-	const passengers = ship.flat().filter(v => v.name && v.room == "living");
-	const cargo = ship.flat().filter(v => v.name && v.room == "cargohold");
-	document.getElementById('commManifest').innerHTML = (!passengers.length && !cargo.length) ? `<h2 style="text-align: center"><i>... Ship is Currently Empty ...</i></h2>` :
-		`${passengers.length ? `<table class="menutable blueheader hoverable">
+	const passengers = ship.flat().filter(v => v.name && v.room == "living").reduce((t, v) => `${t}<tr>
+       			<td>${person[v.name].name}</td>
+	   		<td>${world[v.origin].name}</td>
+			<td>${world[v.dest].name}</td>
+    		</tr>`, "");
+	const cargo = ship.flat().filter(v => v.name && v.room == "cargohold").reduce((t, v) => `${t}<tr>
+    			<td>${capitalize(v.type)} ${v.name}${v.id ? ` (<span style="font-variant: small-caps">id:</span> <span style="font-family: monospace">${v.id}</span>)` : ""}</td>
+	 		<td>${world[v.origin].name}</td>
+      			<td>${world[v.dest]?.name || v.dest}</td>
+	   		<td style="text-align: right">${v.price}</td>
+		</tr>`, "");
+	document.getElementById('commManifest').innerHTML = (!passengers && !cargo) ? `<h2 style="text-align: center"><i>... Ship is Currently Empty ...</i></h2>` :
+		`${passengers ? `<table class="menutable blueheader hoverable">
   				<tr>
      					<th width="300px">Passenger</th>
 	 				<th width="150px">Origin</th>
      					<th width="150px">Destination</th>
 		 		</tr>
-    				${passengers.reduce((t, v) => `${t}<tr>
-       					<td>${person[v.name].name}</td>
-	   				<td>${world[v.origin].name}</td>
-					<td>${world[v.dest].name}</td>
-    				</tr>`, "")}
+    				${passengers}
 			</table><br><br>` : ""}
-  		${cargo.length ? `<table class="menutable greenheader hoverable">
+  		${cargo ? `<table class="menutable greenheader hoverable">
     				<tr>
 					<th width="500px">Cargo</th>
      					<th width="120px">Origin</th>
 	  				<th width="120px">Destination</th>
        					<th width="90px">Price</th>
 	    			</tr>
-				${cargo.reduce((t, v) => `${t}<tr>
-    					<td>${capitalize(v.type)} ${v.name}${v.id ? ` (<span style="font-variant: small-caps">id:</span> <span style="font-family: monospace">${v.id}</span>)` : ""}</td>
-	 				<td>${world[v.origin].name}</td>
-      					<td>${world[v.dest]?.name || v.dest}</td>
-	   				<td style="text-align: right">${v.price}</td>
-				</tr>`, "")}
+				${cargo}
     			</table>` : ""}`;
 }
 
-function updateMissionsDisplay () {
+function updateMissionsDisplay() {
 	let out = "";
-	function mText (arr) {
+	function mText(arr) {
 		let missions = "";
 		for (let m of arr) if (m.summary) missions += `<tr><td>${m.name}</td><td>${m.timetext}</td><td onclick='contactPerson(${m.client})' style='cursor: url("images/buttons/contact.png"), auto'>${person[m.client].name}</td><td>${m.summary}</td></tr>`;
 		return missions;
 	}
-	let m1 = mText(mission);
-	let m2 = mText(oldmission);
-	let t = `<table class='menutable redheader hoverable'><tr><th width='170px'>Type</th><th width='120px'>Time</th><th width='200px'>Contact</th><th width='500px'>Summary</th>`;
+	const m1 = mText(mission);
+	const m2 = mText(oldmission);
+	let t = `<table class="menutable redheader hoverable">
+ 			<tr>
+    				<th width="170px">Type</th>
+				<th width="120px">Time</th>
+    				<th width="200px">Contact</th>
+				<th width="500px">Summary</th>`;
 	out += (m1) ? `${t}${m1}</table>` : `<h2 style='text-align: center'><i>... No Active Missions ...</i></h2>`;
 	if (m2) out += `<br><br><div style='text-align: center'><b><i>Old Missions</i></b></div>${t}${m2}</table>`;
 	document.getElementById('commMissions').innerHTML = out;
