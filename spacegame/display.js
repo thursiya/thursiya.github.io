@@ -465,12 +465,12 @@ function updateMissionsDisplay() {
 	out += (m1) ? `${t}${m1}</table>` : `<h2 style='text-align: center'><i>... No Active Missions ...</i></h2>`;
 	if (m2) out += `<br><br><div style='text-align: center'><b><i>Old Missions</i></b></div>${t}${m2}</table>`;
 	document.getElementById('commMissions').innerHTML = out;*/
-	const reducer = (t, v) => t + v.summary ? `<tr>
+	const reducer = (t, v) => `${t}${v.summary ? `<tr>
  			<td>${v.name}</td>
     			<td>${v.timetext}</td>
        			<td onclick="contactPerson(${v.client})" style="cursor: url('images/buttons/contact.png'), auto">${person[v.client].name}</td>
 	  		<td>${v.summary}</td>
-     		</tr>` : "";
+     		</tr>` : ""}`;
 	const tableHeader = `<table class="menutable redheader hoverable">
  			<tr>
     				<th width="170px">Type</th>
