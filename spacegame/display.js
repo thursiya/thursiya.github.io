@@ -478,8 +478,8 @@ function updateMissionsDisplay() {
     				<th width="200px">Contact</th>
 				<th width="500px">Summary</th>
 			</tr>`;
-	const m1 = mission.reduce((t, v) => reducer, "");
-	const m2 = oldmission.reduce((t, v) => reducer, "");
+	const m1 = mission.reduce(reducer, "");
+	const m2 = oldmission.reduce(reducer, "");
 	document.getElementById('commMissions').innerHTML = (m1 ? `${tableHeader}${m1}</table>` : `<h2 style="text-align: center"><i>... No Active Missions ...</i></h2>`) + 
 		(m2 ? `${tableHeader}${m2}</table>` : "");
 }
