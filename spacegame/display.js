@@ -448,7 +448,7 @@ function updateManifest() {
 }
 
 function updateMissionsDisplay() {
-	let out = "";
+	/*let out = "";
 	function mText(arr) {
 		let missions = "";
 		for (let m of arr) if (m.summary) missions += `<tr><td>${m.name}</td><td>${m.timetext}</td><td onclick='contactPerson(${m.client})' style='cursor: url("images/buttons/contact.png"), auto'>${person[m.client].name}</td><td>${m.summary}</td></tr>`;
@@ -464,7 +464,24 @@ function updateMissionsDisplay() {
 				<th width="500px">Summary</th>`;
 	out += (m1) ? `${t}${m1}</table>` : `<h2 style='text-align: center'><i>... No Active Missions ...</i></h2>`;
 	if (m2) out += `<br><br><div style='text-align: center'><b><i>Old Missions</i></b></div>${t}${m2}</table>`;
-	document.getElementById('commMissions').innerHTML = out;
+	document.getElementById('commMissions').innerHTML = out;*/
+	const reducer = (t, v) => t + v.summary ? `<tr>
+ 			<td>${v.name}</td>
+    			<td>${v.timetext}</td>
+       			<td onclick="contactPerson(${v.client})" style="cursor: url('images/buttons/contact.png'), auto">${person[v.client].name}</td>
+	  		<td>${v.summary}</td>
+     		</tr>` : "";
+	const tableHeader = `${<table class="menutable redheader hoverable">
+ 			<tr>
+    				<th width="170px">Type</th>
+				<th width="120px">Time</th>
+    				<th width="200px">Contact</th>
+				<th width="500px">Summary</th>
+			</tr>`;
+	const m1 = mission.reduce((t, v) => reducer, "");
+	const m2 = oldmission.reduce((t, v) => reducer, "");
+	document.getElementById('commMissions').innerHTML = (m1 ? `${tableHeader}${m1}</table>` : `<h2 style="text-align: center"><i>... No Active Missions ...</i></h2>`) + 
+		(m2 ? `${tableHeader}${m2}</table>` : "");
 }
 
 function updateContactsDisplay () {
