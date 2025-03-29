@@ -448,23 +448,6 @@ function updateManifest() {
 }
 
 function updateMissionsDisplay() {
-	/*let out = "";
-	function mText(arr) {
-		let missions = "";
-		for (let m of arr) if (m.summary) missions += `<tr><td>${m.name}</td><td>${m.timetext}</td><td onclick='contactPerson(${m.client})' style='cursor: url("images/buttons/contact.png"), auto'>${person[m.client].name}</td><td>${m.summary}</td></tr>`;
-		return missions;
-	}
-	const m1 = mText(mission);
-	const m2 = mText(oldmission);
-	let t = `<table class="menutable redheader hoverable">
- 			<tr>
-    				<th width="170px">Type</th>
-				<th width="120px">Time</th>
-    				<th width="200px">Contact</th>
-				<th width="500px">Summary</th>`;
-	out += (m1) ? `${t}${m1}</table>` : `<h2 style='text-align: center'><i>... No Active Missions ...</i></h2>`;
-	if (m2) out += `<br><br><div style='text-align: center'><b><i>Old Missions</i></b></div>${t}${m2}</table>`;
-	document.getElementById('commMissions').innerHTML = out;*/
 	const reducer = (t, v) => `${t}${v.summary ? `<tr>
  			<td>${v.name}</td>
     			<td>${v.timetext}</td>
@@ -484,11 +467,32 @@ function updateMissionsDisplay() {
 		(m2 ? `<br><br><div style="text-align: center"><b><i>Old Missions</i></b></div>${tableHeader}${m2}</table>` : "");
 }
 
-function updateContactsDisplay () {
-	let out = "", people = [];
-	person.forEach((v, i) => {if (v.contact > -1) people.push([v.lastname + v.firstname, `<tr><td onclick='contactPerson(${i})' style='cursor: url("images/buttons/contact.png"), auto'><img src='images/people/${v.image}.png' style='filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px' draggable='false'> &nbsp;${v.name}</td><td>${v.title}</td><td>${v.org}</tr>`])});
-	people.sort().forEach(v => {out += v[1]});
-	document.getElementById('commContacts').innerHTML = `<table class='menutable blueheader hoverable'><tr><th width='250px'>Contact</th><th width='180px'>Title</th><th width='400px'>Organization</th>${out}</table>`;
+function updateContactsDisplay() {
+	/*let out = "";
+	const people = [];
+	person.forEach((v, i) => {
+		if (v.contact > -1) people.push([v.lastname + v.firstname, `<tr>
+  				<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
+      					<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
+	   			</td>
+       				<td>${v.title}</td>
+	   			<td>${v.org}</td>
+       			</tr>`])});
+	// Sort people array alphabetically
+	people.sort().forEach(v => {out += v[1]});*/
+	document.getElementById('commContacts').innerHTML = `<table class="menutable blueheader hoverable">
+ 			<tr>
+    				<th width="250px">Contact</th>
+				<th width="180px">Title</th>
+    				<th width="400px">Organization</th>
+				${person.filter(v => v.contact > -1).map((v, i) => [v.lastname + v.firstname, `<tr>
+    						<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
+	  						<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
+						</td>
+      						<td>${v.title}</td>
+	    					<td>${v.org}</td>
+	  				</tr>`]).sort().reduce((t, v) => `${t}${v[1]}`, "")}
+    		</table>`;
 }
 
 function displayNews () {
