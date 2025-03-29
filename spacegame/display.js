@@ -492,13 +492,29 @@ function updateContactsDisplay() {
       						<td>${v.title}</td>
 	    					<td>${v.org}</td>
 	  				</tr>`]).sort().reduce((t, v) => `${t}${v[1]}`, "")}
+       				${person.reduce((t, v, i) => v.contact > -1 ? [...t, [v.lastname + v.firstname, `<tr>
+    						<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
+	  						<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
+						</td>
+      						<td>${v.title}</td>
+	    					<td>${v.org}</td>
+	  				</tr>`]] : t, []).sort().reduce((t, v) => `${t}${v[1]}`, "")}
     		</table>`;
 }
 
-function displayNews () {
-	let out = "";
-	newsItem.forEach(v => {out += `<tr><td>${displayTime(v.time)}</td><td>${v.headline}</td></tr>`});
-	return `<table class='menutable redheader hoverable'><tr><th width='120px'>Time</th><th width='500px'>News Headline</th></tr>${out}</table>`;
+function displayNews() {
+	//let out = "";
+	//newsItem.forEach(v => {out += `<tr><td>${displayTime(v.time)}</td><td>${v.headline}</td></tr>`});
+	return `<table class="menutable redheader hoverable">
+ 			<tr>
+    				<th width="120px">Time</th>
+				<th width="100%">News Headline</th>
+    			</tr>
+       			${newsItem.reduce((t, v) => `${t}<tr>
+	  				<td>${displayTime(v.time)}</td>
+       					<td>${v.headline}</td>
+	    			</tr>`, "")}
+	  	</table>`;
 }
 
 function displayTransactions () {
