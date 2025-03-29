@@ -468,18 +468,6 @@ function updateMissionsDisplay() {
 }
 
 function updateContactsDisplay() {
-	/*let out = "";
-	const people = [];
-	person.forEach((v, i) => {
-		if (v.contact > -1) people.push([v.lastname + v.firstname, `<tr>
-  				<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
-      					<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
-	   			</td>
-       				<td>${v.title}</td>
-	   			<td>${v.org}</td>
-       			</tr>`])});
-	// Sort people array alphabetically
-	people.sort().forEach(v => {out += v[1]});*/
 	document.getElementById('commContacts').innerHTML = `<table class="menutable blueheader hoverable">
  			<tr>
     				<th width="250px">Contact</th>
@@ -496,8 +484,6 @@ function updateContactsDisplay() {
 }
 
 function displayNews() {
-	//let out = "";
-	//newsItem.forEach(v => {out += `<tr><td>${displayTime(v.time)}</td><td>${v.headline}</td></tr>`});
 	return `<table class="menutable redheader hoverable">
  			<tr>
     				<th width="120px">Time</th>
@@ -510,12 +496,22 @@ function displayNews() {
 	  	</table>`;
 }
 
-function displayTransactions () {
+// UNUSED ???
+/*function displayTransactions() {
 	if (!transactionRecord[0]) return `<h2 style='text-align: center'><i>... No Logged Transactions ...</i></h2>`;
 	let out = "", p;
 	transactionRecord.forEach((v, i) => {
 		if (i > 0) p = transactionRecord[i - 1];
 		out += `<tr>${(i > 0 && p.time == v.time && p.name == v.name) ? `<td colspan='3' style='text-align: center'>` : `<td>${v.time}</td><td>${v.location}</td><td>${v.name}`}</td><td><i>${v.note}</i></td><td style='text-align: right'>${v.amount}</td></tr>`;
 	});
-	return `<table class='menutable yellowheader hoverable'><tr><th width='120px'>Time</th><th width='120px'>Location</th><th width='200px'>Name</th><th width='500px'>Note</th><th width='80px'>Amount</th></tr>${out}</table>`;
-}
+	return (transactionRecord[0]) ? `<table class="menutable yellowheader hoverable">
+ 			<tr>
+    				<th width="120px">Time</th>
+				<th width="120px">Location</th>
+    				<th width="200px">Name</th>
+				<th width="500px">Note</th>
+    				<th width="80px">Amount</th>
+			</tr>
+   			${}
+      		</table>` : `<h2 style="text-align: center"><i>... No Logged Transactions ...</i></h2>`;
+}*/
