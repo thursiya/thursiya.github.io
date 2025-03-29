@@ -97,18 +97,19 @@ const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P,
 ];
 
 // Called by 'addMission()' when determining cargo
-function chooseGoods (query, location = here, flag) {
-	let arr = [];
-	
+function chooseGoods(query, location = here, flag) {
+	const arr = [];
+
+	// If number is passed to function, convert into matching person, then convert into appropriate class of goods depending on person's moral compass
 	if (Number.isInteger(query)) {
-		var p = validatePerson(query);
+		const p = validatePerson(query);
 		query = (p) ? (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" : (p.rep > 60 && rnd(3) < p.risk && rnd(3) + 2 > p.moral) ? "all" : "legal" : "legal";
 	}
 	
-	let illegals = illegalGoods(world[location].gov);
+	const illegals = illegalGoods(world[location].gov);
 	if (query == 'illegal' && world[location].gov == 'Anarchy') illegals = [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])];
 	
-	let suppliedGoods = world[location].goods.map(g => g.supply > 0 && g.stat != 'illegal' ? g.type + g.name : false);
+	const suppliedGoods = world[location].goods.map(g => (g.supply > 0 && g.stat != 'illegal') ? g.type + g.name : false);
 	goods.forEach((g, i) => {
 		if (suppliedGoods.includes(g.type + g.name)) return;	// Skip supplied goods
 		if (p && query != 'illegal') {
