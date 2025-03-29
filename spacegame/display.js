@@ -485,20 +485,13 @@ function updateContactsDisplay() {
     				<th width="250px">Contact</th>
 				<th width="180px">Title</th>
     				<th width="400px">Organization</th>
-				${person.filter(v => v.contact > -1).map((v, i) => [v.lastname + v.firstname, `<tr>
+				${person.reduce((t, v, i) => v.contact > -1 ? [...t, [v.lastname + v.firstname, `<tr>
     						<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
 	  						<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
 						</td>
       						<td>${v.title}</td>
 	    					<td>${v.org}</td>
-	  				</tr>`]).sort().reduce((t, v) => `${t}${v[1]}`, "")}
-       				${person.reduce((t, v, i) => v.contact > -1 ? [...t, [v.lastname + v.firstname, `<tr>
-    						<td onclick="contactPerson(${i})" style="cursor: url('images/buttons/contact.png'), auto">
-	  						<img src="images/people/${v.image}.png" style="filter: hue-rotate(${v.color}deg) brightness(${v.brightness}); vertical-align: -5px; width: 26px" draggable="false"> &nbsp;${v.name}
-						</td>
-      						<td>${v.title}</td>
-	    					<td>${v.org}</td>
-	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => `${t}${v[1]}`, "")}
+	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
 
