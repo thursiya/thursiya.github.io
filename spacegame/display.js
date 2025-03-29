@@ -498,7 +498,7 @@ function updateContactsDisplay() {
 						</td>
       						<td>${v.title}</td>
 	    					<td>${v.org}</td>
-	  				</tr>`]] : t, []).sort().reduce((t, v) => `${t}${v[1]}`, "")}
+	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => `${t}${v[1]}`, "")}
     		</table>`;
 }
 
