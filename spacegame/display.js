@@ -413,7 +413,7 @@ function updateAccountsDisplay() {
      				</tr>`, "")
 			}
   		</table>`;
-	}
+}
 
 function updateManifest() {
 	const passengers = ship.flat().filter(v => v.name && v.room == "living").reduce((t, v) => `${t}<tr>
@@ -483,6 +483,8 @@ function updateContactsDisplay() {
     		</table>`;
 }
 
+// Not used ??
+/*
 function displayNews() {
 	return `<table class="menutable redheader hoverable">
  			<tr>
@@ -494,24 +496,4 @@ function displayNews() {
        					<td>${v.headline}</td>
 	    			</tr>`, "")}
 	  	</table>`;
-}
-
-// UNUSED ???
-/*function displayTransactions() {
-	if (!transactionRecord[0]) return `<h2 style='text-align: center'><i>... No Logged Transactions ...</i></h2>`;
-	let out = "", p;
-	transactionRecord.forEach((v, i) => {
-		if (i > 0) p = transactionRecord[i - 1];
-		out += `<tr>${(i > 0 && p.time == v.time && p.name == v.name) ? `<td colspan='3' style='text-align: center'>` : `<td>${v.time}</td><td>${v.location}</td><td>${v.name}`}</td><td><i>${v.note}</i></td><td style='text-align: right'>${v.amount}</td></tr>`;
-	});
-	return (transactionRecord[0]) ? `<table class="menutable yellowheader hoverable">
- 			<tr>
-    				<th width="120px">Time</th>
-				<th width="120px">Location</th>
-    				<th width="200px">Name</th>
-				<th width="500px">Note</th>
-    				<th width="80px">Amount</th>
-			</tr>
-   			${}
-      		</table>` : `<h2 style="text-align: center"><i>... No Logged Transactions ...</i></h2>`;
 }*/
