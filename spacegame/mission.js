@@ -408,23 +408,16 @@ function parseCommands (arr, m) {
 	};
 	const c = ('client' in m) ? person[m.client] : m;
 	for (let i of arr) {
-		console.log(`DEBUG-PARSECOMMANDS... (c: )`);
-		console.log(c);
-		console.log(`Original command: ${i}`);
 		const command = i.replace(/\(.*\)/, "");
-		console.log(`Replaced command: ${command}`);
 		
 		params = (i.match(/\((.*)\)/)) ? i.match(/\((.*)\)/).pop() : "";
-		console.log(`Params: ${params}`);
 		let pCount = 0, out = "";
 		for (let j of params) {
 			if (j == "(") pCount++;
 			if (j == ")") pCount--;
 			out += (pCount == 0 && j == ",") ? "|*|" : j
 		}
-		params = out.split("|*|");
-		console.log(`params.length > 0: ${params.length > 0}`);
-		params = params.length > 0 ? params.map(v => mTextSwap(v, m)) : [];
+		params = out ? out.split("|*|").map(v => mTextSwap(v, m)) : [];
 		(command in commandArray) ? commandArray[command]() : console.log(`Command not parsed: ${command}(${params})`);
 	}
 	updateMissionsDisplay();
