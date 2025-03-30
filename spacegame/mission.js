@@ -379,7 +379,7 @@ function parseCommands (arr, m) {
 	let params;
 	const commandArray = {
 		"addCall"() {addCall(m.comm, true)},
-		"addCargo"() {haveCargo(m.cargo[+params[0] || 0], 'add', 1, +params[1] || m.dest)},
+		"addCargo"() {haveCargo(m.cargo[+params[0] || 0], 'add', 1, params[1] || m.dest)},
 		"addContact"() {addContact(params[0] || m.character[0])},
 		"addHistory"() {addHistory(params[0] || m.client, params[1], params[2], +params[3])},
 		"advStage"() {m.stage += +params[0] || 1},
