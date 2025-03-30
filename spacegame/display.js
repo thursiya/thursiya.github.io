@@ -398,7 +398,7 @@ function updateAccountsDisplay() {
    				<th width="120px">Time</th>
     	  			<th width="120px">Location</th>
 	 			<th width="200px">Name</th>
-    				<th width="500px">Note</th>
+    				<th width="100%">Note</th>
        				<th width="80px">Amount</th>
 		  	</tr>
     			${transactionRecord.reduce((t, v, i) => {
@@ -459,7 +459,7 @@ function updateMissionsDisplay() {
     				<th width="170px">Type</th>
 				<th width="120px">Time</th>
     				<th width="200px">Contact</th>
-				<th width="500px">Summary</th>
+				<th width="100%">Summary</th>
 			</tr>`;
 	const m1 = mission.reduce(reducer, "");
 	const m2 = oldmission.reduce(reducer, "");
@@ -482,18 +482,3 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
-
-// Not used ??
-/*
-function displayNews() {
-	return `<table class="menutable redheader hoverable">
- 			<tr>
-    				<th width="120px">Time</th>
-				<th width="100%">News Headline</th>
-    			</tr>
-       			${newsItem.reduce((t, v) => `${t}<tr>
-	  				<td>${displayTime(v.time)}</td>
-       					<td>${v.headline}</td>
-	    			</tr>`, "")}
-	  	</table>`;
-}*/
