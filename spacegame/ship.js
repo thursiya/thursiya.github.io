@@ -12,6 +12,9 @@ function emptyRoom (roomtype, full = false) {
 
 function haveCargo (item, query, amount = 1, dest, price) {
 	const matchingHolds = [], emptyHolds = [], coldHolds = [], liveHolds = [];
+	// Convert string destination to number
+	if (!Number.isInteger(dest)) dest = world.findIndex(v => v.name == dest);
+	if (dest == -1) dest = undefined;
 	//ship.forEach((v, x) => v.forEach((s, y) => {
 	for (let [x, v] of ship.entries()) for (let [y, s] of v.entries()) {
 		if (s.room == 'cargohold') {
