@@ -324,7 +324,7 @@ function rnd(arr) {
 	return arr[Math.floor(randFloat * arr.length)];
 }
 function capitalize(str) {
-	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 function* times (n) {
 	for (let i = 0; i < n; i++) yield i;
