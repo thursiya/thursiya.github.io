@@ -205,7 +205,7 @@ function worldGoods (w) {
 			break;
 		case "Affluent":
 			//if (w.gov == "Corporate") [17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].forEach(v => {if (v.type == oldCorps.find(c => c.name == world[here].govdesc).name) set.push(v)});
-			if (w.gov == "Corporate") set.push([17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => v.type == oldCorps.find(c => c.name == world[here].govdesc).name));
+			if (w.gov == "Corporate") set.push(...[17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => v.type == oldCorps.find(c => c.name == world[here].govdesc).name));
 			break;
 		case "Slum":
 			set = [19, 20, 21, 60, 60, 61, 62, 73, 73, 74, 74, 75, 75, 85, 85, 85, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 91];
