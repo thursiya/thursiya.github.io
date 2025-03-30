@@ -96,22 +96,39 @@ const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P,
 	{name: "Water", type: "fresh", file: "water", price: 100, stat: 'sensitive', produce: "H Mi P (Ice, Ocean)", demand: "F T", desc: "The lifeblood of the galaxy."}	//94) Ocean, Ice -> T, F
 ];
 
-// Called by 'addMission()' when determining cargo
+// Called by 'addMission()' when determining cargo (query = # (person)/"all"/"extended"/"illegal"/"legal", flag = "non-specific"/0)
+// Generates a weighted array for randomly choosing a good from
 function chooseGoods(query, location = here, flag) {
-	const arr = [];
+	//const arr = [];
+	const illegals = (world[location].gov == "Anarchy") ? [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])] : illegalGoods(world[location].gov);
 	const p = validatePerson(query);
 	
 	// If query is a number, convert into matching person, then convert into appropriate class of goods depending on person's moral compass
-	
 	if (Number.isInteger(query)) {
 		query = (p) ? (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" : (p.rep > 60 && rnd(3) < p.risk && rnd(3) + 2 > p.moral) ? "all" : "legal" : "legal";
 	}
-	
-	const illegals = (world[location].gov == "Anarchy") ? [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])] : illegalGoods(world[location].gov);
-	//if (query == 'illegal' && world[location].gov == 'Anarchy') illegals = [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])];
-	
+		
 	const suppliedGoods = world[location].goods.map(g => (g.supply > 0 && g.stat != 'illegal') ? g.type + g.name : false);
-	//const suppliedGoods = world[location].goods.filter(v => 
+
+	return goods.reduce((t, v, i) => suppliedGoods.includes(v.type + v.name) ||	// Skip supplied goods
+		(p && query != "illegal" && (
+			(v.price > 9999 && p.rep < 80) ||	// Skip expensive goods if not high rep
+			(v.price > 4999 && p.rep < 60) ||	// Skip moderate goods if low rep
+			(v.price < 5000 && p.rep > 79))) ||	// Skip cheap goods if high rep
+		i == 80 || i == 93 ||		// Skip wastes
+		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
+		(query == "illegal" && !illegals.includes(i) && (i != 71 || !p)) ||	// Skip legal goods on 'illegal' query (except packages)
+		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on 'legal query
+		([22, 35, 71].includes(i) && flag == "non-specific") ? t :	// Skip unique goods if flagged "non-specific"
+			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[location].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[location].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
+	//		c = 5;
+	//		g.id = (Math.floor(seed / (world[location].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase() + "-" + ("00" + rnd(999)).slice(-3);
+	//		if (i == 35 && world[location].focus == "Cultural") c += 10;
+	//	}
+	//	for (let j of times(c)) arr.push(g);
+	//});
+	//	? t : [...t, v], []);
+	
 	goods.forEach((g, i) => {
 		if (suppliedGoods.includes(g.type + g.name)) return;	// Skip supplied goods
 		if (p && query != 'illegal') {
