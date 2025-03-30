@@ -2,7 +2,10 @@
 
 body { cursor: default; }
 
-.menutable { border-collapse: collapse; }
+.menutable { 
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%; }
 .menutable td, .menutable th { border: 1px solid #000; }
 th, td { 
 	padding: 5px;
