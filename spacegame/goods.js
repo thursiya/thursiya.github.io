@@ -118,7 +118,7 @@ function chooseGoods(m, query) {
 		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
 		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on "legal" query
 		(query == "general" && [22, 35, 71].includes(i)) ? t :	// Skip unique goods on "general" query
-			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[location].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
+			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
 
 /*// Called by 'addMission()' when determining cargo (query = # (person)/"all"/"extended"/"illegal"/"legal", flag = "non-specific"/0)
