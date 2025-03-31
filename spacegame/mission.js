@@ -244,7 +244,8 @@ function addMission (missionName, clientID) {
 	
 	//if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(v.substr(4,7) == "illegal" ? "illegal" : m.client, v.substr(4,4) == "dest" ? m.dest : m.origin, v.substr(4,12) == "non-specific" ? "non-specific" : 0)) : 
 	//	{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
-	if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(m, ...v.split(","))) : {name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
+	if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(m, ...v.split(",").splice(1))) : 
+		{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
 
 	if ('locale' in m) {
 		m.locale = m.locale.map(v => mTextSwap(v, m)).map(v => addLocale(v.split(",")[0] == "rnd" ? undefined : v.split(",")[0], m.origin, m, v.split(",")[1], v.split(",")[2]));
