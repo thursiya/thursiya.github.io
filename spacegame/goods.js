@@ -102,7 +102,7 @@ const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P,
 function chooseGoods(m, query) {
 	const loc = (query == "dest") ? m.dest : m.origin;
 	const illegals = (world[loc].gov == "Anarchy") ? [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])] : illegalGoods(world[loc].gov);
-	const p = m.client;
+	const p = validatePerson(m.client);
 	
 	// If no query is set, convert into appropriate class of goods depending on client's moral compass
 	if (!query) query = (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" :
