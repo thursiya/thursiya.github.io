@@ -11,7 +11,8 @@ function loadMissionFramework () {
 		advert: "Delivery Needed: #CARGO0# to #DEST#.",
 		type: "g",
 		dest: "rnd,3",
-		cargo: ["rnd(dest)"],
+//		cargo: ["rnd(dest)"],
+		cargo: ["rnd,dest"],
 		character: ["dest"],
 		key: ["distance", "mult(distance,0.5)", "add(time,#KEY1#)", "displayTime(#KEY2#)", "mult(distance,0.8)", "mult(distance,0.4)", "add(#KEY1#,120)"],
 		comm: ["#I'm looking for|I need|I'm in search of# #the services of a|a|a# #private|competent|capable|reliable# #carrier|courier|delivery person|hauler# to bring some #CARGO0.type# #CARGO0.name# to <b>#DEST#</b>. My #associate|friend|client#, <b>#CHAR0#</b>, needs the #cargo|shipment|delivery# by <b>#KEY3#</b>.", 1, [["isHere", "emptyRoom(cargohold)"]],
@@ -85,7 +86,8 @@ function loadMissionFramework () {
 		name: "Procure",
 		advert: "Looking to Buy #CARGO0#.",
 		type: "g",
-		cargo: ["rnd(non-specific)"],
+		//cargo: ["rnd(non-specific)"],
+		cargo: ["rnd,general"],
 		key: ["mult(mult(#CARGO0.price#,add(1000,rnd(400))),0.001)", "mult(mult(#CARGO0.price#,add(850,rnd(100))),0.001)", "mult(add(96,add(time,mult(#KEY0#,.01))),-1)"],
 		init: ["event(setStage(5),#KEY2#)"],
 		comm: ["#I'm looking to buy|I need|I'm in search of# some <b>#CARGO0.type# #CARGO0#</b> and I'll pay you well for your trouble.", 1,
@@ -106,7 +108,8 @@ function loadMissionFramework () {
 		name: "Selling Illegal Goods",
 		advert: "A questionable-looking person is motioning to speak with you.",
 		prereq: ["freeSite"],
-		cargo: ["rnd(illegal)"],
+		//cargo: ["rnd(illegal)"],
+		cargo: ["rnd,illegal"],
 		locale: ["rnd"],
 		key: ["mult(mult(#CARGO0.price#,add(450,rnd(100))),.001)", "mult(#KEY0#,-1)"],
 		init: ["event(removeMission,48,24)"],
@@ -120,7 +123,8 @@ function loadMissionFramework () {
 		name: "Buying Illegal Goods",
 		advert: "A questionable-looking person is motioning to speak with you.",
 		prereq: ["freeSite"],
-		cargo: ["rnd(illegal)"],
+		//cargo: ["rnd(illegal)"],
+		cargo: ["rnd,illegal"],
 		locale: ["rnd"],
 		key: ["mult(mult(#CARGO0.price#,add(1450,rnd(100))),.001)"],
 		init: ["event(removeMission,96,72)"],
@@ -238,8 +242,9 @@ function addMission (missionName, clientID) {
 		if (m.character.includes(-1)) return false;
 	}
 	
-	if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(v.substr(4,7) == "illegal" ? "illegal" : m.client, v.substr(4,4) == "dest" ? m.dest : m.origin, v.substr(4,12) == "non-specific" ? "non-specific" : 0)) : 
-		{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
+	//if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(v.substr(4,7) == "illegal" ? "illegal" : m.client, v.substr(4,4) == "dest" ? m.dest : m.origin, v.substr(4,12) == "non-specific" ? "non-specific" : 0)) : 
+	//	{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
+	if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(m, ...v.split(","))) : {name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
 
 	if ('locale' in m) {
 		m.locale = m.locale.map(v => mTextSwap(v, m)).map(v => addLocale(v.split(",")[0] == "rnd" ? undefined : v.split(",")[0], m.origin, m, v.split(",")[1], v.split(",")[2]));
