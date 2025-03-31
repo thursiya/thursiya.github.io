@@ -100,7 +100,7 @@ const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P,
 // Called by 'addMission()' when determining cargo (m = mission, query = all/extended/general/illegal/legal)
 // Generates a weighted array for randomly choosing a good from
 function chooseGoods(m, query) {
-	const loc = (query == "dest") ? m.dest || m.origin;
+	const loc = (query == "dest") ? m.dest : m.origin;
 	const illegals = (world[loc].gov == "Anarchy") ? [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])] : illegalGoods(world[loc].gov);
 	const p = m.client;
 	
