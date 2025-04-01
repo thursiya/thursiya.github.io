@@ -29,6 +29,9 @@ const storyFramework = {
 	very: ["very<inf>", "very", "extremely", "exceedingly", "excessively", "awfully", "quite", "acutely|terribly|overly<rare>"],
 	// Synonyms - nouns
 	embassy: ["consulate", "delegation", "embassy", "mission"],
+	ship: ["ship", "£spacecraft", "vessel"],
+	// Synonyms - slang nouns
+	clunker: ["barge", "bucket^ of bolts", "clunker", "crate", "hunk^ of junk", "junker", "rattletrap", "rustbucket", "tin can"],
 	// Synonyms - verbs
 	rot: ["rot×", "decompose", "decay"],
 	locate: ["locate", "find{ed: 'found'}", "situate", "position"],
@@ -79,6 +82,7 @@ const storyFramework = {
 	plantN: ["bamboo", "cactus{s: 'cacti'}", "bonzai", "fern", "ivy", "laurel", "leafy plant<general>", "snake plant", "spider plant", "palm", "plant<inf><general>", "bush<general>", "orchid", "lily", "geranium", "jasmine", "maple", "begonia", "hibiscus", "anthurium", "yucca"],
 	predatorN: ["anaconda", "barracuda", "cobra", "cougar", "coyote", "crocodile", "devil", "dragon", "eagle", "falcon", "fox", "grizzly", "hammerhead", "hawk", "hyena", "jaguar", "leopard", "lion", "mamba", "moray", "owl", "orca", "piranha", "python", "scorpion", "shark", "spider", "stingray", "tiger", "viper", "wasp", "wolf", "wolverine"],
 	productN: ["soft drink|soda", "liquor", "travel service", "£fast food", "painkiller|antidepressant", "#vehicleN#", "video game", "exotic dancer<seedy>", "hand gun", "cybernetic enhancement", "couch", "apartment"],
+	shipN: ["cruiser", "freighter", "hauler", "transport"],
 	smellN: [""],
 	soundN: ["the din of #traffic|shopping|a spaceport#", "whirring #of machines|of motors|of drones|#", "sirens #in the distance|not far off#", "engines of ships landing", "some #bland|elevator|dull# music", "#hushed|excited|intermingling# conversations"],
 	spaceN: ["£antimatter", "asteroid", "azimuth", "corona", "comet", "constellation", "£cosmos", "eclipse", "equinox", "flux", "galaxy", "gravity", "lodestar", "meteor", "moon", "nebula", "penumbra", "perigee", "pulsar", "quasar", "satellite", "singularity", "spectrum{s: 'spectra'}", "supernova", "syzygy", "velocity", "zenith", "zodiac"],
