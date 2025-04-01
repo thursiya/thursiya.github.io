@@ -108,7 +108,7 @@ function chooseGoods(m, query) {
 	if (!query) query = (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" :
 		(p.rep > 60 && rnd(3) < p.risk && rnd(3) + 2 > p.moral) ? "all" : "legal";
 			
-	if (query == "illegal") return [...illegals, 71];	// Return illegal goods and packages
+	if (query == "illegal") return [...illegals, 71].map(v => Object.create(goods[v]));	// Return illegal goods and packages
 	const suppliedGoods = world[loc].goods.map(v => (v.supply > 0 && v.stat != 'illegal') ? v.type + v.name : 0);
 	return goods.reduce((t, v, i) => suppliedGoods.includes(v.type + v.name) ||	// Skip supplied goods
 		(v.price > 9999 && p.rep < 80) ||	// Skip expensive goods if not high rep
