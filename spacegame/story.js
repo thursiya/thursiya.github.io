@@ -27,6 +27,8 @@ const storyFramework = {
 	careful: ["careful", "conspicuous", "fastidious", "attentive", "judicious", "precise"],
 	shabby: ["broken-down", "dilapidated", "ramshackle", "rickity", "seedy", "shabby", "shady"],
 	very: ["very<inf>", "very", "extremely", "exceedingly", "excessively", "awfully", "quite", "acutely|terribly|overly<rare>"],
+	// Synonyms - expressions
+	exasperated: ["Are you for real?", "I'm speechless!", "I never thought I'd see the day!", "Seriously?!", "#This is u|U#nbelievable!", "You've got to be kidding me!"],
 	// Synonyms - nouns
 	embassy: ["consulate", "delegation", "embassy", "mission"],
 	ship: ["ship", "£spacecraft", "vessel"],
