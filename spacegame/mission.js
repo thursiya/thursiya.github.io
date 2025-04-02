@@ -241,7 +241,8 @@ function addMission (missionName, clientID) {
 	//if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(v.substr(4,7) == "illegal" ? "illegal" : m.client, v.substr(4,4) == "dest" ? m.dest : m.origin, v.substr(4,12) == "non-specific" ? "non-specific" : 0)) : 
 	//	{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
 	if ('cargo' in m) m.cargo = m.cargo.map(v => v.split(",")).map(v => v[0] == "rnd" ? rnd(chooseGoods(m, v[1])) :	{ name: v[0], type: v[1], file: v[2], baseprice: +v[3], supply: +v[4] });
-
+	console.log(`*** Adding new ${m.name} mission ${m.id}:`);
+	console.log(m);
 	if ('locale' in m) {
 		m.locale = m.locale.map(v => mTextSwap(v, m)).map(v => addLocale(v.split(",")[0] == "rnd" ? undefined : v.split(",")[0], m.origin, m, v.split(",")[1], v.split(",")[2]));
 		if (m.locale.includes(-1)) return false;
