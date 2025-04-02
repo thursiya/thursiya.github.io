@@ -428,6 +428,7 @@ function parseCommands (arr, m) {
 
 function parseValue (m, cmd) {
 	const c = ('client' in m) ? person[m.client] : m;
+	console.log(`DEBUG) c: ${c}, cmd: ${cmd}.`);
 	const command = cmd.replace(/\(.*\)/, "");
 	let params = (cmd.match(/\((.*)\)/)) ? cmd.match(/\((.*)\)/).pop() : "";
 		let pCount = 0, out = "";
