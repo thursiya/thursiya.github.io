@@ -66,7 +66,7 @@ const storyFramework = {
 	bookPost: ["from years past", "covered in #scribbles|notes#", "about #topicN# #bookPost[!same]|#<same><inf>", "illustrated with #holograms|bright colours#", "with a #digital|flashy# image"],
 	clothingPost: ["made for #work|a special occasion#", "with #color.a|sizeAdj.a# #pin|medal#", "lined with #fabricN#", "stained with #sweat|blood|grease#", "belted #tightly|loosely|with a ribbon#", "with #number# buttons", "that #blends in with|sticks out from# the surroundings", "with a #traditional|trendy|# #bead|knotted|gold|# necklace"],
 	personPost: ["reading #bookNP.a#", "staring at #bookNP.a|a news screen|a comm unit|objectN.a#", "#telling stories to|sharing opinions with|complaining to# #all who'll listen|another person|a reluctant listener#", "#muttering|laughing|talking# to #accPro.subj#self", "trying not to fall asleep", "#activityV.ing# with #{obj: rnd(Gender)}personN.obj.a#", "#activityV.ing# on #genPro.subj# comm", "that #seems|appears|looks# to be the #corporate|military|government|academic|family# type", "coming down from a high<seedy>"],
-	personDescPost: ["with #hairAdj|# #color# hair|with #no|hairAdj|color# hair", "wearing #clothingNP.a#", "with a #mechanicalAdj[!immobile]|# cybernetic #arm|leg|eye|hand#", "{fem: 'with #careful.ly# manicured #nails|nails|brows#', masc: 'with #careful.ly.a# groomed #beard|mustache#'}"],
+	personDescPost: ["with #hairAdj|# #color# hair|with #no|hairAdj|color# hair", "wearing #clothingNP.a#", "with #mechanicalAdj[!immobile].a|a# cybernetic #arm|leg|eye|hand#", "{fem: 'with #careful.ly# manicured #nails|nails|brows#', masc: 'with #careful.ly.a# groomed #beard|mustache#'}"],
 	
 	// Noun Categories
 	artN: ["#African|Aboriginal# mask", "calligraphy scroll", "Floating World print", "origami #crane|butterfly#", "Chinese watercolour", "religious statue", "black & white photograph", "#etched|blown# glass", "ship model", "abstract sculpture", "woven tapestry", "wooden icon", "hologram"],
@@ -301,7 +301,7 @@ function parse (text) {
 	text = text.replace(/<(.*?)>/g, "").replace(/#(.*?)#/g, (_, p1) => `#${rnd(p1.split('|'))}#`);	// trim tags, choose top level hash options
 	text = text.replace(/#(.*?)#/g, mainswap);	// parse text
 	text = text.replace(/[!?]\./g, v => v[0]);	// replace ?. with ?, and !. with !
-	text = text.replace(/(Ø|ø|£|×|\^)/g, "").replace(/\s+/g, " ").replace(/(\s+|,+)(\.|\!|\?|,|;)/g, "$2").replace(/¶/g, "<br><br>").trim();	// trim formatting characters, excess spaces, and spaces before .!?,;
+	text = text.replace(/(Ø|ø|£|×|\^)/g, "").replace(/\s+/g, " ").replace(/(\s+)(\.|\!|\?|,|;)/g, "$2").replace(/¶/g, "<br><br>").trim();	// trim formatting characters, excess spaces, and spaces before .!?,;
 	return text;
 }
 
