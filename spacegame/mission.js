@@ -418,7 +418,7 @@ function parseCommands (arr, m) {
 			if (j == ")") pCount--;
 			out += (pCount == 0 && j == ",") ? "|*|" : j
 		}
-		params = out ? parse(out.split("|*|").map(v => mTextSwap(v, m))) : [];
+		params = out ? out.split("|*|").map(v => mTextSwap(v, m)) : [];
 		(command in commandArray) ? commandArray[command]() : console.log(`Command not parsed: ${command}(${params})`);
 	}
 	updateMissionsDisplay();
