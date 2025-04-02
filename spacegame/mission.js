@@ -487,7 +487,7 @@ function mTextSwap (v, m) {
 		if (s.substr(0, 4) == "CHAR") return person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]].name;
 		if (s.substr(0, 3) == "LOC") return world[m.origin].locales[m.locale[s.replace(/LOC(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || m.locale[+s.substr(3)];
 //		return parse(str);
-		return s;
+		return `#${s}#`;
 	}
 //	return v.replace(/#(.*?)#/g, swap).replace(/[!?]\./g, v => v[0]);
 	return parse(v.replace(/#(.*?)#/g, swap)).replace(/[!?]\./g, v => v[0]);
