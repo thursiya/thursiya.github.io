@@ -39,12 +39,12 @@ function loadMissionFramework () {
 		init: ["event(travel,removeMission,1,3,clientLanded)"],
 		comm: ["I have #KEY4# to #attend|be at# on <b>#DEST#</b>. I #must|need to# get there as #quickly|fast|swiftly# as possible.", 1, [["isHere", "emptyRoom(living)"]],
 			"#Exceptional|Impressive|Outstanding# #job|performance|work# - and #ahead of schedule|earlier than expected|with time to spare#. Your #efforts|services|troubles# #call for|deserve|warrant# #appropriate|fair|just# compensation.",
-			"#Cutting it close, but |I'm going to have to rush. |#I #might|should|think I'll# still #be able to slip in|catch it|get there|make it# #just |##as it's starting|before it begins|in time#!",
-			"#exasperated|It's too late -|# I've #completely |#missed my #appointment|event# #now, |,# and I won't #spend|waste# another #second|moment# #of my life |of my precious time |#on #this|your# #crawling|lethargic|plodding|sluggish|snail-paced# #clunker|clunker|ship#!",
+			"#Cutting it close, but|I'm going to have to rush -|# I #might|should|think I'll# still #be able to slip in|catch it|get there|make it# #just|# #as it's starting|before it begins|in time#!",
+			"#exasperated|It's too late -|# I've #completely|# missed my #appointment|event## now|#, and I won't #spend|waste# another #second|moment# #of my life|of my precious time|# on #this|your# #crawling|lethargic|plodding|sluggish|snail-paced# #clunker|clunker|ship#!",
 			"How #many more hours|much longer# until we #arrive on|get to# #DEST#? I'm already #bored of space travel|missing my 9-5|seizing up from sitting|planning my next trip#.",
 			"This isn't exactly the #Executive Hotel|Ritz|Imperial Auberge|Resort# #DEST#, is it? I could #really do with|kill for|sell my firstborn for|honestly use# #a warm bath|a bottle of red|a galactic breakfast|a breath of fresh air# about now.",
 			"I really hope I can find some #decent|good|quality# #sushi|injera|dumplings|curry|tacos# on #DEST# - these #soy|synth|instant|freeze-dried# #shakes|kebabs|ramens|dahls|burritos# are #really starting to lose their charm|starting to all taste the same|wreaking havoc on my guts|less than stellar|redefining bland#.",
-			"I'm #hop|plann#ing to take a #break|trip# on #DEST# #and|to# #see|take in|visit# the #great|ancient|vast|underground|artificial|crystal|holographic# #lagoon|forest|ruins|city|network|sea# of #M|J|S|R|D|W##a|a|e|o|u|i##k|b|g|t|v|x##h|p|y|ch|qu|f##in|oo|ala|en|ing#. #I've been told|I hear|I want to see if# it's #breathtaking|worth the trip|a very spiritual experience|very busy|better than any simulation|just been restored#."],
+			"I'm #hop|plann#ing to take a #break|trip# on #DEST# #and|to# #see|take in|visit# the #great|ancient|vast|underground|artificial|crystal|holographic# #lagoon|forest|ruins|city|network|sea# of #M|J|S|R|D|W##a|a|e|o|u|i##k|b|g|t|v|x##h|p|y|ch|qu|f##in|oo|ala|en|ing#. I#'ve been told| hear| want to see if# it's #breathtaking|worth the trip|a very spiritual experience|very busy|better than any simulation|just been restored#."],
 		proceed: [["advStage","addPassenger","event(setStage(2), #KEY1#)","event(setStage(3), #KEY2#)"]],
 		contact: ["I'm still looking for someone to take me to #DEST#.", 0,
 			"Come talk to me in my cabin. I #haven't gone anywhere!|much prefer talking in person|should leave the comm screen for a bit#."],
@@ -486,9 +486,11 @@ function mTextSwap (v, m) {
 		}
 		if (s.substr(0, 4) == "CHAR") return person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]].name;
 		if (s.substr(0, 3) == "LOC") return world[m.origin].locales[m.locale[s.replace(/LOC(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || m.locale[+s.substr(3)];
-		return parse(str);
+//		return parse(str);
+		return s;
 	}
-	return v.replace(/#(.*?)#/g, swap).replace(/[!?]\./g, v => v[0]);
+//	return v.replace(/#(.*?)#/g, swap).replace(/[!?]\./g, v => v[0]);
+	return parse(v.replace(/#(.*?)#/g, swap)).replace(/[!?]\./g, v => v[0]);
 }
 
 function checkTriggers () {
