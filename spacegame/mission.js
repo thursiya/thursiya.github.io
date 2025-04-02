@@ -418,6 +418,8 @@ function parseCommands (arr, m) {
 			if (j == ")") pCount--;
 			out += (pCount == 0 && j == ",") ? "|*|" : j
 		}
+		console.log(`DEBUG) out: ${out}`);
+		console.log(out.split("|*|"));
 		params = out ? out.split("|*|").map(v => mTextSwap(v, m)) : [];
 		(command in commandArray) ? commandArray[command]() : console.log(`Command not parsed: ${command}(${params})`);
 	}
