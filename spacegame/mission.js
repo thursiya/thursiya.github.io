@@ -460,7 +460,7 @@ function parseValue (m, cmd) {
 		case "time": return time.full;
 		case "world": return world[params[0] == "seed" ? seed % world.length : adjacentSystem(rnd(+params[0]), m.origin, params[1])].name;
 	}
-	return parse(mTextSwap(command, m));
+	return mTextSwap(command, m);
 }
 
 function mTextSwap (v, m) {
