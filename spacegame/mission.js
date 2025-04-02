@@ -238,11 +238,8 @@ function addMission (missionName, clientID) {
 		if (m.character.includes(-1)) return false;
 	}
 	
-	//if ('cargo' in m) m.cargo = m.cargo.map(v => v.substr(0,3) == "rnd" ? rnd(chooseGoods(v.substr(4,7) == "illegal" ? "illegal" : m.client, v.substr(4,4) == "dest" ? m.dest : m.origin, v.substr(4,12) == "non-specific" ? "non-specific" : 0)) : 
-	//	{name: v.split(",")[0], type: v.split(",")[1], file: v.split(",")[2], baseprice: +v.split(",")[3], supply: +v.split(",")[4]});
 	if ('cargo' in m) m.cargo = m.cargo.map(v => v.split(",")).map(v => v[0] == "rnd" ? rnd(chooseGoods(m, v[1])) :	{ name: v[0], type: v[1], file: v[2], baseprice: +v[3], supply: +v[4] });
-	console.log(`*** Adding new ${m.name} mission ${m.id}:`);
-	console.log(m);
+	
 	if ('locale' in m) {
 		m.locale = m.locale.map(v => mTextSwap(v, m)).map(v => addLocale(v.split(",")[0] == "rnd" ? undefined : v.split(",")[0], m.origin, m, v.split(",")[1], v.split(",")[2]));
 		if (m.locale.includes(-1)) return false;
@@ -419,8 +416,6 @@ function parseCommands (arr, m) {
 			if (j == ")") pCount--;
 			out += (pCount == 0 && j == ",") ? "|*|" : j
 		}
-		console.log(`DEBUG) out: ${out}`);
-		console.log(out.split("|*|"));
 		params = out ? out.split("|*|").map(v => mTextSwap(v, m)) : [];
 		(command in commandArray) ? commandArray[command]() : console.log(`Command not parsed: ${command}(${params})`);
 	}
@@ -429,7 +424,6 @@ function parseCommands (arr, m) {
 
 function parseValue (m, cmd) {
 	const c = ('client' in m) ? person[m.client] : m;
-	console.log(`DEBUG) c: ${c}, cmd: ${cmd}.`);
 	const command = cmd.replace(/\(.*\)/, "");
 	let params = (cmd.match(/\((.*)\)/)) ? cmd.match(/\((.*)\)/).pop() : "";
 		let pCount = 0, out = "";
@@ -490,15 +484,18 @@ function mTextSwap (v, m) {
 		}
 		if (s.substr(0, 4) == "CHAR") return person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || person[m.character[s.replace(/CHAR(.*?)/g, "").replace(/\.(.*)/g, "")]].name;
 		if (s.substr(0, 3) == "LOC") return world[m.origin].locales[m.locale[s.replace(/LOC(.*?)/g, "").replace(/\.(.*)/g, "")]][s.replace(/(.*?)\./g,"")] || m.locale[+s.substr(3)];
-//		return parse(str);
 		return `#${s}#`;
 	}
-//	return v.replace(/#(.*?)#/g, swap).replace(/[!?]\./g, v => v[0]);
 	return parse(v.replace(/#(.*?)#/g, swap)).replace(/[!?]\./g, v => v[0]);
 }
 
 function checkTriggers () {
 	mission.slice().forEach(v => {if (mission.find(m => m.id == v.id)) {
-			if (v.trigger && v.trigger.every(t => parseValue(v, t))) {console.log(`Passed triggers for mission${v.id}(${v.advert})`); parseCommands(v.reward, v)}
-			else console.log(`Failed triggers for mission${v.id}(${v.advert}).`);}});
+			if (v.trigger && v.trigger.every(t => parseValue(v, t))) {
+				console.log(`Passed triggers for mission${v.id}(${v.advert})`);
+				parseCommands(v.reward, v)
+			} else {
+				console.log(`Failed triggers for mission${v.id}(${v.advert}).`);
+			}
+		} );
 }
