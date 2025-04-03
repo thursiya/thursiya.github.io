@@ -490,12 +490,14 @@ function mTextSwap (v, m) {
 }
 
 function checkTriggers () {
-	mission.slice().forEach(v => {if (mission.find(m => m.id == v.id)) {
-			if (v.trigger && v.trigger.every(t => parseValue(v, t))) {
-				console.log(`Passed triggers for mission${v.id}(${v.advert})`);
-				parseCommands(v.reward, v)
-			} else {
-				console.log(`Failed triggers for mission${v.id}(${v.advert}).`);
+	mission.slice().forEach(v => {
+			if (mission.find(m => m.id == v.id)) {
+				if (v.trigger && v.trigger.every(t => parseValue(v, t))) {
+					console.log(`Passed triggers for mission${v.id}(${v.advert})`);
+					parseCommands(v.reward, v)
+				} else {
+					console.log(`Failed triggers for mission${v.id}(${v.advert}).`);
+				}
 			}
 		} );
 }
