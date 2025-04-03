@@ -128,7 +128,7 @@ function worldGoods(w) {
 	let set = [];
 	
 	function buildArray(sd) {
-		for (const g of set) {
+		for (let g of set) {
 			g = Object.assign({}, goods[g]);
 			let regood = arr.findIndex(v => v.name == g.name && v.type == g.type);
 			if (regood > -1 && sd != 0) arr[regood].supply += sd;
