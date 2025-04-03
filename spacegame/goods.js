@@ -121,11 +121,11 @@ function chooseGoods(m, query) {
 			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
 
-// Only called during world creation
+// Only called once per world during world creation
 function worldGoods(w) {
-	const arr = [];
-	const mixedGoods = [];
-	const set = [];
+	let arr = [];
+	let mixedGoods = [];
+	let set = [];
 	
 	function buildArray(sd) {
 		for (const g of set) {
