@@ -147,7 +147,7 @@ function worldGoods(w) {
 			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
 			if (w.type == "Rocky") set.push(59, 59);
 			if (w.type == "Desert") set.push(59);
-			if (w.type == "Ice") set.push(94, 94);
+			if (w.type == "Ice") set.push(94, 94);		// Can only be ice, not ocean
 			break;
 		case "Agricultural":
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
@@ -242,8 +242,8 @@ function worldGoods(w) {
 	return arr;
 }
 
-function fillMixedArray () {
-	let a = Array.apply(0, {length: 93}).map(Number.call, Number);	// All goods except waste & water
+function fillMixedArray() {
+	const a = [...Array(93)].map((v, i) => i);	// All goods except waste & water
 	a.splice(80, 1); // radioactive waste
 	a.splice(71, 1); // packages
 	a.splice(59, 1); // lumber
@@ -252,7 +252,7 @@ function fillMixedArray () {
 	return a
 }
 
-function illegalGoods (gov) {
+function illegalGoods(gov) {
 	return ({"Corporate": [27, 28, 37, 38, 39, 40, 68, 69, 70],
 		"Democracy": [10, 11, 12, 13, 14, 15, 27, 28, 37, 38, 39, 40, 68, 69, 70, 85, 86, 87, 88, 89, 90, 91],
 		"Feudal": [27, 28, 69, 70],
@@ -260,10 +260,11 @@ function illegalGoods (gov) {
 		"Theocracy": [27, 28, 53, 54, 55, 60, 61, 62, 67, 68, 69, 70, 81, 82, 83, 84, 91]})[gov] || [];
 }
 
-function goodsPerish () {
-	for (let x of times(ship.length)) {
-		for (let y of times(ship[0].length)) {
-			let s = ship[x][y];
+// will need reworking along with whole ship array storage method
+function goodsPerish() {
+	for (const x of times(ship.length)) {
+		for (const y of times(ship[0].length)) {
+			const s = ship[x][y];
 			if (s.room == 'cargohold' && s.name) {
 				if (s.config != 'cold' && s.stat == 'cold') {
 					if (s.name == 'Liquid Oxygen') {
@@ -271,10 +272,11 @@ function goodsPerish () {
 						explosion(x, y);
 						setTimeout(_ => {removeCargo(x, y)}, 3000);	// *switch to fade out graphic
 					} else if (time.full - s.time > 6 + rnd(6)) {
-						addCargo (JSON.parse(JSON.stringify(goods[93])), x, y, s.price, s.dest, s.origin);
+						//addCargo (JSON.parse(JSON.stringify(goods[93])), x, y, s.price, s.dest, s.origin);
+						addCargo(Object.create(goods[93]), x, y, s.price, s.dest, s.origin);
 					}
 				}
-				if (s.config != 'live' && s.stat == 'live') addCargo (JSON.parse(JSON.stringify(goods[29])), x, y, s.price, s.dest, s.origin);
+				if (s.config != 'live' && s.stat == 'live') addCargo(Object.create(goods[29]), x, y, s.price, s.dest, s.origin);
 			}
 		}
 	}
