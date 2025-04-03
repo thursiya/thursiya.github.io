@@ -121,47 +121,14 @@ function chooseGoods(m, query) {
 			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
 
-/*// Called by 'addMission()' when determining cargo (query = # (person)/"all"/"extended"/"illegal"/"legal", flag = "non-specific"/0)
-function chooseGoods(query, location = here, flag) {
-	const illegals = (world[location].gov == "Anarchy") ? [...new Set([...illegalGoods("Democracy"), ...illegalGoods("Theocracy")])] : illegalGoods(world[location].gov);
-	const p = validatePerson(query);
+// Only called during world creation
+function worldGoods(w) {
+	const arr = [];
+	const mixedGoods = [];
+	const set = [];
 	
-	// If query is a number, convert into matching person, then convert into appropriate class of goods depending on person's moral compass
-	if (Number.isInteger(query)) {
-		query = (p) ? (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" : (p.rep > 60 && rnd(3) < p.risk && rnd(3) + 2 > p.moral) ? "all" : "legal" : "legal";
-	}
-		
-	const suppliedGoods = world[location].goods.map(g => (g.supply > 0 && g.stat != 'illegal') ? g.type + g.name : false);
-	const arr = [];			
-	goods.forEach((g, i) => {
-		if (suppliedGoods.includes(g.type + g.name)) return;	// Skip supplied goods
-		if (p && query != 'illegal') {
-			if (g.price > 9999 && p.rep < 80) return;	// Skip expensive goods if not high rep
-			if (g.price > 4999 && p.rep < 60) return;	// Skip moderate goods if low rep
-			if (g.price < 5000 && p.rep > 79) return;	// Skip cheap goods if high rep
-		}
-		if (i == 80 || i == 93) return;	// Skip wastes
-		if (query != 'extended' && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) return;	// Skip basic goods
-		if (query == 'illegal' && !illegals.includes(i) && (i != 71 || !p)) return;	// Skip legal goods on 'illegal' query (except packages)
-		if (query == 'legal' && illegals.includes(i)) return;	// Skip illegal goods on 'legal query
-		let c = 1;
-		g = Object.assign({}, g);
-		if ([22, 35, 71].includes(i)) {
-			if (flag == "non-specific") return;
-			c = 5;
-			g.id = (Math.floor(seed / (world[location].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase() + "-" + ("00" + rnd(999)).slice(-3);
-			if (i == 35 && world[location].focus == "Cultural") c += 10;
-		}
-		for (let j of times(c)) arr.push(g);
-	});
-	if (arr.length < 1) console.log(`Goods Array error - put nothing in it!\nGov: ${world[location].gov}\nQuery: ${query}\nIllegals: ${illegals}\nFlag?: ${flag}\nP?: ${p.name} (${p.title})\nSupplied Goods: ${suppliedGoods}`);
-	return arr;
-} */
-
-function worldGoods (w) {
-	let arr = [], mixedGoods = [], set = [];
-	function buildArray (sd) {
-		for (let g of set) {
+	function buildArray(sd) {
+		for (const g of set) {
 			g = Object.assign({}, goods[g]);
 			let regood = arr.findIndex(v => v.name == g.name && v.type == g.type);
 			if (regood > -1 && sd != 0) arr[regood].supply += sd;
