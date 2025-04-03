@@ -402,7 +402,7 @@ function updateAccountsDisplay() {
        				<th width="80px">Amount</th>
 		  	</tr>
     			${transactionRecord.reduce((t, v, i) => {
-				(i > 0 && t[t.length - 1][0].name == v.name) ? t[t.length - 1].push(v) : t.push([v]);
+				(i > 0 && t[t.length - 1][0].time == v.time && t[t.length - 1][0].location == v.location && t[t.length - 1][0].name == v.name) ? t[t.length - 1].push(v) : t.push([v]);
 				return t; }, []).reduce((t, v) => `${t}<tr>
    					<td rowspan="${v.length}">${v[0].time}</td>
        					<td rowspan="${v.length}">${v[0].location}</td>
