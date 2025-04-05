@@ -123,19 +123,20 @@ function chooseGoods(m, query) {
 
 // Only called once per world during world creation
 function worldGoods(w) {
-	let arr = [];
+	const arr = [];
 	let mixedGoods = [];
 	let set = [];
 	
 	function buildArray(sd) {
-		for (let g of set) {
-			g = Object.assign({}, goods[g]);
-			let regood = arr.findIndex(v => v.name == g.name && v.type == g.type);
-			if (regood > -1 && sd != 0) arr[regood].supply += sd;
-			else {
-				g.supply = sd;
-				if (sd == 0) g.stat = 'illegal';
-				arr.push(g);
+		for (const g of set) {
+			const regood = arr.findIndex(v => v.name == g.name && v.type == g.type);
+			if (regood > -1 && sd != 0) {		// Increment already present good
+				arr[regood].supply += sd;
+			} else {				// Add good if not present
+				const newGood = Object.create(g);
+				newGood.supply = sd;
+				if (sd == 0) newGood.stat = 'illegal';
+				arr.push(newGood);
 			}
 		}
 	}
@@ -160,7 +161,7 @@ function worldGoods(w) {
 			if (w.gov == "Corporate") set.push(67, 67);
 			break;
 		case "Industrial":
-			set = [13, 14, 15, 27, 28, 29, 41, 42, 46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];//(80), (93)
+			set = [13, 14, 15, 27, 28, 29, 41, 42, 46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
 			break;
 		case "Manufacturing":
 			set = [0, 1, 2, 3, 4, 5, 6, 30, 31, 32, 37, 38, 39, 40, 49, 50, 60, 61, 61, 62, 81];
@@ -198,7 +199,7 @@ function worldGoods(w) {
 			set.push(53, 77, rnd([16, 36, 76]), [17, 67, 72][w.name.length % 3], ...(w.gov == "Democracy" ? [[17, 36, 72][w.name.length % 3]] : [85, 86, 86, 87, 88, 89]));
 			break;
 		case "Mixed":
-			for (let i of times((w.name.length + seed) % 4 + 3)) {
+			for (const i of times((w.name.length + seed) % 4 + 3)) {
 				if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 				set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
 			}
@@ -206,8 +207,10 @@ function worldGoods(w) {
 			if (w.type == "Desert") set.push(59);
 			if (w.type == "Ocean") set.push(94);		
 	}
-	if (w.gov == "Corporate") new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
-	set.forEach(v => {let g = mixedGoods.indexOf(v); if (g > -1) mixedGoods.splice(g, 1)});
+	if (w.gov == "Corporate") new Set(set).forEach(v => if (goods[v].type == w.govdesc) set.push(v, v, v));
+	set.forEach(v => {
+		const i = mixedGoods.indexOf(v);
+		if (i > -1) mixedGoods.splice(i, 1); });
 	buildArray(1);
 	
 	// Set demand goods
@@ -224,7 +227,7 @@ function worldGoods(w) {
 	if (w.focus == "Frontier") set = [2, 3, 4, 18, 18, 29, 29, 33, 42, 54, 54, 63, 73, 73, 74, 74, 78, 81, 92, 92, 94, 94, ...(w.gov == "Democracy" ? [3, 4, 19, 20, 23, 33, 55, 64, 79, 82] : [27, 37, 37, 38, 38, 39, 68, 72, 72])];
 	if (w.focus == "Mixed") {
 		set = [17, 18];
-		for (let i of times(6 - (w.name.length + seed) % 4)) {
+		for (const i of times(6 - (w.name.length + seed) % 4)) {
 			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 			set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
 		}
