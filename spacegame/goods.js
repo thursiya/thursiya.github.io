@@ -133,7 +133,7 @@ function worldGoods(w) {
 			if (regood > -1 && sd != 0) {		// Increment already present good
 				arr[regood].supply += sd;
 			} else {				// Add good if not present
-				const newGood = Object.create(g);
+				const newGood = Object.create(goods[g]);
 				newGood.supply = sd;
 				if (sd == 0) newGood.stat = 'illegal';
 				arr.push(newGood);
