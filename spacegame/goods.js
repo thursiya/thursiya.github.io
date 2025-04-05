@@ -207,7 +207,7 @@ function worldGoods(w) {
 			if (w.type == "Desert") set.push(59);
 			if (w.type == "Ocean") set.push(94);		
 	}
-	if (w.gov == "Corporate") new Set(set).forEach(v => if (goods[v].type == w.govdesc) set.push(v, v, v));
+	if (w.gov == "Corporate") new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
 	set.forEach(v => {
 		const i = mixedGoods.indexOf(v);
 		if (i > -1) mixedGoods.splice(i, 1); });
