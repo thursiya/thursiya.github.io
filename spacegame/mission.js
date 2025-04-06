@@ -361,7 +361,7 @@ function addLocale (which, location, m = {}, name, query) {
 		get store() {return this.factory},
 		get warehouse() {return this.factory}})[file] || [`${localname} ${capitalize(type)}`]));
 
-	w.locales[site] = {name, type, file, hidden, pic: (name.length + name.charCodeAt(0)) % 4, mission: m.id};
+	w.locales[site] = {name, type, file, hidden, pic: (name.length + name.charCodeAt(0)) % 4 + 1, mission: m.id};
 	w.locales[site].call = {speaker: -1, text: `<img src="images/locales/${w.locales[site].file}${w.locales[site].pic}.jpg" style="float: left; margin: 0 10px 10px 0"><span class="big">${w.locales[site].name}</span><br><br>${localeFlavour(site)}${'advert' in m ? `<br><br>${m.advert}` : ""}`, choice: 0, mission: m.id};
 	displayLocales();
 	return site;
