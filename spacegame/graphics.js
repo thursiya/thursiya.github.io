@@ -1,19 +1,17 @@
-let update;
-let angle = 0;
+let update;		// Not sure what this is used for
+let angle = 0;		// Used in updateGFX
 
-
-
-function displayCanvas (whichCanvas = "galaxy") {
+function displayCanvas(whichCanvas = "galaxy") {
 	document.getElementById('spaceship').style.zIndex = (whichCanvas == "ship") ? 3 : -3;
-	const b = document.getElementById('canvasButton');
-	b.src = `images/buttons/${whichCanvas == "ship" ? "galaxy" : "ship"}.png`;
-	b.setAttribute('onclick',`displayCanvas("${whichCanvas == "ship" ? "galaxy" : "ship"}")`);
+	const button = document.getElementById('canvasButton');
+	button.src = `images/buttons/${whichCanvas == "ship" ? "galaxy" : "ship"}.png`;
+	button.setAttribute('onclick',`displayCanvas("${whichCanvas == "ship" ? "galaxy" : "ship"}")`);
 	// Reload market tab (to show/hide trash drop zone)
 	displayMarket();
 }
 
-function updateGFX (w) {
-	let c = document.getElementById("animationCanvas").getContext("2d");
+function updateGFX(w) {
+	const c = document.getElementById("animationCanvas").getContext("2d");
 	c.clearRect(0, 0, starmapWidth, starmapHeight);
 	angle++;
 	if (angle >= 56) angle = 0;
@@ -24,10 +22,10 @@ function updateGFX (w) {
 	c.globalAlpha = 0.4;
 	c.setLineDash([4,10]);
 	c.lineDashOffset = -(angle * 0.25);
-	for (let i of times(w.links.length)) {
+	for (const i of w.links) {
 		c.beginPath();
 		c.moveTo(w.x + 16, w.y + 16);
-		c.lineTo(world[w.links[i]].x + 16, world[w.links[i]].y + 16);
+		c.lineTo(world[i].x + 16, world[i].y + 16);
 		c.stroke();
 	}
 	
@@ -39,8 +37,8 @@ function updateGFX (w) {
 	c.stroke();
 }
 
-function animateSpaceShip (origin, dest) {
-	let s = document.getElementById('spaceshipIcon');
+function animateSpaceShip(origin, dest) {
+	const s = document.getElementById('spaceshipIcon');
 	s.style.opacity = '1.0';
 	s.style.transform = `rotate(${Math.atan2(dest.y - origin.y, dest.x - origin.x)}rad)`;
 	setTimeout(() => {s.style.left = `${dest.x}px`; s.style.top = `${dest.y}px`;}, 1000);
