@@ -146,15 +146,10 @@ function worldGoods(w) {
 		case "Mining":
 			set = [16, 34, 51, 66, 76, 77];
 			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
-			if (w.type == "Rocky") set.push(59, 59);
-			if (w.type == "Desert") set.push(59);
-			if (w.type == "Ice") set.push(94, 94);		// Can only be ice, not ocean
 			break;
 		case "Agricultural":
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
 			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
-			if (w.type == "Rocky") set.push(59, 59);
-			if (w.type == "Desert") set.push(59);
 			if (w.type == "Ocean") set.push(43, 44, 45);
 			if (w.govdesc == "Sirius") set.push(45);
 			if (w.govdesc == "Doleamas") set.push(55);
@@ -169,30 +164,22 @@ function worldGoods(w) {
 		case "Terraforming":
 			set = [16, 51, 66];
 			set.push(rnd(set), rnd(set), rnd(set));
-			if (w.type == "Ocean") set.push(94);
 			break;
 		case "High Tech":
 			set = [17, 18, 23, 24, 25, 26, 61, 62, 63, 64, 65, 68, 69, 70, 78, 79, 81, 82, 83, 84, 90, 92]; // (80), (93)
-			if (w.type == "Ocean") set.push(94);
 			break;
 		case "Affluent":
 			if (w.gov == "Corporate") set.push(...[17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => goods[v].type == oldCorps.find(c => c.name == w.govdesc).name));
 			break;
 		case "Slum":
 			set = [19, 20, 21, 60, 60, 61, 62, 73, 73, 74, 74, 75, 75, 85, 85, 85, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 91];
-			if (w.type == "Rocky") set.push(59, 59);
-			if (w.type == "Desert") set.push(59);
 			break;
 		case "Cultural":
 			set = [54, 54, 55, 62].concat(w.gov == "Democracy" ? 55 : [17, 72]);
 			if (w.govdesc == "Doleamas") set.push(55);
 			break;
 		case "Prison":
-			set = [17, 18, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 90, rnd([17, 51, 66])].concat(w.gov == "Democracy" ? [17, 18, 19, 20] : rnd([51, 66]));
-			if (w.type == "Rocky") set.push(59, 59);
-			if (w.type == "Desert") set.push(59);
-			if (w.type == "Ocean") set.push(94);
-			if (w.type == "Ice") set.push(94, 94);
+			set = [17, 18, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 90, rnd([17, 51, 66])].concat(w.gov == "Democracy" ? [17, 18, 19, 20] : rnd([51, 66]));	
 			break;
 		case "Frontier":
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
@@ -202,11 +189,14 @@ function worldGoods(w) {
 			for (const i of times((w.name.length + seed) % 4 + 3)) {
 				if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 				set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
-			}
-			if (w.type == "Rocky") set.push(59, 59);
-			if (w.type == "Desert") set.push(59);
-			if (w.type == "Ocean") set.push(94);		
+			}				
 	}
+	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
+		if (w.type == "Rocky") set.push(59, 59);
+		if (w.type == "Desert") set.push(59);
+		if (w.type == "Ice") set.push(94, 94);
+	}
+	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type == "Ocean") set.push(94);
 	if (w.gov == "Corporate") new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
 	set.forEach(v => {
 		const i = mixedGoods.indexOf(v);
