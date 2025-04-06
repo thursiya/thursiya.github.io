@@ -130,6 +130,7 @@ function worldGoods(w) {
 	function buildArray(sd) {
 		for (const g of set) {
 			const regood = arr.findIndex(v => v.name == g.name && v.type == g.type);
+			console.log(`DEBUG -> regood: ${regood}`);
 			if (regood > -1 && sd != 0) {		// Increment already present good
 				arr[regood].supply += sd;
 			} else {				// Add good if not present
