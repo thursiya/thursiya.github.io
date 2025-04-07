@@ -38,12 +38,13 @@ function newsEvent(nTime = time.full) {
 		text = "";	// Not yet implemented
 	}
 	
-	for (let i = 0; i <= newsItem.length; i++) {
+	/*for (let i = 0; i <= newsItem.length; i++) {
 		if (!newsItem[i] || nTime > newsItem[i].time) {
 			newsItem.splice(i, 0, { time: nTime, headline, text, subject });
 			break;
 		}
-	}
+	}*/
+	newsItem.splice(newsItem.findIndex(v => nTime > v.time), 0, { time: nTime, headline, text, subject });
 	if (nTime <= time.full && nTime > lastNewsEvent) lastNewsEvent = nTime;
 	updateNewsfeed();
 }
