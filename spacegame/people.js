@@ -6,7 +6,7 @@ function Role (location = here, home = location, gender = rnd([0, 1]), status = 
 	this.gender = gender;
 	this.name = rndPersonName(gender);
 	this.firstname = this.name.split(" ")[0];
-	this.lastname = this.name.split(" ").pop();
+	this.lastname = this.name.split(" ").slice(1).join(" ");
 	this.location = location;
 	this.home = home;
 	this.image = (gender == 0 ? "woman-" : "man-") + rnd(["suit", "hat", "shawl", "collar"]);
