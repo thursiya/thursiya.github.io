@@ -35,6 +35,7 @@ function rndPersonName (gender = rnd([0,1]), limiter = (rnd(10) > 9) ? "markov" 
 		if ((gender == 0 && storyFramework.nameFirstMale.includes(firstname)) || (gender == 1 && storyFramework.nameFirstFemale.includes(firstname))) {name = "FAIL"; limiter = "";}
 		person.forEach(v => {if (v.name == name) name = "FAIL";});
 	} while (name == "FAIL");
+	if (limiter == "markov") console.log(name);
 	return name;
 }
 
