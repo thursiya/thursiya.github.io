@@ -314,7 +314,7 @@ function adjacentSystem (distance, origin = here, query) {
 
 // Randomly choose 1 item from an array, character from a string, integer in a range, or letter of the alphabet (depending on input)
 function rnd(arr) {
-	if (!arr) return false;
+	if (!arr || arr.length == 0) return false;
 	const randFloat = Math.random();
 	// If arr is a number, return a random value in the range 1 to arr
 	if (!(isNaN(arr))) return Math.floor(randFloat * Math.abs(Math.trunc(arr)) + 1);
