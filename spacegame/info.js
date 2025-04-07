@@ -32,13 +32,13 @@ function newsEvent(nTime = time.full) {
 		//goods.forEach(v => {if (v.type == shortSubject) possibleGoods.push(v.name)});
 		//const good = rnd(possibleGoods);
 		const good = rnd(goods.reduce((t, v) => v.type == shortSubject ? [...t, v.name] : t, []));
-		headline = `${shortSubject} ${rnd(
-			[`Stocks Up`, 
-			`Caught up in Investigation`, 
-			`Faces Scrutiny from Shareholders`, 
+		headline = `${shortSubject} ${parse(rnd(
+			[`Stock #Up|Surges|on the Rise|Outperforming Expectations|Trending Upward#`, 
+			`#Caught up|Tangled up|Mired# in #Government|Police|Security|# #Investigation|Probe|Audit#`, 
+			`#Faces Scrutiny|under Evaluation|Attracts criticism|Comes under Fire# from Shareholders`, 
 			`Turns ${rnd(["Massive", "Healthy", "Sizeable", "Large"])} Profit ${rnd(["after Cutting Costs", `in ${["1st", "2nd", "3rd"][~~(time.day / 92) - 1] || "4th"} Quarter`, "with New Leadership"])}`, 
 			`to Build New ${good ? `${good} Plant` : rnd(["Facility", "Offices", "Residences"])}`,
-			`R&D Has Big Announcement`])}`;
+			`R&D Has Big Announcement`]))}`;
 		text = "";
 	}
 	
