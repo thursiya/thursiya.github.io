@@ -317,7 +317,7 @@ function markov (nameset, order = 2) {
 	for (let i = order; i < Math.max(rnd(nameset).length, 3); i++) {
 		let choices = [];
 		nameset.forEach(v => {let a = v.search(name.slice(i - order, i)); if (a > -1 && a < v.length - order) {choices.push(v[a + order]); nameset.push(v.slice(a + order))}});
-		name += rnd(choices) || rnd(vowels);
+		name += rnd(choices.length > 0 ? choices : vowels);
 	}
 	if (name[name.length - 1] == '-') name = name.slice(0, -1);	// Trim final dash
 	if (name[name.length - 2] == '-') name += rnd(vowels);	// Add vowel if name ends with (dash)(letter)
