@@ -326,15 +326,18 @@ function rnd(arr) {
 function capitalize(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
+// Used to make easy "do x times" loops
 function* times (n) {
 	for (let i = 0; i < n; i++) yield i;
 }
-function shuffle (arr) {
-	let newarr = [];
-	for (let i = 0; i < arr.length;) {
-		newarr.push(arr.splice(rnd(arr.length) - 1, 1)[0]);
+// Non-mutating Fisher-Yates shuffle that returns a new, shuffled array
+function shuffle(array) {
+	let arr = array.slice();
+	for (let i = arr.length - 1; i > 0; i--) {
+		const r = Math.floor(Math.random() * (i + 1));
+  		[arr[i], arr[r]] = [arr[r], arr[i]];
 	}
-	return newarr;
+	return arr;
 }
 
 // Simple Calculations
