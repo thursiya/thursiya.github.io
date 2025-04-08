@@ -18,6 +18,7 @@ function newsEvent(nTime = time.full) {
 	// Planet News
 	if (Number.isInteger(subject)) {
 		subject = world[subject].name;
+		console.log(`DEBUG: Subject: ${subject}`);
 		console.log(`DEBUG: World number ${subject} (${world[subject].name}) and cities...`);
 		console.log(world[subject].city);
 		const city = shuffle(world[subject].city);
