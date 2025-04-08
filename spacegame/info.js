@@ -32,7 +32,7 @@ function newsEvent(nTime = time.full) {
 			"#New Engineering Projects Announced as|# #Monsoon Season Brings|# Widespread Flooding to",
 			"#Holographic Entertainment|Virtual Reality|Arts and Culture# #Park|Complex|Hub# Expands on",
 			"#Ongoing|# #Protests|Strikes# #over Artificial Gravity Adjustment Policy in|due to Government Corruption in|Paralyzing|in# ${city[0]}, ",
-			"New #High-Speed|Express|# #Rail|Tube|Subway# Line Opens between ${city[0]} and ${city[1] || "Spaceport"} on",
+			"New #High-Speed|Express|# #Rail|Tube|Subway# Line Opens between ${city[0]} and ${city[1] || `Spaceport`} on",
 			"#Desalination Plant Expected as|# Water Shortage #Hits|on|Continues on#"]))} ${subject}`;
 		text = "";	// Not yet implemented
 	// Corporate News
