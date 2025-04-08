@@ -28,7 +28,7 @@ function newsEvent(nTime = time.full) {
 			`Ancient Colony Discovered on`,
 			`New Job Opportunities on`,
 			`#Zero Gravity|Street|Electronic# #Couture|Fashion|Styles# #All the Rage on|Sweeping|Latest Trend on#`,
-			`${city[0]} #predatorN.s|spaceN.s|United|Guardians|# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on`,
+			`${city[0]} #predatorN.s.caps|spaceN.s|United|Guardians|# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on`,
 			`#Traffic Congestion|Crime|Lack of Housing# in ${city[0]} #Driving|Pushing# #Citizens|Residents# to #Smaller|Less Developed# #Communities|Settlements# on`,
 			dryWorld ? `#Massive|Huge# Dust Storm #Blankets|Covers|Pummels|Slams#` : `New #Floating|Underwater# #Complex|Development# #Expands|Opens New Opportunities in# ${city[0]}, `,
 			`#New Engineering Projects Announced as|# #Monsoon Season Brings|# Widespread Flooding to`,
