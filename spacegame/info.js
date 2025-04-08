@@ -17,11 +17,9 @@ function newsEvent(nTime = time.full) {
 
 	// Planet News
 	if (Number.isInteger(subject)) {
-		subject = world[subject].name;
-		console.log(`DEBUG: Subject: ${subject}`);
-		console.log(`DEBUG: World number ${subject} (${world[subject].name}) and cities...`);
-		console.log(world[subject].city);
 		const city = shuffle(world[subject].city);
+		const dryWorld = ["Desert", "Rocky"].includes(world[subject].type);
+		subject = world[subject].name;
 		headline = `${parse(rnd(["Famine on",
 			"Influx of Refugees to",
 			"Military Lockdown on",
@@ -31,7 +29,7 @@ function newsEvent(nTime = time.full) {
 			"#Zero Gravity|Street|Electronic# #Couture|Fashion|Styles# #All the Rage on|Sweeping|Latest Trend on#",
 			"${city[0]} #predatorN.s|spaceN.s|United|Guardians|# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on",
 			"#Traffic Congestion|Crime|Lack of Housing# in ${city[0]} #Driving|Pushing# #Citizens|Residents# to #Smaller|Less Developed# #Communities|Settlements# on",
-			["Desert", "Rocky"].includes(world[subject].type) ? "#Massive|Huge# Dust Storm #Blankets|Covers|Pummels|Slams#" : "New #Floating|Underwater# #Complex|Development# #Expands|Opens New Opportunities in# ${city[0]}, ",
+			dryWorld ? "#Massive|Huge# Dust Storm #Blankets|Covers|Pummels|Slams#" : "New #Floating|Underwater# #Complex|Development# #Expands|Opens New Opportunities in# ${city[0]}, ",
 			"#New Engineering Projects Announced as|# #Monsoon Season Brings|# Widespread Flooding to",
 			"#Holographic Entertainment|Virtual Reality|Arts and Culture# #Park|Complex|Hub# Expands on",
 			"#Ongoing|# #Protests|Strikes# #over Artificial Gravity Adjustment Policy in|due to Government Corruption in|Paralyzing|in# ${city[0]}, ",
