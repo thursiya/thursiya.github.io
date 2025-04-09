@@ -21,12 +21,12 @@ function newsEvent(nTime = time.full) {
 		const dryWorld = ["Desert", "Rocky"].includes(world[subject].type);
 		subject = world[subject].name;
 		headline = `${parse(rnd([
-			`Famine on`,
-			`Influx of Refugees to`,
-			`Military Lockdown on`,
-			`Tourists Flocking to`,
-			`Ancient Colony Discovered on`,
-			`New Job Opportunities on`,
+			`#Widespread|Severe|Critical|# #Famine|Food Shortage|Hunger Crisis# #on|Strikes|Plagues#`,
+			`#Influx|Surge|Mass Arrival|Large Number# of #Migrants|Refugees|Displaced People# #on|Pour into|Flood|Overwhelm#`,
+			`#Military|Armed Forces|Government# #Imposes|Enacts|Declares# #Strict Curfews|Martial Law|Lockdown|Border Closures# on`,
+			`#Throngs of|Uprecendented Number of|# #Tourists|Vistors|Travelers# #Flocking to|Descend on|Making New Hotspot of|Drawn to#`,
+			`#Ancient|Lost|Forgotten|Long-Abandoned# #Colony|Settlement|Outpost# #discover.ed.caps|Unearthed# on`,
+			`#New|Emerging|Booming|High Volume of# #Job|Employment|Work# #Opportunities|Prospects|Openings# on`,
 			`#Zero Gravity|Street|Electronic# #Couture|Fashion|Styles# #All the Rage on|Sweeping|Latest Trend on#`,
 			`${city[0]} #predatorN.s.caps|spaceN.s|United|Guardians|# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on`,
 			`#Traffic Congestion|Crime|Lack of Housing# in ${city[0]} #Driving|Pushing# #Citizens|Residents# to #Smaller|Less Developed# #Communities|Settlements# on`,
