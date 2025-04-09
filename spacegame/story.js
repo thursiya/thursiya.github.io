@@ -35,6 +35,7 @@ const storyFramework = {
 	// Synonyms - slang nouns
 	clunker: ["barge", "bucket^ of bolts", "clunker", "crate", "hunk^ of junk", "junker", "rattletrap", "rustbucket", "tin can"],
 	// Synonyms - verbs
+	discover: ["discover", "find{ed: 'found'}", "reveal", "uncover"],
 	rot: ["rot×", "decompose", "decay"],
 	locate: ["locate", "find{ed: 'found'}", "situate", "position"],
 	wear: ["wear{ed: 'wore'}", "sport", "dress in{ed: 'was dressed in', ing: 'dressed in'}", "in{ed: 'in', ing: 'in'}", "with{ed: 'with', ing: 'with'}"],
