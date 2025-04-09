@@ -298,7 +298,8 @@ function parse (text) {
 		return JSON.parse(varStr);
 	}
 	
-	text = text.replace(/<(.*?)>/g, "").replace(/#(.*?)#/g, (_, p1) => `#${rnd(p1.split('|'))}#`);	// trim tags, choose top level hash options
+	//text = text.replace(/<(.*?)>/g, "").replace(/#(.*?)#/g, (_, p1) => `#${rnd(p1.split('|'))}#`);	// trim tags, choose top level hash options
+	text = text.replace(/#(.*?)#/g, (_, p1) => `#${rnd(p1.split('|'))}#`);	// choose top level hash options
 	text = text.replace(/#(.*?)#/g, mainswap);	// parse text
 	text = text.replace(/[!?]\./g, v => v[0]);	// replace ?. with ?, and !. with !
 	text = text.replace(/(Ø|ø|£|×|\^)/g, "").replace(/\s+/g, " ").replace(/(\s+)(\.|\!|\?|,|;)/g, "$2").replace(/¶/g, "<br><br>").trim();	// trim formatting characters, excess spaces, and spaces before .!?,;
