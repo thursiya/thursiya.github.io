@@ -406,7 +406,7 @@ function updateAccountsDisplay() {
 				return t; }, []).reduce((t, v) => `${t}<tr>
    					<td rowspan="${v.length}">${v[0].time}</td>
        					<td rowspan="${v.length}">${v[0].location}</td>
-		   			<td rowspan="${v.length}"><i>${v[0].name}</i></td>
+		   			<td rowspan="${v.length}">${v[0].name}</td>
        					${v.reduce((t2, v2) => `${t2}
 	   					<td><i>${v2.note}</i></td>
 						<td style="text-align: right">${v2.amount}</td></tr><tr>`, "")}
