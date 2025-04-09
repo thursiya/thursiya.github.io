@@ -28,14 +28,14 @@ function newsEvent(nTime = time.full) {
 			`#Ancient|Lost|Forgotten|Long-Abandoned# #Colony|Settlement|Outpost# #discover.ed.caps|Unearthed# on`,
 			`#New|Emerging|Booming|High Volume of# #Job|Employment|Work# #Opportunities|Prospects|Openings# on`,
 			`#Zero Gravity|Street|Electronic# #Couture|Fashion|Styles# #All the Rage on|Sweeping|Latest Trend on#`,
-			`${city[0]} #predatorN.s.caps|spaceN.s|United|Guardians|# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on`,
+			`${city[0]} #predatorN.s.caps|spaceN.s.caps|United|Guardians# Win #Planet|scifiPeople|Worlds# #Cup|Tournament|Trophy# on`,
 			`#Traffic Congestion|Crime|Lack of Housing# in ${city[0]} #Driving|Pushing# #Citizens|Residents# to #Smaller|Less Developed# #Communities|Settlements# on`,
 			dryWorld ? `#Massive|Huge# Dust Storm #Blankets|Covers|Pummels|Slams#` : `New #Floating|Underwater# #Complex|Development# #Expands|Opens New Opportunities in# ${city[0]}, `,
 			`#New Engineering Projects Announced as|# #Monsoon Season Brings|# Widespread Flooding to`,
 			`#Holographic Entertainment|Virtual Reality|Arts and Culture# #Park|Complex|Hub# Expands on`,
-			`#Ongoing|# #Protests|Strikes# #over Artificial Gravity Adjustment Policy in|due to Government Corruption in|Paralyzing|in# ${city[0]}, `,
+			`#Ongoing|Extensive|# #Protests|Strikes|Demonstrations# #over|Due to# #Artificial Gravity Adjustment Policy|Government Corruption|Mass Surveillance# #Paralyzing|Rocking|in# ${city[0]}, `,
 			`New #High-Speed|Express|# #Rail|Tube|Subway# Line Opens between ${city[0]} and ${city[1] || `Spaceport`} on`,
-			`#Desalination Plant Expected as|# Water Shortage #Hits|on|Continues on#`]))} ${subject}`;
+			`#Desalination Plant Expected as|Greening Programs Halted as|Severe|# Water #Shortage|Scarcity|Crisis# #Hits|Devastates|Continues on#`]))} ${subject}`;
 		text = "";	// Not yet implemented
 	// Corporate News
 	} else {
