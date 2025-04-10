@@ -3,7 +3,7 @@ const starmapWidth = screen.width < 700 ? screen.width : screen.width - 350; //1
 document.querySelector('body').style.setProperty('--starmapWidth', `${starmapWidth}px`);
 const starmapHeight = 770;
 const tabsList = ['market', 'shipyard', 'notices', 'planet'];
-const totalPlanets = 32;		// Is this used?
+//const totalPlanets = 32;		// Is this used?
 const cellWidth = Math.floor(starmapWidth / 7);
 const cellHeight = Math.floor((starmapHeight - 20) / 5); // Leave 20px for name under planet
 const minDistance = 80;
