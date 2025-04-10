@@ -131,10 +131,10 @@ function moveGood (classData, dest, origin, target) {
 			if (origin.x == target.x && origin.y == target.y) return;	// (Good did not move)
 			const s2 = Object.assign({}, ship[target.x][target.y]);
 			removeCargo(origin.x, origin.y);
-			setTimeout(_ => {addCargo({name: s.name, type: s.type, file: s.file, stat: s.stat}, target.x, target.y, s.price, s.dest, s.origin)}, 1500);
+			setTimeout(_ => {addCargo({name: s.name, type: s.type, file: s.file, stat: s.stat, id: s.id}, target.x, target.y, s.price, s.dest, s.origin)}, 1500);
 			if (s2.name) {
 				removeCargo(target.x, target.y, false);
-				setTimeout(_ => {addCargo({name: s2.name, type: s2.type, file: s2.file, stat: s2.stat}, origin.x, origin.y, s2.price, s2.dest, s2.origin)}, 1500);
+				setTimeout(_ => {addCargo({name: s2.name, type: s2.type, file: s2.file, stat: s2.stat, id: s.id}, origin.x, origin.y, s2.price, s2.dest, s2.origin)}, 1500);
 			}
 		}
 		if (dest == 'market') {
