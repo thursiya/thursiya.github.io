@@ -102,8 +102,7 @@ function generateWorlds() {
 	
 	// Generate world coordinates using modified Poisson-Disc Sampling
 	let startTime = performance.now();
-	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(Array(Math.ceil(starmapHeight / 10)).fill(410));
-	//const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(0).map(v => Array(Math.ceil(starmapHeight / 10)).fill(400 + 10));
+	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill().map(v => Array(Math.ceil(starmapHeight / 10)).fill(410));
 	const xMax = (starmapWidth - 48) / 10;
 	const yMax = (starmapHeight  - 68) / 10;
 	while (true) {
