@@ -29,13 +29,13 @@ function Starlane(origin, dest) {
 	this.status = rnd(6) - 2;
 }
 
-function loadGame () {
+function loadGame() {
 	//loadAllFiles("data/corporations.txt", "data/goods.txt");
 
 	populateGalaxy();
 		
 	// Layout galactic map, world info, etc.
-	let startTime = performance.now();
+	const startTime = performance.now();
 	drawUI();
 	console.log(`*** Finished Drawing User Interface... ${(performance.now() - startTime).toFixed(2)} ms`);
 	
@@ -47,13 +47,13 @@ function loadGame () {
 	let s = document.getElementById('spaceshipIcon');
 		s.style.left = `${world[here].x}px`;
 		s.style.top = `${world[here].y}px`;
-		s.style.transition = '2s';
+		s.style.transition = "2s";
 	world[here].known = 0;
 		
 	// Create ship
-	for (let x of times(12)) {
+	for (const x of times(12)) {
 		ship.push([]);
-		for (let y of times(7)) ship[x].push({});
+		for (const y of times(7)) ship[x].push({});
 	}
 	changeShip(0);
 	drawShip();
@@ -70,7 +70,7 @@ function loadGame () {
 	addMission('main');
 }
 
-function populateGalaxy () {
+function populateGalaxy() {
 	// Add in old (established) corporations
 	oldCorps = oldCorps.map(v => new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1]));
 	oldCorps[13].fullname = "Independent Consortium of Planets";
@@ -79,38 +79,40 @@ function populateGalaxy () {
 	generateWorlds();
 	
 	// Generate 25 new random corporations (in addition to the 24 old corps), then add them to #corp# data
-	for (let i of times(25)) newCorps.push(rndCorporationName());
+	for (const i of times(25)) newCorps.push(rndCorporationName());
 	storyFramework.corp = [...oldCorps.map(v => v.name), ...newCorps.map(v => v.name)];
 	
-	let startTime = performance.now();
 	// Generate all characters
-	for (let i of times(world.length)) {
+	const startTime = performance.now();
+	for (const i of times(world.length)) {
 		const popSupport = Math.floor(world[i].pop / 5 + 6);
-		for (let j of times(popSupport)) person.push(new Role(i));
+		for (const j of times(popSupport)) person.push(new Role(i));
 	}
 	console.log(`*** Finished Generating Person Data in... ${(performance.now() - startTime).toFixed(2)} ms`);
 }
 
-function generateWorlds () {
+function generateWorlds() {
 	const focusList = ["Mining", "Mining", "Agricultural", "Industrial", "Manufacturing", "Terraforming", "Affluent", "Slum", "Slum", "High Tech", "Cultural", "Frontier", "Prison", "Mixed", "Mixed"];
 	const scapeList = ["affluent", "busy", "city", "crossing", "dark", "dock", "factory", "field", "frontier", "hill", "jungle", "lantern", "ocean", "outpost", "rainy", "slum", "snow", "statue", "town"];
-	let focuses = [], scapes = [], planetImg = [];
+	let focuses = [];
+	let scapes = [];
+	let planetImg = [];
 	
 	storyFramework.world = [];
 	
 	// Generate world coordinates using modified Poisson-Disc Sampling
-	let startTime = performance.now();
-	let cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(0).map(v => Array(Math.ceil(starmapHeight / 10)).fill(400 + 10));
+	const startTime = performance.now();
+	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(Array(Math.ceil(starmapHeight / 10)).fill(410));
 	const xMax = (starmapWidth - 48) / 10;
 	const yMax = (starmapHeight  - 68) / 10;
 	while (true) {
 		if (world.length == 0) {
 			// First world randomly placed in middle third of screen
-			world.push(new World({x: Math.floor(rnd(starmapWidth / 30) + starmapWidth / 30), y: Math.floor(rnd((starmapHeight - 20) / 30) + (starmapHeight - 20) / 30)}));
+			world.push(new World({ x: Math.floor(rnd(starmapWidth / 30) + starmapWidth / 30), y: Math.floor(rnd((starmapHeight - 20) / 30) + (starmapHeight - 20) / 30) }));
 		} else {
-			let choices = [];
-			for (let [xIndex, i] of cellGrid.entries()) {
-				for (let [yIndex, j] of i.entries()) {
+			const choices = [];
+			for (const [xIndex, i] of cellGrid.entries()) {
+				for (const [yIndex, j] of i.entries()) {
 					if (j > ((minDistance + world.length) / 10) ** 2 && j < 400) choices.push({x: xIndex, y: yIndex});
 				}
 			}
@@ -118,8 +120,8 @@ function generateWorlds () {
 			world.push(new World(rnd(choices)));
 		}
 		const w = world[world.length - 1];
-		for (let i of times(41)) {
-			for (let j of times(41)) {
+		for (const i of times(41)) {
+			for (const j of times(41)) {
 				const x1 = w.x - 20 + i;
 				const y1 = w.y - 20 + j;
 				if (x1 < 1.6 || x1 > xMax || y1 < 1.6 || y1 > yMax) continue;
@@ -132,13 +134,23 @@ function generateWorlds () {
 	console.log(`*** Finished Laying out Systems in... ${(performance.now() - startTime).toFixed(2)} ms`);
 
 	// Add starlanes
-	startTime = performance.now();
-	world.forEach((w, i) => {for (let j of times(i)) if (calculateSimpleDistance(w, world[j]) <= 40000) starlane.push(new Starlane(i, j))});
+	const startTime2 = performance.now();
+	world.forEach((w, i) => { for (const j of times(i)) if (calculateSimpleDistance(w, world[j]) <= 40000) starlane.push(new Starlane(i, j)); });
 	// Sort starlanes by length
-	starlane.sort((a, b) => a.distance > b.distance ? 1 : -1);
+	starlane.sort((a, b) => a.distance - b.distance);
 	// Remove long lanes that cross short ones
+	/*let i = 0;
+	while (i < starlane.length) {
+		let j = i;
+		while (j < starlane.length) {
+			if (doLanesCross(starlane[i], starlane[j]) starlane.splice(j, 1);
+			j++;
+		}
+		i++;
+	}*/
+	
 	for (let i = 0; i < starlane.length - 1; i++) for (let j = i + 1; j < starlane.length; j++) if (doLanesCross(starlane[i], starlane[j])) starlane.splice(j, 1);
-	console.log(`*** Finished Generating Starlanes in... ${(performance.now() - startTime).toFixed(2)} ms`);
+	console.log(`*** Finished Generating Starlanes in... ${(performance.now() - startTime2).toFixed(2)} ms`);
 
 	startTime = performance.now();
 	// Generate additional world data (name, image, etc.)
