@@ -219,20 +219,19 @@ function generateWorlds() {
 	console.log(`*** Finished Generating World Data in... ${(performance.now() - startTime).toFixed(2)} ms`);
 }
 
-function generateName (syllables = 3, pattern) {
-	let name = "",
-		onset = "ptkbdgmnlryw ",
-		medial,
-		nucleus = "aeiou",
-		coda = "ptkbdgmnlryw          ",
-		rhyme;
+function generateName(syllables = 3, pattern) {
+	let name = "";
+	let onset = "ptkbdgmnlryw ",
+	let medial;
+	let nucleus = "aeiou";
+	let coda = "ptkbdgmnlryw          ";
+	let rhyme;
 	switch (pattern) {
 		case "en":		// English
 			onset = [..." bcdfghjklmnprstvwyz".split(""),"bl","br","ch","cl","cr","dr","fl","fr","gl","gr","ph","pl","pr","qu","sc","scr","sh","shr","sl","sm","sn","sp","spl","spr","st","str","sw","th","thr","tr","tw"];
 			nucleus = ["a","ai","au","e","ea","ee","i","o","oa","oi","oo","ou","u"];
 			coda = [..." bdfgmnprstx".split(""),"ch","ck","dge","gh","ght","ke","lch","ld","lge","ll","lsh","lt","mp","nd","ng","nt","ph","rd","rf","rge","rk","rm","rn","rp","rse","rst","rt","rve","se","sh","st","tch","th","ve","ze"];
 			//["#ea|ee|oa|oo|ou#ch", "#enVowel#ck", "#enVowel#dge", "#au|i|ou#gh#|t#", "#a|i|o|u#ke", "#e|i|u#lch", "#a|au|e|ea|i|o#ld", "#i|u#lge", "#enVowel#ll", "lsh","lt","mp","nd","ng","nt","ph","rd","rf","rge","rk","rm","rn","rp","rse","rst","rt","rve","se","sh","st","tch","th","ve","ze"
-			
 			break;
 		case "ja":		// Japanese
 			onset = " kstnhmyrwgzdbp";
@@ -254,7 +253,7 @@ function generateName (syllables = 3, pattern) {
 			coda = "";
 			break;
 	}
-	for (let i of times(syllables)) {
+	for (const i of times(syllables)) {
 		name += rnd(onset);
 		if (medial) name += rnd(medial);
 		if (rhyme) {
