@@ -101,7 +101,7 @@ function generateWorlds() {
 	storyFramework.world = [];
 	
 	// Generate world coordinates using modified Poisson-Disc Sampling
-	const startTime = performance.now();
+	let startTime = performance.now();
 	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(Array(Math.ceil(starmapHeight / 10)).fill(410));
 	const xMax = (starmapWidth - 48) / 10;
 	const yMax = (starmapHeight  - 68) / 10;
@@ -134,7 +134,7 @@ function generateWorlds() {
 	console.log(`*** Finished Laying out Systems in... ${(performance.now() - startTime).toFixed(2)} ms`);
 
 	// Add starlanes
-	const startTime2 = performance.now();
+	startTime = performance.now();
 	world.forEach((w, i) => { for (const j of times(i)) if (calculateSimpleDistance(w, world[j]) <= 40000) starlane.push(new Starlane(i, j)); });
 	// Sort starlanes by length
 	starlane.sort((a, b) => a.distance - b.distance);
@@ -150,7 +150,7 @@ function generateWorlds() {
 	}*/
 	
 	for (let i = 0; i < starlane.length - 1; i++) for (let j = i + 1; j < starlane.length; j++) if (doLanesCross(starlane[i], starlane[j])) starlane.splice(j, 1);
-	console.log(`*** Finished Generating Starlanes in... ${(performance.now() - startTime2).toFixed(2)} ms`);
+	console.log(`*** Finished Generating Starlanes in... ${(performance.now() - startTime).toFixed(2)} ms`);
 
 	startTime = performance.now();
 	// Generate additional world data (name, image, etc.)
