@@ -139,21 +139,11 @@ function generateWorlds() {
 	// Sort starlanes by length
 	starlane.sort((a, b) => a.distance - b.distance);
 	// Remove long lanes that cross short ones
-	/*let i = 0;
-	while (i < starlane.length) {
-		let j = i;
-		while (j < starlane.length) {
-			if (doLanesCross(starlane[i], starlane[j]) starlane.splice(j, 1);
-			j++;
-		}
-		i++;
-	}*/
-	
 	for (let i = 0; i < starlane.length - 1; i++) for (let j = i + 1; j < starlane.length; j++) if (doLanesCross(starlane[i], starlane[j])) starlane.splice(j, 1);
 	console.log(`*** Finished Generating Starlanes in... ${(performance.now() - startTime).toFixed(2)} ms`);
 
-	startTime = performance.now();
 	// Generate additional world data (name, image, etc.)
+	startTime = performance.now();
 	world.forEach((w, i) => {
 		// Generate random name
 		let workingName;
@@ -177,7 +167,7 @@ function generateWorlds() {
 		w.focus = focuses.pop();
 		
 		// Choose Type
-		let planetTypes = ["Rocky", "Rocky", "Desert", "Desert", "Ocean"];
+		const planetTypes = ["Rocky", "Rocky", "Desert", "Desert", "Ocean"];
 		if (w.focus == "Mining") planetTypes.pop();
 		if (w.focus.match(/^(Mining|Frontier|Prison)$/i)) planetTypes.push("Ice");
 		w.type = rnd(planetTypes);
@@ -193,7 +183,6 @@ function generateWorlds() {
 		// Calculate population
 		w.pop = ["Ice", "Ocean", "Rocky", "Desert"].indexOf(w.type) * 3 + w.size + (w.focus.match(/^(Mining|Terraforming|Prison|Frontier)$/i) ? 0 : w.focus.match(/^(Agricultural|Industrial|Manufacturing)$/i) ? 9 : 18);
 		temp = rnd(10) - 1;
-		//w.poptext = w.pop < 10 ? `${w.pop}${temp}0k` : w.pop < 19 ? `${w.pop - 9}.${temp}M` : (temp = Math.floor(1.8 ** (w.pop + temp / 10) / 12700), temp < 1000 ? `${temp}M` : `${(temp / 1000).toFixed(1)}B`);
 		w.poptext = w.pop < 10 ? `${w.pop}${temp}0k` : 
 			w.pop < 19 ? `${w.pop - 9}.${temp}M` : 
 			(temp = Math.ceil((1.65 ** (w.pop - 18 + temp / 10) - 0.65) * 10), temp < 1000 ? `${temp}M` : `${(temp / 1000).toFixed(1)}B`);
@@ -211,7 +200,7 @@ function generateWorlds() {
 		
 		// Add settlement
 		w.city = [];
-		for (let j of times(w.pop / 5)) w.city.push(parse("#colonyName#"));
+		for (const j of times(w.pop / 5)) w.city.push(parse("#colonyName#"));
 		
 		// Add links
 		w.links = [];
@@ -252,7 +241,7 @@ function generateName (syllables = 3, pattern) {
 			coda = "       n";
 			break;
 		case "zh":		// Chinese
-			onset = [..."bcdqrstvwxyzhbn".split(""),"ch","sh","zh"];
+			onset = [..."bcdqrstwxyzhbn".split(""),"ch","sh","zh"];
 			coda = [..."       n".split(""),"ng"];
 			break;
 		case "SWname":	// Star Wars name meme: first 3 chars of lastname + first 2 chars of firstname
