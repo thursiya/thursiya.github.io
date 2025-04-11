@@ -102,7 +102,8 @@ function generateWorlds() {
 	
 	// Generate world coordinates using modified Poisson-Disc Sampling
 	let startTime = performance.now();
-	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(Array(Math.ceil(starmapHeight / 10)).fill(410));
+	//const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(Array(Math.ceil(starmapHeight / 10)).fill(410));
+	const cellGrid = Array(Math.ceil(starmapWidth / 10)).fill(0).map(v => Array(Math.ceil(starmapHeight / 10)).fill(400 + 10));
 	const xMax = (starmapWidth - 48) / 10;
 	const yMax = (starmapHeight  - 68) / 10;
 	while (true) {
@@ -113,7 +114,7 @@ function generateWorlds() {
 			const choices = [];
 			for (const [xIndex, i] of cellGrid.entries()) {
 				for (const [yIndex, j] of i.entries()) {
-					if (j > ((minDistance + world.length) / 10) ** 2 && j < 400) choices.push({x: xIndex, y: yIndex});
+					if (j > ((minDistance + world.length) / 10) ** 2 && j < 400) choices.push({ x: xIndex, y: yIndex });
 				}
 			}
 			if (choices.length == 0) break;	// End while loop when there are no more legal world sites
