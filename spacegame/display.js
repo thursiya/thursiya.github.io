@@ -52,7 +52,7 @@ function systemArrival(planetID) {
 		document.getElementById(`planet${v}`).style.display = "block";
 		if(world[v].known < -1) world[v].known = -1; });
 	
-	// Queue background music
+	// Cue background music
 	playBGMusic();
 		
 	// Handle arrival
