@@ -221,7 +221,7 @@ function generateWorlds() {
 
 function generateName(syllables = 3, pattern) {
 	let name = "";
-	let onset = "ptkbdgmnlryw ",
+	let onset = "ptkbdgmnlryw ";
 	let medial;
 	let nucleus = "aeiou";
 	let coda = "ptkbdgmnlryw          ";
@@ -276,11 +276,13 @@ function generateDescription(w) {
 			break;
 		case 2:
 			const temp = shuffle(["many winding rivers", "long mountain ranges", `${w.type == "Rocky" ? "vast" : "tiny"} seas`, `scattered ${w.type == "Rocky" ? "lakes" : "oases"}`, "vibrant forests", "dense jungles", "deep canyons", "rugged plateaus"]);
+			desc += { "Ocean": `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.`,
+				"Ice": `Its brutally cold weather #attracts few visitors|makes life rather miserable|limits growth potential#.` }[w.type] || `It is home to ${temp[0]} and ${temp[1]}.`;
+			/*
 			desc += (w.type == "Ocean") ? `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.` :
 				(w.type == "Ice") ? `Its brutally cold weather #attracts few visitors|makes life rather miserable|limits growth potential#.` :
 				`It is home to ${temp[0]} and ${temp[1]}.`;
-			/*
-			switch (w.type) {
+   			switch (w.type) {
 				case "Ocean": desc += `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.`; break;
 				case "Ice": desc += `Its brutally cold weather ${rnd(["attracts few visitors", "makes life rather miserable", "limits growth potential"])}.`; break;
 				default: desc += `It is home to ${temp[0]} and ${temp[1]}.`;
