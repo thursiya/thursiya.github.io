@@ -268,7 +268,7 @@ function generateName(syllables = 3, pattern) {
 
 function generateDescription(w) {
 	//let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world${rnd(["", " with " + rnd(["no moons", "one large moon", "many small moons", "icy rings"])])}. `;
-	let desc = `#${["small", "average", "large"][w.size - 1]}.a.caps# ${w.type.toLowerCase()} world #|with ${parse("#no moons|one large moon|many small moons|icy rings#")}#. `;
+	let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world #|with ${parse("#no moons|one large moon|many small moons|icy rings#")}#. `;
 
 	switch (rnd(4)) {
 		case 1:
