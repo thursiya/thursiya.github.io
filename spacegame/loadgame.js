@@ -267,7 +267,6 @@ function generateName(syllables = 3, pattern) {
 }
 
 function generateDescription(w) {
-	//let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world${rnd(["", " with " + rnd(["no moons", "one large moon", "many small moons", "icy rings"])])}. `;
 	let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world #|with ${parse("#no moons|one large moon|many small moons|icy rings#")}#. `;
 
 	switch (rnd(4)) {
@@ -278,29 +277,20 @@ function generateDescription(w) {
 			const temp = shuffle(["many winding rivers", "long mountain ranges", `${w.type == "Rocky" ? "vast" : "tiny"} seas`, `scattered ${w.type == "Rocky" ? "lakes" : "oases"}`, "vibrant forests", "dense jungles", "deep canyons", "rugged plateaus"]);
 			desc += { "Ocean": `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.`,
 				"Ice": `Its brutally cold weather #attracts few visitors|makes life rather miserable|limits growth potential#.` }[w.type] || `It is home to ${temp[0]} and ${temp[1]}.`;
-			/*
-			desc += (w.type == "Ocean") ? `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.` :
-				(w.type == "Ice") ? `Its brutally cold weather #attracts few visitors|makes life rather miserable|limits growth potential#.` :
-				`It is home to ${temp[0]} and ${temp[1]}.`;
-   			switch (w.type) {
-				case "Ocean": desc += `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.`; break;
-				case "Ice": desc += `Its brutally cold weather ${rnd(["attracts few visitors", "makes life rather miserable", "limits growth potential"])}.`; break;
-				default: desc += `It is home to ${temp[0]} and ${temp[1]}.`;
-			}
-			break;*/
+			break;
 		case 3:
 			desc += { "Mining": `${w.name} is famed for its rich ore veins.`,
 				"Agricultural": `Its surface is covered with vast farmlands.`,
 				"Industrial": `Its many refineries and smelters light up the night sky.`,
 				"Terraforming": `It is in the process of becoming a green paradise.`,
-				"Manufacturing": `Its factories mass produce whatever the galaxy demands.`,
+				"Manufacturing": `Its factories mass-produce whatever the galaxy demands.`,
 				"High Tech": `Its well-educated people are at the nexus of innovation.`,
 				"Affluent": `Citizens of ${w.name} tend to be rich and flaunt it.`,
 				"Slum": `Most of its people just scrape by, impoverished by past generations.`,
 				"Cultural": `${w.name} is a well-known name thanks to its many wonders.`,
 				"Prison": `Almost all of the populous live behind bars or are employed in front of them.`,
 				"Frontier": `A few sturdy settlers are hoping ${w.name} will become a major destination.`,
-				"Mixed": `The cosmopoliton world of ${w.name} offers a little bit of everything.` }[w.focus];
+				"Mixed": `The cosmopolitan world of ${w.name} offers a little bit of everything.` }[w.focus];
 			break;
 		default:
 			desc += { "Anarchy": `It's the wild west amongst ${w.name}'s disjointed settlements.`,
