@@ -190,7 +190,7 @@ function generateWorlds() {
 		// Generate text description
 		if (scapes.length < 1) scapes = shuffle(scapeList.slice(0));
 		w.file = scapes.pop();
-		w.text = generateDescription(w);
+		w.text = generateWorldDescription(w);
 		
 		// Add economic data
 		w.goods = worldGoods(w);	// (goods.js)
@@ -266,7 +266,7 @@ function generateName(syllables = 3, pattern) {
 	return capitalize(name.replace(/ /g, ''));	// Capitalize & remove whitespaces
 }
 
-function generateDescription(w) {
+function generateWorldDescription(w) {
 	let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world #|with ${parse("#no moons|one large moon|many small moons|icy rings#")}#. `;
 
 	switch (rnd(4)) {
@@ -302,35 +302,41 @@ function generateDescription(w) {
 	}			
 
 	desc += ` ${w.name}'s ${w.focus.toLowerCase()} economy is ${["primarily resource-based", "focused on services", "quite varied"][w.focus.match(/^(Affluent|High Tech|Cultural)$/i) ? 1 : w.focus.match(/^(Slum|Prison|Mixed)$/i) ? 2 : 0]}.`;
-	// 3 parts: basics (size, composition), funfact, trade data
+	// 3 parts: basics (size/composition), funfact, trade data
 	return parse(desc);
 }
 
-function drawUI () {
-	let out = `<div id='starmap'>
-			<div id='commScreen' class='commWindow'>
-				<div id='commButtons'>
-					<div style='float:right'>
-						<img id='infoButton' class='commTab' src='images/buttons/info.png' draggable='false' onclick='displayComm(7)'> &nbsp;
-						<img id='newsButton' class='commTab' src='images/buttons/news.png' draggable='false' onclick='displayComm(6)'> &nbsp;
-						<img id='transactionButton' class='commTab' src='images/buttons/transaction.png' draggable='false' onclick='displayComm(5)'> &nbsp;
+function drawUI() {
+	/*<img id="infoButton" class="commTab" src="images/buttons/info.png" draggable="false" onclick="displayComm(7)"> &nbsp;
+						<img id="newsButton" class="commTab" src="images/buttons/news.png" draggable="false" onclick="displayComm(6)"> &nbsp;
+						<img id="transactionButton' class="commTab" src="images/buttons/transaction.png" draggable="false" onclick="displayComm(5)"> &nbsp;
 						<img id='manifestButton' class='commTab' src='images/buttons/manifest.png' draggable='false' onclick='displayComm(4)'> &nbsp;
 						<img id='missionButton' class='commTab' src='images/buttons/mission.png' draggable='false' onclick='displayComm(3)'> &nbsp;
-						<img id='contactsButton' class='commTab' src='images/buttons/address.png' draggable='false' onclick='displayComm(2)'> &nbsp;
-						<img id='previousMessage' class='commTab' src='images/buttons/next.png' style='transform: rotate(180deg)' draggable='false' onclick='displayComm(1.1)'><img id='messagesButton' class='commTab' src='images/buttons/message.png' draggable='false' onclick='displayComm(1)'><img id='nextMessage' class='commTab' src='images/buttons/next.png' draggable='false' onclick='displayComm(1.2)'> &nbsp;
-						<img src='images/buttons/close.png' class='commTab' draggable='false' onclick='hideComm()'>
+      						<img id='contactsButton' class='commTab' src='images/buttons/address.png' draggable='false' onclick='displayComm(2)'> &nbsp;
+	    
+     const corpABC = [...oldCorps, ...newCorps].sort((a,b)=>(a.name > b.name) ? 1 : -1);
+										for (let i of corpABC) out+= `<div class='hoverable' onclick='displayInfo("corp","${i.name}")'>${i.name}</div>`;
+     */
+	document.getElementById('GameWindow').innerHTML = `<div id="starmap">
+			<div id="commScreen" class="commWindow">
+				<div id="commButtons">
+					<div style="float: right;">
+     						${["info", "news", "transaction", "manifest", "mission", "contacts"].reduce((t, v, i) => 
+							`${t}<img id="${v}Button" class="commTab" src="images/buttons/${v}.png" draggable="false" onclick="displayComm(${7 - i})"> &nbsp;`, "")}
+						<img id="previousMessage" class="commTab" src="images/buttons/next.png" style="transform: rotate(180deg)" draggable="false" onclick="displayComm(1.1)"><img id="messagesButton" class="commTab" src="images/buttons/message.png" draggable="false" onclick="displayComm(1)"><img id="nextMessage" class="commTab" src="images/buttons/next.png" draggable="false" onclick="displayComm(1.2)"> &nbsp;
+						<img src="images/buttons/close.png" class="commTab" draggable="false" onclick="hideComm()">
 					</div>
 				</div>
-				<div id='commContent'>
-					<div id='commInfo' class='commSection' style='display:none'>
-						<table><tr>
-							<td style='width: 200px; vertical-align: top; overflow-y: auto'>
-								<button class="collapsible">Corporations</button>
-								<div class="collcontent">`;
-									const corpABC = [...oldCorps, ...newCorps].sort((a,b)=>(a.name > b.name) ? 1 : -1);
-									for (let i of corpABC) out+= `<div class='hoverable' onclick='displayInfo("corp","${i.name}")'>${i.name}</div>`;
-							out += `</div>
-								<button class="collapsible">Worlds</button>
+				<div id="commContent">
+					<div id="commInfo" class="commSection" style="display: none;">
+						<table>
+      							<tr>
+								<td style="width: 200px; vertical-align: top; overflow-y: auto;">
+									<button class="collapsible">Corporations</button>
+									<div class="collcontent">
+	 									${[...oldCorps, ...newCorps].sort((a, b) => a.name.localeCompare(b.name)).reduce((t, v) => `${t}<div class="hoverable" onclick="displayInfo('corp','${v.name}')">${v.name}</div>`, "")}
+									</div>
+									<button class="collapsible">Worlds</button>
 								<div class="collcontent">`;
 									const worldABC = world.slice().sort((a,b)=>(a.name > b.name) ? 1 : -1);
 									for (let i of worldABC) out+= `<div class='hoverable' onclick='displayInfo("world","${i.name}")'>${i.name}</div>`;
@@ -433,8 +439,7 @@ function drawUI () {
 			</div>
 		</div>
 		<audio id='bgMusic' autoplay loop></audio>`;
-	document.getElementById('GameWindow').innerHTML = out;
-	
+		
 	// Add drop-down functionality to info window topics
 	for (let i of document.getElementsByClassName('collapsible')) {
 		i.addEventListener("click", function() {
