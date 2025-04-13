@@ -266,24 +266,28 @@ function generateName(syllables = 3, pattern) {
 	return capitalize(name.replace(/ /g, ''));	// Capitalize & remove whitespaces
 }
 
-function generateDescription (w) {
-	let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world${rnd(["", " with " + rnd(["no moons", "one large moon", "many small moons", "icy rings"])])}. `;
+function generateDescription(w) {
+	//let desc = `A${[" small", "n average", " large"][w.size - 1]} ${w.type.toLowerCase()} world${rnd(["", " with " + rnd(["no moons", "one large moon", "many small moons", "icy rings"])])}. `;
+	let desc = `#${["small", "average", "large"][w.size - 1]}.a.caps# ${w.type.toLowerCase()} world #|with ${parse("#no moons|one large moon|many small moons|icy rings#")}#. `;
 
 	switch (rnd(4)) {
 		case 1:
 			desc += w.pop > 9 ? "The large population are mostly crowded in massive cities." : "The people live in scattered settlements.";
 			break;
 		case 2:
-			var temp = ["many winding rivers", "long mountain ranges", (w.type == "Rocky" ? "vast" : "tiny") + " seas", "scattered " + (w.type == "Rocky" ? "lakes" : "oases"), "vibrant forests", "dense jungles", "deep canyons", "rugged plateaus"];
+			const temp = shuffle(["many winding rivers", "long mountain ranges", `${w.type == "Rocky" ? "vast" : "tiny"} seas`, `scattered ${w.type == "Rocky" ? "lakes" : "oases"}`, "vibrant forests", "dense jungles", "deep canyons", "rugged plateaus"]);
+			desc += (w.type == "Ocean") ? `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.` :
+				(w.type == "Ice") ? `Its brutally cold weather #attracts few visitors|makes life rather miserable|limits growth potential#.` :
+				`It is home to ${temp[0]} and ${temp[1]}.`;
+			/*
 			switch (w.type) {
-				case "Ocean": desc += `Its indigenous sea life ${rnd(["provide abundant resources", "coexist with floating colonies scattered across the planet", "attract tourists and scientists"])}.`; break;
+				case "Ocean": desc += `Its indigenous sea life #provide abundant resources|coexist with floating colonies scattered across the planet|attract tourists and scientists#.`; break;
 				case "Ice": desc += `Its brutally cold weather ${rnd(["attracts few visitors", "makes life rather miserable", "limits growth potential"])}.`; break;
-				default: desc += `It is home to ${temp.splice(rnd(temp.length) - 1, 1)} and ${rnd(temp)}.`;
+				default: desc += `It is home to ${temp[0]} and ${temp[1]}.`;
 			}
-			break;
+			break;*/
 		case 3:
-			desc += ({
-				"Mining": `${w.name} is famed for its rich ore veins.`,
+			desc += { "Mining": `${w.name} is famed for its rich ore veins.`,
 				"Agricultural": `Its surface is covered with vast farmlands.`,
 				"Industrial": `Its many refineries and smelters light up the night sky.`,
 				"Terraforming": `It is in the process of becoming a green paradise.`,
@@ -294,23 +298,20 @@ function generateDescription (w) {
 				"Cultural": `${w.name} is a well-known name thanks to its many wonders.`,
 				"Prison": `Almost all of the populous live behind bars or are employed in front of them.`,
 				"Frontier": `A few sturdy settlers are hoping ${w.name} will become a major destination.`,
-				"Mixed": `The cosmopoliton world of ${w.name} offers a little bit of everything.`
-			})[w.focus];
+				"Mixed": `The cosmopoliton world of ${w.name} offers a little bit of everything.` }[w.focus];
 			break;
 		default:
-			desc += ({
-				"Anarchy": `It's the wild west amongst ${w.name}'s disjointed settlements.`,
+			desc += { "Anarchy": `It's the wild west amongst ${w.name}'s disjointed settlements.`,
 				"Corporate": `On ${w.name} it is the rare few who do not work directly for ${w.govdesc}.`,
 				"Democracy": `${w.name} politics are rife with constant intrigues and revelations.`,
 				"Feudal": `The central government is only one of many players in the hectic politics here.`,
 				"Military": `The high command carefully monitors all traffic in and out.`,
-				"Theocracy": `The people and institutions on ${w.name} are very wary of foreign influences.`
-			})[w.gov];
+				"Theocracy": `The people and institutions on ${w.name} are very wary of foreign influences.` }[w.gov];
 	}			
 
 	desc += ` ${w.name}'s ${w.focus.toLowerCase()} economy is ${["primarily resource-based", "focused on services", "quite varied"][w.focus.match(/^(Affluent|High Tech|Cultural)$/i) ? 1 : w.focus.match(/^(Slum|Prison|Mixed)$/i) ? 2 : 0]}.`;
 	// 3 parts: basics (size, composition), funfact, trade data
-	return desc;
+	return parse(desc);
 }
 
 function drawUI () {
