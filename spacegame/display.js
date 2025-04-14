@@ -275,7 +275,7 @@ function displayLocales() {
 function chooseTab(evt, tab) {
 	for (const i of document.getElementsByClassName('tablink')) i.classList.toggle("active", false);
 	for (const i of document.getElementsByClassName('tabcontent')) i.style.display = "none";
-	document.getElementById(`${tabsList[tab]}tab`).style.display = "block";
+	document.getElementById(`${TABSLIST[tab]}tab`).style.display = "block";
 	evt.currentTarget.classList.toggle("active");
 }
 
