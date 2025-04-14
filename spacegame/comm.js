@@ -225,7 +225,8 @@ function contactPerson(pID, shipFlag) {
 		call = mClient.contact;
 	// Call mission contactChar if doing a mission involving pID
 	} else if (mChar) {
-		return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
+		call = mChar.contactChar(mChar.character.findIndex(v => v == pID), preText);
+		//return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
 	// Call person normally (if not busy, sleeping, or despising you)
 	} else {
 		const sleeping = (callspace == 0) ? false : (time.full + p.location % 4 * 6) % 24 < 6;
