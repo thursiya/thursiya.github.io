@@ -5,7 +5,7 @@ let lastNewsEvent = 0;
 // Generate shuffled array with two copies of each world number and one copy of each corp name (for news topics)
 // Consider changing distribution to reflect world pop?
 function loadNewsFramework() {
-	newsFramework = [...Array(world.length)].map((_, i) => i);
+	newsFramework = [...Array(world.length).keys()];
 	newsFramework = shuffle([...newsFramework, ...newsFramework, ...newCorps.map(v => v.name), ...oldCorps.map(v => v.name)]);
 }
 
