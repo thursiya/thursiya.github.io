@@ -95,7 +95,7 @@ function populateGalaxy() {
 
 function generateWorlds() {
 	const focusList = [...ECONOMIES, "Mining", "Slum", "Mixed"];
-	//	["Mining", "Mining", "Agricultural", "Industrial", "Manufacturing", "Terraforming", "Affluent", "Slum", "Slum", "High Tech", "Cultural", "Frontier", "Prison", "Mixed", "Mixed"];
+	// Replace scapeList with fetch request
 	const scapeList = ["affluent", "busy", "city", "crossing", "dark", "dock", "factory", "field", "frontier", "hill", "jungle", "lantern", "ocean", "outpost", "rainy", "slum", "snow", "statue", "town"];
 	let focuses = [];
 	let scapes = [];
@@ -310,42 +310,6 @@ function generateWorldDescription(w) {
 }
 
 function drawUI() {
-	/*<img id="infoButton" class="commTab" src="images/buttons/info.png" draggable="false" onclick="displayComm(7)"> &nbsp;
-						<img id="newsButton" class="commTab" src="images/buttons/news.png" draggable="false" onclick="displayComm(6)"> &nbsp;
-						<img id="transactionButton' class="commTab" src="images/buttons/transaction.png" draggable="false" onclick="displayComm(5)"> &nbsp;
-						<img id='manifestButton' class='commTab' src='images/buttons/manifest.png' draggable='false' onclick='displayComm(4)'> &nbsp;
-						<img id='missionButton' class='commTab' src='images/buttons/mission.png' draggable='false' onclick='displayComm(3)'> &nbsp;
-      						<img id='contactsButton' class='commTab' src='images/buttons/address.png' draggable='false' onclick='displayComm(2)'> &nbsp;
-	    
-     						const corpABC = [...oldCorps, ...newCorps].sort((a,b)=>(a.name > b.name) ? 1 : -1);
-						for (let i of corpABC) out+= `<div class='hoverable' onclick='displayInfo("corp","${i.name}")'>${i.name}</div>`;
-						for (let i of worldABC) out+= `<div class='hoverable' onclick='displayInfo("world","${i.name}")'>${i.name}</div>`;
-      						for (let i of [...new Set(goods.map(g => g.name))].sort()) out += `<div class='hoverable' onclick='displayInfo("good","${i}")'>${i}</div>`;
-	    for (let [i, s] of starlane.entries()) {
-					out += `<div id='starlane${i}div'>
-								<img id='starlane${i}' class='fadable' draggable='false' style='position:absolute; left: ${s.x}px; top: ${s.y}px; display: none; animation-delay: ${Math.floor(Math.random() * -differentFadables)}s'>
-							</div>`;
-       				for (let [i, w] of world.entries()) {
-					out += `<div id='planet${i}' class='popup planet' style='left: ${w.x}px; top: ${w.y}px;' onmouseover='popupdisplay(${i})'>
-								<img src='images/planets/planet${w.planetImage}.png' draggable='false' style='height: 32px; position: absolute; clip-path: circle(16px at ${16 * (i % 5 + 1)}px 50%); left: -${16 * (i % 5)}px;' onclick='displayCurrentSystem(${i})'>
-								<p style='position: absolute; top: 20px; color: white'>
-									<b>${w.name}</b>
-								</p>
-								<p id='planet${i}text' class='popuptext' style='position:absolute'>
-									<b>${w.name}</b> <i>(${w.pop})</i><br>
-									<span id='planet${i}info'></span>
-								</p>
-							</div>`;
-				}
-         
-						for (let i of times(4)) {
-							out += `<button id='${tabsList[i]}TabButton' class='tablink' onclick='chooseTab(event, ${i})' title='${capitalize(tabsList[i]) + (i == 3 ? " Info" : "")}'><img src='images/buttons/${tabsList[i]}.png' class='tab' draggable='false'></button>`;
-						}
-    					<div id='markettab' class='tabcontent'></div>
-					<div id='shipyardtab' class='tabcontent'></div>
-					<div id='noticestab' class='tabcontent'></div>
-					<div id='planettab' class='tabcontent'></div>
-     */
 	// starlane animation-delay is negative so it starts midway
 	document.getElementById('GameWindow').innerHTML = `
  		<div id="starmap">
@@ -466,7 +430,7 @@ function drawUI() {
 			</div>
 			<div id="menuButtons">
 				<img id="commButton" class="menubutton" src="images/buttons/message.png" onclick="displayComm()" draggable="false">
-				<img id="canvasButton" class="menubutton" src="images/buttons/ship.png" onclick="displayCanvas("ship")" draggable="false">
+				<img id="canvasButton" class="menubutton" src="images/buttons/ship.png" onclick="displayCanvas('ship')" draggable="false">
 				<img id="bgmusicButton" class="menubutton" src="images/buttons/music.png" onclick="muteMusic()" draggable="false">
 			</div>
 			<div id="playerInfo">
