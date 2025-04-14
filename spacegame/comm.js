@@ -217,7 +217,7 @@ function contactPerson(pID, shipFlag) {
 	const mChar = mission.find(m => 'character' in m && m.character.some(c => c == pID));
 	const callspace = time.full - p.contact;
 	const callback = (p.mood / 17) - callspace > 0;
-	let preText = callback ? `${parse("#You just contacted me|I just heard from you|We just spoke# - did you #forget the directions|miss something|need a reminder#?"} ` : "";
+	let preText = callback ? `${parse("#You just contacted me|I just heard from you|We just spoke# - did you #forget the directions|miss something|need a reminder#?")} ` : "";
 	
 	let call;
 	// Call mission contact if doing a mission for pID
