@@ -454,7 +454,7 @@ function drawUI() {
 				</div>
 				<div id="worldboxmenu">
 					<div class="tab">
-						${TABSLIST.reduce((t, v) => `${t}
+						${TABSLIST.reduce((t, v, i) => `${t}
       							<button id="${v}TabButton" class="tablink" onclick="chooseTab(event, ${i})" title="${v == "planet" ? "Planet Info" : capitalize(v)}">
       								<img src="images/buttons/${v}.png" class="tab" draggable="false">
 	      						</button>`, "")}
