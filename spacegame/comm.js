@@ -200,10 +200,12 @@ function contactPerson(pID, shipFlag) {
 	// Contacting Person visual
 	contactSFX.play();
 	chooseComm(1);	
-	const screen = document.getElementById('commCall');
-	screen.innerHTML = `Contacting: <b>${p.name}</b><br><br><img src='images/buttons/contact.png' style='vertical-align: middle' draggable=false> `;
+	const commScreen = document.getElementById('commCall');
+	commScreen.innerHTML = `Contacting: <b>${p.name}</b>
+ 			<br><br>
+    			<img src="images/buttons/contact.png" style="vertical-align: middle;" draggable="false"> `;
 	const typewriter = (textArr) => comm.timeouts.push(setTimeout(_ => {
-		screen.innerHTML += textArr.shift();
+		commScreen.innerHTML += textArr.shift();
 		if (textArr.length > 0) typewriter(textArr); }, 800));
 	comm.timeouts = [];
 	typewriter([" )", " )", " )", " )", " )", `<br><br><i>${busy ? `"Sorry, I'm busy right now. Please try again later."` : "FAILED (No response)"}</i>`]);
@@ -215,15 +217,15 @@ function contactPerson(pID, shipFlag) {
 	const mChar = mission.find(m => 'character' in m && m.character.some(c => c == pID));
 	const callspace = time.full - p.contact;
 	const callback = (p.mood / 17) - callspace > 0;
-	let preText = callback ? `${rnd(["You just contacted me", "I just heard from you", "We just spoke"])} - did you ${rnd(["forget the directions", "miss something", "need a reminder"])}? ` : "";
+	let preText = callback ? `${parse("#You just contacted me|I just heard from you|We just spoke# - did you #forget the directions|miss something|need a reminder#?"} ` : "";
 	
-	// Call mission contactChar if doing a mission involving pID
-	if (mChar) return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
-
 	let call;
 	// Call mission contact if doing a mission for pID
 	if (mClient) {
 		call = mClient.contact;
+	// Call mission contactChar if doing a mission involving pID
+	} else if (mChar) {
+		return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
 	// Call person normally (if not busy, sleeping, or despising you)
 	} else {
 		const sleeping = (callspace == 0) ? false : (time.full + p.location % 4 * 6) % 24 < 6;
