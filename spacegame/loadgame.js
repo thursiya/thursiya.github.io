@@ -425,7 +425,7 @@ function drawUI() {
 				<img id="spaceshipIcon" src="images/icons/spaceship.png">
     				${starlane.reduce((t, v, i) => `${t}
 					<div id="starlane${i}div">
-						<img id="starlane${i}" class="fadable" draggable="false" style="position: absolute; left: ${v.x}px; top: ${v.y}px; display: none; animation-delay: ${Math.floor(Math.random() * -differentFadables)}s>
+						<img id="starlane${i}" class="fadable" draggable="false" style="position: absolute; left: ${v.x}px; top: ${v.y}px; display: none; animation-delay: ${Math.floor(Math.random() * -differentFadables)}s">
 					</div>`, "")}
 			</div>
 			<div id="worlds">
