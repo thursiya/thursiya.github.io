@@ -76,8 +76,9 @@ function characterTravel (p, dest) {
 
 function choosePerson (location = here) {
 	//console.log(`*** CHOOSING PERSON @ ${world[location].name} ***`);
-	const missionPeople = [...new Set([].concat.apply([], mission.map(m => [m.client, ...('character' in m ? m.character : [])])))].map(p => person[p]);
-	const availPeople = person.filter(p => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(p));
+	//const missionPeople = [...new Set([].concat.apply([], mission.map(m => [m.client, ...('character' in m ? m.character : [])])))].map(p => person[p]);
+	const missionPeople = mission.map(v => [v.client, ...(v.character || [])]).flat();
+	const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
 	//const homePeople = person.filter(p => p.status == "active" && p.home == location);
 	//const popSupport = Math.floor(world[location].pop / 5 + 6);
 	const randAvail = rnd(availPeople);
