@@ -2,7 +2,6 @@ const seed = Math.floor(Math.random() * 1e12);
 const starmapWidth = screen.width < 700 ? screen.width : screen.width - 350; //1330; //screen.availWidth - 350;
 document.querySelector('body').style.setProperty('--starmapWidth', `${starmapWidth}px`);
 const starmapHeight = 770;
-const tabsList = ['market', 'shipyard', 'notices', 'planet'];
 //const totalPlanets = 32;		// Is this used?
 const cellWidth = Math.floor(starmapWidth / 7);
 const cellHeight = Math.floor((starmapHeight - 20) / 5); // Leave 20px for name under planet
@@ -12,6 +11,9 @@ const travelSpeed = maxDistance / 24;
 const differentFadables = 6;	// Number of different animation states for starlanes - set to 0 to keep all animations in sync
 const world = [];
 const starlane = [];
+const ECONOMIES = ["Affluent", "Agricultural", "Cultural", "Frontier", "High Tech", "Industrial", "Manufacturing", "Mining", "Mixed", "Prison", "Slum", "Terraforming"];
+const GOVERNMENTS = ["Anarchy", "Corporate", "Democracy", "Feudal", "Military", "Theocracy"];
+const TABSLIST = ["market", "shipyard", "notices", "planet"];
 
 function World(coords) {
 	this.x = coords.x;
@@ -92,7 +94,8 @@ function populateGalaxy() {
 }
 
 function generateWorlds() {
-	const focusList = ["Mining", "Mining", "Agricultural", "Industrial", "Manufacturing", "Terraforming", "Affluent", "Slum", "Slum", "High Tech", "Cultural", "Frontier", "Prison", "Mixed", "Mixed"];
+	const focusList = [...ECONOMIES, "Mining", "Slum", "Mixed"];
+	//	["Mining", "Mining", "Agricultural", "Industrial", "Manufacturing", "Terraforming", "Affluent", "Slum", "Slum", "High Tech", "Cultural", "Frontier", "Prison", "Mixed", "Mixed"];
 	const scapeList = ["affluent", "busy", "city", "crossing", "dark", "dock", "factory", "field", "frontier", "hill", "jungle", "lantern", "ocean", "outpost", "rainy", "slum", "snow", "statue", "town"];
 	let focuses = [];
 	let scapes = [];
@@ -174,7 +177,7 @@ function generateWorlds() {
 		
 		// Choose Government
 		let temp = rnd([0, 1, 1, 1, 2, 2, 3, 3, 4, 5]); // 10%, 30%, 20%, 20%, 10%, 10% odds
-		w.gov = ["Anarchy", "Corporate", "Democracy", "Feudal", "Military", "Theocracy"][temp];
+		w.gov = GOVERNMENTS[temp];
 		w.govdesc = ["lawless", oldCorps[rnd(24) - 1].name, "democratic", "feudal", "military", "religious"][temp];
 		
 		// Choose Size (1 to 3)
@@ -314,86 +317,15 @@ function drawUI() {
 						<img id='missionButton' class='commTab' src='images/buttons/mission.png' draggable='false' onclick='displayComm(3)'> &nbsp;
       						<img id='contactsButton' class='commTab' src='images/buttons/address.png' draggable='false' onclick='displayComm(2)'> &nbsp;
 	    
-     const corpABC = [...oldCorps, ...newCorps].sort((a,b)=>(a.name > b.name) ? 1 : -1);
-										for (let i of corpABC) out+= `<div class='hoverable' onclick='displayInfo("corp","${i.name}")'>${i.name}</div>`;
-     */
-	document.getElementById('GameWindow').innerHTML = `<div id="starmap">
-			<div id="commScreen" class="commWindow">
-				<div id="commButtons">
-					<div style="float: right;">
-     						${["info", "news", "transaction", "manifest", "mission", "contacts"].reduce((t, v, i) => 
-							`${t}<img id="${v}Button" class="commTab" src="images/buttons/${v}.png" draggable="false" onclick="displayComm(${7 - i})"> &nbsp;`, "")}
-						<img id="previousMessage" class="commTab" src="images/buttons/next.png" style="transform: rotate(180deg)" draggable="false" onclick="displayComm(1.1)"><img id="messagesButton" class="commTab" src="images/buttons/message.png" draggable="false" onclick="displayComm(1)"><img id="nextMessage" class="commTab" src="images/buttons/next.png" draggable="false" onclick="displayComm(1.2)"> &nbsp;
-						<img src="images/buttons/close.png" class="commTab" draggable="false" onclick="hideComm()">
-					</div>
-				</div>
-				<div id="commContent">
-					<div id="commInfo" class="commSection" style="display: none;">
-						<table>
-      							<tr>
-								<td style="width: 200px; vertical-align: top; overflow-y: auto;">
-									<button class="collapsible">Corporations</button>
-									<div class="collcontent">
-	 									${[...oldCorps, ...newCorps].sort((a, b) => a.name.localeCompare(b.name)).reduce((t, v) => `${t}<div class="hoverable" onclick="displayInfo('corp','${v.name}')">${v.name}</div>`, "")}
-									</div>
-									<button class="collapsible">Worlds</button>
-								<div class="collcontent">`;
-									const worldABC = world.slice().sort((a,b)=>(a.name > b.name) ? 1 : -1);
-									for (let i of worldABC) out+= `<div class='hoverable' onclick='displayInfo("world","${i.name}")'>${i.name}</div>`;
-							out += `</div>
-								<button class="collapsible">Governments</button>
-								<div class="collcontent">`;
-									for (let i of ["Anarchy", "Corporate", "Democracy", "Feudal", "Military", "Theocracy"]) out += `<div class='hoverable' onclick='displayInfo("gov","${i}")'>${i}</div>`;
-							out +=	`</div>
-								<button class="collapsible">Economies</button>
-								<div class="collcontent">`;
-									for (let i of ["Affluent", "Agricultural", "Cultural", "Frontier", "High Tech", "Industrial", "Manufacturing", "Mining", "Mixed", "Prison", "Slum", "Terraforming"]) out += `<div class='hoverable' onclick='displayInfo("economy","${i}")'>${i}</div>`;
-							out += `</div>
-								<button class="collapsible">Goods</button>
-								<div class="collcontent">`;
-									for (let i of [...new Set(goods.map(g => g.name))].sort()) out += `<div class='hoverable' onclick='displayInfo("good","${i}")'>${i}</div>`;
-							out += `</div>
-								<button class="collapsible">Tutorials</button>
-								<div class="collcontent">
-									Forthcoming...
-								</div>
-							</td>
-							<td id='infoDBText' style='vertical-align: top; overflow-y: auto; position: relative'>
-							<br><br><i>Choose a topic to view information...</i>
-							</td>
-						</tr></table>
-					</div>
-					<div id='commNewsfeed' class='commSection' style='display:none'></div>
-					<div id='commAccounts' class='commSection' style='display:none'>
-						<h2 style='text-align: center'><i>... No Logged Transactions ...</i></h2>
-					</div>
-					<div id='commManifest' class='commSection' style='display:none'>
-						<h2 style='text-align: center'><i>... Ship is Currently Empty ...</i></h2>
-					</div>
-					<div id='commMissions' class='commSection' style='display:none'>
-						<h2 style='text-align: center'><i>... No Logged Missions ...</i></h2>
-					</div>
-					<div id='commContacts' class='commSection' style='display:none'>
-						<h2 style='text-align: center'><i>... No Known Contacts ...</i></h2>
-					</div>
-					<div id='commCall' class='commSection' style='display:block'>
-						<h2 style='text-align: center'><i>... Galaxy Loading ...</i></h2>
-					</div>
-				</div>
-			</div>
-			<canvas id='shipCanvas' class='' width='${starmapWidth}' height='${starmapHeight}'></canvas>
-			<canvas id='starmapCanvas' class='' width='${starmapWidth}' height='${starmapHeight}'></canvas>
-			<canvas id='animationCanvas' class='' width='${starmapWidth}' height='${starmapHeight}'></canvas>
-			<div id='starlanes'>
-				<img id='spaceshipIcon' src='images/icons/spaceship.png'>`;
-				for (let [i, s] of starlane.entries()) {
+     						const corpABC = [...oldCorps, ...newCorps].sort((a,b)=>(a.name > b.name) ? 1 : -1);
+						for (let i of corpABC) out+= `<div class='hoverable' onclick='displayInfo("corp","${i.name}")'>${i.name}</div>`;
+						for (let i of worldABC) out+= `<div class='hoverable' onclick='displayInfo("world","${i.name}")'>${i.name}</div>`;
+      						for (let i of [...new Set(goods.map(g => g.name))].sort()) out += `<div class='hoverable' onclick='displayInfo("good","${i}")'>${i}</div>`;
+	    for (let [i, s] of starlane.entries()) {
 					out += `<div id='starlane${i}div'>
 								<img id='starlane${i}' class='fadable' draggable='false' style='position:absolute; left: ${s.x}px; top: ${s.y}px; display: none; animation-delay: ${Math.floor(Math.random() * -differentFadables)}s'>
-							</div>`;	// animation-delay is negative so it starts midway
-				}
-	out += `</div>
-			<div id='worlds'>`;
-				for (let [i, w] of world.entries()) {
+							</div>`;
+       				for (let [i, w] of world.entries()) {
 					out += `<div id='planet${i}' class='popup planet' style='left: ${w.x}px; top: ${w.y}px;' onmouseover='popupdisplay(${i})'>
 								<img src='images/planets/planet${w.planetImage}.png' draggable='false' style='height: 32px; position: absolute; clip-path: circle(16px at ${16 * (i % 5 + 1)}px 50%); left: -${16 * (i % 5)}px;' onclick='displayCurrentSystem(${i})'>
 								<p style='position: absolute; top: 20px; color: white'>
@@ -405,49 +337,155 @@ function drawUI() {
 								</p>
 							</div>`;
 				}
-	out += `</div>
-			<div id='spaceship' ondrop='dropGood(event, "ship")' ondragover='event.preventDefault()'></div>
-		</div><div id='rightFrame'>
-			<div id='worldbox'>
-				<div id='worldboxdisplay'>
-					<div id='wbdImage'>
-						<img id='worldboxImg' class='worldImg' draggable='false' onclick='clickSelect("scape", this)'>
-						<div id='localeContainer' class='localeContainer'></div>
-					</div>
-					<div id='wbdText'></div>
-				</div>
-				<div id='worldboxmenu'>
-					<div class='tab'>`;
+         
 						for (let i of times(4)) {
 							out += `<button id='${tabsList[i]}TabButton' class='tablink' onclick='chooseTab(event, ${i})' title='${capitalize(tabsList[i]) + (i == 3 ? " Info" : "")}'><img src='images/buttons/${tabsList[i]}.png' class='tab' draggable='false'></button>`;
 						}
-				out += `Tax: <b><span id='wbmTaxrate'></span>%</b>
-					</div>
-					<div id='markettab' class='tabcontent'></div>
+    					<div id='markettab' class='tabcontent'></div>
 					<div id='shipyardtab' class='tabcontent'></div>
 					<div id='noticestab' class='tabcontent'></div>
 					<div id='planettab' class='tabcontent'></div>
+     */
+	// starlane animation-delay is negative so it starts midway
+	document.getElementById('GameWindow').innerHTML = `
+ 		<div id="starmap">
+			<div id="commScreen" class="commWindow">
+				<div id="commButtons">
+					<div style="float: right;">
+     						${["info", "news", "transaction", "manifest", "mission", "contacts"].reduce((t, v, i) => `${t}
+	   						<img id="${v}Button" class="commTab" src="images/buttons/${v}.png" draggable="false" onclick="displayComm(${7 - i})"> &nbsp;`, "")}
+						<img id="previousMessage" class="commTab" src="images/buttons/next.png" style="transform: rotate(180deg)" draggable="false" onclick="displayComm(1.1)"><img id="messagesButton" class="commTab" src="images/buttons/message.png" draggable="false" onclick="displayComm(1)"><img id="nextMessage" class="commTab" src="images/buttons/next.png" draggable="false" onclick="displayComm(1.2)"> &nbsp;
+						<img src="images/buttons/close.png" class="commTab" draggable="false" onclick="hideComm()">
+					</div>
+				</div>
+				<div id="commContent">
+					<div id="commInfo" class="commSection" style="display: none;">
+						<table>
+      							<tr>
+								<td style="width: 200px; vertical-align: top; overflow-y: auto;">
+									<button class="collapsible">Corporations</button>
+									<div class="collcontent">
+	 									${[...oldCorps, ...newCorps].sort((a, b) => a.name.localeCompare(b.name)).reduce((t, v) => `${t}
+	   										<div class="hoverable" onclick="displayInfo('corp','${v.name}')">${v.name}</div>`, "")}
+									</div>
+									<button class="collapsible">Worlds</button>
+									<div class="collcontent">
+										${world.slice().sort((a, b) => a.name.localeCompare(b.name)).reduce((t, v) => `${t}
+	  										<div class="hoverable" onclick="displayInfo('world','${v.name}')">${v.name}</div>`, "")}
+									</div>
+									<button class="collapsible">Governments</button>
+									<div class="collcontent">
+										${GOVERNMENTS.reduce((t, v) => `${t}
+	  										<div class="hoverable" onclick="displayInfo('gov','${v.name}')">${v.name}</div>`, "")}
+									</div>
+									<button class="collapsible">Economies</button>
+									<div class="collcontent">
+										${ECONOMIES.reduce((t, v) => `${t}
+	  										<div class="hoverable" onclick="displayInfo('economy','${v}')">${v}</div>`, "")}
+	  								</div>
+									<button class="collapsible">Goods</button>
+									<div class="collcontent">
+										${[...new Set(goods.map(g => g.name))].sort().reduce((t, v) => `${t}
+	  										<div class="hoverable" onclick="displayInfo('good','${v}')">${v}</div>`, "")}
+									</div>
+									<button class="collapsible">Tutorials</button>
+									<div class="collcontent">
+										Forthcoming...
+									</div>
+	 							</td>
+								<td id="infoDBText" style="overflow-y: auto; position: relative; vertical-align: top;">
+									<br><br>
+	 								<i>Choose a topic to view information...</i>
+								</td>
+							</tr>
+       						</table>
+					</div>
+					<div id="commNewsfeed" class="commSection" style="display: none;"></div>
+					<div id="commAccounts" class="commSection" style="display: none;">
+     						<h2 style="text-align: center;"><i>... No Logged Transactions ...</i></h2>
+	   				</div>
+					<div id="commManifest" class="commSection" style="display: none;">
+						<h2 style="text-align: center;"><i>... Ship is Currently Empty ...</i></h2>
+					</div>
+					<div id="commMissions" class="commSection" style="display: none;">
+						<h2 style="text-align: center;"><i>... No Logged Missions ...</i></h2>
+					</div>
+					<div id="commContacts" class="commSection" style="display: none;">
+						<h2 style="text-align: center;"><i>... No Known Contacts ...</i></h2>
+					</div>
+					<div id="commCall" class="commSection" style="display: block;">
+						<h2 style="text-align: center;"><i>... Galaxy Loading ...</i></h2>
+					</div>
 				</div>
 			</div>
-			<div id='menuButtons'>
-				<img id='commButton' class='menubutton' src='images/buttons/message.png' onclick='displayComm()' draggable='false'>
-				<img id='canvasButton' class='menubutton' src='images/buttons/ship.png' onclick='displayCanvas("ship")' draggable='false'>
-				<img id='bgmusicButton' class='menubutton' src='images/buttons/music.png' onclick='muteMusic()' draggable='false'>
+			<canvas id="shipCanvas" class="" width="${starmapWidth}" height="${starmapHeight}"></canvas>
+			<canvas id="starmapCanvas" class="" width="${starmapWidth}" height="${starmapHeight}"></canvas>
+			<canvas id="animationCanvas" class="" width="${starmapWidth}" height="${starmapHeight}"></canvas>
+			<div id="starlanes">
+				<img id="spaceshipIcon" src="images/icons/spaceship.png">
+    				${starlane.reduce((t, v, i) => `${t}
+					<div id="starlane${i}div">
+						<img id="starlane${i}" class="fadable" draggable="false" style="position: absolute; left: ${v.x}px; top: ${v.y}px; display: none; animation-delay: ${Math.floor(Math.random() * -differentFadables)}s>
+					</div>`, "")}
 			</div>
-			<div id='playerInfo'>
-				<b>\u20B5</b>: <span id='playerInfoCredits' class='big'>${player.credits}</span><span id='playerInfoTime'>${time.year}-${time.day}.${("0" + time.hour).slice(-2)}</span>
+			<div id="worlds">
+   				${world.reduce((t, v, i) => `${t}
+       					<div id="planet${i}" class="popup planet" style="left: ${v.x}px; top: ${v.y}px;" onmouseover="popupdisplay(${i})">
+       						<img src="images/planets/planet${v.planetImage}.png" draggable="false" style="height: 32px; position: absolute; clip-path: circle(16px at ${16 * (i % 5 + 1)}px 50%); left: -${16 * (i % 5)}px;" onclick="displayCurrentSystem(${i})">
+	     					<p style="position: absolute; top: 20px; color: #FFF">
+	   						<b>${v.name}</b>
+	  					</p>
+	   					<p id="planet${i}text" class="popuptext" style="position: absolute;">
+	 						<b>${v.name}</b> <i>(${v.pop})</i><br>
+							<span id="planet${i}info"></span>
+       						</p>
+	     				</div>`, "")}
+			</div>
+			<div id="spaceship" ondrop="dropGood(event, 'ship')" ondragover="event.preventDefault()"></div>
+		</div>
+  		<div id="rightFrame">
+			<div id="worldbox">
+				<div id="worldboxdisplay">
+					<div id="wbdImage">
+						<img id="worldboxImg" class="worldImg" draggable="false" onclick="clickSelect('scape', this)">
+						<div id="localeContainer" class="localeContainer"></div>
+					</div>
+					<div id="wbdText"></div>
+				</div>
+				<div id="worldboxmenu">
+					<div class="tab">
+						${TABSLIST.reduce((t, v) => `${t}
+      							<button id="${v}TabButton" class="tablink" onclick="chooseTab(event, ${i})" title="${v == "planet" ? "Planet Info" : capitalize(v)}">
+      								<img src="images/buttons/${v}.png" class="tab" draggable="false">
+	      						</button>`, "")}
+						Tax: <b><span id="wbmTaxrate"></span>%</b>
+					</div>
+     					${TABSLIST.reduce((t, v) => `${t}
+	  					<div id="${v}tab" class="tabcontent"></div>`, "")}
+				</div>
+			</div>
+			<div id="menuButtons">
+				<img id="commButton" class="menubutton" src="images/buttons/message.png" onclick="displayComm()" draggable="false">
+				<img id="canvasButton" class="menubutton" src="images/buttons/ship.png" onclick="displayCanvas("ship")" draggable="false">
+				<img id="bgmusicButton" class="menubutton" src="images/buttons/music.png" onclick="muteMusic()" draggable="false">
+			</div>
+			<div id="playerInfo">
+				<b>\u20B5</b>: <span id="playerInfoCredits" class="big">${player.credits}</span><span id="playerInfoTime">${time.year}-${time.day}.${`0${time.hour}`.slice(-2)}</span>
 			</div>
 		</div>
-		<audio id='bgMusic' autoplay loop></audio>`;
+		<audio id="bgMusic" autoplay loop></audio>`;
 		
 	// Add drop-down functionality to info window topics
-	for (let i of document.getElementsByClassName('collapsible')) {
+	for (const i of document.getElementsByClassName('collapsible')) {
 		i.addEventListener("click", function() {
-		this.classList.toggle("active");
-		this.nextElementSibling.style.display = (this.nextElementSibling.style.display == "block") ? "none" : "block";});
+			this.classList.toggle("active");
+			this.nextElementSibling.style.display = (this.nextElementSibling.style.display == "block") ? "none" : "block"; });
 	}
 }
 
+// Not used...
+// Replace with fetch API
+/*
 function* loadAllFiles () {
 	for (let i of arguments) {
 		yield loadFile(i);
@@ -504,3 +542,4 @@ function parseLoadedFile (data, method = "JSON") {
 		default:
 	}
 }
+*/
