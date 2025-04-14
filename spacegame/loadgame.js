@@ -406,8 +406,7 @@ function drawUI() {
 	     				</div>`, "")}
 			</div>
 			<div id="spaceship" ondrop="dropGood(event, 'ship')" ondragover="event.preventDefault()"></div>
-		</div>
-  		<div id="rightFrame">
+		</div><div id="rightFrame">
 			<div id="worldbox">
 				<div id="worldboxdisplay">
 					<div id="wbdImage">
