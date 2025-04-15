@@ -64,12 +64,11 @@ function loadGame() {
 	newsEvent(time.full - 3 - rnd(6));
 
 	loadMissionFramework();
+	addMission('main');
 	
 	systemArrival(here);
 	document.getElementById('marketTabButton').click();
-	updateTime();
-	
-	addMission('main');
+	updateTime();	
 }
 
 function populateGalaxy() {
