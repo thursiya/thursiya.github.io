@@ -69,7 +69,7 @@ function loadGame() {
 	document.getElementById('marketTabButton').click();
 	updateTime();
 
-	addMission('main');
+	addMission("main", "unique");
 }
 
 function populateGalaxy() {
