@@ -213,7 +213,7 @@ function addMission (missionName, clientID) {
 	for (;;m.id++) if (!mission.find(v => v.id == m.id)) break;
 	
 	// Set empty client to randomly generated person
-	m.client = clientID > -1 ? clientID : choosePerson(clientID);
+	m.client = clientID > -1 ? clientID : choosePerson(, clientID == "unique" ? [...new Set(mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], []))] : []);
 	if (!(m.client > -1)) return false;
 	
 	m.ref = missionName;
