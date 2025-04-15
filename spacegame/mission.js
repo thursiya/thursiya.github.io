@@ -234,7 +234,8 @@ function addMission (missionName, clientID) {
 	}
 
 	if ('character' in m) {
-		m.character = m.character.map(v => choosePerson(v == "dest" ? m.dest : undefined));
+		//m.character = m.character.map(v => choosePerson(v == "dest" ? m.dest : undefined));
+		m.character.forEach(v => v = choosePerson(v == "dest" ? m.dest : undefined));
 		if (m.character.includes(-1)) return false;
 	}
 	
