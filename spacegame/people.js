@@ -74,21 +74,25 @@ function characterTravel (p, dest) {
 		if (rnd(10) < (p.location != p.home ? 5 : 2)) characterTravel(p);});
 }
 
-function choosePerson (location = here, restrictedPeople = []) {
+function choosePerson (where = here, restrictedPeople = []) {
 	//console.log(`*** CHOOSING PERSON @ ${world[location].name} ***`);
 	//const missionPeople = [...new Set([].concat.apply([], mission.map(m => [m.client, ...('character' in m ? m.character : [])])))].map(p => person[p]);
 	//const missionPeople = mission.map(v => [v.client, ...(v.character || [])]).flat();
-	const missionPeople = mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], restrictedPeople);
-	const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
+	//const missionPeople = mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], restrictedPeople);
+	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
+	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !restrictedPeople.includes(i));
+	
+	return rnd(person.reduce((t, v, i) => (v.status == "active" && v.location == where && v.busy <= time.full && !restrictedPeople.includes(i)) ? [...t, i] : t, []));
+	
 	//const homePeople = person.filter(p => p.status == "active" && p.home == location);
 	//const popSupport = Math.floor(world[location].pop / 5 + 6);
-	const randAvail = rnd(availPeople);
+	//const randAvail = rnd(availPeople);
 	//console.log(missionPeople);
 	//console.log(availPeople);
 	//console.log(homePeople);
 	//console.log(`popSupport: ${popSupport}`);
 	//console.log(randAvail);
-	return (availPeople.length > 0) ? person.findIndex(p => p == randAvail) : -1;
+	//return (availPeople.length > 0) ? person.findIndex(p => p == randAvail) : -1;
 	
 	// *** Currently pre-generating all people ***
 	//if (availPeople.length > 0) return (homePeople.length < popSupport && rnd(popSupport + 3) >= availPeople.length) ? person.push(new Role(undefined, undefined, undefined, location, location)) - 1 : person.findIndex(p => p == randAvail);
