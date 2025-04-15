@@ -406,7 +406,7 @@ function parseCommands (arr, m) {
 		"revealSite"() {world[world.findIndex(v => v.name == params[0])].locales[+params[1]].hidden = false; displayLocales()},
 		"setComm"() {world[+params[0] || m.origin].locales[+params[1] || m.locale[0]].call.setComm = +params[2] || m.stage},
 		"setStage"() {m.stage = +params[0]},
-		"status"() {person[m.character[+params[1]] || m.client].status = params[0] || "active"},
+		"status"() {person[m.character?.[+params[1]] || m.client].status = params[0] || "active"},
 		"stockCargo"() {world[world.findIndex(v => v.name == params[0]) || m.origin].goods.push(m.cargo[0])},
 		"travel"() {characterTravel(c, m.dest)},
 		"updatePerson"() {validatePerson(params[0])[params[1]] = (isNaN(params[2]) ? params[2] : +params[2])}
