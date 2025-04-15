@@ -74,10 +74,11 @@ function characterTravel (p, dest) {
 		if (rnd(10) < (p.location != p.home ? 5 : 2)) characterTravel(p);});
 }
 
-function choosePerson (location = here) {
+function choosePerson (location = here, restrictedPeople = []) {
 	//console.log(`*** CHOOSING PERSON @ ${world[location].name} ***`);
 	//const missionPeople = [...new Set([].concat.apply([], mission.map(m => [m.client, ...('character' in m ? m.character : [])])))].map(p => person[p]);
-	const missionPeople = mission.map(v => [v.client, ...(v.character || [])]).flat();
+	//const missionPeople = mission.map(v => [v.client, ...(v.character || [])]).flat();
+	const missionPeople = mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], restrictedPeople);
 	const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
 	//const homePeople = person.filter(p => p.status == "active" && p.home == location);
 	//const popSupport = Math.floor(world[location].pop / 5 + 6);
