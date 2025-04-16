@@ -12,7 +12,7 @@ function loadMissionFramework () {
 		type: "g",
 		dest: "rnd,3",
 		cargo: ["rnd,dest"],
-		character: ["DEST"],
+		character: ["dest"],
 		key: ["distance", "mult(distance,0.5)", "add(time,#KEY1#)", "displayTime(#KEY2#)", "mult(distance,0.8)", "mult(distance,0.4)", "add(#KEY1#,120)"],
 		comm: ["#I'm looking for|I need|I'm in search of# #the services of a|a|a# #private|competent|capable|reliable# #carrier|courier|delivery person|hauler# to bring some #CARGO0.type# #CARGO0.name# to <b>#DEST#</b>. My #associate|friend|client#, <b>#CHAR0#</b>, needs the #cargo|shipment|delivery# by <b>#KEY3#</b>.", 1, [["isHere", "emptyRoom(cargohold)"]],
 			"I'm transferring the #CARGO0.name# to your cargo hold. You'll be meeting with #CHAR0.firstname# on #DEST# to accept shipment.",
@@ -32,11 +32,12 @@ function loadMissionFramework () {
 	passage: {
 		name: "Passage",
 		advert: "Passage Needed: party heading to #DEST#.",
+		client: "unoccupied",
 		type: "p",
 		dest: "rnd,3,Cultural",
 		key: ["distance", "mult(distance,.14)", "mult(distance,.16)", "mult(distance,1.25)", "#personalEvent#"],
 		addStory: [{personalEvent: ["a conference", "my #niece|nephew#'s birthday", "an important meeting", "a gala opening", "a charity fundraiser", "a corporate retreat", "a symposium", "my friend's wedding"]}],
-		init: ["status(restricted)", "event(travel,status,removeMission,1,3,clientLanded)"],
+		init: ["event(travel,removeMission,1,3,clientLanded)"],
 		comm: ["I have #KEY4# to #attend|be at# on <b>#DEST#</b>. I #must|need to# get there as #quickly|fast|swiftly# as possible.", 1, [["isHere", "emptyRoom(living)"]],
 			"#Exceptional|Impressive|Outstanding# #job|performance|work# - and #ahead of schedule|earlier than expected|with time to spare#. Your #efforts|services|troubles# #call for|deserve|warrant# #appropriate|fair|just# compensation.",
 			"#Cutting it close, but|I'm going to have to rush -|# I #might|should|think I'll# still #be able to slip in|catch it|get there|make it# #just|# #as it's starting|before it begins|in time#!",
@@ -60,7 +61,7 @@ function loadMissionFramework () {
 		type: "g",
 		dest: "rnd,3",
 		cargo: ["rnd"],
-		character: ["DEST"],
+		character: ["dest"],
 		key: ["distance", "mult(distance,0.67)", "add(time,#KEY1#)", "displayTime(#KEY2#)", "mult(distance,0.8)", "mult(#KEY2#,-1)"],
 		comm: ["#I'm looking for|I need|I'm in search of# #the services of a|a|a# #private|competent|capable|reliable# #carrier|courier|delivery person|hauler# to pick up some #CARGO0.type# #CARGO0# on <b>#DEST#</b>. I need the #cargo|shipment|delivery# by <b>#KEY3#</b>.", 1,
 			"My #associate|friend|contact#, <b>#CHAR0#</b>, will meet you on #DEST# with the #CARGO0#.",
@@ -166,6 +167,7 @@ function loadMissionFramework () {
 	main: {
 		name: "The Vaccine",
 		prereq: ["freeSite(2)"],
+		client: "unoccupied",
 		dest: "rnd,1",
 		cargo: ["Astromedica Vaccine,,medicine,400,5"],
 		character: ["Bar Patron 1", "Bar Patron 2"],
@@ -213,7 +215,7 @@ function addMission (missionName, clientID) {
 	for (;;m.id++) if (!mission.find(v => v.id == m.id)) break;
 	
 	// Set empty client to randomly generated person
-	m.client = clientID > -1 ? clientID : choosePerson(undefined, clientID == "unique" ? [...new Set(mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], []))] : []);
+	m.client = clientID > -1 ? clientID : choosePerson(undefined, m.client == "unoccupied" ? [...new Set(mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], []))] : []);
 	if (!(m.client > -1)) return false;
 	
 	m.ref = missionName;
