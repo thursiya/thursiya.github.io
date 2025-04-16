@@ -81,7 +81,7 @@ function choosePerson (where = here, restrictedPeople = []) {
 	//const missionPeople = mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], restrictedPeople);
 	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
 	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !restrictedPeople.includes(i));
-	
+	restrictedPeople.push(...mission.reduce((t, v) => v.type == "p" ? [...t, v.client] : t, []));
 	return rnd(person.reduce((t, v, i) => (v.status == "active" && v.location == where && v.busy <= time.full && !restrictedPeople.includes(i)) ? [...t, i] : t, []));
 	
 	//const homePeople = person.filter(p => p.status == "active" && p.home == location);
