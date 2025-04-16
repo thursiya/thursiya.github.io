@@ -122,8 +122,8 @@ function openCall(index = 0) {
 			break;
 		case 6:		// (choice 0)/(choice 1)/.../end call	(Choose which mission to discuss)
 			call.activeJobs.forEach(v => {
-				out += `<button class=:commButton" type="button" onclick="proceedCall(${v.id})">${v.summary}</button> `; });
-			out += `<button class='commButton' type='button' onclick='endCall()'>${["Oh Nothing", "Forget about It", "Sorry for Wasting Your Time", "I can't Remember"][a]}</button>`;
+				out += `<button class="commButton" type="button" onclick="proceedCall(${v.id})">${v.summary}</button> `; });
+			out += `<button class="commButton" type="button" onclick="endCall()">${["Oh Nothing", "Forget about It", "Sorry for Wasting Your Time", "I can't Remember"][a]}</button>`;
 			break;
 		default:	// end call
 			out += `<button class='commButton' type='button' onclick='endCall()'>${["Gotcha", "Roger", "Understood", "All Right"][a]}</button>`;
@@ -139,7 +139,7 @@ function proceedCall(variant = 0) {
 	console.log(comm.queue);
 	if (variant == "locale") {
 		addCall('setComm' in call ? m.commData[call.setComm] : m.comm, true);
-	} else if ('proceed' in m && m.proceed.length > 0) {
+	} else if (m.proceed?.length > 0) {
 		m.stage += variant;
 		if ('prereq' in call) {
 			if (call.prereq[variant].every(v => parseValue(m, v))) parseCommands(m.proceed, m);
