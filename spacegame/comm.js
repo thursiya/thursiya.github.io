@@ -120,6 +120,11 @@ function openCall(index = 0) {
 			mission.find(v => v.id == call.mission).choices.forEach((v, i) => {
 				out += `<button class='commButton' type='button' onclick='proceedCall(${i})'>${v}</button> `; });
 			break;
+		case 6:		// (choice 0)/(choice 1)/.../end call	(Choose which mission to discuss)
+			call.activeJobs.forEach(v => {
+				out += `<button class=:commButton" type="button" onclick="proceedCall(${v.id})">${v.summary}</button> `; });
+			out += `<button class='commButton' type='button' onclick='endCall()'>${["Oh Nothing", "Forget about It", "Sorry for Wasting Your Time", "I can't Remember"][a]}</button>`;
+			break;
 		default:	// end call
 			out += `<button class='commButton' type='button' onclick='endCall()'>${["Gotcha", "Roger", "Understood", "All Right"][a]}</button>`;
 	}
@@ -140,6 +145,8 @@ function proceedCall(variant = 0) {
 			if (call.prereq[variant].every(v => parseValue(m, v))) parseCommands(m.proceed, m);
 			else addCall({speaker: m.client, text: "Oh, I see you can't take this on right now. Get back to me if things change."}, true);
 		} else parseCommands(m.proceed, m);
+	} else if (!m) {
+		addCall(mission[variant].client == call.speaker ? mission[variant].contact : mission[variant].contactChar[mission[variant].character.findIndex(v => v == call.speaker)], true);
 	}
 	endCall();
 }
@@ -188,9 +195,10 @@ function contactPerson(pID, shipFlag) {
 		return;
 	}
 	
+	const mClient = mission.filter(v => v.client == pID);
+		
 	// Open in-person Conversation (on ship)
-	const mClient = mission.find(v => v.client == pID);
-	if (mClient && shipFlag) {
+	if (mClient[0] == "p" && shipFlag) {
 		addCall(mClient.commData[rnd(4) + 3]);
 		return;
 	}
@@ -214,31 +222,33 @@ function contactPerson(pID, shipFlag) {
 	// Fail if 'p.status' != 'active'
 	if (p.status != 'active') return;
 	
-	const mChar = mission.find(m => 'character' in m && m.character.some(c => c == pID));
+	const mChar = mission.filter(m => m.character?.some(c => c == pID));
+	const activeJobs = [...mClient, ...mChar];
 	const callspace = time.full - p.contact;
 	const callback = (p.mood / 17) - callspace > 0;
 	let preText = callback ? `${parse("#You just contacted me|I just heard from you|We just spoke# - did you #forget the directions|miss something|need a reminder#?")} ` : "";
 	
 	let call;
+	// Call person and select a mission if doing multiple missions involving pID
+	if (activeJobs.length > 1) {
+		call = { speaker: pID, text: "Which job did you want to discuss?", choice: 6, activeJobs };
 	// Call mission contact if doing a mission for pID
-	if (mClient) {
-		call = mClient.contact;
+	} else if (mClient[0]) {
+		call = mClient[0].contact;
 	// Call mission contactChar if doing a mission involving pID
-	} else if (mChar) {
-		return comm.timeouts.push(setTimeout(_ => mChar.contactChar(mChar.character.findIndex(c => c == pID), preText), 4000));
+	} else if (mChar[0]) {
+		return comm.timeouts.push(setTimeout(_ => mChar[0].contactChar(mChar[0].character.findIndex(c => c == pID), preText), 4000));
 	// Call person normally (if not busy, sleeping, or despising you)
 	} else {
 		const sleeping = (callspace == 0) ? false : (time.full + p.location % 4 * 6) % 24 < 6;
 		if ((!sleeping || (p.mood > 69 && callspace > (101 - p.mood) * 4)) && p.mood > 24 && !busy) {
 			preText = (sleeping) ? `${rnd(["You woke me", "Oh, I was alseep", "<i>Yawn</i> Hello"])}. ` : "";
 			if (callback) {
-				preText += (p.mood > 60) ? rnd([`Did you think of something else?`, `What is it?`, `Again? I'll still be here tomorrow!`]) : 
-					p.mood < 40 ? `Stop wasting my time.` : 
-					rnd([`I don't have all day for your calls.`, `We just spoke!`, `Once more, yes?`]);
+				preText += parse(p.mood > 60 ? `#Did you think of something else?|What is it?|Again? I'll still be here tomorrow!#` :
+					p.mood < 40 ? `Stop wasting my time.` : `#I don't have all day for your calls.|We just spoke!|Once more, yes?`);
 			} else if (callspace < 720 + rnd(500)) {
 				preText += p.mood > 60 ? `Nice to hear from you.` : 
-					p.mood < 40 ? `Oh, it's you.` : 
-					`Hello again.`;
+					p.mood < 40 ? `Oh, it's you.` : `Hello again.`;
 			} else {
 				preText += p.mood > 60 ? `Long time no see.` : `I remember you.`;
 			}
