@@ -137,7 +137,9 @@ function proceedCall(variant = 0) {
 	const m = mission.find(v => v.id == call.mission);
 	console.log(`Proceed Call...`);		// DEBUG callQueue
 	console.log(comm.queue);
-	if (variant == "locale") {
+	if (!m) {
+		addCall(mission[variant].client == call.speaker ? mission[variant].contact : mission[variant].contactChar[mission[variant].character.findIndex(v => v == call.speaker)], true);
+	} else if (variant == "locale") {
 		addCall('setComm' in call ? m.commData[call.setComm] : m.comm, true);
 	} else if (m.proceed?.length > 0) {
 		m.stage += variant;
@@ -145,8 +147,6 @@ function proceedCall(variant = 0) {
 			if (call.prereq[variant].every(v => parseValue(m, v))) parseCommands(m.proceed, m);
 			else addCall({speaker: m.client, text: "Oh, I see you can't take this on right now. Get back to me if things change."}, true);
 		} else parseCommands(m.proceed, m);
-	} else if (!m) {
-		addCall(mission[variant].client == call.speaker ? mission[variant].contact : mission[variant].contactChar[mission[variant].character.findIndex(v => v == call.speaker)], true);
 	}
 	endCall();
 }
