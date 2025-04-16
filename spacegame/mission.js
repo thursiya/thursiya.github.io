@@ -238,7 +238,7 @@ function addMission (missionName, clientID) {
 	if ('character' in m) {
 		const restrictedPeople = [m.client]; 
 		m.character = m.character.map(v => {
-			const choice = choosePerson(v == "DEST" ? m.dest : undefined, restrictedPeople);
+			const choice = choosePerson(v == "dest" ? m.dest : undefined, restrictedPeople);
 			restrictedPeople.push(choice);
 			return choice; });
 		//m.character.forEach((v, i) => m.character[i] = choosePerson(v == "dest" ? m.dest : undefined));
