@@ -217,7 +217,7 @@ function addMission (missionName, clientID) {
 	// Set empty client to randomly generated person
 	m.client = clientID > -1 ? clientID : choosePerson(undefined, m.client == "unoccupied" ? [...new Set(mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], []))] : []);
 	console.log(`DEBUG> New mission client: ${m.client}.`);
-	if (m.client == false || m.client < 0) return false;
+	if (m.client === false || m.client < 0) return false;
 	
 	m.ref = missionName;
 	m.stage = 0;
