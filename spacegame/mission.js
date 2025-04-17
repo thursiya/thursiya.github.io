@@ -171,8 +171,9 @@ function loadMissionFramework () {
 		dest: "rnd,1",
 		cargo: ["Astromedica Vaccine,,medicine,400,5"],
 		locale: ["lab,#CLIENTFIRST#'s Lab,hidden", "bar,,hidden"],
+		character: ["Bar Patron 1", "Bar Patron 2"],
 		key: ["world(3)"],
-		init: ["stockCargo(#DEST#)", "addCall", "advStage", "status(restricted)"],
+		init: ["stockCargo(#DEST#)", "addCall", "advStage", "updatePerson(#CLIENT#,status,restricted)"],
 		choices: [,,,,["Ask around..."],["I'll keep looking..."]],
 		comm: ["I've been looking for you for weeks; where have you been? Word is that Astromedica is ready to release a new vaccine for the #KEY0# plague at any minute on <b>#DEST#</b>.<br><br>I need you to get over there as fast as you can and stock up ... I'll fill you in on more details later.",
 			"Great. Now don't be getting any noble ideas about saving the people of #KEY0# just yet - we need to know what's in this vaccine. Bring me back a sample on #DEST# so I can analyze it in my lab.",
@@ -191,7 +192,7 @@ function loadMissionFramework () {
 			"Discover what happened to #CLIENTFIRST#."],
 		trigger: [,["haveCargo"],["isHere"],[]],
 		reward: [,["addCall", "advStage"],
-			["addCall", "advStage", "removeCargo", "credit(200,For your troubles)", "event(addCall,advStage,updatePerson(#CLIENT#,status,missing),revealSite(#ORIGIN#,#LOC0#),addChar,addChar,36,24)"],
+			["addCall", "advStage", "removeCargo", "credit(200,For your troubles)", "event(addCall,advStage,updatePerson(#CLIENT#,status,missing),revealSite(#ORIGIN#,#LOC0#),36,24)"],
 			[]]
 	}
 	}
@@ -409,7 +410,6 @@ function parseCommands (arr, m) {
 		"revealSite"() {world[world.findIndex(v => v.name == params[0])].locales[+params[1]].hidden = false; displayLocales()},
 		"setComm"() {world[+params[0] || m.origin].locales[+params[1] || m.locale[0]].call.setComm = +params[2] || m.stage},
 		"setStage"() {m.stage = +params[0]},
-		"status"() {person[m.character?.[+params[1]] || m.client].status = params[0] || "active"},
 		"stockCargo"() {world[world.findIndex(v => v.name == params[0]) || m.origin].goods.push(m.cargo[0])},
 		"travel"() {characterTravel(c, m.dest)},
 		"updatePerson"() {validatePerson(params[0])[params[1]] = (isNaN(params[2]) ? params[2] : +params[2])}
