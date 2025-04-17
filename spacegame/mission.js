@@ -170,7 +170,6 @@ function loadMissionFramework () {
 		client: "unoccupied",
 		dest: "rnd,1",
 		cargo: ["Astromedica Vaccine,,medicine,400,5"],
-		character: ["Bar Patron 1", "Bar Patron 2"],
 		locale: ["lab,#CLIENTFIRST#'s Lab,hidden", "bar,,hidden"],
 		key: ["world(3)"],
 		init: ["stockCargo(#DEST#)", "addCall", "advStage", "status(restricted)"],
@@ -192,7 +191,7 @@ function loadMissionFramework () {
 			"Discover what happened to #CLIENTFIRST#."],
 		trigger: [,["haveCargo"],["isHere"],[]],
 		reward: [,["addCall", "advStage"],
-			["addCall", "advStage", "removeCargo", "credit(200,For your troubles)", "event(addCall,advStage,updatePerson(#CLIENT#,status,missing),revealSite(#ORIGIN#,#LOC0#),36,24)"],
+			["addCall", "advStage", "removeCargo", "credit(200,For your troubles)", "event(addCall,advStage,updatePerson(#CLIENT#,status,missing),revealSite(#ORIGIN#,#LOC0#),addChar,addChar,36,24)"],
 			[]]
 	}
 	}
@@ -386,6 +385,8 @@ function parseCommands (arr, m) {
 	const commandArray = {
 		"addCall"() {addCall(m.comm, true)},
 		"addCargo"() {haveCargo(m.cargo[+params[0] || 0], 'add', 1, params[1] || m.dest)},
+		"addChar"() { const loc = params[0] == "dest" ? m.dest : m.origin;
+			m.character = [...m.character || [], choosePerson(loc) || person.push(new Role(loc))] },		
 		"addContact"() {addContact(params[0] || m.character[0])},
 		"addHistory"() {addHistory(params[0] || m.client, params[1], params[2], +params[3])},
 		"advStage"() {m.stage += +params[0] || 1},
