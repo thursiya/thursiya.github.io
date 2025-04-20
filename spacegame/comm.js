@@ -60,6 +60,9 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 	if (call.speaker == "local") call.speaker = choosePerson(here, person.filter(v => v.location != here));
 	// set missing speaker to mission client or -1 (none) if no mission
 	if (!('speaker' in call)) call.speaker = ('mission' in call) ? mission.find(v => v.id == call.mission).client : -1;
+
+	// if mission call, make sure contactedClient is now set to true
+	if (mission.includes(callProto)) callProto.contactedClient = true;
 	
 	if (insertFlag) {
 		comm.queue.splice(comm.current + 1, 0, call);
