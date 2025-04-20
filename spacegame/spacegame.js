@@ -38,7 +38,6 @@ function selectNotice (which) {
 	const m = mission.find(m => m.id == mID);
 	const c = comm.queue.findIndex(v => v.speaker == m.client);
 	if (c > -1) {openCall(c); return}
-	m.contactedClient = true;
 	addCall(m.comm);
 	world[here].notices.splice(which, 1);
 	displayNotices();
