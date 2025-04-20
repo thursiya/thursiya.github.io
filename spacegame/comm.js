@@ -201,7 +201,7 @@ function contactPerson(pID, shipFlag) {
 		
 	// Open in-person Conversation (on ship)
 	if (mClient[0].type == "p" && shipFlag) {
-		addCall(mClient.commData[rnd(4) + 3]);
+		addCall(mClient[0].commData[rnd(4) + 3]);
 		return;
 	}
 	
