@@ -171,7 +171,7 @@ function loadMissionFramework () {
 		dest: "rnd,1",
 		cargo: ["Astromedica Vaccine,,medicine,400,5"],
 		locale: ["lab,#CLIENTFIRST#'s Lab,hidden", "bar,,hidden"],
-		character: ["Bar Patron 1", "Bar Patron 2"],
+		//character: ["Bar Patron 1", "Bar Patron 2"],
 		key: ["world(3)"],
 		init: ["stockCargo(#DEST#)", "addCall", "advStage", "updatePerson(#CLIENT#,status,restricted)"],
 		choices: [,,,,["Ask around..."],["I'll keep looking..."]],
@@ -180,8 +180,8 @@ function loadMissionFramework () {
 			"I've got the meds and I'll get back to you soon with what I've discovered. I know you had to go out of your way for this so here's 200 \u20B5. Try to find some work - this will take a while.",
 			"I've finished analyzing the plague medicine you brought me and you'll never believe what I found out.  I'll have to tell you when you get here - this channel isn't secure.  Meet me at my lab as soon as you can.",
 			"-1>#CLIENTFIRST#'s lab is in complete disarray - clearly this place has been ransacked and there's no sign of #CLIENTFIRST#. Somebody must have heard about this; somebody must know something...", 5,
-			"CHAR0>You're looking for who? Sorry, I just come here to #drink|forget#.", 5,
-			"CHAR1>#CLIENT#? That odd #personGeneralN# that works in some kind of lab? Yeah, I might know #CLIENTFIRST#, but you'll have to wait for a game update for me to tell you more..."],
+			"LOCAL0>You're looking for who? Sorry, I just come here to #drink|forget#.", 5,
+			"LOCAL1>#CLIENT#? That odd #personGeneralN# that works in some kind of lab? Yeah, I might know #CLIENTFIRST#, but you'll have to wait for a game update for me to tell you more..."],
 		proceed: [,,,,["revealSite(#ORIGIN#,#LOC1#)", "removeLocale()", "advStage"],["advStage"]],
 		contact: ["You need to bring me a sample of that vaccine as quickly as possible. You're the only one I can trust with this.",,,
 			"I'm still working on the vaccine. Talk to you soon."],
@@ -270,6 +270,9 @@ function addMission (missionName, clientID) {
 				let speaker = m.client;
 				if (i.substr(0,4) == "CHAR") {
 					speaker = m.character[+i.match(/CHAR(\d*)>/).pop()];
+					i = i.match(/>(.*)/).pop();
+				} else if (i.substr(0,5) == "LOCAL") {
+					speaker = "local";
 					i = i.match(/>(.*)/).pop();
 				} else if (i.substr(0,2) == "-1") {
 					speaker = -1;
