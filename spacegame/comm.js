@@ -44,9 +44,6 @@ function chooseComm(which) {
 
 // callQueue object: {text, (choice), (speaker), (mission), (prereq)}
 function addCall(callProto, insertFlag = false, preText = "", postText = "") {
-	console.log(`Adding Call:`);
-	console.log(callProto);
-	console.log(`In mission? ${mission.includes(callProto)}`);
 	const call = Object.assign({}, callProto);
 	call.text = preText + call.text + postText;
 	
@@ -65,7 +62,7 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 	if (!('speaker' in call)) call.speaker = ('mission' in call) ? mission.find(v => v.id == call.mission).client : -1;
 
 	// if mission call, make sure contactedClient is now set to true
-	if (mission.includes(callProto)) callProto.contactedClient = true;
+	if ("mission" in callProto) mission[callProto.mission].contactedClient = true;
 	
 	if (insertFlag) {
 		comm.queue.splice(comm.current + 1, 0, call);
