@@ -44,6 +44,9 @@ function chooseComm(which) {
 
 // callQueue object: {text, (choice), (speaker), (mission), (prereq)}
 function addCall(callProto, insertFlag = false, preText = "", postText = "") {
+	console.log(`Adding Call:`);
+	console.log(callProto);
+	console.log(`In mission? ${mission.includes(callProto)}`);
 	const call = Object.assign({}, callProto);
 	call.text = preText + call.text + postText;
 	
