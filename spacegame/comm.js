@@ -224,8 +224,8 @@ function contactPerson(pID, shipFlag) {
 	typewriter([" )", " )", " )", " )", " )", `<br><br><i>${busy ? `"Sorry, I'm busy right now. Please try again later."` : "FAILED (No response)"}</i>`]);
 	comm.timeouts.push(setTimeout(_ => failSFX.play(), 4500));
 	
-	// Fail if 'p.status' != 'active'
-	if (p.status != 'active') return;
+	// Pass if 'p.status' = 'active' (or 'restricted')
+	if (["dead", "missing", "inactive"].includes(p.status)) return;
 	
 	const mChar = mission.filter(m => m.character?.some(c => c == pID));
 	const activeJobs = [...mClient, ...mChar];
