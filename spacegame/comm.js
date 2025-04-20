@@ -200,7 +200,7 @@ function contactPerson(pID, shipFlag) {
 		return;
 	}
 	
-	const mClient = mission.filter(v => v.client == pID);
+	const mClient = mission.filter(v => v.client == pID && v.contactedClient);
 		
 	// Open in-person Conversation (on ship)
 	if (mClient[0].type == "p" && shipFlag) {
@@ -227,7 +227,7 @@ function contactPerson(pID, shipFlag) {
 	// Pass if 'p.status' = 'active' (or 'restricted')
 	if (["dead", "missing", "inactive"].includes(p.status)) return;
 	
-	const mChar = mission.filter(m => m.character?.some(c => c == pID));
+	const mChar = mission.filter(m => m.character?.some(c => c == pID) && m.contactedClient);
 	const activeJobs = [...mClient, ...mChar];
 	const callspace = time.full - p.contact;
 	const callback = (p.mood / 17) - callspace > 0;
