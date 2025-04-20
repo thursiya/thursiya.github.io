@@ -55,7 +55,9 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 		Object.assign(call, m.commData[call.preComm]);
 		call.text = newText;
 	}
-	
+
+	// set "local" speaker to local character
+	if (call.speaker == "local") call.speaker = choosePerson(here, person.filter(v => v.location != here));
 	// set missing speaker to mission client or -1 (none) if no mission
 	if (!('speaker' in call)) call.speaker = ('mission' in call) ? mission.find(v => v.id == call.mission).client : -1;
 	
@@ -77,7 +79,7 @@ function openCall(index = 0) {
 	let out = "";
 	
 	// Display speaker image and info
-	const speaker = person[call.speaker];
+	const speaker = (call.speaker === false) ? new Role() : person[call.speaker];
 	if (speaker) {
 		out += `<div style="overflow: auto;">
 				<img src="images/people/${speaker.image}.png" class="speaker" style="filter: hue-rotate(${speaker.color}deg) brightness(${speaker.brightness})" draggable="false">
