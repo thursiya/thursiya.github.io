@@ -200,7 +200,7 @@ function contactPerson(pID, shipFlag) {
 	const mClient = mission.filter(v => v.client == pID);
 		
 	// Open in-person Conversation (on ship)
-	if (mClient[0] == "p" && shipFlag) {
+	if (mClient[0].type == "p" && shipFlag) {
 		addCall(mClient.commData[rnd(4) + 3]);
 		return;
 	}
