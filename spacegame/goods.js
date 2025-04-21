@@ -1,5 +1,5 @@
-const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P, F
-	{name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, produce: "Ma", demand: "Mi T", desc: "Critical to survival on harsh worlds."},	//0) I -> T3, F2, P2, M2, I1
+const goods = []; 																									// M, Ag | I, T | Af, S, C, HT, Mx | P, F
+/*	{name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, produce: "Ma", demand: "Mi T", desc: "Critical to survival on harsh worlds."},	//0) I -> T3, F2, P2, M2, I1
 	{name: "Air Processors", grade: 2, type: "Systech", file: "air-processors", price: 2500, produce: "Ma", demand: "Mi T"},	// I -> T3, F2, M2, I1
 	{name: "Automobiles", grade: 1, type: "Eagle", file: "automobiles", price: 2500, stat: 'sensitive', produce: "Ma", demand: "Ag F H Mi I P S (C)", desc: "Industrial and consumer vehicles."},	//2) I -> S3, C2, *1 
 	{name: "Automobiles", grade: 2, type: "Geotech", file: "automobiles", price: 4000, stat: 'sensitive', produce: "Ma", demand: "Ag C F H Mi I (S)"},			// I -> Af1, S1, C3, *1
@@ -94,8 +94,15 @@ const goods = [ 																									// M, Ag | I, T | Af, S, C, HT, Mx | P,
 	{name: "Synthetic Meat", type: "assorted", file: "synthetic-meat", price: 1000, stat: 'cold', produce: "H", demand: "F I Ma Mi P S T", desc: "Tastes <i>almost</i> as good as the real thing."},	//92) HT? -> *
 	{name: "Waste Products", type: "assorted", file: "waste-products", price: 50, produce: "*", demand: "None", desc: "Waste products are produced by industrial processes, large populations, and damaged goods. Must pay to have them disposed of."},		//93) Af, C, Mx, HT -> *
 	{name: "Water", type: "fresh", file: "water", price: 100, stat: 'sensitive', produce: "H Mi P (Ice, Ocean)", demand: "F T", desc: "The lifeblood of the galaxy."}	//94) Ocean, Ice -> T, F
-];
+];	*/
 
+// Called by 'loadAllFiles()' for each line of 'goods.txt'
+function processGoodsFile(data) {
+	const g = data.split(",");
+	const prev = goods.length > 0 ? goods[goods.length - 1] : { name: "No previously defined good" };
+	console.log(g);
+	return { name: g[0] || prev[0], grade: g[1], type: g[2] || "assorted", file: g[3] || prev[3], price: g[4], produce: g[5] || prev[5], demand: g[6] || prev[6], desc: g[7] || prev[7] };
+}
 
 // Called by 'addMission()' when determining cargo (m = mission, query = all/extended/general/illegal/legal)
 // Generates a weighted array for randomly choosing a good from
