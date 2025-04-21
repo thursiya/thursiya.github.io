@@ -38,7 +38,7 @@ function loadAllFiles() {
 	fetch("data/corporations.txt")
 		.then(v => v.text())
 		.then(data => 
-			data.split(/\r\n|\n/).filter(v => 
+			data.split(/\r?\n/).filter(v => 
 				v && oldCorps.push(new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1])) ) )
 		.then(v => {
 			oldCorps[13].fullname = "Independent Consortium of Planets";
@@ -46,7 +46,7 @@ function loadAllFiles() {
 			return fetch("data/goods.txt"); })
 		.then(v => v.text())
 		.then(data => {
-			data.split(/\r\n|\n/).filter(v =>
+			data.split(/\r?\n/).filter(v =>
 				v && goods.push(processGoodsFile(v)) );
 		     	loadGame(); });
 }
