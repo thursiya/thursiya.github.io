@@ -119,7 +119,7 @@ function loadMissionFramework () {
 			"Ah, you're back. I knew you couldn't resist a good deal. Have you got #KEY0# \u20B5 for the #CARGO0.type# #CARGO0#?", 3, [["emptyRoom(cargohold)", "haveCredits(#KEY0#)"]],
 			"Nice doing business with you."],
 		proceed: [["setStage(2)", "addCall", "removeMission", "credit(#KEY1#,Bought some cheap #CARGO0#)", "addCargo", "addHistory(,,I gave you a great deal on some #CARGO0#.,10)", "busy(2)"]],
-		contact: ["I've still got the #CARGO0# but I need to sell quickly. Meet me at #LOC0.name# on #ORIGIN# if you're interested."],
+		contact: ["I've still got the #CARGO0#, but I need to sell quickly. Meet me at #LOC0.name# on #ORIGIN# if you're interested."],
 		topic: [,"#CARGO0# for sale"]
 	},
 	locale2: {
@@ -134,7 +134,7 @@ function loadMissionFramework () {
 			"Ah, you're back. Have you got what I'm looking for? I'll pay #KEY0# \u20B5 for any #CARGO0.type# #CARGO0# you might have.", 3, [["haveCargo"]],
 			"Nice doing business with you."],
 		proceed: [["setStage(2)", "addCall", "removeMission", "credit(#KEY0#,Sold some illicit #CARGO0#)", "removeCargo", "addHistory(,,I fenced some #CARGO0# for you.,5)", "busy(2)"]],
-		contact: ["I'm still looking to buy but I don't stick around in one place too long. Meet me at #LOC0.name# on #ORIGIN# if you've got something for me."],
+		contact: ["I'm still looking to buy, but I don't stick around in one place too long. Meet me at #LOC0.name# on #ORIGIN# if you've got something for me."],
 		topic: [,"Looking to buy #CARGO0#"]
 	},
 	locale3: {
@@ -147,7 +147,7 @@ function loadMissionFramework () {
 		choices: [["Donate 1000 \u20B5", "Donate 100 \u20B5"]],
 		comm: ["#I'm representing|I represent# the 'Save the #KEY3# Fund' and we're always looking for individuals who #share our ideals|care about animals# and would be able to #donate|give# to the cause. #No amount is too small|Anything is appreciated#.", 4, "INC", [["haveCredits(1000)"],["haveCredits(100)"]],
 			"Ah, you're back. Has the plight of the #KEY3# moved you to share a little with our cause?", 4, [["haveCredits(1000)"],["haveCredits(100)"]],
-			"We #real|great#ly appreciate your generous gift and the #KEY3# thank you.",
+			"We #real|great#ly appreciate your generous gift, and the #KEY3# thank you.",
 			"It's so good to see one of our top patrons! Your #charity|benevolence# has saved #at least five|countless|many# #KEY3# already. Any amount you can spare can help save one more.", 4, [["haveCredits(1000)"],["haveCredits(100)"]]],
 		proceed: [,["setStage(2)", "addCall", "removeMission", "credit(-1000,Saved many #KEY3#)", "donate(1000)", "addHistory(,,You donated generously to the \"Save the #KEY3# Fund\".,10)"],
 			["addCall", "removeMission", "credit(-100,Saved some #KEY3#)", "donate(100)", "addHistory(,,You donated to the \"Save the #KEY3# Fund\".,5)"],
