@@ -24,6 +24,7 @@ function loadMissionFramework () {
 			"#You need to get|Please head# to #DEST#. #CHAR0# is waiting for the #CARGO0#."],
 		contactChar: [["I'm #eagerly|patiently|anxiously# #waiting on|awaiting# that #shipment|cargo# of #CARGO0#."]],
 		summary: [,"Bring #CARGO0# to #CHAR0# on #DEST#."],
+		topic: [,"Delivering #CARGO0#"],
 		trigger: [,,["arrived","haveCargo"],,["landed"]],
 		reward: [,,["addCall", "removeMission", "credit(#KEY4#,Successful Delivery)", "removeCargo", "rep(5)", "addHistory(,succeed,You made that #CARGO0# delivery for me.,10)", "addHistory(#CHAR0#,fail,You delivered some #CARGO0# to me.)"],
 			["addCall", "removeMission", "credit(#KEY5#,Late Delivery)", "removeCargo", "rep(-3)", "addHistory(,succeed,You made that #CARGO0# delivery for me.,-10)", "addHistory(#CHAR0#,fail,You were late delivering some #CARGO0# to me.)"],
@@ -50,6 +51,7 @@ function loadMissionFramework () {
 		contact: ["I'm still looking for someone to take me to #DEST#.", 0,
 			"Come talk to me in my cabin. I #haven't gone anywhere!|much prefer talking in person|should leave the comm screen for a bit#."],
 		summary: ["","Bring #CLIENTFIRST# to #DEST#."],
+		topic: [,"Your trip to #DEST#"],
 		trigger: [,["arrived"],,["landed"]],
 		reward: [,["addCall", "removeMission", "credit(#KEY3#,Fast Passage,#CLIENT#)", "removePassenger", "rep(8,#CLIENT#)", "addHistory(#CLIENT#,succeed,You brought me to #DEST# for #KEY4#.,15)", "busy(4)"],
 			["addCall", "removeMission", "credit(#KEY0#,Successful Passage,#CLIENT#)", "removePassenger", "rep(5,#CLIENT#)", "addHistory(#CLIENT#,succeed,You brought me to #DEST# for #KEY4#.,10)", "busy(4)"],
@@ -76,6 +78,7 @@ function loadMissionFramework () {
 		contactChar: [["I'll have the #CARGO0# ready for you when you get to #DEST# #(assuming you have room to take it)|and will load it if you have space#.",,,
 			"You need to see #CLIENT# on #ORIGIN#. #We can talk in the future if|Maybe we'll talk after|I'll be informed once# you've delivered the #CARGO0#."]],
 		summary: [,"Get #CARGO0# from #DEST# and bring them back to #ORIGIN#."],
+		topic: [,"Picking up #CARGO0#"],
 		trigger: [,,["arrived","emptyRoom(cargohold)"],["isHere","haveCargo"],["landed"]],
 		reward: [,,["addCall", "advStage", "addCargo(,#ORIGIN#)", "event(setStage(4),#KEY5#,haveCargo)", "addHistory(#CHAR0#,succeed,You collected some #CARGO0# from me.)"],
 			["addCall", "removeMission", "credit(#KEY4#,Successful Pickup)", "removeCargo", "rep(15)", "addHistory(,succeed,You completed that #CARGO0# pickup job for me., 15)"],
@@ -101,7 +104,8 @@ function loadMissionFramework () {
 			["advStage", "addCall", "removeMission", "credit(#KEY1#,Late Procurement)", "removeCargo", "addHistory(,succeed,You found me some #CARGO0#.,-5)"]], 
 		contact: ["I'm still on #ORIGIN# #look|want|need#ing to #buy|get|acquire# some #CARGO0#.", 2,,,,,
 			"You're too late with the #CARGO0# for me but I suppose I could find someone who has use for some.", 5],
-		summary: [,"Procure #CARGO0.type# #CARGO0# and bring back to #ORIGIN#."]
+		summary: [,"Procure #CARGO0.type# #CARGO0# and bring back to #ORIGIN#."],
+		topic: [,"Getting #CARGO0#"]
 	},
 	locale1: {
 		name: "Selling Illegal Goods",
@@ -115,7 +119,8 @@ function loadMissionFramework () {
 			"Ah, you're back. I knew you couldn't resist a good deal. Have you got #KEY0# \u20B5 for the #CARGO0.type# #CARGO0#?", 3, [["emptyRoom(cargohold)", "haveCredits(#KEY0#)"]],
 			"Nice doing business with you."],
 		proceed: [["setStage(2)", "addCall", "removeMission", "credit(#KEY1#,Bought some cheap #CARGO0#)", "addCargo", "addHistory(,,I gave you a great deal on some #CARGO0#.,10)", "busy(2)"]],
-		contact: ["I've still got the #CARGO0# but I need to sell quickly. Meet me at #LOC0.name# on #ORIGIN# if you're interested."]
+		contact: ["I've still got the #CARGO0# but I need to sell quickly. Meet me at #LOC0.name# on #ORIGIN# if you're interested."],
+		topic: [,"#CARGO0# for sale"]
 	},
 	locale2: {
 		name: "Buying Illegal Goods",
@@ -129,7 +134,8 @@ function loadMissionFramework () {
 			"Ah, you're back. Have you got what I'm looking for? I'll pay #KEY0# \u20B5 for any #CARGO0.type# #CARGO0# you might have.", 3, [["haveCargo"]],
 			"Nice doing business with you."],
 		proceed: [["setStage(2)", "addCall", "removeMission", "credit(#KEY0#,Sold some illicit #CARGO0#)", "removeCargo", "addHistory(,,I fenced some #CARGO0# for you.,5)", "busy(2)"]],
-		contact: ["I'm still looking to buy but I don't stick around in one place too long. Meet me at #LOC0.name# on #ORIGIN# if you've got something for me."]
+		contact: ["I'm still looking to buy but I don't stick around in one place too long. Meet me at #LOC0.name# on #ORIGIN# if you've got something for me."],
+		topic: [,"Looking to buy #CARGO0#"]
 	},
 	locale3: {
 		name: "Donating",
@@ -147,7 +153,8 @@ function loadMissionFramework () {
 			["addCall", "removeMission", "credit(-100,Saved some #KEY3#)", "donate(100)", "addHistory(,,You donated to the \"Save the #KEY3# Fund\".,5)"],
 			["setStage(1)", "proceed"],
 			["setStage(2)", "proceed"]],
-		contact: ["The \"Save the #KEY3# Fund\" can always use more money. I'm still at #LOC0.name# on #ORIGIN# looking for support."]
+		contact: ["The \"Save the #KEY3# Fund\" can always use more money. I'm still at #LOC0.name# on #ORIGIN# looking for support."],
+		topic: [,"Donations for the #KEY3#"]
 	},
 	/* Gambling Locale --> Needs reworking, use CLIENT.risk in bluffing/betting game
 	locale4: {
