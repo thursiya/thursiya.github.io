@@ -46,7 +46,7 @@ function loadAllFiles() {
 			oldCorps[13].fullname = "Independent Consortium of Planets";
 			oldCorps[13].type = "Consortium";
 			loadGame();
-		};	
+		});	
 }
 
 function loadGame() {
