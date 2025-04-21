@@ -1,5 +1,5 @@
-let mission = [];
-let oldmission = [];
+const mission = [];
+const oldmission = [];
 let normalMissionList = [];
 
 let missionFramework = {};
