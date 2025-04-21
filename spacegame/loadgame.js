@@ -42,8 +42,13 @@ function loadAllFiles() {
 				v && oldCorps.push(new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1])) ) )
 		.then(v => {
 			oldCorps[13].fullname = "Independent Consortium of Planets";
-			oldCorps[13].type = "Consortium";
-			loadGame(); });	
+			oldCorps[13].type = "Consortium"; 
+			return fetch("data/goods.txt"); })
+		.then(v => v.text())
+		.then(data => {
+			data.split(/\r\n|\n/).filter(v =>
+				v && goods.push(processGoodsFile(v)) );
+		     	loadGame(); });
 }
 
 function loadGame() {
