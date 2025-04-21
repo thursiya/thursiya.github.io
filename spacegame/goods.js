@@ -100,8 +100,7 @@ const goods = []; 																									// M, Ag | I, T | Af, S, C, HT, Mx | 
 function processGoodsFile(data) {
 	const g = data.split(",");
 	const prev = goods.length > 0 ? goods[goods.length - 1] : { name: "No previously defined good" };
-	console.log(g);
-	return { name: g[0] || prev[0], grade: g[1], type: g[2] || "assorted", file: g[3] || prev[3], price: g[4], produce: g[5] || prev[5], demand: g[6] || prev[6], desc: g[7] || prev[7] };
+	return { name: g[0] || prev.name, grade: g[1], type: g[2] || "assorted", file: g[3] || prev.file, price: g[4], produce: g[5] || prev.produce, demand: g[6] || prev.demand, desc: g[7] || prev.desc };
 }
 
 // Called by 'addMission()' when determining cargo (m = mission, query = all/extended/general/illegal/legal)
