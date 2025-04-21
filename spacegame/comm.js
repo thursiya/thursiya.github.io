@@ -62,7 +62,10 @@ function addCall(callProto, insertFlag = false, preText = "", postText = "") {
 	if (!('speaker' in call)) call.speaker = ('mission' in call) ? mission.find(v => v.id == call.mission).client : -1;
 
 	// if mission call, make sure contactedClient is now set to true
-	if ("mission" in callProto) mission.find(v => v.id == callProto.mission).contactedClient = true;
+	if ("mission" in callProto) {
+		const m2 = mission.find(v => v.id == callProto.mission);
+		if (m2) m2.contactedClient = true;
+	}
 	
 	if (insertFlag) {
 		comm.queue.splice(comm.current + 1, 0, call);
