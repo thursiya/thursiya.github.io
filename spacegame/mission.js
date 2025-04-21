@@ -308,10 +308,14 @@ function addMission (missionName, clientID) {
 		m.contactChar = (who = 0, preText = "") => {let call = m.contactCharData[who][m.stage] || m.contactCharData[who].slice(0, m.stage).reverse().find(v => v); if (call) addCall(call, false, preText);};
 	}
 
-	// Change summary to getter for parsed summary data (most recent data up to current stage)
+	// Change summary/topic to getter for parsed summary/topic data (most recent data up to current stage)
 	if ('summary' in m) {
 		m.summaryData = m.summary.map(v => mTextSwap(v, m));
 		Object.defineProperty(m, 'summary', {get() {return this.summaryData[this.stage] || this.summaryData.slice(0, this.stage).reverse().find(v => v)}, configurable: true});
+	}
+	if ('topic' in m) {
+		m.topicData = m.topic.map(v => mTextSwap(v, m));
+		Object.defineProperty(m, 'topic', {get() {return this.topicData[this.stage] || this.topicData.slice(0, this.stage).reverse().find(v => v)}, configurable: true});
 	}
 	
 	['choices', 'proceed', 'reject', 'reward', 'trigger'].forEach(prop => {
