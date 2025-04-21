@@ -74,7 +74,8 @@ function loadGame() {
 
 function populateGalaxy() {
 	// Add in old (established) corporations
-	oldCorps = oldCorps.map(v => new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1]));
+	//oldCorps = oldCorps.map(v => new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1]));
+	fetch("data/corporations.txt").then(v => v.text()).then(v => v.split(/\r\n|\n/).filter(v => v && oldCorps.push(new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1]))));
 	oldCorps[13].fullname = "Independent Consortium of Planets";
 	oldCorps[13].type = "Consortium";
 	
