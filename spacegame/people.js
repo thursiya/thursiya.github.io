@@ -1,6 +1,7 @@
-let person = [];
-let oldCorps = ["5-Star Conglomerate", "Astromedica Pharmaceuticals", "Centauri Corporation", "Certibrand Group", "Cyberops Enterprises", "Doleamas Farms", "Eagle Corporation", "Eunion Group", "Forge Manufacturing", "Fortune Corporation", "Fushikang Holdings", "Geotech Engineering", "Globalnet Electronics", "ICP (Independent Consortium of Planets)", "Mechanica Heavy Industries", "Microtronic Systems", "Militech Defense", "MilkyWay Corporation", "Mitsutomo Zaibatsu", "Nanoworks Industries", "Polis Corporation", "Sirius Corporation", "Stellar Farms", "Systech Terraforming"];
-let newCorps = [];
+const person = [];
+//const oldCorps = ["5-Star Conglomerate", "Astromedica Pharmaceuticals", "Centauri Corporation", "Certibrand Group", "Cyberops Enterprises", "Doleamas Farms", "Eagle Corporation", "Eunion Group", "Forge Manufacturing", "Fortune Corporation", "Fushikang Holdings", "Geotech Engineering", "Globalnet Electronics", "ICP (Independent Consortium of Planets)", "Mechanica Heavy Industries", "Microtronic Systems", "Militech Defense", "MilkyWay Corporation", "Mitsutomo Zaibatsu", "Nanoworks Industries", "Polis Corporation", "Sirius Corporation", "Stellar Farms", "Systech Terraforming"];
+const oldCorps = [];
+const newCorps = [];
 
 function Role (location = here, home = location, gender = rnd([0, 1]), status = "active", mood = 39 + rnd(21)) {
 	this.gender = gender;
