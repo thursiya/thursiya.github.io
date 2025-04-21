@@ -146,7 +146,8 @@ function proceedCall(variant = 0) {
 	console.log(`Proceed Call...`);		// DEBUG callQueue
 	console.log(comm.queue);
 	if (!m) {
-		addCall(mission[variant].client == call.speaker ? mission[variant].contact : mission[variant].contactChar[mission[variant].character.findIndex(v => v == call.speaker)], true);
+		const m2 = mission.find(v => v.id == variant);
+		addCall(m2?.client == call.speaker ? m2?.contact : m2?.contactChar[m2?.character.findIndex(v => v == call.speaker)], true);
 	} else if (variant == "locale") {
 		addCall('setComm' in call ? m.commData[call.setComm] : m.comm, true);
 	} else if (m.proceed?.length > 0) {
