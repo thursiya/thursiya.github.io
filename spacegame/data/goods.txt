@@ -14,7 +14,7 @@ Animal Skins,1,Bio-Engineered,animal-skins,5000
 Bacteria Farms,1,Stellar,bacteria-farms,3000,dangerous
 ,2,Astromedica,,5000
 ,3,Militech,,7000
-Chemicals,,assorted,chemicals,500,sensitive
+Chemicals,,,chemicals,500,sensitive
 Consumer Goods,1,Eagle,consumer-goods,1000
 ,2,Nanoworks,,2000
 ,3,Mitsutomo,,4000
@@ -31,15 +31,15 @@ Fertilizer,,multinutrient,fertilizer,200
 Farming Equipment,1,Systech,farming-equipment,1500
 ,2,Sirius,,2500
 ,3,Geotech,,3500
-Fruit & Vegetables,,assorted,vegetables,1000,cold
-Gemstones,,assorted,gemstones,100000
+Fruit & Vegetables,,,vegetables,1000,cold
+Gemstones,,,gemstones,100000
 Government Artifacts,,priceless,artifacts,100000,sensitive
-Grain,,assorted,grain,300
+Grain,,,grain,300
 Hand Weapons,1,Cyberops,hand-weapons,5500
 ,2,Forge,,6500
 ,3,Militech,,8500
 ,4,Eagle,,10500
-Heavy Plastics,,assorted,plastics,1000
+Heavy Plastics,,,plastics,1000
 Hydrogen Fuel Cells,,commercial,hydrogen,200
 Hypdroponic Farms,1,Stellar,hydroponic-farms,2000,live
 ,2,Centauri,,2800
@@ -49,7 +49,7 @@ Industrial Equipment,1,Forge,industrial-equipment,1500
 ,3,Systech,,3500
 Industrial Goods,1,Forge,industrial-goods,3000
 ,2,Mechanica,,4500
-Iron Ore,,assorted,iron-ore,500
+Iron Ore,,,iron-ore,500
 Liquid Oxygen,,cryogenic,oxygen,200,cold
 Liquor,1,Assorted New,liquor,1500
 ,2,Assorted Aged,,5500
@@ -64,21 +64,21 @@ Luxury Goods,1,Polis,luxury-goods,10000
 Medicine,1,Fortune,medicine,5000
 ,2,Centauri,,6500
 ,3,Astromedica,,8000
-Minerals,,assorted,minerals,300
+Minerals,,,minerals,300
 Narcotics,1,Minor,narcotics,5000
 ,2,Hallucinogenic,,8000
 ,3,Heavy,,10000
 ,4,Psychotropic,,14000
-Packages,,assorted,packages,500
+Packages,,,packages,500
 Perishable Goods,1,MilkyWay,perishable-goods,1000,cold
 ,2,5-Star,,1500
 ,2,Sirius,,1500
 ,3,Fortune,,2000
 Petroleum,,light,petroleum,500
-Precious Metals,,assorted,precious-metals,10000
+Precious Metals,,,precious-metals,10000
 Probes,1,Globalnet,probes,2500
 ,2,Forge,,4000
-Radioactive Waste,,assorted,radioactives,500,dangerous
+Radioactive Waste,,,radioactives,500,dangerous
 Robots,1,Cyberops,robots,4000,dangerous
 ,2,Microtronic,,6000
 ,3,Nanoworks,,8000
@@ -90,6 +90,6 @@ Slaves,1,Child,slaves,5000,live
 ,3,Sirian,,15000
 ,4,Bio-Engineered,,25000
 ,5,Luxorian,,50000
-Synthetic Meat,,assorted,synthetic-meat,1000,cold
-Waste Products,,assorted,waste-products,50
+Synthetic Meat,,,synthetic-meat,1000,cold
+Waste Products,,,waste-products,50
 Water,,fresh,water,100,sensitive
