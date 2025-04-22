@@ -2,7 +2,6 @@ const seed = Math.floor(Math.random() * 1e12);
 const starmapWidth = screen.width < 700 ? screen.width : screen.width - 350; //1330; //screen.availWidth - 350;
 document.querySelector('body').style.setProperty('--starmapWidth', `${starmapWidth}px`);
 const starmapHeight = 770;
-//const totalPlanets = 32;		// Is this used?
 const cellWidth = Math.floor(starmapWidth / 7);
 const cellHeight = Math.floor((starmapHeight - 20) / 5); // Leave 20px for name under planet
 const minDistance = 80;
@@ -32,9 +31,7 @@ function Starlane(origin, dest) {
 }
 
 function loadAllFiles() {
-	//loadAllFiles("data/corporations.txt", "data/goods.txt");
 	// Add in old (established) corporations
-	//oldCorps = oldCorps.map(v => new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1]));
 	fetch("data/corporations.txt")
 		.then(v => v.text())
 		.then(data => 
@@ -42,13 +39,7 @@ function loadAllFiles() {
 				v && oldCorps.push(new Corporation(v.split(" ")[0], "", v.split(/ (.+)/)[1])) ) )
 		.then(v => {
 			oldCorps[13].fullname = "Independent Consortium of Planets";
-			oldCorps[13].type = "Consortium"; 
-			return fetch("data/goods.txt"); })
-		.then(v => v.text())
-		.then(data => {
-			data.split(/\r?\n/).filter(v =>
-				v && goods.push(processGoodsFile(v)) );
-		     	loadGame(); });
+			oldCorps[13].type = "Consortium"; });
 }
 
 function loadGame() {
