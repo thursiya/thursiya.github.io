@@ -231,7 +231,7 @@ function contactPerson(pID, shipFlag) {
 	// Pass if 'p.status' = 'active' (or 'restricted')
 	if (["dead", "missing", "inactive"].includes(p.status)) return;
 	
-	const mChar = mission.filter(m => m.character?.some(c => c == pID) && m.contactedClient);
+	const mChar = mission.filter(m => m.character?.some(c => c == pID) && m.contactedClient && m.contactedChar[m.character.findIndex(c => c == pID)]);
 	const activeJobs = [...mClient, ...mChar];
 	const callspace = time.full - p.contact;
 	const callback = (p.mood / 17) - callspace > 0;
