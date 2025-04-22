@@ -345,7 +345,7 @@ function drawUI() {
 									<button class="collapsible">Governments</button>
 									<div class="collcontent">
 										${GOVERNMENTS.reduce((t, v) => `${t}
-	  										<div class="hoverable" onclick="displayInfo('gov','${v.name}')">${v.name}</div>`, "")}
+	  										<div class="hoverable" onclick="displayInfo('gov','${v}')">${v}</div>`, "")}
 									</div>
 									<button class="collapsible">Economies</button>
 									<div class="collcontent">
