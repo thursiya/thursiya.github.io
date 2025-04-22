@@ -41,31 +41,31 @@ Hand Weapons,Cyberops,1,5500,Military F S,Ma,,hand-weapons,Military worlds will 
 ,Eagle,4,10500,Military Af S
 Heavy Plastics,,1,1000,S P,I,,plastics,Important intermediate product.
 Hydrogen Fuel Cells,commercial,1,200,Af F S,I,,hydrogen,Especially useful for starships.
-Hypdroponic Farms,1,Stellar,hydroponic-farms,2000,live
-,2,Centauri,,2800
-,3,Sirius,,4000
-Industrial Equipment,1,Forge,industrial-equipment,1500
-,2,Mechanica,,2500
-,3,Systech,,3500
-Industrial Goods,1,Forge,industrial-goods,3000
-,2,Mechanica,,4500
-Iron Ore,,,iron-ore,500
-Liquid Oxygen,,cryogenic,oxygen,200,cold
-Liquor,1,Assorted New,liquor,1500
-,2,Assorted Aged,,5500
-,3,Doleamas,,20000
-Live Animals,1,Bio-Engineered,live-animals,10000,live
-,2,Terran,,15000
-,3,Lacotian,,25000
-Lumber,,cut,lumber,300
-Luxury Goods,1,Polis,luxury-goods,10000
-,2,Eunion,,15000
-,3,ICP,,35000
-Medicine,1,Fortune,medicine,5000
-,2,Centauri,,6500
-,3,Astromedica,,8000
-Minerals,,,minerals,300
-Narcotics,1,Minor,narcotics,5000
+Hypdroponic Farms,Stellar,1,2000,H T,Ag,live,hydroponic-farms,Designer plants and drug components.
+,Centauri,2,2800
+,Sirius,3,4000,Af H T,(Ag)
+Industrial Equipment,Forge,1,1500,Ma Mi,I,,industrial-equipment,Critical work tools.
+,Mechanica,2,2500
+,Systech,3,3500
+Industrial Goods,Forge,1,3000,H,Ma,,industrial-goods,Advanced manufacturing goods.
+,Mechanica,2,4500
+Iron Ore,,1,500,I,Mi T (P),,iron-ore,Key resource in metal production.
+Liquid Oxygen,cryogenic,1,200,I,Ma T,cold,oxygen,<i>Will explode if not kept in cold storage.</i>
+Liquor,Assorted New,1,1500,H I Ma Mi S,Ag F,,liquor,<i>Illegal on theocratic worlds.</i>
+,Assorted Aged,2,5500,Af F H I Ma S
+,Doleamas,3,20000,Af H (F),Af C (Ag)
+Live Animals,Bio-Engineered,1,10000,Af Ag T,Ag F,live,live-animals,<i>Agricultural worlds demand the animals they do not produce.</i>
+,Terran,2,15000,Af Ag C T
+,Lacotian,3,25000
+Lumber,cut,1,300,Af Ag C P S,Ag Mi P S (Rocky/Desert),,lumber,Produced on most rocky and desert worlds and needed for light construction and some quality goods.
+Luxury Goods,Polis,1,10000,Af C H,Ma S (Af),,luxury-goods,<i>Illegal on theocratic worlds.</i>
+,Eunion,2,15000,Af C (H),H Ma S (Af)
+,ICP,3,35000,Af,C H Ma S (Af)
+Medicine,Fortune,1,5000,Ag C F I Ma T,H,,medicine,Always needed.
+,Centauri,2,6500,Af C I Ma (Ag F T)
+,Astromedica,3,8000,Af C
+Minerals,,1,300,I,Mi T (P),,minerals,Easily sourced production need.
+Narcotics,Minor,1,5000,C I Ma Mi S,Ag (F),,narcotics,<i>Illegal on all but lawless worlds, although corporate and democratic worlds will allow minor narcotics, and feudal worlds will also allow hallucinogenic narcotics.</i>
 ,2,Hallucinogenic,,8000
 ,3,Heavy,,10000
 ,4,Psychotropic,,14000
