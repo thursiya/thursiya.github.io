@@ -1,46 +1,46 @@
-Air Processors,1,Certibrand,air-processors,1500,Ma,Mi T,Critical to survival on harsh worlds.
-,2,Systech,,2500
-Automobiles,1,Eagle,automobiles,2500,sensitive,Ma,Ag F H Mi I P S (C),Industrial and consumer vehicles.
-,2,Geotech,,4000,,,Ag C F H Mi I (S)
-,2,5-Star,,4000
-,3,Mechanica,,5500,,,Af C H
-,4,Eunion,,8000
-Animal Meat,1,Bio-Engineered,animal-meat,1500,cold
-,2,Terran,,2500
-,3,Lacotian,,4500
-Animal Skins,1,Bio-Engineered,animal-skins,5000
-,2,Terran,,7500
-,3,Lacotian,,12500
-Bacteria Farms,1,Stellar,bacteria-farms,3000,dangerous
-,2,Astromedica,,5000
-,3,Militech,,7000
-Chemicals,,,chemicals,500,sensitive
-Consumer Goods,1,Eagle,consumer-goods,1000
-,2,Nanoworks,,2000
-,3,Mitsutomo,,4000
-,3,Fortune,,4000
-,4,Polis,,5000
-Data Vaults,,secure,datavaults,5000,sensitive
-Electronics,1,Fushikang,electronics,2000
-,2,Microtronic,,3000
-,2,5-Star,,3000
-,3,Globalnet,,4000
-Explosives,1,Industrial,explosives,5000,dangerous
-,2,Large Scale,,8000
-Fertilizer,,multinutrient,fertilizer,200
-Farming Equipment,1,Systech,farming-equipment,1500
-,2,Sirius,,2500
-,3,Geotech,,3500
-Fruit & Vegetables,,,vegetables,1000,cold
-Gemstones,,,gemstones,100000
-Government Artifacts,,priceless,artifacts,100000,sensitive
-Grain,,,grain,300
-Hand Weapons,1,Cyberops,hand-weapons,5500
-,2,Forge,,6500
-,3,Militech,,8500
-,4,Eagle,,10500
-Heavy Plastics,,,plastics,1000
-Hydrogen Fuel Cells,,commercial,hydrogen,200
+Air Processors,Certibrand,1,1500,Mi T,Ma,,air-processors,Critical to survival on harsh worlds.
+,Systech,2,2500
+Automobiles,Eagle,1,2500,Ag F H Mi I P S (C),Ma,sensitive,automobiles,Industrial and consumer vehicles.
+,Geotech,2,4000,Ag C F H Mi I (S)
+,5-Star
+,Mechanica,3,5500,Af C H
+,Eunion,4,8000,Af H (C)
+Animal Meat,Bio-Engineered,1,1500,C H I Ma Mi T,Ag F,cold,animal-meat,Still legal.
+,Terran,2,2500,Af C H I Ma Mi T
+,Lacotian,3,4500,Af C H Ma (T)
+Animal Skins,Bio-Engineered,1,5000,Af C,Ag F,,animal-skins,<i>Illegal on democratic worlds.</i>
+,Terran,2,7500
+,Lacotian,3,12500
+Bacteria Farms,Stellar,1,3000,Military H T,I,dangerous,bacteria-farms,Military worlds will demand them.<br><i>Illegal on democratic worlds.</i>
+,Astromedica,2,5000
+,Militech,3,7000,Military H
+Chemicals,,1,500,H I P S,Mi T (F),sensitive,chemicals,The building blocks of countless products.
+Consumer Goods,Eagle,1,1000,I Ma Mi S T,C H P (Af F),,consumer-goods,Household and everyday products.
+,Nanoworks,2,2000,C F I Ma Mi S T,H P (Af)
+,Mitsutomo,3,4000,C H Ma (F T),S (Af P)
+,Fortune,,,Af C H (F T)
+,Polis,4,5000,Af C H,S (Af)
+Data Vaults,secure,1,5000,*,*,sensitive,datavaults,Data vaults hold vast stores of important information and are not traded on the market.
+Electronics,Fushikang,1,2000,I P S,H,,electronics,The base components for most technology. Most worlds provide for their own needs.
+,Microtronic,2,3000,P S
+,5-Star
+,Globalnet,3,4000
+Explosives,Industrial,1,5000,F Mi S T,I,dangerous,explosives,<i>Illegal on all but military and lawless worlds.</i>
+,Large Scale,2,8000,S T
+Fertilizer,multinutrient,1,200,Ag F T,I,dangerous,fertilizer,Critical to high-quality food production.
+Farming Equipment,Systech,1,1500,Ag T,Ma,,farming-equipment,Basic farming necessity.
+,Sirius,2,2500
+,Geotech,3,3500,Ag (T)
+Fruit & Vegetables,,1,1000,Af C F H Ma T,Ag,cold,vegetables,A galaxy of varieties.
+Gemstones,,1,100000,Af Ma S,Mi,,gemstones,Used in energy weapons and as a luxury.
+Government Artifacts,priceless,1,100000,Af,*,sensitive,artifacts,Government artifacts are usually only available on the black market.
+Grain,,1,300,Af C H Ma P S,Ag (F),,grain,Primary food staple.
+Hand Weapons,Cyberops,1,5500,Military F S,Ma,,hand-weapons,Military worlds will demand them.<br><i>Illegal on corporate and democratic worlds.</i>
+,Forge,2,6500,Military Af F S
+,Militech,3,8500
+,Eagle,4,10500,Military Af S
+Heavy Plastics,,1,1000,S P,I,,plastics,Important intermediate product.
+Hydrogen Fuel Cells,commercial,1,200,Af F S,I,,hydrogen,Especially useful for starships.
 Hypdroponic Farms,1,Stellar,hydroponic-farms,2000,live
 ,2,Centauri,,2800
 ,3,Sirius,,4000
