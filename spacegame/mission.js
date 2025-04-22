@@ -251,6 +251,7 @@ function addMission (missionName, clientID) {
 			return choice; });
 		//m.character.forEach((v, i) => m.character[i] = choosePerson(v == "dest" ? m.dest : undefined));
 		if (m.character.includes(-1)) return false;
+		m.contactedChar = m.character.map(v => 0);
 	}
 	
 	if ('cargo' in m) m.cargo = m.cargo.map(v => v.split(",")).map(v => v[0] == "rnd" ? rnd(chooseGoods(m, v[1])) :	{ name: v[0], type: v[1], file: v[2], baseprice: +v[3], supply: +v[4] });
@@ -402,8 +403,10 @@ function parseCommands (arr, m) {
 		"addCall"() {addCall(m.comm, true)},
 		"addCargo"() {haveCargo(m.cargo[+params[0] || 0], 'add', 1, params[1] || m.dest)},
 		"addChar"() { const loc = params[0] == "dest" ? m.dest : m.origin;
-			m.character = [...m.character || [], choosePerson(loc) || person.push(new Role(loc))] },		
-		"addContact"() {addContact(params[0] || m.character[0])},
+			m.character = [...m.character || [], choosePerson(loc) || person.push(new Role(loc))]; },		
+		"addContact"() { const p = m.character[params[0] || 0];
+			m.contactedChar[p] = 1;
+			addContact(p); },
 		"addHistory"() {addHistory(params[0] || m.client, params[1], params[2], +params[3])},
 		"advStage"() {m.stage += +params[0] || 1},
 		"addPassenger"() {havePassenger(m.client, 'add', m.dest)},
