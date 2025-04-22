@@ -404,9 +404,8 @@ function parseCommands (arr, m) {
 		"addCargo"() {haveCargo(m.cargo[+params[0] || 0], 'add', 1, params[1] || m.dest)},
 		"addChar"() { const loc = params[0] == "dest" ? m.dest : m.origin;
 			m.character = [...m.character || [], choosePerson(loc) || person.push(new Role(loc))]; },		
-		"addContact"() { const p = m.character[params[0] || 0];
-			m.contactedChar[p] = 1;
-			addContact(p); },
+		"addContact"() { m.contactedChar[params[0] || 0] = 1;
+			addContact(m.character[params[0] || 0]); },
 		"addHistory"() {addHistory(params[0] || m.client, params[1], params[2], +params[3])},
 		"advStage"() {m.stage += +params[0] || 1},
 		"addPassenger"() {havePassenger(m.client, 'add', m.dest)},
