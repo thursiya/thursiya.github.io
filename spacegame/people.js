@@ -2,11 +2,11 @@ const person = [];
 const oldCorps = [];
 const newCorps = [];
 
-function Role (location = here, home = location, gender = rnd([0, 1]), status = "active", mood = 39 + rnd(21)) {
+function Role(location = here, home = location, gender = rnd([0, 1]), status = "active", mood = 39 + rnd(21)) {
 	this.gender = gender;
 	this.name = rndPersonName(gender);
-	this.firstname = this.name.split(" ")[0];
-	this.lastname = this.name.split(" ").slice(1).join(" ");
+	this.firstname = this.name.match(/\S+/)[0];
+	this.lastname = this.name.match(/\s(.+)/)[1];
 	this.location = location;
 	this.home = home;
 	this.image = (gender == 0 ? "woman-" : "man-") + rnd(["suit", "hat", "shawl", "collar"]);
@@ -19,19 +19,19 @@ function Role (location = here, home = location, gender = rnd([0, 1]), status = 
 	this.social = rnd(5); // aloof-outgoing (1-5)
 	this.risk = rnd(5);	// careful-risky (1-5)
 	this.moral = rnd(5); // selfish-altruistic (1-5)
-	this.org = rnd(["", rnd(oldCorps).fullname, rnd(newCorps).fullname, rnd(newCorps).fullname, world[home].name + " " + rnd(["Government", "University", "Military"]), `City of ${rnd(world[home].city)} (${world[home].name})`]);
+	this.org = rnd(["", rnd(oldCorps).fullname, rnd(newCorps).fullname, rnd(newCorps).fullname, `${world[home].name} ${rnd(["Government", "University", "Military"])}`, `City of ${rnd(world[home].city)} (${world[home].name})`]);
 	this.title = (this.org == "") ? rnd(["Private Citizen", "Legitimate Businessperson", rnd(["Entrepreneur", "Net Celebrity", "Adventurer"])]) : parse("#professionN#");
 	this.history = [];
 	this.contact = "unknown";
 }
 	
-function rndPersonName (gender = rnd([0,1]), limiter = (rnd(10) > 9) ? "markov" : "") {
+function rndPersonName(gender = rnd([0, 1]), limiter = (rnd(10) > 9) ? "markov" : "") {
 	const lastname = parse(`#nameLast.${gender < 1 ? 'fem' : 'masc'}#`);
 	if (limiter == "lastname") return lastname;
 	let name = "";
 	do {
 		let firstname = (limiter == "markov") ? capitalize(markov("nameFirstFemale,nameFirstMale,nameFirstUnisex")) : parse(`#nameFirst[${gender < 1 ? 'fem' : 'masc'}]#`);
-		name = firstname + " " + lastname;
+		name = `${firstname} ${lastname}`;
 		if ((gender == 0 && storyFramework.nameFirstMale.includes(firstname)) || (gender == 1 && storyFramework.nameFirstFemale.includes(firstname))) {name = "FAIL"; limiter = "";}
 		person.forEach(v => {if (v.name == name) name = "FAIL";});
 	} while (name == "FAIL");
@@ -39,11 +39,11 @@ function rndPersonName (gender = rnd([0,1]), limiter = (rnd(10) > 9) ? "markov" 
 }
 
 // Converts Role object/number/"fullname" into Role object or false
-function validatePerson (who) {
+function validatePerson(who) {
 	return (who instanceof Role) ? who : isNaN(who) ? person.find(p => p.name == who) : person[who] || false;
 }
 
-function reputation (p, amount) {
+function reputation(p, amount) {
 	p = validatePerson(p);
 	if (!p) return false;
 	p.rep += Math.floor(amount);
@@ -51,15 +51,15 @@ function reputation (p, amount) {
 	if (p.rep < 0) p.rep = 0;
 	moodSwing(p, amount * 2);
 }
-function moodSwing (p, amount) {
+function moodSwing(p, amount) {
 	p = validatePerson(p);
 	if (!p) return false;
 	p.mood += Math.floor(amount);
 	if (p.mood > 100) p.mood = 100;
 	if (p.mood < 0) p.mood = 0;
 }
-function moodCorrect (hh) {		// Cool mood by 1 point per hour
-	for (let p of person) if (p.mood != p.rep) p.mood += (Math.abs(p.rep - p.mood) > hh) ? (p.mood > p.rep) ? -hh : hh : (p.rep - p.mood);
+function moodCorrect(hh) {		// Cool mood by 1 point per hour
+	for (const p of person) if (p.mood != p.rep) p.mood += (Math.abs(p.rep - p.mood) > hh) ? (p.mood > p.rep) ? -hh : hh : (p.rep - p.mood);
 }
 
 function characterTravel (p, dest) {
