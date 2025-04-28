@@ -32,7 +32,10 @@ function rndPersonName(gender = rnd([0, 1]), limiter = (rnd(10) > 9) ? "markov" 
 	do {
 		let firstname = (limiter == "markov") ? capitalize(markov("nameFirstFemale,nameFirstMale,nameFirstUnisex")) : parse(`#nameFirst[${gender < 1 ? 'fem' : 'masc'}]#`);
 		name = `${firstname} ${lastname}`;
-		if ((gender == 0 && storyFramework.nameFirstMale.includes(firstname)) || (gender == 1 && storyFramework.nameFirstFemale.includes(firstname))) {name = "FAIL"; limiter = "";}
+		if ((gender == 0 && storyFramework.nameFirstMale.includes(firstname)) || (gender == 1 && storyFramework.nameFirstFemale.includes(firstname))) {
+			name = "FAIL";
+			limiter = "";
+		}
 		person.forEach(v => {if (v.name == name) name = "FAIL";});
 	} while (name == "FAIL");
 	return name;
@@ -59,45 +62,30 @@ function moodSwing(p, amount) {
 	if (p.mood < 0) p.mood = 0;
 }
 function moodCorrect(hh) {		// Cool mood by 1 point per hour
-	for (const p of person) if (p.mood != p.rep) p.mood += (Math.abs(p.rep - p.mood) > hh) ? (p.mood > p.rep) ? -hh : hh : (p.rep - p.mood);
+	person.forEach(p => p.mood += (p.mood != p.rep) ? 0 : 
+		(Math.abs(p.rep - p.mood) <= hh) ? (p.rep - p.mood) :
+		(p.mood > p.rep) ? -hh : hh );
 }
 
-function characterTravel (p, dest) {
+function characterTravel(p, dest) {
 	p = validatePerson(p);
 	if (p) {
-		p.dest = dest > -1 ? dest : (p.location != p.home && rnd(4) > 1) ? p.home : adjacentSystem(1, p.location);
+		// Set p to dest (if given), or if away from home, 75% chance to head home, otherwise travel to an adjacent system
+		p.dest = (dest > -1) ? dest :
+			(p.location != p.home && rnd(4) > 1) ? p.home : adjacentSystem(1, p.location);
 		addEvent(["arrive", "busy(2)"], p, Math.ceil(calculateDistance(world[p.location], world[p.dest]) / 8), 4);	// Up to 4h extra travel time
 		p.location = "in transit";
-	} else person.forEach((p, pId) => {
-		if (mission.find(v => v.client == pId || (v.character && v.character.indexOf(pId) > -1))) return;	// skip mission people
-		if (p.status != 'active' || p.busy > time.full || p.location == "in transit") return;	// skip dead/busy/transiting people
-		if (rnd(10) < (p.location != p.home ? 5 : 2)) characterTravel(p);});
+	} else {
+		person.forEach((p, pId) => {
+			if (mission.find(v => v.client == pId || v.character?.includes(pId)) || p.status != 'active' || p.busy > time.full || p.location == "in transit") return;	// skip mission/dead/busy/transiting people
+			if (rnd(10) < (p.location == p.home ? 2 : 5)) characterTravel(p); });	// 10%/40% chance to travel if at home/away
+	}
 }
 
 function choosePerson (where = here, restrictedPeople = []) {
-	//console.log(`*** CHOOSING PERSON @ ${world[location].name} ***`);
-	//const missionPeople = [...new Set([].concat.apply([], mission.map(m => [m.client, ...('character' in m ? m.character : [])])))].map(p => person[p]);
-	//const missionPeople = mission.map(v => [v.client, ...(v.character || [])]).flat();
-	//const missionPeople = mission.reduce((t, v) => [...t, v.client, ...(v.character || [])], restrictedPeople);
-	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !missionPeople.includes(i));
-	//const availPeople = person.filter((p, i) => p.status == "active" && p.location == location && p.busy <= time.full && !restrictedPeople.includes(i));
-	restrictedPeople.push(...mission.reduce((t, v) => v.type == "p" ? [...t, v.client] : t, []));
-	return rnd(person.reduce((t, v, i) => (v.status == "active" && v.location == where && v.busy <= time.full && !restrictedPeople.includes(i)) ? [...t, i] : t, []));
-	
-	//const homePeople = person.filter(p => p.status == "active" && p.home == location);
-	//const popSupport = Math.floor(world[location].pop / 5 + 6);
-	//const randAvail = rnd(availPeople);
-	//console.log(missionPeople);
-	//console.log(availPeople);
-	//console.log(homePeople);
-	//console.log(`popSupport: ${popSupport}`);
-	//console.log(randAvail);
-	//return (availPeople.length > 0) ? person.findIndex(p => p == randAvail) : -1;
-	
-	// *** Currently pre-generating all people ***
-	//if (availPeople.length > 0) return (homePeople.length < popSupport && rnd(popSupport + 3) >= availPeople.length) ? person.push(new Role(undefined, undefined, undefined, location, location)) - 1 : person.findIndex(p => p == randAvail);
-
-	//return (homePeople.length < popSupport) ? person.push(new Role(undefined, undefined, undefined, location, location)) - 1 : console.log(`Found nobody in\n${availPeople} or homePeople.length: ${homePeople.length}`), -1;
+	restrictedPeople.push(...mission.reduce((t, v) => v.type == "p" ? [...t, v.client] : t, []));		// Add all "passage" clients to restricted list
+	return rnd(person.reduce((t, v, i) => 
+		(v.status == "active" && v.location == where && v.busy <= time.full && !restrictedPeople.includes(i)) ? [...t, i] : t, []));
 }
 
 function addContact (p) {
