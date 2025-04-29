@@ -82,13 +82,13 @@ function characterTravel(p, dest) {
 	}
 }
 
-function choosePerson (where = here, restrictedPeople = []) {
+function choosePerson(where = here, restrictedPeople = []) {
 	restrictedPeople.push(...mission.reduce((t, v) => v.type == "p" ? [...t, v.client] : t, []));		// Add all "passage" clients to restricted list
 	return rnd(person.reduce((t, v, i) => 
 		(v.status == "active" && v.location == where && v.busy <= time.full && !restrictedPeople.includes(i)) ? [...t, i] : t, []));
 }
 
-function addContact (p) {
+function addContact(p) {
 	p = validatePerson(p);
 	if (!p) return false;
 	if (p.contact == "unknown") p.contact = 0;
