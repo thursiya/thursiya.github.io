@@ -67,6 +67,7 @@ function moodCorrect(hh) {		// Cool mood by 1 point per hour
 		(p.mood > p.rep) ? -hh : hh );
 }
 
+// Called (with no parameters) during updateTime function and by parsed mission command "travel"
 function characterTravel(p, dest) {
 	p = validatePerson(p);
 	if (p) {
@@ -82,6 +83,7 @@ function characterTravel(p, dest) {
 	}
 }
 
+// Called by new mission function and parsed mission command "addChar"
 function choosePerson(where = here, restrictedPeople = []) {
 	restrictedPeople.push(...mission.reduce((t, v) => v.type == "p" ? [...t, v.client] : t, []));		// Add all "passage" clients to restricted list
 	return rnd(person.reduce((t, v, i) => 
@@ -95,9 +97,12 @@ function addContact(p) {
 	updateContactsDisplay();
 }
 
-function addHistory (p, result, type, quality) {
+// Called by parsed mission command "addHistory"
+function addHistory(p, result, type, quality) {
 	p = validatePerson(p);
+	if (!p) return false;
 	let text = "";
+	// result "reject" doesn't currently seem to be called by anything -> future plans?
 	if (result == 'reject') {
 		text = `You #rejected|turned down|didn't take# a job I offered you.`;
 		if (type == "p") text += ` I had to find someone else to take me.`;
@@ -106,21 +111,28 @@ function addHistory (p, result, type, quality) {
 		text = type;
 		if (result == 'succeed') {
 			if (quality > 10) text += (p.rep > 75) ? ` I've come to expect exceptional work like that from you.` : ` I was ${p.rep < 50 ? `pleasantly surprised` : `very impressed`} with your work.`;
-			if (quality < 0) text += ` #However you were late|It wasn't the quickest but at least it got done|I'd have prefered it done on time though#.`;
-		} else if (result == 'fail') if (quality < -10) text += ` I wasn't planning on using your 'services' again.`;
-		else result = 'special';
+			if (quality < 0) text += ` #However, you were late|It wasn't the quickest, but at least it got done|I'd have prefered it done on time though#.`;
+		} else if (result == 'fail') {
+			if (quality < -10) text += ` I wasn't planning on using your 'services' again.`;
+		} else {
+			result = 'special';
+		}
 	}
-	p.history.unshift({time: time.full, result, text: parse(text)});
+	p.history.unshift({ time: time.full, result, text: parse(text) });
 }
 
-function Corporation (name, desc = "", type = "Corporation") {
+
+
+// --- Corporation Functions ---
+
+function Corporation(name, desc = "", type = "Corporation") {
 	this.name = name;
 	this.desc = desc;
 	this.type = type;
 	this.fullname = `${name} ${desc ? `${desc} ` : ""}${type}`;
 }
 
-function rndCorporationName () {
+function rndCorporationName() {
 	let name;
 	do {
 		if (rnd(3) < 3) {
