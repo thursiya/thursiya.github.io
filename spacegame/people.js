@@ -125,11 +125,14 @@ function addHistory(p, result, type, quality) {
 
 // --- Corporation Functions ---
 
-function Corporation(name, desc = "", type = "Corporation") {
+function Corporation(name, type, founded, hq, motto = "", desc = "") {
 	this.name = name;
-	this.desc = desc;
-	this.type = type;
-	this.fullname = `${name} ${desc ? `${desc} ` : ""}${type}`;
+	this.type = type || (rnd(3) > 1 ? "" : `${parse("#corpDesc.caps#")} `) + (rnd(5) > 4 ? "Corporation" : parse("#corpType.caps#"));
+	this.fullname = `${name} ${type}`;
+	this.founded = founded;
+	this.hq = hq;
+	this.motto = motto;
+	this.desc = desc;	
 }
 
 function rndCorporationName() {
@@ -146,5 +149,5 @@ function rndCorporationName() {
 		newCorps.forEach(v => {if (v.name.slice(0, 4).toLowerCase() == name.slice(0, 4).toLowerCase()) name = "FAIL";});
 		if (name.match(/^(ICP|ass|cum|fag|fck|fuc|fuk|fux|gay|hag|jap|jew|jiz|kyk|pee|poo|pud|pus|sex|sob|sxy|tit|vag|wop|wtf|xxx)$/i)) name = "FAIL";
 	} while (name == "FAIL");
-	return new Corporation(name, rnd(3) > 1 ? "" : parse("#corpDesc.caps#"), rnd(5) > 4 ? "Corporation" : parse("#corpType.caps#"));
+	return new Corporation(name);
 }
