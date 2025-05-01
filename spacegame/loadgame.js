@@ -44,8 +44,8 @@ function loadAllFiles() {
 	fetch("data/corporations.txt")
 		.then(v => v.text())
 		.then(data => {
-			const dArr = JSON.parse(data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
-			dArr.forEach(v => oldCorps.push(new Corporation(v.name, v.type, v.founded, v.hq, v.motto, v.desc)));
+			JSON.parse(data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'))
+				.forEach(v => oldCorps.push(new Corporation(v.name, v.type, v.founded, v.hq, v.motto, v.desc)) );
 			oldCorps.find(v => v.name == "ICP").fullname = "Independent Consortium of Planets"; 
 			loadGame(); });
 }
