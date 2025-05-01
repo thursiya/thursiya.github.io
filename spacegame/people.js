@@ -128,7 +128,7 @@ function addHistory(p, result, type, quality) {
 function Corporation(name, type, founded, hq, motto = "", desc = "") {
 	this.name = name;
 	this.type = type || (rnd(3) > 1 ? "" : `${parse("#corpDesc.caps#")} `) + (rnd(5) > 4 ? "Corporation" : parse("#corpType.caps#"));
-	this.fullname = `${name} ${type}`;
+	this.fullname = `${name} ${this.type}`;
 	this.founded = founded;
 	this.hq = hq;
 	this.motto = motto;
