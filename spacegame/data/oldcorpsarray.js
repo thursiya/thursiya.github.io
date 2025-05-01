@@ -1,4 +1,4 @@
-const oldCorps = [
+const oldCorpsDataArray = [
   { name: "5-Star", type: "Conglomerate", founded: 2086, hq: "Greater Busan Aerotropolis, Earth", motto: "Reliable Tomorrow. Everywhere.", desc: `
     <p>Born from the merger of several legacy Korean chaebols during the Great Consolidation of the 2080s, 5-Star Conglomerate quickly rose to become the premier supplier of dependable, mid-tier goods for the 
     expanding interstellar middle class. Built on the industrial DNA of old-world giants, 5-Star's early slogan—<i>"Powering Progress, Planet to Planet"</i>—still defines its mission.</p>
