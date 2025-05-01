@@ -289,6 +289,9 @@ function displayInfo(type, which) {
 	if (type == "corp") {
 		const c = [...oldCorps, ...newCorps].find(v => v.name == which);
 		out = `<h2>${c.fullname}</h2>
+  			<p><i>${c.motto}</i>
+     			<p><i>Founded: ${c.founded} | Headquarters: ${c.hq}</i></p>
+			<div>${c.desc}</div>
   			${goods.some(v => v.type == c.name) ? `<div>Associated Goods:</div><div style="margin-left: 20px">
      				${goods.filter(v => v.type == c.name).reduce((t, v, i) =>
 					`${t}<span class="clickable" onclick="displayInfo('good', '${v.name}')"><img src="images/goods/${v.file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v.name}</span><br>`, "")}
