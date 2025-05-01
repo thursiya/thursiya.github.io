@@ -91,6 +91,8 @@ function loadGame() {
 
 function populateGalaxy() {
 	generateWorlds();
+	console.log(oldCorps);
+	console.log(world);
 	
 	// Generate 25 new random corporations (in addition to the 24 old corps), then add them to #corp# data
 	for (const i of times(25)) newCorps.push(new Corporation);
