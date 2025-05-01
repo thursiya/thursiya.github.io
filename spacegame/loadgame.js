@@ -32,7 +32,7 @@ function Starlane(origin, dest) {
 
 function loadAllFiles() {
 	// Add in old (established) corporations
-	fetch("data/corporations.txt")
+	/*fetch("data/corporations.txt")
 		.then(v => v.text())
 		.then(data => 
 			data.split(/\r?\n/).filter(v => 
@@ -40,6 +40,14 @@ function loadAllFiles() {
 		.then(v => {
 			oldCorps[13].fullname = "Independent Consortium of Planets";
 			oldCorps[13].type = "Consortium"; 
+			loadGame(); });*/
+	fetch("data/corporations.txt")
+		.then(v => v.text())
+		.then(data => {
+			const c = JSON.parse(data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":'));
+			oldCorps.push(new Corporation(c.name, c.type, c.founded, c.hq, c.motto, c.desc)); })
+		.then(v => {
+			oldCorps.find(v => v.name == "ICP").fullname = "Independent Consortium of Planets";
 			loadGame(); });
 }
 
