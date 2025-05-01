@@ -93,7 +93,7 @@ function populateGalaxy() {
 	generateWorlds();
 	
 	// Generate 25 new random corporations (in addition to the 24 old corps), then add them to #corp# data
-	for (const i of times(25)) newCorps.push(rndCorporationName());
+	for (const i of times(25)) newCorps.push(new Corporation);
 	storyFramework.corp = [...oldCorps.map(v => v.name), ...newCorps.map(v => v.name)];
 	
 	// Generate all characters
