@@ -1,6 +1,6 @@
-{ name: "5-Star", type: "Conglomerate", founded: 2086, hq: "Greater Busan Aerotropolis, Earth", motto: "Reliable Tomorrow. Everywhere.", desc: "
-  <p>Born from the merger of several legacy Korean chaebols during the Great Consolidation of the 2080s, 5-Star Conglomerate quickly rose to become the premier supplier of dependable, mid-tier goods for the 
-  expanding interstellar middle class. Built on the industrial DNA of old-world giants, 5-Star's early slogan—<i>&quot;Powering Progress, Planet to Planet&quot;</i>—still defines its mission.</p>
+{ name: "5-Star", type: "Conglomerate", founded: 2086, hq: "Greater Busan Aerotropolis, Earth", motto: "Reliable Tomorrow. Everywhere.", 
+  desc: "<p>Born from the merger of several legacy Korean chaebols during the Great Consolidation of the 2080s, 5-Star Conglomerate quickly rose to become the premier supplier of dependable, mid-tier goods for 
+  the expanding interstellar middle class. Built on the industrial DNA of old-world giants, 5-Star's early slogan—<i>&quot;Powering Progress, Planet to Planet&quot;</i>—still defines its mission.</p>
   <p>Specializing in consumer electronics, smart vehicles, and snack foods, 5-Star is best known for its <i>GaonDrive</i> line of autonomous interplanetary vehicles and the ubiquitous NeoLife smart ecosystem, 
   which connects everything from personal devices to home bots to shipboard systems. Though never the flashiest, 5-Star's offerings are prized for their solid engineering, long warranties, and relentless 
   software updates (whether you want them or not).</p>
