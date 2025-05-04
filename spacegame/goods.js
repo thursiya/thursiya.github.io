@@ -14,7 +14,7 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{name: "Animal Skins", grade: 3, type: "Lacotian", file: "animal-skins", price: 12500, produce: "Ag F", demand: "Af C"},							// Ag -> Af3	!
 	{name: "Bacteria Farms", grade: 1, type: "Stellar", file: "bacteria-farms", price: 3000, stat: 'dangerous', produce: "I", demand: "Military H T", desc: "Military worlds will demand them.<br><i>Illegal on democratic worlds.</i>"},	//13) HT? -> HT, Military	!		? stat: 'live' ?
 	{name: "Bacteria Farms", grade: 2, type: "Astromedica", file: "bacteria-farms", price: 5000, stat: 'dangerous', produce: "I", demand: "Military H T"},// -> HT	!
-	{name: "Bacteria Farms", grade: 3, type: "Militech", file: "bacteria-farms", price: 7000, stat: 'dangerous', produce: "I", demand: "Military H"},	// -> HT	!
+	{name: "Bacteria Farms", grade: 3, type: "Aegis", file: "bacteria-farms", price: 7000, stat: 'dangerous', produce: "I", demand: "Military H"},	// -> HT	!
 	{name: "Chemicals", type: "assorted", file: "chemicals", price: 500, stat: 'sensitive', produce: "Mi T (F)", demand: "H I P S", desc: "The building blocks of countless products."},	//16) M -> I3, HT2, Af1, S1, Mx1, P1, C1
 	{name: "Consumer Goods", grade: 1, type: "Eagle", file: "consumer-goods", price: 1000, produce: "C H P (Af F)", demand: "I Ma Mi S T", desc: "Household and everyday products."},	//17) I, HT, Af, S, C, Mx, P -> *1
 	{name: "Consumer Goods", grade: 2, type: "Nanoworks", file: "consumer-goods", price: 2000, produce: "H P (Af)", demand: "C F I Ma Mi S T"},						// -> *1
@@ -38,7 +38,7 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{name: "Grain", type: "assorted", file: "grain", price: 300, produce: "Ag (F)", demand: "Af C H Ma P S", desc: "Primary food staple."},	//36) Ag -> *
 	{name: "Hand Weapons", grade: 1, type: "Cyberops", file: "hand-weapons", price: 5500, produce: "Ma", demand: "Military F S", desc: "Military worlds will demand them.<br><i>Illegal on corporate and democratic worlds.</i>"},	//37) I, S -> Military, *		!
 	{name: "Hand Weapons", grade: 2, type: "Forge", file: "hand-weapons", price: 6500, produce: "Ma", demand: "Military Af F S"},
-	{name: "Hand Weapons", grade: 3, type: "Militech", file: "hand-weapons", price: 8500, produce: "Ma", demand: "Military Af F S"},
+	{name: "Hand Weapons", grade: 3, type: "Aegis", file: "hand-weapons", price: 8500, produce: "Ma", demand: "Military Af F S"},
 	{name: "Hand Weapons", grade: 4, type: "Eagle", file: "hand-weapons", price: 10500, produce: "Ma", demand: "Military Af S"},
 	{name: "Heavy Plastics", type: "assorted", file: "plastics", price: 1000, produce: "I", demand: "S P", desc: "Important intermediate product."},	//41) I -> I, HT, Af, S, C, Mx, P
 	{name: "Hydrogen Fuel Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", desc: "Especially useful for starships."},	//42) I -> *
