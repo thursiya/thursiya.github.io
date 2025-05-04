@@ -22,7 +22,7 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{name: "Consumer Goods", grade: 3, type: "Fortune", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "Af C H (F T)"},
 	{name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, produce: "S (Af)", demand: "Af C H"},
 	{name: "Data Vaults", type: "secure", file: "datavaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", desc: "Data vaults hold vast stores of important information and are not traded on the market."},	//22) *
-	{name: "Electronics", grade: 1, type: "Fushikang", file: "electronics", price: 2000, produce: "H", demand: "I P S", desc: "The base components for most technology. Most worlds provide for their own needs."},  //23) HT -> I1, Af3, HT1
+	{name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", desc: "The base components for most technology. Most worlds provide for their own needs."},  //23) HT -> I1, Af3, HT1
 	{name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S"},
 	{name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S"},
 	{name: "Electronics", grade: 3, type: "Globalnet", file: "electronics", price: 4000, produce: "H", demand: "P S"},
