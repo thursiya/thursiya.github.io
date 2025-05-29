@@ -116,6 +116,9 @@ exp: "<i>@285560|Pànjūn@</i>" },
 {name: "Guillotine", num: 116,
 minp: 2, maxp: 5, time: 30, skill: 1.5, luck: 4 },
 
+{name: "Honshu", num: 207336,
+minp: 2, maxp: 5, time: 45, skill: 2, luck: 3 },
+
 {name: "Innovation", num: 63888,
 minp: 2, maxp: 4, time: 90, ttext: "30-90", skill: 3, luck: 3,
 exp: "@92898|Echoes of the Past@<br /><i>@122323|Figures in the Sand@</i>" },
