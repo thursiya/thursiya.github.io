@@ -78,6 +78,7 @@ function characterTravel(p, dest) {
 		p.location = "in transit";
 	} else {
 		person.forEach((p, pId) => {
+			// Ignore mission-bound, inactive, busy, or traveling people0
 			if (mission.find(v => v.client == pId || v.character?.includes(pId)) || p.status != 'active' || p.busy > time.full || p.location == "in transit") return;	// skip mission/dead/busy/transiting people
 			if (rnd(10) < (p.location == p.home ? 2 : 5)) characterTravel(p); });	// 10%/40% chance to travel if at home/away
 	}
@@ -134,7 +135,7 @@ function Corporation(name, type, founded, hq, motto, desc = "") {
 	console.log(w);
 	console.log(shuffle(world).pop());
 	this.hq = hq || `${rnd(w.city)}, ${w.name}`;
-	this.motto = motto || parse("#Building|Going|Reaching# #Better|Forward|Further|Up#.");
+	this.motto = motto || parse("#Adaptability|Connection|Excellence|Experience|Forward-Thinking|Improvement|Innovation|Leadership|Precision|Reliability|Responsibility|Sustainability|Synergy|Teamwork|Value|Vision# #and Performance|Focused|for a Better Tomorrow|for the Future|Going Further|in Action|in Every Detail|is Our Priority|Leads to Success|Makes a Difference|Matters|You Can Trust#.");
 	this.desc = desc;	
 }
 
