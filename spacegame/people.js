@@ -135,7 +135,7 @@ function Corporation(name, type, founded, hq, motto, desc = "") {
 	console.log(w);
 	console.log(shuffle(world).pop());
 	this.hq = hq || `${rnd(w.city)}, ${w.name}`;
-	this.motto = motto || parse("#Adaptability|Connection|Excellence|Experience|Forward-Thinking|Improvement|Innovation|Leadership|Precision|Reliability|Responsibility|Sustainability|Synergy|Teamwork|Value|Vision# #and Performance|Focused|for a Better Tomorrow|for the Future|Going Further|in Action|in Every Detail|is Our Priority|Leads to Success|Makes a Difference|Matters|You Can Trust#.");
+	this.motto = motto || parse("#corpMottoPre# #corpMottoPost#.");
 	this.desc = desc;	
 }
 
