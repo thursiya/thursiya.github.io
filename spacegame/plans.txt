@@ -1,4 +1,5 @@
 - change hull images to just original full hull file, then reduce it using "clip-path" CSS (#clip { clip-path: polygon(0 0,0 100%,100% 100%); })
+- potentially fully rewrite ship system/change storage method (i.e. store proper object in holds, rather than lazy overwrite of 'name' value)
 
 - fix main mission (when client goes missing and you question people at the bar, the people are all the client!)
   Figured out issue, but still haven't fully fixed. Now people at the bar work, but they are chosen at mission initialization, and if you call them they will try to discuss the main mission/reveal involvement before they enter the story. Need to flag mission characters to not discuss or something?
@@ -6,3 +7,5 @@
 - hacking/net access feature
 
 - investigate addHistory with parameter "reject" - necessary?
+
+- "damage" function (in ship.js) has not been written/is not used (assuming it's for space combat damage?)
