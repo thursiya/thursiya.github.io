@@ -4,3 +4,5 @@
   Figured out issue, but still haven't fully fixed. Now people at the bar work, but they are chosen at mission initialization, and if you call them they will try to discuss the main mission/reveal involvement before they enter the story. Need to flag mission characters to not discuss or something?
 
 - hacking/net access feature
+
+- investigate addHistory with parameter "reject" - necessary?
