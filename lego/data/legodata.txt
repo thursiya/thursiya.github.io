@@ -23,6 +23,8 @@
 21247,Minecraft,The Axolotl House
 21252,Minecraft,The Armory
 21254,Minecraft,The Turtle Beach House
+21259,Minecraft,The Pirate Ship Voyage
+21266,Minecraft,The Nether Lava Battle
 21281,Minecraft,Baby Pig's Birthday Party
 30384,Star Wars,Mini Snowspeeder
 30393,Minecraft,Steve & Creeper
@@ -31,6 +33,8 @@
 30649,Ninjago,Ice Dragon Creature
 30679,Super Heroes,Venom Street Bike
 30685,Star Wars,TIE Interceptor
+30708,Star Wars,Millenium Falcon
+30710,Technic,Skid-Steer Loader
 31056,Creator,Green Truck
 31058,Creator,Mighty Dinosaurs
 31062,Creator,Blue Robot
@@ -83,6 +87,7 @@
 71738,Ninjago,Zane's Titan Mech Battle
 71761,Ninjago,Zane's Power Up Mech EVO
 71780,Ninjago,Kai's Ninja Race Car EVO
+71792,Ninjago,Sora's Transforming Mech Bike Racer
 71821,Ninjago,Cole's Titan Dragon Mech
 75004,Star Wars,Z-95 Headhunter
 75030,Star Wars,Han Solo Millennium Falcon Microfighter
@@ -103,6 +108,7 @@
 75368,Star Wars,Darth Vader Mech
 75369,Star Wars,Boba Fett Mech
 75370,Star Wars,Stormtrooper Mech
+75391,Star Wars,Captain Rex Y-Wing Microfighter
 75895,Speed Champions,1974 Porsche 911 Turbo 3.0
 75976,Overwatch,Wrecking Ball (Hamster)
 76085,Super Heroes,Aquaman Battle
@@ -121,8 +127,10 @@
 76202,Super Heroes,Wolverine Mech Armor
 76207,Super Heroes,Attack on New Asgard
 76245,Super Heroes,Ghost Rider Mech & Bike
+76284,Super Heroes,Green Goblin
 76906,Speed Champions,1970 Ferrari 512 M
 76908,Speed Champions,Lamborghini Countach
 76916,Speed Champions,Porsche 963
 76918,Speed Champions,McLaren Solus GT & McLaren F1 LM
 76943,Jurassic World,Pteranodon Chase
+76962,Jurassic World,Baby Bumpy: Ankylosaurus
