@@ -20,8 +20,9 @@ ptext: "2<br />(4)", pnote: "The Big Chill variant provides rules for two teams 
 exp: "1 full expansion" },
 
 {name: "Star Realms", num: 147020,
-time: 20, skill: 3, luck: 4,
+ptext: "2<br />(4)", pnote: "I have a second deck which allows two teams of 2.", time: 20, skill: 3, luck: 4,
 exp: "<i>Numerous</i>" }
 ]
+
 
 
