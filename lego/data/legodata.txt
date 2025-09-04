@@ -25,6 +25,7 @@
 21254,Minecraft,The Turtle Beach House
 21259,Minecraft,The Pirate Ship Voyage
 21266,Minecraft,The Nether Lava Battle
+21268,Minecraft,The Baby Pig House
 21281,Minecraft,Baby Pig's Birthday Party
 30384,Star Wars,Mini Snowspeeder
 30393,Minecraft,Steve & Creeper
@@ -53,6 +54,7 @@
 40626,BrickHeadz,Zombie
 40640,Lego,Nutcracker
 40646,Botanical Collection,Daffodils
+40649,Lego,Up-Scaled Minifigure
 40689,City,Firework Celebrations
 41725,Friends,Beach Buggy Fun
 41805,Dots,Creative Animal Drawer
@@ -80,6 +82,7 @@
 70676,Ninjago,Lloyd's Titan Mech
 70836,Lego Movie 2,Metal Beard & Batman
 70918,Batman Movie,The Bat-Dune Buggy
+71049,Speed Champions,F1 Collectible Race Cars (#6 Blue/Pink)
 71453,Dreamzzz,Izzie and Bunchu the Bunny
 71454,Dreamzzz,Mateo and Z-Blob the Robot
 71700,Ninjago,Jungle Raider (Dune Buggy)
@@ -134,3 +137,4 @@
 76918,Speed Champions,McLaren Solus GT & McLaren F1 LM
 76943,Jurassic World,Pteranodon Chase
 76962,Jurassic World,Baby Bumpy: Ankylosaurus
+77242,Speed Champions,Ferrari SF-24 F1 Race Car
