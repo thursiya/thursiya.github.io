@@ -87,6 +87,9 @@ minp: 2, maxp: 4, time: 120, skill: 2.5, luck: 3 },
 {name: "Eketorp", num: 6281,
 minp: 3, maxp: 6, time: 45, skill: 2, luck: 3 },
 
+{name: "Emerald", num: 311294,
+minp: 2, maxp: 5, time: 45, skill: 2, luck: 2 },
+
 {name: "Endeavor", num: 33160,
 minp: 2, maxp: 5, time: 60, ttext: "60-90", skill: 3, luck: 1 },
 
@@ -166,6 +169,9 @@ exp: "<i>@301055|Farmer's Market@</i>" },
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 1.5,
 exp: "<i>@213293|Cooked Books@</i>" },
 
+{name: "No Thanks", num: 117996,
+minp: 3, maxp: 7, time: 20, skill: 2, luck: 3 },
+
 {name: "Orl&#233;ans", num: 164928,
 minp: 2, maxp: 4, time: 90, skill: 3, luck: 2,
 exp: "<i>Various Promos<br />@183682|Invasion@<br />@204814|Trade & Intrigue@</i>" },
@@ -182,6 +188,10 @@ minp: 2, maxp: 7, time: 30, skill: 2, luck: 4},
 
 {name: "The Pillars of the Earth", num: 24480,
 minp: 2, maxp: 4, time: 90, skill: 3.5, luck: 2.5},
+
+{name: "Planet Unknown", num: 258779,
+minp: 1, maxp: 6, time: 80, skill: 2, luck: 3,
+exp: "<i>@393509|Supermoon@, @437800|New Planets and Corporations@</i>" },
 
 {name: "Point Salad", num: 274960,
 minp: 2, maxp: 6, time: 15, skill: 2, luck: 3.5},
@@ -314,4 +324,3 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
-
