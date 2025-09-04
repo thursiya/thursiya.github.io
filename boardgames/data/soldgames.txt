@@ -1,0 +1,10 @@
+[
+  {name: "Lord of the Rings: The Confrontation", num: 3201,
+    time: 30, skill: 3, luck: 2 },
+
+  {name: "Mr. Jack", num: 21763,
+    ttext: "30-45", skill: 3, luck: 2,
+    exp: "<i>2 official</i>" },
+
+  
+]
