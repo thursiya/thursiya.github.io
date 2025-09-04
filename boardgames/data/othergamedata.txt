@@ -6,10 +6,6 @@ ptext: "1-4", time: 20, skill: 3, luck: 2 },
 {name: "Key to the Kingdom", num: 342071,
 pmin: 2, pmax: 5, time: 75, skill: 1.5, luck: 4 },
 
-{name: "Kingmaker", num: 987,
-ptext: "2<br />(2-7)", pnote: "Basically only plays well with 2.", time: 240, skill: 4, luck: 3,
-exp: "@18165|<i>Variant Event Cards</i>@" },
-
 {name: "Middle-earth CCG", num: 1915,
 ptext: "1-5", time: 90, skill: 4, luck: 3,
 exp: "About 5" },
@@ -27,4 +23,5 @@ ptext: "2-6", pnote: "Although the game states it requires at least 3 players, i
 {name: "Treasure Quest", num: 13878,
 ptext: "2-6", ttext: "30+15xP<br />(60-120)", skill: 2, luck: 5 }
 ]
+
 
