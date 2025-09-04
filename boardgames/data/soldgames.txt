@@ -6,5 +6,6 @@
     ttext: "30-45", skill: 3, luck: 2,
     exp: "<i>2 official</i>" },
 
-  
+  {name: "Senji", num: 33107,
+    minp: 3, maxp: 6, pnote: "Plays best with 6 only. All missing players are replaced by dummy players.", time: 90, skill: 3, luck: 3 }
 ]
