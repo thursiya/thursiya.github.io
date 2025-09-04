@@ -223,9 +223,6 @@ minp: 3, maxp: 4, time: 60, skill: 3, luck: 2},
 minp: 2, maxp: 4, time: 45, skill: 2.5, luck: 4,
 exp: "<i>@40688|Alea Treasure Chest@</i>" },
 
-{name: "Senji", num: 33107,
-minp: 3, maxp: 6, pnote: "Plays best with 6 only. All missing players are replaced by dummy players.", time: 90, skill: 3, luck: 3 },
-
 {name: "Shogun", num: 20551,
 minp: 3, maxp: 5, time: 120, skill: 4, luck: 2.5,
 exp: "<i>@74823|Tenno's Court@</i>" },
@@ -317,3 +314,4 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
+
