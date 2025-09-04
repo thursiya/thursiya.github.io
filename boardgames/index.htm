@@ -21,6 +21,10 @@
 					
 					<h2>Other Games</h2>
 					<table id="other"></table>
+					<br>
+					
+					<h2>Sold/Traded Away Games</h2>
+					<table id="sold"></table>
 				</div>
 			</div>
 		</main>
@@ -35,7 +39,7 @@
 				<td title="${v.enote || ""}">${v.exp || "-"}</td></tr>`;
 
 			// Draw table headings
-			for (let i of ["main", "twoplayer", "other"]) {
+			for (let i of ["main", "twoplayer", "other", "sold"]) {
 				document.getElementById(i).innerHTML = `<thead><tr><th title="Box art from the Board Game Geek site.">Image</th>
      				<th title="Title of the game, linked to its Board Game Geek entry."${i == "main" ? ` class="sortable" onclick="list(0)"` : ""}>Title</th>
 	   			<th title="Number of players supported."${i == "main" ? ` class="sortable" onclick="list(1)"` : ""}>Players</th>
@@ -49,6 +53,7 @@
 			fetch("data/gamedata.txt").then(v => v.text()).then(buildMainArray);
 			fetch("data/2pgamedata.txt").then(v => v.text()).then(build2pArray);
 			fetch("data/othergamedata.txt").then(v => v.text()).then(buildOtherArray);
+			fetch("data/soldgames.txt").then(v => v.text()).then(buildSoldArray);
 
 			function buildMainArray(data) {
 				const title = convertToArray(data).sort((a, b) => a.name.replace(/^The /, "").localeCompare(b.name.replace(/^The /, "")));
@@ -73,6 +78,10 @@
 				document.querySelector('#other tbody').innerHTML = convertToArray(data).reduce(reducer, "");
 			}
 
+			function buildSoldArray(data) {
+				document.querySelector('#sold tbody').innerHTML = convertToArray(data).reduce(reducer, "");
+			}
+			
 			function convertToArray(data) {
 				// Properly quote keys for JSON parsing
 				data = data.replace(/(\s*{\s*|\s*,\s*)(['"])?(\w+)(['"])?:/g, '$1"$3":');
@@ -88,3 +97,4 @@
 		</script>
 	</body>
 </html>
+
