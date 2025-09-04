@@ -152,9 +152,6 @@ minp: 2, maxp: 5, time: 30, skill: 2, luck: 4 },
 minp: 1, maxp: 4, time: 90, ttext: "30&times;P", skill: 4, luck: 3,
 exp: "<i>@338013|The Uprising@</i>" },
 
-{name: "Masons", num: 21791,
-minp: 2, maxp: 4, time: 60, skill: 2, luck: 4 },
-
 {name: "Metro", num: 559,
 minp: 2, maxp: 6, time: 45, skill: 3, luck: 3 },
 
@@ -324,3 +321,4 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
+
