@@ -1,4 +1,8 @@
 [
+  {name: "Kingmaker", num: 987,
+    ptext: "2<br />(2-7)", pnote: "Basically only plays well with 2.", time: 240, skill: 4, luck: 3,
+    exp: "@18165|<i>Variant Event Cards</i>@" },
+
   {name: "Lord of the Rings: The Confrontation", num: 3201,
     time: 30, skill: 3, luck: 2 },
 
