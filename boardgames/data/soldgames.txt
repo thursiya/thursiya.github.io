@@ -2,6 +2,9 @@
   {name: "Lord of the Rings: The Confrontation", num: 3201,
     time: 30, skill: 3, luck: 2 },
 
+  {name: "Masons", num: 21791,
+    minp: 2, maxp: 4, time: 60, skill: 2, luck: 4 },
+
   {name: "Mr. Jack", num: 21763,
     ttext: "30-45", skill: 3, luck: 2,
     exp: "<i>2 official</i>" },
