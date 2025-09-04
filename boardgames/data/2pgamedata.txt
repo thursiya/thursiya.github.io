@@ -13,7 +13,7 @@ exp: "<i>Numerous</i>" },
 
 {name: "The Lord of the Rings: Duel for Middle Earth", num: 421006,
 time: 30, skill: 3, luck: 3,
-exp: "<i>450429@Allies</i>" },
+exp: "<i>@450429|Allies@</i>" },
 
 {name: "Netrunner", num: 1301,
 ptext: "2<br />(4)", pnote: "The Big Chill variant provides rules for two teams of 2.", ttext: "15-45", skill: 4, luck: 3,
@@ -23,4 +23,5 @@ exp: "1 full expansion" },
 time: 20, skill: 3, luck: 4,
 exp: "<i>Numerous</i>" }
 ]
+
 
