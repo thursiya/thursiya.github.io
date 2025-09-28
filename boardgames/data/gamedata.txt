@@ -242,6 +242,10 @@ exp: "<i>@108415|Fame and Fortune@<br />@142708|Wisdom and Warfare@</i>" },
 minp: 2, maxp: 4, ptext: "2-4<br /><i>(5-8)</i>", pnote: "Space Dealer can be played with up to 8 players by combining two copies of the game.", time: 30, tnote: "Space Dealer is a timed game; it lasts exactly 30 minutes.", skill: 2.5, luck: 2,
 exp: "<i>@32342|All-Zeit@</i>" },
 
+{name: "Splendor", num: 148228,
+minp: 2, maxp: 4, time: 30, skill: 3, luck: 2,
+exp: "<i>Three Official and numerous promos</i>" },
+
 {name: "Stone Age", num: 34635,
 minp: 2, maxp: 4, pnote: "The expansion allows for 5 players.", time: 90, skill: 3, luck: 3,
 exp: "<i>@107576|The Expansion@</i>" },
@@ -321,4 +325,5 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
+
 
