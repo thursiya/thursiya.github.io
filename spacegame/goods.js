@@ -1,99 +1,102 @@
 const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
-	{name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, produce: "Ma", demand: "Mi T", desc: "Critical to survival on harsh worlds."},	//0) I -> T3, F2, P2, M2, I1
-	{name: "Air Processors", grade: 2, type: "Systech", file: "air-processors", price: 2500, produce: "Ma", demand: "Mi T"},	// I -> T3, F2, M2, I1
-	{name: "Automobiles", grade: 1, type: "Eagle", file: "automobiles", price: 2500, stat: 'sensitive', produce: "Ma", demand: "Ag F H Mi I P S (C)", desc: "Industrial and consumer vehicles."},	//2) I -> S3, C2, *1 
-	{name: "Automobiles", grade: 2, type: "Geotech", file: "automobiles", price: 4000, stat: 'sensitive', produce: "Ma", demand: "Ag C F H Mi I (S)"},			// I -> Af1, S1, C3, *1
-	{name: "Automobiles", grade: 2, type: "5-Star", file: "automobiles", price: 4000, stat: 'sensitive', produce: "Ma", demand: "Ag C F H Mi I (S)"},			// I -> Af1, S1, C3, *1
-	{name: "Automobiles", grade: 3, type: "Mechanica", file: "automobiles", price: 5500, stat: 'sensitive', produce: "Ma", demand: "Af C H"},		// I -> Af2, C2
-	{name: "Automobiles", grade: 4, type: "Eunion", file: "automobiles", price: 8000, stat: 'sensitive', produce: "Ma", demand: "Af H (C)"},			// I -> Af3, C1
-	{name: "Animal Meat", grade: 1, type: "Bio-Engineered", file: "animal-meat", price: 1500, stat: 'cold', produce: "Ag F", demand: "C H I Ma Mi T", desc: "Still legal."},	//7) Ag -> Af1, *1	(!)
-	{name: "Animal Meat", grade: 2, type: "Terran", file: "animal-meat", price: 2500, stat: 'cold', produce: "Ag F", demand: "Af C H I Ma Mi T"},				// Ag -> Af2,		(!)
-	{name: "Animal Meat", grade: 3, type: "Lacotian", file: "animal-meat", price: 4500, stat: 'cold', produce: "Ag F", demand: "Af C H Ma (T)"},				// Ag -> Af3, 		(!)
-	{name: "Animal Skins", grade: 1, type: "Bio-Engineered", file: "animal-skins", price: 5000, produce: "Ag F", demand: "Af C", desc: "<i>Illegal on democratic worlds.</i>"}, //10) Ag -> Af2	!
-	{name: "Animal Skins", grade: 2, type: "Terran", file: "animal-skins", price: 7500, produce: "Ag F", demand: "Af C"},	// Ag -> Af3	!
-	{name: "Animal Skins", grade: 3, type: "Lacotian", file: "animal-skins", price: 12500, produce: "Ag F", demand: "Af C"},							// Ag -> Af3	!
-	{name: "Bacteria Farms", grade: 1, type: "Stellar", file: "bacteria-farms", price: 3000, stat: 'dangerous', produce: "I", demand: "Military H T", desc: "Military worlds will demand them.<br><i>Illegal on democratic worlds.</i>"},	//13) HT? -> HT, Military	!		? stat: 'live' ?
-	{name: "Bacteria Farms", grade: 2, type: "Astromedica", file: "bacteria-farms", price: 5000, stat: 'dangerous', produce: "I", demand: "Military H T"},// -> HT	!
-	{name: "Bacteria Farms", grade: 3, type: "Aegis", file: "bacteria-farms", price: 7000, stat: 'dangerous', produce: "I", demand: "Military H"},	// -> HT	!
-	{name: "Chemicals", type: "assorted", file: "chemicals", price: 500, stat: 'sensitive', produce: "Mi T (F)", demand: "H I P S", desc: "The building blocks of countless products."},	//16) M -> I3, HT2, Af1, S1, Mx1, P1, C1
-	{name: "Consumer Goods", grade: 1, type: "Eagle", file: "consumer-goods", price: 1000, produce: "C H P (Af F)", demand: "I Ma Mi S T", desc: "Household and everyday products."},	//17) I, HT, Af, S, C, Mx, P -> *1
-	{name: "Consumer Goods", grade: 2, type: "Nanoworks", file: "consumer-goods", price: 2000, produce: "H P (Af)", demand: "C F I Ma Mi S T"},						// -> *1
-	{name: "Consumer Goods", grade: 3, type: "Mitsutomo", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "C H Ma (F T)"},
-	{name: "Consumer Goods", grade: 3, type: "Fortune", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "Af C H (F T)"},
-	{name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, produce: "S (Af)", demand: "Af C H"},
-	{name: "Data Vaults", type: "secure", file: "datavaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", desc: "Data vaults hold vast stores of important information and are not traded on the market."},	//22) *
-	{name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", desc: "The base components for most technology. Most worlds provide for their own needs."},  //23) HT -> I1, Af3, HT1
-	{name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S"},
-	{name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S"},
-	{name: "Electronics", grade: 3, type: "Globalnet", file: "electronics", price: 4000, produce: "H", demand: "P S"},
-	{name: "Explosives", grade: 1, type: "Industrial", file: "explosives", price: 5000, stat: 'dangerous', produce: "I", demand: "F Mi S T", desc: "<i>Illegal on all but military and lawless worlds.</i>"},			//27) I -> M, I, S, T		!
-	{name: "Explosives", grade: 2, type: "Large Scale", file: "explosives", price: 8000, stat: 'dangerous', produce: "I", demand: "S T"},	// I -> !
-	{name: "Fertilizer", type: "multinutrient", file: "fertilizer", price: 200, stat: 'dangerous', produce: "I", demand: "Ag F T", desc: "Critical to high-quality food production."},	//29) Ag, I, *? -> Ag, T, F, 
-	{name: "Farming Equipment", grade: 1, type: "Systech", file: "farming-equipment", price: 1500, produce: "Ma", demand: "Ag T", desc: "Basic farming necessity."},	//30) I -> Ag
-	{name: "Farming Equipment", grade: 2, type: "Sirius", file: "farming-equipment", price: 2500, produce: "Ma", demand: "Ag T"},
-	{name: "Farming Equipment", grade: 3, type: "Geotech", file: "farming-equipment", price: 3500, produce: "Ma", demand: "Ag (T)"},
-	{name: "Fruit & Vegetables", type: "assorted", file: "vegetables", price: 1000, stat: 'cold', produce: "Ag", demand: "Af C F H Ma T", desc: "A galaxy of varieties."},		//33) Ag -> *
-	{name: "Gemstones", type: "assorted", file: "gemstones", price: 100000, produce: "Mi", demand: "Af Ma S", desc: "Used in energy weapons and as a luxury."},	//34) M -> I, Af
-	{name: "Government Artifacts", type: "priceless", file: "artifacts", price: 100000, stat: 'sensitive', produce: "*", demand: "Af", desc: "Government artifacts are usually only available on the black market."},	//35) * -> Af, C		(!)
-	{name: "Grain", type: "assorted", file: "grain", price: 300, produce: "Ag (F)", demand: "Af C H Ma P S", desc: "Primary food staple."},	//36) Ag -> *
-	{name: "Hand Weapons", grade: 1, type: "Cyberops", file: "hand-weapons", price: 5500, produce: "Ma", demand: "Military F S", desc: "Military worlds will demand them.<br><i>Illegal on corporate and democratic worlds.</i>"},	//37) I, S -> Military, *		!
-	{name: "Hand Weapons", grade: 2, type: "Forge", file: "hand-weapons", price: 6500, produce: "Ma", demand: "Military Af F S"},
-	{name: "Hand Weapons", grade: 3, type: "Aegis", file: "hand-weapons", price: 8500, produce: "Ma", demand: "Military Af F S"},
-	{name: "Hand Weapons", grade: 4, type: "Eagle", file: "hand-weapons", price: 10500, produce: "Ma", demand: "Military Af S"},
-	{name: "Heavy Plastics", type: "assorted", file: "plastics", price: 1000, produce: "I", demand: "S P", desc: "Important intermediate product."},	//41) I -> I, HT, Af, S, C, Mx, P
-	{name: "Hydrogen Fuel Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", desc: "Especially useful for starships."},	//42) I -> *
-	{name: "Hypdroponic Farms", grade: 1, type: "Stellar", file: "hydroponic-farms", price: 2000, stat: 'live', produce: "Ag", demand: "H T", desc: "Designer plants and drug components."},	//43) Ag, Ocean -> HT *
-	{name: "Hypdroponic Farms", grade: 2, type: "Centauri", file: "hydroponic-farms", price: 2800, stat: 'live', produce: "Ag", demand: "H T"},
-	{name: "Hypdroponic Farms", grade: 3, type: "Sirius", file: "hydroponic-farms", price: 4000, stat: 'live', produce: "(Ag)", demand: "Af H T"},
-	{name: "Industrial Equipment", grade: 1, type: "Forge", file: "industrial-equipment", price: 1500, produce: "I", demand: "Ma Mi", desc: "Critical work tools."},	 //46) I -> I, M
-	{name: "Industrial Equipment", grade: 2, type: "Mechanica", file: "industrial-equipment", price: 2500, produce: "I", demand: "Ma Mi"},
-	{name: "Industrial Equipment", grade: 3, type: "Systech", file: "industrial-equipment", price: 3500, produce: "I", demand: "Ma Mi"},
-	{name: "Industrial Goods", grade: 1, type: "Forge", file: "industrial-goods", price: 3000, produce: "Ma", demand: "H", desc: "Advanced manufacturing goods."},	//49) I -> I, HT
-	{name: "Industrial Goods", grade: 2, type: "Mechanica", file: "industrial-goods", price: 4500, produce: "Ma", demand: "H"},
-	{name: "Iron Ore", type: "assorted", file: "iron-ore", price: 500, produce: "Mi T (P)", demand: "I", desc: "Key resource in metal production."},	 //51) M -> I
-	{name: "Liquid Oxygen", type: "cryogenic", file: "oxygen", price: 200, stat: 'cold', produce: "I", demand: "Ma T", desc: "<i>Will explode if not kept in cold storage.</i>"},							//52) *I -> I, T, HT
-	{name: "Liquor", grade: 1, type: "Assorted New", file: "liquor", price: 1500, produce: "Ag F", demand: "H I Ma Mi S", desc: "<i>Illegal on theocratic worlds.</i>"},	//53) S, Af, C -> *		!
-	{name: "Liquor", grade: 2, type: "Assorted Aged", file: "liquor", price: 5500, produce: "Ag F", demand: "Af F H I Ma S"},
-	{name: "Liquor", grade: 3, type: "Doleamas", file: "liquor", price: 20000, produce: "Af C (Ag)", demand: "Af H (F)"},	
-	{name: "Live Animals", grade: 1, type: "Bio-Engineered", file: "live-animals", price: 10000, stat: 'live', produce: "Ag F", demand: "Af Ag T", desc: "<i>Agricultural worlds demand the animals they do not produce.</i>"},	//56) Ag -> Af, C		!
-	{name: "Live Animals", grade: 2, type: "Terran", file: "live-animals", price: 15000, stat: 'live', produce: "Ag F", demand: "Af Ag C T"},
-	{name: "Live Animals", grade: 3, type: "Lacotian", file: "live-animals", price: 25000, stat: 'live', produce: "Ag F", demand: "Af Ag C T"},
-	{name: "Lumber", type: "cut", file: "lumber", price: 300, produce: "Ag, Mi, P, S (Rocky, Desert)", demand: "Af, Ag, C, P, S", desc: "Produced on most rocky and desert worlds and needed for light construction and some quality goods."},		//59) Rocky -> *
-	{name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, produce: "Ma S (Af)", demand: "Af C H", desc: "<i>Illegal on theocratic worlds.</i>"},	//60) HT, I, Af, S, C, Mx -> Af
-	{name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, produce: "H Ma S (Af)", demand: "Af C (H)"},
-	{name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, produce: "C H Ma S (Af)", demand: "Af"},
-	{name: "Medicine", grade: 1, type: "Fortune", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", desc: "Always needed."},	//63) HT -> *		? stat: 'cold' ?
-	{name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)"},
-	{name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C"},
-	{name: "Minerals", type: "assorted", file: "minerals", price: 300, produce: "Mi T (P)", demand: "I", desc: "Easily sourced production need."},	 //66) M, T -> I
-	{name: "Narcotics", grade: 1, type: "Minor", file: "narcotics", price: 5000, produce: "Ag (F)", demand: "C I Ma Mi S", desc: "<i>Illegal on all but lawless worlds, although corporate and democratic worlds will allow minor narcotics and feudal worlds will also allow hallucinogenic narcotics.</i>"},	//67) HT -> *		!
-	{name: "Narcotics", grade: 2, type: "Hallucinogenic", file: "narcotics", price: 8000, produce: "H", demand: "Af C F I Ma Mi S"},
-	{name: "Narcotics", grade: 3, type: "Heavy", file: "narcotics", price: 10000, produce: "H", demand: "Af C Ma S"},
-	{name: "Narcotics", grade: 4, type: "Psychotropic", file: "narcotics", price: 14000, produce: "H", demand: "Af C S"},
-	{name: "Packages", type: "assorted", file: "packages", price: 500, produce: "*", demand: "*", desc: "Packages are specific to customers and are not traded on the market."},	//71) *
-	{name: "Perishable Goods", grade: 1, type: "MilkyWay", file: "perishable-goods", price: 1000, stat: 'cold', produce: "Ag C (Af F)", demand: "F H I Ma Mi P S T", desc: "Delicious & Nutricious: Packaged."},	//72) I, Af, S, C, Mx -> *
-	{name: "Perishable Goods", grade: 2, type: "5-Star", file: "perishable-goods", price: 1500, stat: 'cold', produce: "S (Af)", demand: "F H I Ma Mi T"},
-	{name: "Perishable Goods", grade: 2, type: "Sirius", file: "perishable-goods", price: 1500, stat: 'cold', produce: "S (Af)", demand: "F H I Ma Mi T"},
-	{name: "Perishable Goods", grade: 3, type: "Fortune", file: "perishable-goods", price: 2000, stat: 'cold', produce: "S (Af)", demand: "Af H Ma (C T)"},
-	{name: "Petroleum", type: "light", file: "petroleum", price: 500, produce: "Mi (F)", demand: "I", desc: "Black gold."},	//76) M -> I
-	{name: "Precious Metals", type: "assorted", file: "precious-metals", price: 10000, produce: "F Mi", demand: "C H Ma", desc: "Regular gold."},  //77) M -> I, HT
-	{name: "Probes", grade: 1, type: "Globalnet", file: "probes", price: 2500, produce: "H", demand: "F Mi T", desc: "Mostly used in mineral mining."},  //78) HT -> T, M
-	{name: "Probes", grade: 2, type: "Forge", file: "probes", price: 4000, produce: "H", demand: "Mi T (F)"},
-	{name: "Radioactive Waste", type: "assorted", file: "radioactives", price: 500, stat: 'dangerous', produce: "*", demand: "None", desc: "Waste products are produced by industrial processes and some damaged goods. Must pay to have them disposed of."},				//80) I, HT -> !
-	{name: "Robots", grade: 1, type: "Cyberops", file: "robots", price: 4000, stat: 'dangerous', produce: "H Ma", demand: "Ag F I Mi T", desc: "<i>Illegal on theocratic worlds.</i>"},	//81) HT -> M, Ag, I, T, Af
-	{name: "Robots", grade: 2, type: "Microtronic", file: "robots", price: 6000, stat: 'dangerous', produce: "H", demand: "Af Ag I Ma Mi T (F)"},
-	{name: "Robots", grade: 3, type: "Nanoworks", file: "robots", price: 8000, stat: 'dangerous', produce: "H", demand: "Af C Ma"},
-	{name: "Robots", grade: 4, type: "Mitsutomo", file: "robots", price: 10000, stat: 'dangerous', produce: "H", demand: "Af (C)"},
-	{name: "Slaves", grade: 1, type: "Child", file: "slaves", price: 5000, stat: 'live', produce: "F S", demand: "Af I", desc: "<i>Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.</i>"}, //85) S, P -> M, Ag, I, T, Af
-	{name: "Slaves", grade: 2, type: "Uneducated", file: "slaves", price: 7500, stat: 'live', produce: "F P S", demand: "Ag I Ma Mi"},
-	{name: "Slaves", grade: 3, type: "Terran", file: "slaves", price: 15000, stat: 'live', produce: "F P S", demand: "Af Ag C H I Ma Mi T"},
-	{name: "Slaves", grade: 3, type: "Rigelian", file: "slaves", price: 15000, stat: 'live', produce: "F P S", demand: "Af Ag C H I Ma Mi T"},
-	{name: "Slaves", grade: 3, type: "Sirian", file: "slaves", price: 15000, stat: 'live', produce: "F P S", demand: "Af Ag C H I Ma Mi T"},
-	{name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: 'live', produce: "H P S", demand: "Ag I Mi T"},
-	{name: "Slaves", grade: 5, type: "Luxorian", file: "slaves", price: 50000, stat: 'live', produce: "S", demand: "Af C H"},	// Special Supply -> 
-	{name: "Synthetic Meat", type: "assorted", file: "synthetic-meat", price: 1000, stat: 'cold', produce: "H", demand: "F I Ma Mi P S T", desc: "Tastes <i>almost</i> as good as the real thing."},	//92) HT? -> *
-	{name: "Waste Products", type: "assorted", file: "waste-products", price: 50, produce: "*", demand: "None", desc: "Waste products are produced by industrial processes, large populations, and damaged goods. Must pay to have them disposed of."},		//93) Af, C, Mx, HT -> *
-	{name: "Water", type: "fresh", file: "water", price: 100, stat: 'sensitive', produce: "H Mi P (Ice, Ocean)", demand: "F T", desc: "The lifeblood of the galaxy."}	//94) Ocean, Ice -> T, F
+	{ name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, produce: "Ma", demand: "Mi T", desc: "Critical to survival on harsh worlds." },	//0) I -> T3, F2, P2, M2, I1
+	{ name: "Air Processors", grade: 2, type: "Boreatek", file: "air-processors", price: 2500, produce: "Ma", demand: "Mi T" },	// I -> T3, F2, M2, I1
+	{ name: "Atmospheric Catalysts", grade: 1, type: "Rainline", file: "atmo-catalysts", price: 4000, stat: "dangerous", produce: "I", demand: "Af H Ma T", tag: "Terraforming reagents. Handle with extreme care.", desc: "Specialised chemical and nanobiotic reagents designed to trigger large-scale atmospheric reactions. Used to seed breathable air, accelerate carbon capture, or generate precipitation on frontier worlds. Essential for colonization and climate regulation, but dangerously unstable outside controlled deployment." },
+	{ name: "Atmospheric Catalysts", grade: 2, type: "UNKNOWN", file: "atmo-catalysts", price: 18000, stat: "dangerous", produce: "I", demand: "Ma Mi T" },
+	{ name: "Automobiles", grade: 1, type: "Eagle", file: "automobiles", price: 2500, stat: 'sensitive', produce: "Ma", demand: "Ag F H Mi I P S (C)", tag: "Ground transport, wherever there's still ground.", desc: "Personal and commercial land vehicles adapted for planetary terrain — from wheeled haulers to hovercraft. Popular on terraformed worlds with stable atmospheres; largely ceremonial elsewhere." },	//2) I -> S3, C2, *1 
+	{ name: "Automobiles", grade: 2, type: "Geotech", file: "automobiles", price: 4000, stat: 'sensitive', produce: "Ma", demand: "Ag C F H Mi I (S)" },			// I -> Af1, S1, C3, *1
+	{ name: "Automobiles", grade: 2, type: "5-Star", file: "automobiles", price: 4000, stat: 'sensitive', produce: "Ma", demand: "Ag C F H Mi I (S)" },			// I -> Af1, S1, C3, *1
+	{ name: "Automobiles", grade: 3, type: "Mechanica", file: "automobiles", price: 5500, stat: 'sensitive', produce: "Ma", demand: "Af C H" },		// I -> Af2, C2
+	{ name: "Automobiles", grade: 4, type: "Eunion", file: "automobiles", price: 8000, stat: 'sensitive', produce: "Ma", demand: "Af H (C)" },			// I -> Af3, C1
+	{ name: "Animal Meat", grade: 1, type: "Bio-Engineered", file: "animal-meat", price: 1500, stat: 'cold', produce: "Ag F", demand: "C H I Ma Mi T", tag: "Still legal.", desc: "Cultured or slaughtered animal protein. Genuine livestock meat commands high prices on frontier worlds and among elites nostalgic for pre-industrial Earth diets." },	//7) Ag -> Af1, *1	(!)
+	{ name: "Animal Meat", grade: 2, type: "Terran", file: "animal-meat", price: 2500, stat: 'cold', produce: "Ag F", demand: "Af C H I Ma Mi T" },				// Ag -> Af2,		(!)
+	{ name: "Animal Meat", grade: 3, type: "Lacotian", file: "animal-meat", price: 4500, stat: 'cold', produce: "Ag F", demand: "Af C H Ma (T)" },				// Ag -> Af3, 		(!)
+	{ name: "Animal Skins", grade: 1, type: "Bio-Engineered", file: "animal-skins", price: 5000, produce: "Ag F", demand: "Af C", tag: "The oldest luxury, still warm from the source.<br><i>Illegal on democratic worlds.</i>", desc: "Processed furs, leathers, and exotic hides. Once a status symbol, now mostly sourced from bio-cloned fauna or off-world feral reserves. Banned on democratic and theocratic worlds for ethical reasons." }, //10) Ag -> Af2	!
+	{ name: "Animal Skins", grade: 2, type: "Terran", file: "animal-skins", price: 7500, produce: "Ag F", demand: "Af C" },	// Ag -> Af3	!
+	{ name: "Animal Skins", grade: 3, type: "Lacotian", file: "animal-skins", price: 12500, produce: "Ag F", demand: "Af C" },							// Ag -> Af3	!
+	{ name: "Bacteria Farms", grade: 1, type: "AmritJivan", file: "bacteria-farms", price: 3000, stat: 'dangerous', produce: "I", demand: "Military H T", desc: "Military worlds will demand them.<br><i>Illegal on democratic worlds.</i>" },	//13) HT? -> HT, Military	!		? stat: 'live' ?
+	{ name: "Bacteria Farms", grade: 2, type: "Astromedica", file: "bacteria-farms", price: 5000, stat: 'dangerous', produce: "I", demand: "Military H T" },// -> HT	!
+	{ name: "Bacteria Farms", grade: 3, type: "Aegis", file: "bacteria-farms", price: 7000, stat: 'dangerous', produce: "I", demand: "Military H" },	// -> HT	!
+	{ name: "Chemicals", type: "assorted", file: "chemicals", price: 500, stat: 'sensitive', produce: "Mi T (F)", demand: "H I P S", tag: "Every colony runs on something volatile.", desc: "Industrial reagents, solvents, and compounds for refining, manufacturing, or scientific use. Dangerous in bulk, indispensable everywhere. Some double as illicit precursors in the right hands." },	//16) M -> I3, HT2, Af1, S1, Mx1, P1, C1
+	{ name: "Consumer Goods", grade: 1, type: "Eagle", file: "consumer-goods", price: 1000, produce: "C H P (Af F)", demand: "I Ma Mi S T", tag: "Everything you don't need, but want.", desc: "The galaxy's endless tide of everyday convenience items — clothing, appliances, comfort tech. Produced by countless subsidiaries of the major megacorps; disposable, replaceable, unavoidable." },	//17) I, HT, Af, S, C, Mx, P -> *1
+	{ name: "Consumer Goods", grade: 2, type: "Nanoworks", file: "consumer-goods", price: 2000, produce: "H P (Af)", demand: "C F I Ma Mi S T" },						// -> *1
+	{ name: "Consumer Goods", grade: 3, type: "Mitsutomo", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "C H Ma (F T)" },
+	{ name: "Consumer Goods", grade: 3, type: "Tsai", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "Af C H (F T)" },
+	{ name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, produce: "S (Af)", demand: "Af C H" },
+	{ name: "Data Vaults", type: "secure", file: "datavaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", tag: "Knowledge has weight.<br><i>Data vaults are not traded on the market.</i>", desc: "Secure data cores and archival drives storing research, records, and cultural memory. Invaluable for colony development and historical reconstruction — and highly sought after by intelligence brokers." },	//22) *
+	{ name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", tag: "Circuits make the stars go round.", desc: "Processors, sensors, communication modules, and interface tech. Found in everything from spacecraft to household utilities. Essential imports for low-tech colonies and independent miners." },  //23) HT -> I1, Af3, HT1
+	{ name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S" },
+	{ name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S" },
+	{ name: "Electronics", grade: 3, type: "Omninet", file: "electronics", price: 4000, produce: "H", demand: "P S" },
+	{ name: "Explosives", grade: 1, type: "Industrial", file: "explosives", price: 5000, stat: 'dangerous', produce: "I", demand: "F Mi S T", tag: "Progress, accelerated.<i>Illegal on all but military and lawless worlds.</i>", desc: "Controlled detonants for mining, construction, and weaponry. Industrial grades are widely used in asteroid harvesting; military variants are heavily regulated or outright banned on peaceful worlds." },			//27) I -> M, I, S, T		!
+	{ name: "Explosives", grade: 2, type: "Large Scale", file: "explosives", price: 8000, stat: 'dangerous', produce: "I", demand: "S T" },	// I -> !
+	{ name: "Fertilizer", type: "multinutrient", file: "fertilizer", price: 200, stat: 'dangerous', produce: "I", demand: "Ag F T", tag: "The secret to life, in bulk shipment form.", desc: "Chemical and organic nutrient blends sustaining off-world agriculture. Includes treated biosludge from recycling plants and engineered soil conditioners for non-terrestrial crops." },	//29) Ag, I, *? -> Ag, T, F, 
+	{ name: "Farming Equipment", grade: 1, type: "", file: "farming-equipment", price: 1500, produce: "Ma", demand: "Ag T", desc: "Basic farming necessity." },	//30) I -> Ag
+	{ name: "Farming Equipment", grade: 2, type: "Veridian", file: "farming-equipment", price: 2500, produce: "Ma", demand: "Ag T" },
+	{ name: "Farming Equipment", grade: 3, type: "Geotech", file: "farming-equipment", price: 3500, produce: "Ma", demand: "Ag (T)" },
+	{ name: "Fruit & Vegetables", type: "assorted", file: "vegetables", price: 1000, stat: 'cold', produce: "Ag", demand: "Af C F H Ma T", tag: "A galaxy of varieties.", desc: "Perishable produce from hydroponic or planetary farms. Often imported frozen or sealed; vital morale boosters in long-term colonies where greenery is scarce." },		//33) Ag -> *
+	{ name: "Gemstones", type: "assorted", file: "gemstones", price: 100000, produce: "Mi", demand: "Af Ma S", tag: "Shiny proof that scarcity still sells.", desc: "Precious and synthetic stones mined or fabricated across the galaxy. Mostly decorative, occasionally industrial, and used in energy weapon production. Value fluctuates wildly with fashion and scarcity propaganda." },	//34) M -> I, Af
+	{ name: "Gene Stock", grade: 1, type: "cultivar", file: "gene-stock", price: 2500, stat: "live", produce: "Ag", demand: "Af C F H Ma T", tag: "DNA on demand.", desc: "Encoded genetic material ranging from agricultural seed libraries to synthetic human and animal genomes. Critical to off-world agriculture and medical research, yet often subject to strict licensing or bio-ethical bans." },
+	{ name: "Gene Stock", grade: 2, type: "enhanced", file: "gene-stock", price: 12000, stat: "live", produce: "Ag H", demand: "Af C F I Ma T" },
+	{ name: "Gene Stock", grade: 3, type: "restricted", file: "gene-stock", price: 45000, stat: "live", produce: "H", demand: "Af C I Ma" },
+	{ name: "Government Artifacts", type: "priceless", file: "artifacts", price: 100000, stat: 'sensitive', produce: "*", demand: "Af", tag: "The past trades better than the future.<br><i>Government artifacts are usually only available on the black market.</i>", desc: "Rare relics and recovered materials from lost colonies or pre-expansion civilizations. Legal status varies widely; some worlds treat them as heritage, others as contraband." },	//35) * -> Af, C		(!)
+	{ name: "Grain", type: "assorted", file: "grain", price: 300, produce: "Ag (F)", demand: "Af C H Ma P S", tag: "Breadbasket of the void.", desc: "Staple food crop exports like wheat, soy, or engineered grains. Transported in bulk to sustain colony populations or used as feedstock for livestock, synthetic foods, and ethanol production." },	//36) Ag -> *
+	{ name: "Hand Weapons", grade: 1, type: "Cyberops", file: "hand-weapons", price: 5500, produce: "Ma", demand: "Military F S", tag: "Democracy's worst argument.<br><i>Military worlds will demand them.<br>Illegal on corporate and democratic worlds.</i>", desc: "" },	//37) I, S -> Military, *		!
+	{ name: "Hand Weapons", grade: 2, type: "Forge", file: "hand-weapons", price: 6500, produce: "Ma", demand: "Military Af F S" },
+	{ name: "Hand Weapons", grade: 3, type: "Aegis", file: "hand-weapons", price: 8500, produce: "Ma", demand: "Military Af F S" },
+	{ name: "Hand Weapons", grade: 4, type: "Eagle", file: "hand-weapons", price: 10500, produce: "Ma", demand: "Military Af S" },
+	{ name: "Heavy Plastics", type: "assorted", file: "plastics", price: 1000, produce: "I", demand: "S P", tag: "The bones of the built world.", desc: "Dense structural polymers used in construction, ship hulls, and environmental seals. Derived from petrochemical or biomass sources; prized for durability and recyclability." },	//41) I -> I, HT, Af, S, C, Mx, P
+	{ name: "Deuterium Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
+	{ name: "Hypdroponic Farms", grade: 1, type: "AmritJivan", file: "hydroponic-farms", price: 2000, stat: 'live', produce: "Ag", demand: "H T", desc: "Designer plants and drug components." },	//43) Ag, Ocean -> HT *
+	{ name: "Hypdroponic Farms", grade: 2, type: "Centauri", file: "hydroponic-farms", price: 2800, stat: 'live', produce: "Ag", demand: "H T" },
+	{ name: "Hypdroponic Farms", grade: 3, type: "Veridian", file: "hydroponic-farms", price: 4000, stat: 'live', produce: "(Ag)", demand: "Af H T" },
+	{ name: "Industrial Equipment", grade: 1, type: "Forge", file: "industrial-equipment", price: 1500, produce: "I", demand: "Ma Mi", desc: "Critical work tools." },	 //46) I -> I, M
+	{ name: "Industrial Equipment", grade: 2, type: "Mechanica", file: "industrial-equipment", price: 2500, produce: "I", demand: "Ma Mi" },
+	{ name: "Industrial Equipment", grade: 3, type: "Boreatek", file: "industrial-equipment", price: 3500, produce: "I", demand: "Ma Mi" },
+	{ name: "Industrial Goods", grade: 1, type: "Forge", file: "industrial-goods", price: 3000, produce: "Ma", demand: "H", desc: "Advanced manufacturing goods." },	//49) I -> I, HT
+	{ name: "Industrial Goods", grade: 2, type: "Mechanica", file: "industrial-goods", price: 4500, produce: "Ma", demand: "H" },
+	{ name: "Iron Ore", type: "assorted", file: "iron-ore", price: 500, produce: "Mi T (P)", demand: "I", desc: "Key resource in metal production." },	 //51) M -> I
+	{ name: "Liquid Oxygen", type: "cryogenic", file: "oxygen", price: 200, stat: 'cold', produce: "I", demand: "Ma T", desc: "<i>Will explode if not kept in cold storage.</i>" },							//52) *I -> I, T, HT
+	{ name: "Liquor", grade: 1, type: "Assorted New", file: "liquor", price: 1500, produce: "Ag F", demand: "H I Ma Mi S", tag: "Every culture distills its own truth.<br><i>Illegal on theocratic worlds.</i>", desc: "Alcoholic beverages ranging from recycled-yeast space ale to century-aged planetary whiskeys. Commonly banned on theocracies and underage colonies, yet remains a cornerstone of interstellar trade and morale." },	//53) S, Af, C -> *		!
+	{ name: "Liquor", grade: 2, type: "Assorted Aged", file: "liquor", price: 5500, produce: "Ag F", demand: "Af F H I Ma S" },
+	{ name: "Liquor", grade: 3, type: "Doleamas", file: "liquor", price: 20000, produce: "Af C (Ag)", demand: "Af H (F)" },	
+	{ name: "Live Animals", grade: 1, type: "Bio-Engineered", file: "live-animals", price: 10000, stat: 'live', produce: "Ag F", demand: "Af Ag T", desc: "<i>Agricultural worlds demand the animals they do not produce.</i>" },	//56) Ag -> Af, C		!
+	{ name: "Live Animals", grade: 2, type: "Terran", file: "live-animals", price: 15000, stat: 'live', produce: "Ag F", demand: "Af Ag C T" },
+	{ name: "Live Animals", grade: 3, type: "Lacotian", file: "live-animals", price: 25000, stat: 'live', produce: "Ag F", demand: "Af Ag C T" },
+	{ name: "Lumber", type: "cut", file: "lumber", price: 300, produce: "Ag, Mi, P, S (Rocky, Desert)", demand: "Af, Ag, C, P, S", desc: "Produced on most rocky and desert worlds and needed for light construction and some quality goods." },		//59) Rocky -> *
+	{ name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, produce: "Ma S (Af)", demand: "Af C H", tag: "Proof that taste is always for sale.<br><i>Illegal on theocratic worlds.</i>", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },	//60) HT, I, Af, S, C, Mx -> Af
+	{ name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, produce: "H Ma S (Af)", demand: "Af C (H)" },
+	{ name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, produce: "C H Ma S (Af)", demand: "Af" },
+	{ name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", desc: "Always needed." },	//63) HT -> *		? stat: 'cold' ?
+	{ name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)" },
+	{ name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C" },
+	{ name: "Minerals", type: "assorted", file: "minerals", price: 300, produce: "Mi T (P)", demand: "I", desc: "Easily sourced production need." },	 //66) M, T -> I
+	{ name: "Narcotics", grade: 1, type: "Minor", file: "narcotics", price: 5000, produce: "Ag (F)", demand: "C I Ma Mi S", tag: "Pleasure, profit, or poison.<br><i>Illegal on all but lawless worlds, although corporate and democratic worlds will allow minor narcotics and feudal worlds will also allow hallucinogenic narcotics.</i>", desc: "Chemical and biological recreational substances. “Minor” varieties are tolerated in some corporate zones; “major” narcotics remain illicit and highly profitable on nearly all worlds." },	//67) HT -> *		!
+	{ name: "Narcotics", grade: 2, type: "Hallucinogenic", file: "narcotics", price: 8000, produce: "H", demand: "Af C F I Ma Mi S" },
+	{ name: "Narcotics", grade: 3, type: "Heavy", file: "narcotics", price: 10000, produce: "H", demand: "Af C Ma S" },
+	{ name: "Narcotics", grade: 4, type: "Psychotropic", file: "narcotics", price: 14000, produce: "H", demand: "Af C S" },
+	{ name: "Packages", type: "assorted", file: "packages", price: 500, produce: "*", demand: "*", tag: "<i>Packages are specific to customers and are not traded on the market.</i>", desc: "" },	//71) *
+	{ name: "Perishable Goods", grade: 1, type: "MilkyWay", file: "perishable-goods", price: 1000, stat: 'cold', produce: "Ag C (Af F)", demand: "F H I Ma Mi P S T", tag: "Delicious & Nutricious: Packaged.", desc: "Basic consumables produced on nearly every settled world. Low-grade shipments include processed nutrient paste for long voyages, while premium exports feature rare spices and delicacies from controlled climates." },	//72) I, Af, S, C, Mx -> *
+	{ name: "Perishable Goods", grade: 2, type: "5-Star", file: "perishable-goods", price: 1500, stat: 'cold', produce: "S (Af)", demand: "F H I Ma Mi T" },
+	{ name: "Perishable Goods", grade: 2, type: "Veridian", file: "perishable-goods", price: 1500, stat: 'cold', produce: "S (Af)", demand: "F H I Ma Mi T" },
+	{ name: "Perishable Goods", grade: 3, type: "Tsai", file: "perishable-goods", price: 2000, stat: 'cold', produce: "S (Af)", demand: "Af H Ma (C T)" },
+	{ name: "Petroleum", type: "light", file: "petroleum", price: 500, produce: "Mi (F)", demand: "I", desc: "Black gold." },	//76) M -> I
+	{ name: "Precious Metals", type: "assorted", file: "precious-metals", price: 10000, produce: "F Mi", demand: "C H Ma", desc: "Regular gold." },  //77) M -> I, HT
+	{ name: "Probes", grade: 1, type: "Omninet", file: "probes", price: 2500, produce: "H", demand: "F Mi T", desc: "Mostly used in mineral mining." },  //78) HT -> T, M
+	{ name: "Probes", grade: 2, type: "Forge", file: "probes", price: 4000, produce: "H", demand: "Mi T (F)" },
+	{ name: "Radioactive Waste", type: "assorted", file: "radioactives", price: 500, stat: 'dangerous', produce: "*", demand: "None", desc: "Waste products are produced by industrial processes and some damaged goods. Must pay to have them disposed of." },				//80) I, HT -> !
+	{ name: "Robots", grade: 1, type: "Cyberops", file: "robots", price: 4000, stat: 'dangerous', produce: "H Ma", demand: "Ag F I Mi T", tag: "Workers who never ask for pay.<br><i>Illegal on theocratic worlds.</i>", desc: "Autonomous mechanical units for industrial, domestic, or security purposes. Range from cheap utility drones to high-end adaptive AIs. Banned on theocracies due to moral prohibitions on synthetic life." },	//81) HT -> M, Ag, I, T, Af
+	{ name: "Robots", grade: 2, type: "Microtronic", file: "robots", price: 6000, stat: 'dangerous', produce: "H", demand: "Af Ag I Ma Mi T (F)" },
+	{ name: "Robots", grade: 3, type: "Nanoworks", file: "robots", price: 8000, stat: 'dangerous', produce: "H", demand: "Af C Ma" },
+	{ name: "Robots", grade: 4, type: "Mitsutomo", file: "robots", price: 10000, stat: 'dangerous', produce: "H", demand: "Af (C)" },
+	{ name: "Slaves", grade: 1, type: "Child", file: "slaves", price: 5000, stat: 'live', produce: "F S", demand: "Af I", tag: "Property, redefined.<br><i>Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.</i>", desc: "Living cargo traded across less-regulated systems. Encompasses everything from indentured labour to bio-engineered servitude. Legal status varies — and often depends on who owns the system." }, //85) S, P -> M, Ag, I, T, Af
+	{ name: "Slaves", grade: 2, type: "Uneducated", file: "slaves", price: 7500, stat: 'live', produce: "F P S", demand: "Ag I Ma Mi" },
+	{ name: "Slaves", grade: 3, type: "Bonded", file: "slaves", price: 15000, stat: 'live', produce: "F P S", demand: "Af Ag C H I Ma Mi T" },
+	{ name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: 'live', produce: "H P S", demand: "Ag I Mi T" },
+	{ name: "Slaves", grade: 5, type: "Luxorian", file: "slaves", price: 50000, stat: 'live', produce: "S", demand: "Af C H" },	// Special Supply -> 
+	{ name: "Synthetic Meat", type: "assorted", file: "synthetic-meat", price: 1000, stat: 'cold', produce: "H", demand: "F I Ma Mi P S T", desc: "Tastes <i>almost</i> as good as the real thing." },	//92) HT? -> *
+	{ name: "Waste Products", type: "assorted", file: "waste-products", price: 50, produce: "*", demand: "None", desc: "Waste products are produced by industrial processes, large populations, and damaged goods. Must pay to have them disposed of." },		//93) Af, C, Mx, HT -> *
+	{ name: "Water", type: "fresh", file: "water", price: 100, stat: 'sensitive', produce: "H Mi P (Ice, Ocean)", demand: "F T", desc: "The lifeblood of the galaxy." }	//94) Ocean, Ice -> T, F
 ];
 
 // Called by 'addMission()' when determining cargo (m = mission, query = all/extended/general/illegal/legal)
@@ -150,7 +153,7 @@ function worldGoods(w) {
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
 			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
 			if (w.type == "Ocean") set.push(43, 44, 45);
-			if (w.govdesc == "Sirius") set.push(45);
+			if (w.govdesc == "Veridian") set.push(45);
 			if (w.govdesc == "Doleamas") set.push(55);
 			if (w.gov == "Corporate") set.push(67, 67);
 			break;
@@ -286,3 +289,4 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
