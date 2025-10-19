@@ -151,11 +151,14 @@ function worldGoods(w) {
 	// Set supplied goods
 	switch (w.focus) {
 		case "Mining":
+			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
 			set = [16, 34, 51, 66, 76, 77];
 			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
 			break;
 		case "Agricultural":
+			// [["Animal Meat", "Animal Skins", "Live Animals"], [], []]
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
+			// ["Fruit & Vegetables", "Grain", "Hydroponic Farms" (grade 2), "Liquor" (grade 1), "Liquor" (grade 2), "Narcotics" (grade 1), "Perishable Goods" (grade 1)]			["Hydroponic Farms" (grade 2), "Hydroponic Farms" (grade 3), "Liquor" (grade 2), "Liquor" (grade 3), "Perishable Goods" (grade 1)] : ["Grain", "Hydroponic Farms" (grade 1), "Liquor" (grade 1)]
 			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
 			if (w.type == "Ocean") set.push(43, 44, 45);
 			if (w.govdesc == "Veridian") set.push(45);
@@ -318,6 +321,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
