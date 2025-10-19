@@ -238,6 +238,11 @@ function worldGoods(w) {
 }
 
 function fillMixedArray() {
+	// Include all goods except those in exceptionList
+	const exceptionList = ["Data Vaults", "Government Artifacts", "Lumber", "Packages", "Radioactive Waste", "Waste Products", "Water"];
+	return goods.reduce((t, v, i) => exceptionList.includes(v.name) ? [...t] : [...t, i], []);
+	
+	/*
 	const a = [...Array(93)].map((v, i) => i);	// All goods except waste & water
 	a.splice(80, 1); // radioactive waste
 	a.splice(71, 1); // packages
@@ -245,14 +250,34 @@ function fillMixedArray() {
 	a.splice(35, 1); // artifacts
 	a.splice(22, 1); // datavaults
 	return a
+	*/
 }
 
 function illegalGoods(gov) {
+/*
+	Corp: explosives (all), hand weapons (all), narcotics (grade 2-4)
+	Demo: animal skins (all), bacterial farms (all), explosives (all), hand weapons (all), narcotics (grade 2-4), slaves (all)
+	Feud: explosives (all), narcotics (grade 3-4)
+	Mili: narcotics (all)
+	Theo: explosives (all), liquor (all), luxury goods (all), narcotics (all), robots (all) , slaves (grade 5)
+	goods.filter(v => ["Explosives", "Hand Weapons"].includes(v.name) || v.name == "Narcotics" && v.grade > 1).map(v => Object.create(v));
+*/
+	
+	const illegalList = {
+		"Corporate": { "Explosives": 0, "Hand Weapons": 0, "Narcotics": 1 },
+		"Democracy": { "Animal Skins": 0, "Bacterial Farms": 0, "Explosives": 0, "Hand Weapons": 0, "Narcotics": 1, "Slaves": 0 },
+		"Feudal": { "Explosives": 0, "Narcotics": 2 },
+		"Military": { "Narcotics": 0 },
+		"Theocracy": { "Explosives": 0, "Liquor": 0, "Luxury Goods": 0, "Narcotics": 0, "Robots": 0, "Slaves": 4 } };
+	return goods.reduce((t, v, i) => illegalList[gov]?.[v.name] < v.grade ? [...t, i] : [...t], []);
+
+/*
 	return ({"Corporate": [27, 28, 37, 38, 39, 40, 68, 69, 70],
 		"Democracy": [10, 11, 12, 13, 14, 15, 27, 28, 37, 38, 39, 40, 68, 69, 70, 85, 86, 87, 88, 89, 90, 91],
 		"Feudal": [27, 28, 69, 70],
 		"Military": [67, 68, 69, 70],
 		"Theocracy": [27, 28, 53, 54, 55, 60, 61, 62, 67, 68, 69, 70, 81, 82, 83, 84, 91]})[gov] || [];
+*/
 }
 
 // will need reworking along with whole ship array storage method
@@ -289,6 +314,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
