@@ -110,17 +110,22 @@ function chooseGoods(m, query) {
 	if (!query) query = (p.title == "Legitimate Businessperson" || rnd(3) + 2 < p.risk || rnd(3) > p.moral) ? "illegal" :
 		(p.rep > 60 && rnd(3) < p.risk && rnd(3) + 2 > p.moral) ? "all" : "legal";
 			
-	if (query == "illegal") return [...illegals, 71].map(v => Object.create(goods[v]));	// Return illegal goods and packages
-	const suppliedGoods = world[loc].goods.map(v => (v.supply > 0 && v.stat != 'illegal') ? v.type + v.name : 0);
+	if (query == "illegal") return [...illegals, goods.findIndex(v => v.name == "Packages")].map(v => Object.create(goods[v]));	// Return illegal goods and packages
+	const suppliedGoods = world[loc].goods.map(v => (v.supply > 0 && v.stat != "illegal") ? v.type + v.name : 0);
+	const uniqueGoods = ["Data Vaults", "Government Artifacts", "Packages"];
 	return goods.map(v => Object.create(v)).reduce((t, v, i) => suppliedGoods.includes(v.type + v.name) ||	// Skip supplied goods
 		(v.price > 9999 && p.rep < 80) ||	// Skip expensive goods if not high rep
 		(v.price > 4999 && p.rep < 60) ||	// Skip moderate goods if low rep
 		(v.price < 5000 && p.rep > 79) ||	// Skip cheap goods if high rep
-		i == 80 || i == 93 ||		// Skip wastes
-		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
+		v.name == "Radioactive Waste" || v.name == "Waste Products" ||		// Skip wastes
+//		i == 80 || i == 93 ||		// Skip wastes
+//		Basic goods: Chemicals, Grain, Deuterium Cells, Iron Ore, Liquid Oxygen, Lumber, Minerals, Petroleum, Synthetic Meat, Water
+		(query != "extended" && ["Chemicals", "Grain", "Deuterium Cells", "Iron Ore", "Liquid Oxygen", "Lumber", "Minerals", "Petroleum", "Synthetic Meat", "Water"].includes(v.name)) ||		// Skip basic goods
+//		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
 		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on "legal" query
-		(query == "general" && [22, 35, 71].includes(i)) ? t :	// Skip unique goods on "general" query
-			[...t, ...[22, 35, 71].includes(i) ? new Array((i == 35 && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
+//		(query == "general" && [22, 35, 71].includes(i)) ? t :	// Skip unique goods on "general" query
+		(query == "general" && uniqueGoods.includes(v.name)) ? t :		// Skip unique goods on "general" query
+			[...t, ...uniqueGoods.includes(v.name) ? new Array((v.name == "Government Artifacts" && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
 
 // Only called once per world during world creation
@@ -264,11 +269,11 @@ function illegalGoods(gov) {
 */
 	
 	const illegalList = {
-		"Corporate": { "Explosives": 0, "Hand Weapons": 0, "Narcotics": 1 },
-		"Democracy": { "Animal Skins": 0, "Bacterial Farms": 0, "Explosives": 0, "Hand Weapons": 0, "Narcotics": 1, "Slaves": 0 },
+		"Corporate": { "Explosives": 0, "Gene Stock": 2, "Hand Weapons": 0, "Narcotics": 1 },
+		"Democracy": { "Animal Skins": 0, "Atmospheric Catalysts": 0, "Bacterial Farms": 0, "Explosives": 0, "Gene Stock": 1, "Hand Weapons": 0, "Narcotics": 1, "Slaves": 0 },
 		"Feudal": { "Explosives": 0, "Narcotics": 2 },
 		"Military": { "Narcotics": 0 },
-		"Theocracy": { "Explosives": 0, "Liquor": 0, "Luxury Goods": 0, "Narcotics": 0, "Robots": 0, "Slaves": 4 } };
+		"Theocracy": { "Atmospheric Catalysts": 0, "Explosives": 0, "Gene Stock": 0, "Liquor": 0, "Luxury Goods": 0, "Narcotics": 0, "Robots": 0, "Slaves": 4 } };
 	return goods.reduce((t, v, i) => illegalList[gov]?.[v.name] < v.grade ? [...t, i] : [...t], []);
 
 /*
@@ -292,11 +297,10 @@ function goodsPerish() {
 						explosion(x, y);
 						setTimeout(_ => {removeCargo(x, y)}, 3000);	// *switch to fade out graphic
 					} else if (time.full - s.time > 6 + rnd(6)) {
-						//addCargo (JSON.parse(JSON.stringify(goods[93])), x, y, s.price, s.dest, s.origin);
-						addCargo(Object.create(goods[93]), x, y, s.price, s.dest, s.origin);
+						addCargo(Object.create(goods.find(v => v.name == "Waste Products")), x, y, s.price, s.dest, s.origin);
 					}
 				}
-				if (s.config != 'live' && s.stat == 'live') addCargo(Object.create(goods[29]), x, y, s.price, s.dest, s.origin);
+				if (s.config != 'live' && s.stat == 'live') addCargo(Object.create(goods.find(v => v.name == "Fertilizer")), x, y, s.price, s.dest, s.origin);
 			}
 		}
 	}
@@ -314,6 +318,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
