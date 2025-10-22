@@ -24,6 +24,7 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{ name: "Consumer Goods", grade: 3, type: "Tsai", file: "consumer-goods", price: 4000, produce: "S (Af P)", demand: "Af C H (F T)" },
 	{ name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, produce: "S (Af)", demand: "Af C H" },
 	{ name: "Data Vaults", type: "secure", file: "datavaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", tag: "Knowledge has weight.<br><i>Data vaults are not traded on the market.</i>", desc: "Secure data cores and archival drives storing research, records, and cultural memory. Invaluable for colony development and historical reconstruction — and highly sought after by intelligence brokers." },	//22) *
+	{ name: "Deuterium Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
 	{ name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", tag: "Circuits make the stars go round.", desc: "Processors, sensors, communication modules, and interface tech. Found in everything from spacecraft to household utilities. Essential imports for low-tech colonies and independent miners." },  //23) HT -> I1, Af3, HT1
 	{ name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S" },
 	{ name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S" },
@@ -46,7 +47,6 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{ name: "Hand Weapons", grade: 3, type: "Aegis", file: "hand-weapons", price: 8500, produce: "Ma", demand: "Military Af F S" },
 	{ name: "Hand Weapons", grade: 4, type: "Eagle", file: "hand-weapons", price: 10500, produce: "Ma", demand: "Military Af S" },
 	{ name: "Heavy Plastics", type: "assorted", file: "plastics", price: 1000, produce: "I", demand: "S P", tag: "The bones of the built world.", desc: "Dense structural polymers used in construction, ship hulls, and environmental seals. Derived from petrochemical or biomass sources; prized for durability and recyclability." },	//41) I -> I, HT, Af, S, C, Mx, P
-	{ name: "Deuterium Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
 	{ name: "Hypdroponic Farms", grade: 1, type: "AmritJivan", file: "hydroponic-farms", price: 2000, stat: 'live', produce: "Ag", demand: "H T", desc: "Designer plants and drug components." },	//43) Ag, Ocean -> HT *
 	{ name: "Hypdroponic Farms", grade: 2, type: "Centauri", file: "hydroponic-farms", price: 2800, stat: 'live', produce: "Ag", demand: "H T" },
 	{ name: "Hypdroponic Farms", grade: 3, type: "Veridian", file: "hydroponic-farms", price: 4000, stat: 'live', produce: "(Ag)", demand: "Af H T" },
@@ -134,26 +134,138 @@ function worldGoods(w) {
 	let mixedGoods = [];
 	let set = [];
 	
+	// Helper: find all indices for a given list of good names
+	//const byName = (...names) => goods
+	//	.map((v, i) => names.includes(v.name) ? i : -1)
+	//	.filter(i => i >= 0);
+	const byName = (...names) => goods.reduce((t, v, i) => names.includes(v.name) ? [...t, i] : [...t], []);
+
+	// Helper: find index by name & optional type
+	const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
+	
 	function buildArray(sd) {
 		for (const g of set) {
-			const regood = arr.findIndex(v => v.name == goods[g].name && v.type == goods[g].type);
-			if (regood > -1 && sd != 0) {		// Increment already present good
-				arr[regood].supply += sd;
-			} else {				// Add good if not present
+			const existing = arr.findIndex(v => v.name === goods[g].name && v.type === goods[g].type);
+			if (existing > -1 && sd !== 0) {
+				arr[existing].supply += sd;
+			} else {
 				const newGood = Object.create(goods[g]);
 				newGood.supply = sd;
-				if (sd == 0) newGood.stat = 'illegal';
+				if (sd === 0) newGood.stat = 'illegal';
 				arr.push(newGood);
 			}
 		}
 	}
+
+	// --- Set supplied goods based on world focus ---
+	switch (w.focus) {
+		case "Mining":
+			set = byName("Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals");
+			set.push(rnd(set), rnd(set), rnd(set), rnd(byName("Chemicals", "Gemstones", "Iron Ore")), rnd(byName("Minerals", "Petroleum", "Precious Metals")));
+			break;
+
+		case "Agricultural":
+			set = byName("Fruit & Vegetables", "Grain", "Hydroponic Farms", "Liquor", "Narcotics", "Perishable Goods");
+
+			const animalVariety = (seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3;
+			const animal = goods.reduce((t, v, i) => v.name.includes("Animal") && v.type === animalVariety ? [...t, i] : [...t], []);
+			const fruit = findGood("Fruit & Vegetables");
+			const grain = findGood("Grain");
+			const liquor1 = findGood("Liquor", "assorted new");
+			const liquor2 = findGood("Liquor", "assorted aged");
+			set.concat(rnd([animal, fruit, grain]), 
+					   rnd([animal, fruit, grain]), 
+					   rnd([animal, fruit, grain]), 
+					   w.gov === "Democracy" ? [findGood("Hydroponic Farms", "Centauri"), findGood("Hydroponic Farms", "Veridian"), findGood("Liquor", "assorted aged"), findGood("Liquor", "Doleamas"), findGood("Perishable Goods", "MilkyWay")] : 
+											   [grain, findGood("Hydroponic Farms", "AmritJivan"), liquor1]);
+			set.push(...byName("Fruit & Vegetables", "Grain"), findGood("Hydroponic Farms", "Centauri"), findGood("Liquor", "assorted new"), findGood("Liquor", "assorted aged"), findGood("Narcotics", "Minor"));
+			
+			if (w.type === "Ocean") set.push(...byName("Hydroponic Farms"));
+			if (w.govdesc === "Veridian") set.push(findGood("Hydroponic Farms", "Veridian"));
+			if (w.govdesc === "Doleamas") set.push(findGood("Liquor", "Doleamas"));
+			if (w.gov === "Corporate") set.push(findGood("Narcotics", "Minor"), findGood("Narcotics", "Minor"));
+			break;
+						// [["Animal Meat", "Animal Skins", "Live Animals"], [], []]
+			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
+			// ["Fruit & Vegetables", "Grain", "Hydroponic Farms" (grade 2), "Liquor" (grade 1), "Liquor" (grade 2), "Narcotics" (grade 1), "Perishable Goods" (grade 1)]			["Hydroponic Farms" (grade 2), "Hydroponic Farms" (grade 3), "Liquor" (grade 2), "Liquor" (grade 3), "Perishable Goods" (grade 1)] : ["Grain", "Hydroponic Farms" (grade 1), "Liquor" (grade 1)]
+			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
+			//if (w.type == "Ocean") set.push(43, 44, 45);
+			//if (w.govdesc == "Veridian") set.push(45);
+			//if (w.govdesc == "Doleamas") set.push(55);
+			//if (w.gov == "Corporate") set.push(67, 67);
+			break;
+
+		case "Industrial":
+			set = byName("Bacteria Farms", "Deuterium Cells", "Explosives", "Fertilizer", "Heavy Plastics", "Industrial Equipment", "Industrial Goods", "Liquid Oxygen");
+			set.push(rnd(Bact1,Exp1,Fert), rnd(Bact2,Exp2,Fert), rnd(Plas,Deut,Oxy), rnd(Plas,Deut,Oxy));
+			set = [13, 14, 15, 27, 28, 29, 41, 42,
+				   46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
+			break;
+
+		case "Manufacturing":
+			set = byName("Automobiles", "Industrial Goods", "Luxury Goods", "Robots", "Consumer Goods");
+			break;
+
+		case "Terraforming":
+			set = byName("Chemicals", "Iron Ore", "Minerals", "Atmospheric Catalysts", "Air Processors");
+			break;
+
+		case "High Tech":
+			set = byName("Electronics", "Medicine", "Probes", "Robots", "Consumer Goods", "Luxury Goods", "Gene Stock");
+			break;
+
+		case "Affluent":
+			set = byName("Luxury Goods", "Liquor", "Consumer Goods", "Medicine", "Electronics");
+			break;
+
+		case "Slum":
+			set = byName("Consumer Goods", "Luxury Goods", "Liquor", "Narcotics", "Slaves");
+			break;
+
+		case "Cultural":
+			set = byName("Luxury Goods", "Government Artifacts", "Liquor", "Medicine", "Consumer Goods");
+			break;
+
+		case "Prison":
+			set = byName("Consumer Goods", "Industrial Goods", "Slaves");
+			break;
+
+		case "Frontier":
+			set = byName("Fruit & Vegetables", "Grain", "Liquor", "Bacteria Farms", "Farming Equipment", "Water");
+			break;
+
+		case "Mixed":
+			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
+			set = [];
+			for (let i = 0; i < (w.name.length % 4 + 3); i++) {
+				set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
+			}
+			break;
+	}
+
+	// --- Add environmental resource bonuses ---
+	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
+		if (w.type === "Rocky") set.push(findGood("Lumber"));
+		if (w.type === "Desert") set.push(findGood("Lumber"));
+		if (w.type === "Ice") set.push(findGood("Water"));
+	}
+	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type === "Ocean"))
+		set.push(findGood("Water"));
+
+	// --- Corporate boosts: duplicate corporate goods ---
+	if (w.gov === "Corporate") {
+		for (const v of new Set(set)) {
+			if (goods[v].type === w.govdesc) set.push(v, v, v);
+		}
+	}
 	
 	// Set supplied goods
+	
 	switch (w.focus) {
 		case "Mining":
 			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
-			set = goods.reduce((t, v, i) => ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"].includes(v.name) ? [...t, i] : [...t], []);
-			set.push(rnd(set), rnd(set), rnd(set), rnd(
+			//set = goods.reduce((t, v, i) => ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"].includes(v.name) ? [...t, i] : [...t], []);
+			//set.push(rnd(set), rnd(set), rnd(set), rnd(
 			set = [16, 34, 51, 66, 76, 77];
 			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
 			break;
@@ -323,6 +435,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
