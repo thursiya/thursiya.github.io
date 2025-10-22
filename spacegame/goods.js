@@ -152,6 +152,8 @@ function worldGoods(w) {
 	switch (w.focus) {
 		case "Mining":
 			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
+			set = goods.reduce((t, v, i) => ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"].includes(v.name) ? [...t, i] : [...t], []);
+			set.push(rnd(set), rnd(set), rnd(set), rnd(
 			set = [16, 34, 51, 66, 76, 77];
 			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
 			break;
@@ -321,6 +323,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
