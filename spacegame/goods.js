@@ -23,8 +23,8 @@ const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{ name: "Consumer Goods", grade: 3, type: "Mitsutomo", file: "consumer-goods", price: 4000, supply: { H: -1, HD: -1, N: -1, PD: 1, S: 1, TD: -1, W: -2 }, produce: "S (Af P)", demand: "C H Ma (F T)" },
 	{ name: "Consumer Goods", grade: 3, type: "Tsai", file: "consumer-goods", price: 4000, supply: { H: -1, HD: -1, N: -1, PD: 1, S: 1, TD: -1, W: -2 }, produce: "S (Af P)", demand: "Af C H (F T)" },
 	{ name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, supply: { H: -2, S: 1, W: -3 }, produce: "S (Af)", demand: "Af C H" },
-	{ name: "Data Vaults", type: "secure", file: "datavaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", tag: "Knowledge has weight.<br><i>Data vaults are not traded on the market.</i>", desc: "Secure data cores and archival drives storing research, records, and cultural memory. Invaluable for colony development and historical reconstruction — and highly sought after by intelligence brokers." },	//22) *
-	{ name: "Deuterium Cells", type: "commercial", file: "hydrogen", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
+	{ name: "Data Vaults", type: "secure", file: "data-vaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", tag: "Knowledge has weight.<br><i>Data vaults are not traded on the market.</i>", desc: "Secure data cores and archival drives storing research, records, and cultural memory. Invaluable for colony development and historical reconstruction — and highly sought after by intelligence brokers." },	//22) *
+	{ name: "Deuterium Cells", type: "commercial", file: "deuterium", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
 	{ name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", tag: "Circuits make the stars go round.", desc: "Processors, sensors, communication modules, and interface tech. Found in everything from spacecraft to household utilities. Essential imports for low-tech colonies and independent miners." },  //23) HT -> I1, Af3, HT1
 	{ name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S" },
 	{ name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S" },
@@ -442,6 +442,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
