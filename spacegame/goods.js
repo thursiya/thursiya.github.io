@@ -348,7 +348,7 @@ function worldGoods(w) {
 	// Prison Democ: if elec: +elec3, if grain: +grain, if lumb: +lumb || if elec: +elec1, if plas: +plas, if peri: +peri1 --> increase base lumber and plastic demand?
 	if (w.focus == "Prison") set = [2, 16, 23, 24, 25, 26, 36, 41, 59, 72, 92, 92, 92, ...(w.gov == "Democracy" ? [26, 36, 59] : [23, 41, 72])];
 	// Frontier Democ: if auto: +auto2, if cons: +cons3, +elec1, if veg: +veg, if liq: +liq3, if medi: +medi2, if prob: +prob2, if robo: +robo2 || +expl1, +hand1 hand1 hand2 hand2 hand3, +narc2, if peri: +peri1 peri1
-	if (w.focus == "Frontier") set = [2, 3, 4, 18, 18, 29, 29, 33, 42, 54, 54, 63, 73, 73, 74, 74, 78, 81, 92, 92, 94, 94, ...(w.gov == "Democracy" ? [3, 4, 19, 20, 23, 33, 55, 64, 79, 82] : [27, 37, 37, 38, 38, 39, 68, 72, 72])];
+	if (w.focus == "Frontier") set = [2, 3, 4, 18, 18, 29, 29, 33, 42, 43, 54, 54, 63, 73, 73, 74, 74, 78, 81, 92, 92, 94, 94, ...(w.gov == "Democracy" ? [3, 4, 19, 20, 23, 33, 55, 64, 79, 82] : [27, 37, 37, 38, 38, 39, 68, 72, 72])];
 	if (w.focus == "Mixed") {
 		set = [17, 18];
 		for (const i of times(6 - (w.name.length + seed) % 4)) {
@@ -367,8 +367,8 @@ function worldGoods(w) {
 		// Auto (not agricultural or prison) bonus +Auto3 on HiTech and Affluent (6 and 5 autos already)
 		// Cons (not slum) (HiTech has 6 and Aff has 7, so +2)
 		// Elec (only affects Slum and Prison, otherwise +elec1 on Frontier --> ignore all)
-		// Farm
-		// Hydr
+		// Farm (works)
+		// Hydr (works)
 		// IndG
 		// Liqu
 		// Luxu
@@ -467,6 +467,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
