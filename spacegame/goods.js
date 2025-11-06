@@ -335,7 +335,7 @@ function worldGoods(w) {
 	if (w.focus == "Agricultural") set = [2, 3, 4, 29, 29, 30, 30, 30, 31, 31, 31, 32, 32, 32, 59, 63, 81, 81, 82, ...(w.gov == "Democracy" ? [63, 64, 81, 82] : [86, 86, 87, 87, 88, 88, 89, 89, 90, 90]), ...(arr.includes(56) ? [57, 58] : arr.includes(57) ? [56, 58] : [56, 57])];
 	if (w.focus == "Industrial") set = [2, 3, 4, 7, 8, 16, 16, 16, 17, 18, 23, 51, 51, 51, 53, 53, 54, 63, 64, 66, 66, 66, 67, 67, 68, 68, 72, 72, 72, 73, 73, 73, 74, 74, 76, 76, 76, 81, 81, 82, 85, 85, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 92, 92];
 	if (w.focus == "Manufacturing") set = [7, 8, 9, 17, 18, 19, 33, 34, 34, 36, 46, 46, 47, 47, 48, 48, 52, 53, 54, 54, 63, 64, 67, 68, 69, 72, 72, 73, 73, 73, 74, 74, 74, 75, 77, 77, 82, 82, 82, 83, 83, 83, 86, 86, 87, 87, 88, 88, 89, 89, 92, 92];
-	// Terraforming Democ: if med1: +med1 med2, if air2: +air2, if cons1,2: +cons3 cons4, if farm2: +farm3, if hydr: +hydr3, if meat1,2: +meat3, if peri: +peri3, if prob: +prob2 || if air1: +air1, +bact1 bact2, if peri1: +peri1, +exp1 exp1 exp2, if farm2: +farm1, if hydr: +hydr1, if peri: +peri1 peri2 peri2b, if prob: +prob1, +slav3 slav4
+	// Terraforming Democ: if med1: +med1 med2, if air2: +air2, if cons1,2: +cons3, if farm2: +farm3, if hydr: +hydr3, if meat1,2: +meat3, if peri: +peri3, if prob: +prob2 || if air1: +air1, +bact1 bact2, if peri1: +peri1, +exp1 exp1 exp2, if farm2: +farm1, if hydr: +hydr1, if peri: +peri1 peri2 peri2b, if prob: +prob1, +slav3 slav4
 	if (w.focus == "Terraforming") set = [0, 0, 1, 1, 7, 8, 17, 18, 29, 29, 29, 31, 33, 43, 44, 45, 52, 52, 56, 56, 57, 57, 58, 63, 72, 72, 73, 74, 78, 78, 79, 79, 81, 82, 82, 92, 94, 94, 94, ...(w.gov == "Democracy" ? [1, 9, 19, 20, 32, 45, 63, 64, 75, 79] : [0, 13, 14, 17, 27, 27, 28, 30, 43, 72, 73, 74, 78, 87, 88, 89, 90])];
 	// High Tech Democ: if auto: +auto3 auto4, if cons3: +cons3 cons4, if hydr3: +hydr3, if indg2: +indg2, if liq3: +liq3, if lux: +lux1 lux2 lux2, if peri: +peri3 || +auto2|2, +bact1 bact1 bact2 bact2 bact3 bact3, +hydr1, +indg1, +slav3 slav5 slav5
 	if (w.focus == "High Tech") set = [2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9, 16, 16, 19, 20, 20, 21, 21, 33, 33, 36, 43, 44, 44, 45, 49, 50, 53, 54, 54, 55, 55, 60, 72, 73, 73, 74, 74, 75, 75, 77, 77, 77, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 45, 50, 55, 60, 61, 61, 75] : [3, 4, 13, 13, 14, 14, 15, 15, 43, 49, 87, 88, 89, 91, 91])];
@@ -345,7 +345,7 @@ function worldGoods(w) {
 	if (w.focus == "Slum") set = [2, 16, 17, 18, 23, 23, 24, 24, 25, 25, 26, 34, 36, 36, 41, 42, 53, 53, 53, 54, 59, 67, 67, 72, 72, 92, 92, ...(w.gov == "Democracy" ? [3, 4, 26, 73, 73] : [2, 23, 27, 28, 37, 37, 37, 38, 38, 38, 39, 39, 40, 68, 68, 69, 69, 69, 70, 70, 70])];
 	// Cultural Democ: if auto: +auto4, if meat: +meat3, if skin: +skin3??, if cons: +cons4, if medi: +medi3, if peri: +peri3, if robo: +robo4 || if auto: +auto1, if meat: +meat2, if skin: +skin2, if cons: +cons2, if narc: +narc2 narc2 narc3 narc4, +slav3 slav3 slav5 slav5
 	if (w.focus == "Cultural") set = [3, 4, 5, 7, 8, 9, 10, 11, 12, 19, 19, 20, 20, 21, 33, 33, 36, 36, 57, 58, 59, 60, 61, 63, 64, 64, 65, 67, 67, 73, 74, 77, 83].concat(w.gov == "Democracy" ? [6, 9, 12, 21, 65, 75, 84] : [2, 8, 11, 18, 68, 68, 69, 70, 87, 87, 88, 88, 89, 89, 91, 91]);
-	// Prison Democ: if elec: +elec3, if grain: +grain, if lumb: +lumb || if elec: +elec1, if plas: +plas, if peri: +peri1
+	// Prison Democ: if elec: +elec3, if grain: +grain, if lumb: +lumb || if elec: +elec1, if plas: +plas, if peri: +peri1 --> increase base lumber and plastic demand?
 	if (w.focus == "Prison") set = [2, 16, 23, 24, 25, 26, 36, 41, 59, 72, 92, 92, 92, ...(w.gov == "Democracy" ? [26, 36, 59] : [23, 41, 72])];
 	// Frontier Democ: if auto: +auto2, if cons: +cons3, +elec1, if veg: +veg, if liq: +liq3, if medi: +medi2, if prob: +prob2, if robo: +robo2 || +expl1, +hand1 hand1 hand2 hand2 hand3, +narc2, if peri: +peri1 peri1
 	if (w.focus == "Frontier") set = [2, 3, 4, 18, 18, 29, 29, 33, 42, 54, 54, 63, 73, 73, 74, 74, 78, 81, 92, 92, 94, 94, ...(w.gov == "Democracy" ? [3, 4, 19, 20, 23, 33, 55, 64, 79, 82] : [27, 37, 37, 38, 38, 39, 68, 72, 72])];
@@ -361,9 +361,26 @@ function worldGoods(w) {
 		if (![37, 38, 39, 40].some(v => arr.includes(v))) set.push(37, 37, 38, 38, 39, 39, 40, 40);
 		if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
 	}
-	//
-	if (w.gov == "Democracy") {
-	} else {
+	// Adjust Demand for Democratic Governments
+	if (["Affluent", "Agricultural", "Cultural", "Frontier", "High Tech", "Prison", "Slum", "Terraforming"].includes(w.focus)) {
+		// AirP (only affects Terraforming)
+		// Auto (not agricultural or prison) bonus +Auto3 on HiTech and Affluent (6 and 5 autos already)
+		// Cons (not slum) (HiTech has 6 and Aff has 7, so +2)
+		// Elec (only affects Slum and Prison, otherwise +elec1 on Frontier --> ignore all)
+		// Farm
+		// Hydr
+		// IndG
+		// Liqu
+		// Luxu
+		// Meat
+		// Medi
+		// Peri
+		// Prob (could include mining?)
+		// Robo (Agr: just increased demand, not better, not Terraforming --> ignore both)
+		
+		if (w.gov == "Democracy") {
+		} else {
+		}
 	}
 	//
 	buildArray(-1);
@@ -450,6 +467,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
