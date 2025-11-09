@@ -1,4 +1,4 @@
-const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
+	const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
 	{ name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, supply: { M: -2, N: 1, T: -2 }, produce: "Ma", demand: "Mi T", tag: "Turning dust and exhaust into breathable futures.", desc: "Industrial-scale atmospheric processors used to sustain life on hostile worlds and deep-space mining stations. Each unit filters toxins, stabilizes pressure, and extracts oxygen from trace gases. The quiet backbone of frontier expansion—unseen, essential, and always one malfunction away from extinction." },	//0) I -> T3, F2, P2, M2, I1
 	{ name: "Air Processors", grade: 2, type: "Boreatek", file: "air-processors", price: 2500, supply: { M: -2, N: 1, T: -2 }, produce: "Ma", demand: "Mi T" },	// I -> T3, F2, M2, I1
 	{ name: "Animal Meat", grade: 1, type: "Bio-Engineered", file: "animal-meat", price: 1500, stat: 'cold', supply: { A: 1.1, C: -1, F: 1.1, H: -1, I: -1, M: -1, N: -1, T: -1 }, produce: "Ag F", demand: "C H I Ma Mi T", tag: "Still legal.", desc: "Cultured or slaughtered animal protein. Genuine livestock meat commands high prices on frontier worlds and among elites nostalgic for pre-industrial Earth diets." },	//7) Ag -> Af1, *1	(!)
@@ -141,7 +141,15 @@ function worldGoods(w) {
 	const byName = (...names) => goods.reduce((t, v, i) => names.includes(v.name) ? [...t, i] : [...t], []);
 
 	// Helper: find index by name & optional type
-	const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
+	// const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
+
+	// Helper: find all indices for a good by name & optional grade
+	const findGoods = (name, grade) => goods.reduce((t, v, i) => v.name === name && (!grade || v.grade === grade) ? [...t, i] : [...t], []);
+
+	// Helper: add a goods index value to the set
+	const inc = (name, number) => ;
+	// Helper: remove a goods index value from the set
+	const dec = (name, number) => ;
 	
 	function buildArray(sd) {
 		for (const g of set) {
@@ -283,7 +291,7 @@ function worldGoods(w) {
 			set = [13, 14, 15, 27, 28, 29, 41, 42, 46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
 			break;
 		case "Manufacturing":
-			set = [0, 1, 2, 3, 4, 5, 6, 30, 31, 32, 37, 38, 39, 40, 49, 50, 60, 61, 61, 62, 81];
+			set = [0, 1, 2, 3, 4, 5, 6, 30, 31, 32, 37, 38, 39, 40, 49, 49, 50, 50, 60, 61, 61, 62, 81];
 			break;
 		case "Terraforming":
 			set = [16, 51, 66];
@@ -336,9 +344,9 @@ function worldGoods(w) {
 	if (w.focus == "Industrial") set = [2, 3, 4, 7, 8, 16, 16, 16, 17, 18, 23, 51, 51, 51, 53, 53, 54, 63, 64, 66, 66, 66, 67, 67, 68, 68, 72, 72, 72, 73, 73, 73, 74, 74, 76, 76, 76, 81, 81, 82, 85, 85, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 92, 92];
 	if (w.focus == "Manufacturing") set = [7, 8, 9, 17, 18, 19, 33, 34, 34, 36, 46, 46, 47, 47, 48, 48, 52, 53, 54, 54, 63, 64, 67, 68, 69, 72, 72, 73, 73, 73, 74, 74, 74, 75, 77, 77, 82, 82, 82, 83, 83, 83, 86, 86, 87, 87, 88, 88, 89, 89, 92, 92];
 	// Terraforming Democ: if med1: +med1 med2, if air2: +air2, if cons1,2: +cons3, if farm2: +farm3, if hydr: +hydr3, if meat1,2: +meat3, if peri: +peri3, if prob: +prob2 || if air1: +air1, +bact1 bact2, if peri1: +peri1, +exp1 exp1 exp2, if farm2: +farm1, if hydr: +hydr1, if peri: +peri1 peri2 peri2b, if prob: +prob1, +slav3 slav4
-	if (w.focus == "Terraforming") set = [0, 0, 1, 1, 7, 8, 17, 18, 29, 29, 29, 31, 33, 43, 44, 45, 52, 52, 56, 56, 57, 57, 58, 63, 72, 72, 73, 74, 78, 78, 79, 79, 81, 82, 82, 92, 94, 94, 94, ...(w.gov == "Democracy" ? [1, 9, 19, 20, 32, 45, 63, 64, 75, 79] : [0, 13, 14, 17, 27, 27, 28, 30, 43, 72, 73, 74, 78, 87, 88, 89, 90])];
+	if (w.focus == "Terraforming") set = [0, 0, 1, 1, 7, 8, 17, 18, 29, 29, 29, 31, 33, 43, 44, 45, 49, 50, 52, 52, 56, 56, 57, 57, 58, 63, 72, 72, 73, 74, 78, 78, 79, 79, 81, 82, 82, 92, 94, 94, 94, ...(w.gov == "Democracy" ? [1, 9, 19, 20, 32, 45, 63, 64, 75, 79] : [0, 13, 14, 17, 27, 27, 28, 30, 43, 72, 73, 74, 78, 87, 88, 89, 90])];
 	// High Tech Democ: if auto: +auto3 auto4, if cons3: +cons3 cons4, if hydr3: +hydr3, if indg2: +indg2, if liq3: +liq3, if lux: +lux1 lux2 lux2, if peri: +peri3 || +auto2|2, +bact1 bact1 bact2 bact2 bact3 bact3, +hydr1, +indg1, +slav3 slav5 slav5
-	if (w.focus == "High Tech") set = [2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9, 16, 16, 19, 20, 20, 21, 21, 33, 33, 36, 43, 44, 44, 45, 49, 50, 53, 54, 54, 55, 55, 60, 72, 73, 73, 74, 74, 75, 75, 77, 77, 77, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 45, 50, 55, 60, 61, 61, 75] : [3, 4, 13, 13, 14, 14, 15, 15, 43, 49, 87, 88, 89, 91, 91])];
+	if (w.focus == "High Tech") set = [2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9, 16, 16, 19, 20, 20, 21, 21, 33, 33, 36, 43, 44, 44, 45, 49, 49, 50, 50, 53, 54, 54, 55, 55, 60, 60, 72, 73, 73, 74, 74, 75, 75, 77, 77, 77, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 45, 50, 55, 60, 61, 61, 75] : [3, 4, 13, 13, 14, 14, 15, 15, 43, 49, 87, 88, 89, 91, 91])];
 	// Affluent Democ: if auto: +auto3 auto4, if cons3: +cons3 cons4, if liq3: +liq3, if lux: +lux1 lux2 lux3, if medi3: +medi3, if peri3: +peri3, if robo: +robo4 || +skin1 skin1 skin2 skin2 skin2 skin3 skin3 skin3, +hand2 hand3 hand3 hand4 hand4, +narc2 narc3 narc3 narc4 narc4, +slav1 slav1 slav3 slav3 slav5 slav5 slav5
 	if (w.focus == "Affluent") set = [5, 5, 6, 6, 6, 8, 8, 9, 9, 9, 19, 19, 20, 20, 21, 21, 21, 33, 33, 33, 34, 34, 35, 35, 35, 36, 42, 45, 54, 54, 55, 55, 55, 56, 57, 57, 58, 58, 59, 59, 60, 61, 61, 62, 62, 62, 64, 64, 65, 65, 65, 75, 75, 82, 83, 83, 84, 84, 84, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 55, 60, 61, 62, 65, 75, 84] : [10, 10, 11, 11, 11, 12, 12, 12, 38, 39, 39, 40, 40, 68, 69, 69, 70, 70, 85, 85, 87, 87, 88, 88, 89, 89, 91, 91, 91])];
 	// Slum Democ: if auto: +auto2, if elec: +elec3, if peri: +peri2 peri2 || if auto: +auto1, if elec: +elec1, +expl1 expl2, +hand1 hand1 hand1 hand2 hand2 hand2 hand3 hand3 hand4, +narc2 narc2 narc3 narc3 narc3 narc4 narc4 narc4
@@ -362,25 +370,33 @@ function worldGoods(w) {
 		if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
 	}
 	// Adjust Demand for Democratic Governments
-	if (["Affluent", "Agricultural", "Cultural", "Frontier", "High Tech", "Prison", "Slum", "Terraforming"].includes(w.focus)) {
+	if (["Industrial", "Manufacturing", "Mining"].includes(w.focus) {
 		// AirP (only affects Terraforming)
 		// Auto (not agricultural or prison) bonus +Auto3 on HiTech and Affluent (6 and 5 autos already)
 		// Cons (not slum) (HiTech has 6 and Aff has 7, so +2)
 		// Elec (only affects Slum and Prison, otherwise +elec1 on Frontier --> ignore all)
 		// Farm (works)
 		// Hydr (works)
-		// IndG
-		// Liqu
-		// Luxu
-		// Meat
-		// Medi
-		// Peri
+		// IndG (works - extended to Terraforming)
+		// Liqu (works - ignore slum?)
+		// Luxu (works)
+		// Meat (works)
+		// Medi (works)
+		// Peri (works)
 		// Prob (could include mining?)
 		// Robo (Agr: just increased demand, not better, not Terraforming --> ignore both)
-		
-		if (w.gov == "Democracy") {
-		} else {
-		}
+		["Air Processors", "Animal Meat", "Automobiles", "Consumer Goods", "Electronics", "Farming Equipment", "Hydroponic Farms", "Industrial Goods", "Luxury Goods", "Medicine", "Perishable Goods", "Probes", "Robots"].forEach(g => {
+			const goodSubset = set.filter(v => goods[v].name === g);
+			if (goodSubset.length > 0) {
+				const topGrade = goods.slice().reverse().find(v => v.name === g).grade;
+				// Set best to 1 level higher than best grade good (max top grade of good)
+				const bestGrade = Math.min(goods[goodSubset[goodSubset.length - 1]].grade + 1, topGrade);
+				// Set worst to 1 level below lowest grade good (minimum 1)
+				const worstGrade = Math.max(goods[goodSubset[0]].grade - 1, 1);
+				set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade : worstGood));
+				if (goodSubset.length > 4) set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade - 1 : worstGood + 1));
+			}
+		});		
 	}
 	//
 	buildArray(-1);
@@ -467,6 +483,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
