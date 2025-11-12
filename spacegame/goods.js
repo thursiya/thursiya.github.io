@@ -143,6 +143,9 @@ function worldGoods(w) {
 	// Helper: find index by name & optional type
 	// const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
 
+	// Helper: find all indices for a given list of goods based on short names
+	const addGoods = (...names) => goods.reduce((t, v, i) =>  , []);
+	
 	// Helper: find all indices for a good by name & optional grade
 	const findGoods = (name, grade) => goods.reduce((t, v, i) => v.name === name && (!grade || v.grade === grade) ? [...t, i] : [...t], []);
 
@@ -266,9 +269,12 @@ function worldGoods(w) {
 			if (goods[v].type === w.govdesc) set.push(v, v, v);
 		}
 	}
+
+	// Set illegal goods
+	set = illegalGoods(w.gov);
+	buildArray(0);
 	
 	// Set supplied goods
-	
 	switch (w.focus) {
 		case "Mining":
 			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
@@ -337,6 +343,7 @@ function worldGoods(w) {
 
 	// Democracy Affect
 	// If set.includes("Probes") set.push(findGood("Probes", "Forge")) else non-democ: +probes omninet
+	
 	// Set demand goods
 	if (w.focus == "Mining") set = [0, 0, 1, 1, 2, 3, 4, 7, 8, 17, 18, 27, 27, 27, 46, 46, 46, 47, 47, 47, 48, 48, 48, 53, 53, 53, 67, 67, 68, 68, 72, 72, 72, 73, 74, 78, 78, 79, 81, 81, 82, 82, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 90, 92, 92];
 	// Agricultural Democ: if med1: +med1 med2, if rob2: +rob1 rob2 || +slav2 slav2 slav3 slav3 slav4 slav4
@@ -365,10 +372,10 @@ function worldGoods(w) {
 		}
 		set.push(...(arr.some(v => v > 16 && v < 22) ? [rnd([16, 41, 59]), rnd([16, 41, 59])] : [18, 19, 20, w.gov == "Democracy" ? 21 : 17]));
 	}
-	if (w.gov == "Military") {
-		if (![37, 38, 39, 40].some(v => arr.includes(v))) set.push(37, 37, 38, 38, 39, 39, 40, 40);
-		if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
-	}
+
+	// Set deman goods
+	if (w.focus == "Mining") set = [...findGoods("Air Processors"), ...findGoods("Air Processors"), ...addGoods("Auto1", "Auto2", "];
+	
 	// Adjust Demand for Democratic Governments
 	if (["Industrial", "Manufacturing", "Mining"].includes(w.focus) {
 		// AirP (only affects Terraforming)
@@ -398,12 +405,16 @@ function worldGoods(w) {
 			}
 		});		
 	}
+
+	// Adjust Demand for Military Governments
+	if (w.gov == "Military") {
+		//if (![37, 38, 39, 40].some(v => arr.includes(v))) set.push(37, 37, 38, 38, 39, 39, 40, 40);
+		//if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
+		set.push(...findGoods("Hand Weapons"), ...findGoods("Hand Weapons"), ...findGoods("Bacterial Farms"));
+	}
 	//
 	buildArray(-1);
 	
-	// Set illegal goods
-	set = illegalGoods(w.gov);
-	buildArray(0);
 	return arr;
 }
 
@@ -483,6 +494,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
