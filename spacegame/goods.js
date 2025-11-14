@@ -362,7 +362,7 @@ function worldGoods(w) {
 		"Frontier": [1, ["Chemicals", "cons1", "liq1", "narc1", "peri1", "Petroleum", "Precious Metals", "slav1", "slav2", "slav3"], ["Grain"]],
 		"Mixed": [3, [], []]
 	}[w.focus];
-	set = ...addGoods(supply[1]);
+	set = addGoods(supply[1]);
 
 	// Add live animals to agricultural and frontier worlds
 	if (["Agricultural", "Frontier"].includes(w.focus)) {
@@ -575,4 +575,5 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
