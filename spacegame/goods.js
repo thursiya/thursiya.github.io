@@ -155,9 +155,6 @@ function worldGoods(w) {
 	const dup = (number, ...items) => Array(number).fill(items).flat();
 	
 	function buildArray(sd) {
-		console.log(`DEBUG -> planet: ${w.name}, arr, set:`);
-		console.log(arr);
-		console.log(set);
 		for (const g of set) {
 			if (!goods[g]) continue;
 			const existing = arr.findIndex(v => v.name === goods[g].name && v.type === goods[g].type);
@@ -579,6 +576,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
