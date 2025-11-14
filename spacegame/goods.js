@@ -122,7 +122,7 @@ function chooseGoods(m, query) {
 		v.name == "Radioactive Waste" || v.name == "Waste Products" ||		// Skip wastes
 //		i == 80 || i == 93 ||		// Skip wastes
 //		Basic goods: Chemicals, Grain, Deuterium Cells, Iron Ore, Liquid Oxygen, Lumber, Minerals, Petroleum, Synthetic Meat, Water
-		(query != "extended" && ["Chemicals", "Grain", "Deuterium Cells", "Iron Ore", "Liquid Oxygen", "Lumber", "Minerals", "Petroleum", "Synthetic Meat", "Water"].includes(v.name)) ||		// Skip basic goods
+		(query != "extended" && ["Chemicals", "Deuterium Cells", "Grain", "Liquid Oxygen", "Lumber", "Minerals", "Petroleum", "Regolith", "Synthetic Meat", "Volatiles", "Water"].includes(v.name)) ||		// Skip basic goods
 //		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
 		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on "legal" query
 //		(query == "general" && [22, 35, 71].includes(i)) ? t :	// Skip unique goods on "general" query
@@ -575,3 +575,4 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
