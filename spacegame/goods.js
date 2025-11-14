@@ -368,15 +368,16 @@ function worldGoods(w) {
 	// Add live animals to agricultural and frontier worlds
 	if (["Agricultural", "Frontier"].includes(w.focus)) {
 			const animalGrade = (seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3 + 1;
-			set.push(goods.reduce((t, v, i) => v.name.includes("Animal") && v.grade === animalGrade ? [...t, i] : [...t], []));
+			set.push(goods.reduce((t, v, i) => v.name.includes("Animal") && v.grade === animalGrade ? [...t, i] : t, []));
 	}
 
 	// Add mixed goods
 	if (w.focus == "Mixed") {
+		if (w.gov == "Corporate") set.push(goods.reduce((t, v, i) => v.type == w.govdesc ? [...t, i] : t, []));
 		for (const i of times((w.name.length + seed) % 4 + 3)) {
 			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 			set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
-		}				
+		}
 	}
 	
 	// Add random repeats of goods in first set, then add second set
@@ -386,12 +387,10 @@ function worldGoods(w) {
 	set.push(...addGoods(supply[2]));
 	set = set.flat();
 
-	// Add corporate goods?
-	// +2 narc1 on agricultural
-	// Affluent goods --> if (w.gov == "Corporate") set.push(...[17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => goods[v].type == oldCorps.find(c => c.name == w.govdesc).name));
+	// Add corporate goods
 	if (w.gov == "Corporate") {
 		new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
-		if (w.focus == "Affluent") set.push(goods.reduce((t, v, i) => ["Consumer Goods", "Liquor", "Luxury Goods", "Perishable Goods", "Robots"].includes(v.name) && v.type == w.govdesc ? [...t, i, i] : [...t], []));
+		if (w.focus == "Affluent") set.push(goods.reduce((t, v, i) => ["Consumer Goods", "Liquor", "Luxury Goods", "Perishable Goods", "Robots"].includes(v.name) && v.type == w.govdesc ? [...t, i, i] : t, []));
 		if (w.focus == "Agricultural") set.push(...addGoods(dup(2, "narc1")));
 	}
 
@@ -576,6 +575,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
