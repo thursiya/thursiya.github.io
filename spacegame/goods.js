@@ -24,7 +24,7 @@
 	{ id: "cons3", name: "Consumer Goods", grade: 3, type: "Tsai", file: "consumer-goods", price: 4000, supply: { H: -1, HD: -1, N: -1, PD: 1, S: 1, TD: -1, W: -2 }, produce: "S (Af P)", demand: "Af C H (F T)" },
 	{ id: "cons4", name: "Consumer Goods", grade: 4, type: "Polis", file: "consumer-goods", price: 5000, supply: { H: -2, S: 1, W: -3 }, produce: "S (Af)", demand: "Af C H" },
 	{ name: "Data Vaults", type: "secure", file: "data-vaults", price: 5000, stat: 'sensitive', produce: "*", demand: "*", tag: "Knowledge has weight.<br><i>Data vaults are not traded on the market.</i>", desc: "Secure data cores and archival drives storing research, records, and cultural memory. Invaluable for colony development and historical reconstruction — and highly sought after by intelligence brokers." },	//22) *
-	{ id: "deut", name: "Deuterium Cells", type: "commercial", file: "deuterium", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
+	{ name: "Deuterium Cells", type: "commercial", file: "deuterium", price: 200, produce: "I", demand: "Af F S", tag: "Stable power for unstable worlds.", desc: "Compact fusion-grade energy cells powered by deuterium or advanced isotopes. Standard propulsion fuel for interplanetary vehicles; volatile but efficient." },	//42) I -> *
 	{ id: "elec1", name: "Electronics", grade: 1, type: "Yuntai", file: "electronics", price: 2000, produce: "H", demand: "I P S", tag: "Circuits make the stars go round.", desc: "Processors, sensors, communication modules, and interface tech. Found in everything from spacecraft to household utilities. Essential imports for low-tech colonies and independent miners." },  //23) HT -> I1, Af3, HT1
 	{ id: "elec2", name: "Electronics", grade: 2, type: "Microtronic", file: "electronics", price: 3000, produce: "H", demand: "P S" },
 	{ id: "elec2", name: "Electronics", grade: 2, type: "5-Star", file: "electronics", price: 3000, produce: "H", demand: "P S" },
@@ -55,7 +55,7 @@
 	{ id: "inde3", name: "Industrial Equipment", grade: 3, type: "Boreatek", file: "industrial-equipment", price: 3500, produce: "I", demand: "Ma Mi" },
 	{ id: "indg1", name: "Industrial Goods", grade: 1, type: "Forge", file: "industrial-goods", price: 3000, produce: "Ma", demand: "H", tag: "Half-finished things that make finished things.", desc: "Processed materials and intermediate products such as alloys, composites, and machine parts. The bloodstream of interstellar manufacturing economies." },	//49) I -> I, HT
 	{ id: "indg2", name: "Industrial Goods", grade: 2, type: "Mechanica", file: "industrial-goods", price: 4500, produce: "Ma", demand: "H" },
-	{ name: "Iron Ore", type: "assorted", file: "iron-ore", price: 500, supply: { M: 1 }, produce: "Mi T (P)", demand: "I", tag: "Heavy, cheap, indispensable.", desc: "Raw ferrous rock mined from planetary crusts and asteroids. Smelted into structural steel or specialized alloys. Bulk freight rates depend on proximity to refineries." },	 //51) M -> I
+	// { name: "Iron Ore", type: "assorted", file: "iron-ore", price: 500, supply: { M: 1 }, produce: "Mi T (P)", demand: "I", tag: "Heavy, cheap, indispensable.", desc: "Raw ferrous rock mined from planetary crusts and asteroids. Smelted into structural steel or specialized alloys. Bulk freight rates depend on proximity to refineries." },	 //51) M -> I
 	{ name: "Liquid Oxygen", type: "cryogenic", file: "oxygen", price: 200, stat: 'cold', produce: "I", demand: "Ma T", tag: "Cold, volatile, vital.<br><i>Will explode if not kept in cold storage.</i>", desc: "Cryogenic oxidizer used in life-support systems, fuel production, and industrial reactions. Requires dedicated cold storage; improper handling leads to explosive results." },							//52) *I -> I, T, HT
 	{ id: "liq1", name: "Liquor", grade: 1, type: "Assorted New", file: "liquor", price: 1500, produce: "Ag F", demand: "H I Ma Mi S", tag: "Because judgement is overrated.<br><i>Illegal on theocratic worlds.</i>", desc: "Distilled indulgence in liquid form—spirits, wines, brews, and everything fermented in between. Still banned in theocracies and wherever sound judgement is required, but indispensable to celebration, negotiation, and regret." },	//53) S, Af, C -> *		!
 	{ id: "liq2", name: "Liquor", grade: 2, type: "Assorted Aged", file: "liquor", price: 5500, produce: "Ag F", demand: "Af F H I Ma S" },
@@ -70,7 +70,7 @@
 	{ id: "medi1", name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", tag: "Survival, standardized.", desc: "Pharmaceuticals, medkits, and biotech treatments. Manufactured by corporate labs under tightly held patents. A lucrative trade, legal or otherwise, in every system." },	//63) HT -> *		? stat: 'cold' ?
 	{ id: "medi2", name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)" },
 	{ id: "medi3", name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C" },
-	{ name: "Minerals", type: "assorted", file: "minerals", price: 300, supply: { M: 1 }, produce: "Mi T (P)", demand: "I", desc: "Generic non-ferrous minerals such as bauxite, copper, and lithium. Feedstock for industrial production and power storage. Easily sourced production need that's always in motion along the trade lanes." },	 //66) M, T -> I
+	{ name: "Minerals", type: "assorted", file: "minerals", price: 400, supply: { M: 1 }, produce: "Mi T (P)", demand: "I", desc: "Generic non-ferrous minerals such as bauxite, copper, and lithium. Feedstock for industrial production and power storage. Easily sourced production need that's always in motion along the trade lanes." },	 //66) M, T -> I
 	{ id: "narc1", name: "Narcotics", grade: 1, type: "Minor", file: "narcotics", price: 5000, produce: "Ag (F)", demand: "C I Ma Mi S", tag: "Pleasure, profit, or poison.<br><i>Illegal on all but lawless worlds, although corporate and democratic worlds will allow minor narcotics and feudal worlds will also allow hallucinogenic narcotics.</i>", desc: "Chemical and biological recreational substances. “Minor” varieties are tolerated in some corporate zones; “major” narcotics remain illicit and highly profitable on nearly all worlds." },	//67) HT -> *		!
 	{ id: "narc2", name: "Narcotics", grade: 2, type: "Hallucinogenic", file: "narcotics", price: 8000, produce: "H", demand: "Af C F I Ma Mi S" },
 	{ id: "narc3", name: "Narcotics", grade: 3, type: "Heavy", file: "narcotics", price: 10000, produce: "H", demand: "Af C Ma S" },
@@ -85,6 +85,7 @@
 	{ id: "prob1", name: "Probes", grade: 1, type: "Omninet", file: "probes", price: 2500, produce: "H", demand: "F Mi T", tag: "The explorers you can afford to lose.", desc: "Automated drones mostly used in mining, planetary survey, navigation mapping, or research. Disposable, but indispensable. A single lost probe can start a gold rush—or a scandal." },  //78) HT -> T, M
 	{ id: "prob2", name: "Probes", grade: 2, type: "Forge", file: "probes", price: 4000, produce: "H", demand: "Mi T (F)" },
 	{ name: "Radioactive Waste", type: "assorted", file: "radioactives", price: 500, stat: 'dangerous', produce: "*", demand: "None", tag: "Someone else's problem, until it isn't.<br><i>Produced by industrial processes and some damaged goods. Must pay to have them disposed of.</i>", desc: "Spent reactor fuel and fission byproducts. Legally restricted, illegally dumped, occasionally weaponized. Handling requires specialized containment and a disregard for self-preservation." },				//80) I, HT -> !
+	{ name: "Regolith", type: "aggregate", file: "regolith", price: 300, produce: "Mi T", demand: "Ag Ocean", tag: "Ground beneath your dreams — and your domes.", desc: "Regolith is the pulverized bedrock of a thousand worlds — harvested, sieved, and compacted into the foundation for colonies, farms, and megastructures. Terraformers blend it with organics to birth soil; oceanic engineers pump it into the deep to anchor arcologies. It’s the dust that civilization stands on, traded by the megaton across the void." },
 	{ id: "robo1", name: "Robots", grade: 1, type: "Cyberops", file: "robots", price: 4000, stat: 'dangerous', produce: "H Ma", demand: "Ag F I Mi T", tag: "Workers who never ask for pay.<br><i>Illegal on theocratic worlds.</i>", desc: "Autonomous mechanical units for industrial, domestic, or security purposes. Range from cheap utility drones to high-end adaptive AIs. Banned on theocracies due to moral prohibitions on synthetic life." },	//81) HT -> M, Ag, I, T, Af
 	{ id: "robo2", name: "Robots", grade: 2, type: "Microtronic", file: "robots", price: 6000, stat: 'dangerous', produce: "H", demand: "Af Ag I Ma Mi T (F)" },
 	{ id: "robo3", name: "Robots", grade: 3, type: "Nanoworks", file: "robots", price: 8000, stat: 'dangerous', produce: "H", demand: "Af C Ma" },
@@ -95,6 +96,7 @@
 	{ id: "slav4", name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: 'live', produce: "H P S", demand: "Ag I Mi T" },
 	{ id: "slav5", name: "Slaves", grade: 5, type: "Luxorian", file: "slaves", price: 50000, stat: 'live', produce: "S", demand: "Af C H" },	// Special Supply -> 
 	{ name: "Synthetic Meat", type: "assorted", file: "synthetic-meat", price: 1000, stat: 'cold', produce: "H", demand: "F I Ma Mi P S T", tag: "Lab-grown, guilt optional.", desc: "Engineered protein grown from cultured cells. Tastes <i>almost</i> as good as the real thing. Cheap, sustainable, and nutritionally perfect—but critics claim long-term consumption dulls taste receptors and memory alike." },	//92) HT? -> *
+	{ name: "Volatiles", type: "compressed", file: "volatiles", price: 600, stat: 'cold', produce: "F Mi T", demand: "", tag: "Bottled breath: extracted atmospherics for fuel and synthesis.<br><i>Will explode if not kept in cold storage.</i>", desc: "Volatile elements, such as methane, ammonia, and CO₂, harvested during atmosphere processing or ice mining. Shipped in bulk to industrial worlds for use in plastics, fertilizers, and fuel synthesis. Terraforming operations treat them as waste by-products; manufacturers see them as profit in canisters." },
 	{ name: "Waste Products", type: "assorted", file: "waste-products", price: 50, produce: "*", demand: "None", tag: "Everything has an afterlife.<br><i>Produced by industrial processes, large populations, and damaged goods. Must pay to have them disposed of.</i>", desc: "Industrial runoff, biological residue, and other byproducts of production. Officially recycled, unofficially exported. Some colonies make fortunes cleaning up what others discard." },		//93) Af, C, Mx, HT -> *
 	{ name: "Water", type: "fresh", file: "water", price: 100, stat: 'sensitive', produce: "H Mi P (Ice, Ocean)", demand: "F T", tag: "The lifeblood of the galaxy.", desc: "Processed or harvested water from asteroids, comets, or reclamation plants. The basis of life and trade — measured, taxed, and fought over since before the first launch." }	//94) Ocean, Ice -> T, F
 ];
@@ -138,7 +140,7 @@ function worldGoods(w) {
 	//const byName = (...names) => goods
 	//	.map((v, i) => names.includes(v.name) ? i : -1)
 	//	.filter(i => i >= 0);
-	const byName = (...names) => goods.reduce((t, v, i) => names.includes(v.name) ? [...t, i] : [...t], []);
+	// const byName = (...names) => goods.reduce((t, v, i) => names.includes(v.name) ? [...t, i] : [...t], []);
 
 	// Helper: find index by name & optional type
 	// const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
@@ -167,6 +169,7 @@ function worldGoods(w) {
 	}
 
 	// --- Set supplied goods based on world focus ---
+	/*
 	switch (w.focus) {
 		case "Mining":
 			set = byName("Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals");
@@ -267,12 +270,9 @@ function worldGoods(w) {
 			if (goods[v].type === w.govdesc) set.push(v, v, v);
 		}
 	}
+	*/
 
-	// Set illegal goods
-	set = illegalGoods(w.gov);
-	buildArray(0);
-	
-	// Set supplied goods
+	/*
 	switch (w.focus) {
 		case "Mining":
 			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
@@ -283,6 +283,7 @@ function worldGoods(w) {
 			break;
 		case "Agricultural":
 			// [["Animal Meat", "Animal Skins", "Live Animals"], [], []]
+			// x2 gene1, gene2
 			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
 			// ["Fruit & Vegetables", "Grain", "Hydroponic Farms" (grade 2), "Liquor" (grade 1), "Liquor" (grade 2), "Narcotics" (grade 1), "Perishable Goods" (grade 1)]			["Hydroponic Farms" (grade 2), "Hydroponic Farms" (grade 3), "Liquor" (grade 2), "Liquor" (grade 3), "Perishable Goods" (grade 1)] : ["Grain", "Hydroponic Farms" (grade 1), "Liquor" (grade 1)]
 			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
@@ -292,7 +293,8 @@ function worldGoods(w) {
 			if (w.gov == "Corporate") set.push(67, 67);
 			break;
 		case "Industrial":
-			set = [13, 14, 15, 27, 28, 29, 41, 42, 46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
+			// Atmospheric Catalysts
+			set = [13, 14, 15, 27, 28, 29, "Heavy Plastics", "Deuterium Cells", 46, 47, 47, 48, 48, "Liquid Oxygen", rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
 			break;
 		case "Manufacturing":
 			set = [0, 1, 2, 3, 4, 5, 6, 30, 31, 32, 37, 38, 39, 40, 49, 49, 50, 50, 60, 61, 61, 62, 81];
@@ -302,6 +304,7 @@ function worldGoods(w) {
 			set.push(rnd(set), rnd(set), rnd(set));
 			break;
 		case "High Tech":
+			// x2 Atmospheric Catalysts, gene1, x2 gene2, x3 gene3
 			set = [17, 18, 23, 24, 25, 26, 61, 62, 63, 64, 65, 68, 69, 70, 78, 79, 81, 82, 83, 84, 90, 92]; // (80), (93)
 			break;
 		case "Affluent":
@@ -338,6 +341,73 @@ function worldGoods(w) {
 		const i = mixedGoods.indexOf(v);
 		if (i > -1) mixedGoods.splice(i, 1); });
 	buildArray(1);
+	*/
+
+	// Set illegal goods
+	set = illegalGoods(w.gov);
+	buildArray(0);
+	
+	// Set supplied goods ([ # of repeats, [repeatable goods], [non-repeatable goods] ])
+	const supply = {
+		"Mining": [5, ["Chemicals", "Gemstones", "Minerals", "Petroleum", "Precious Metals", "Regolith", "Volatiles"], ["Minerals"]],
+		"Agricultural": [3, ["Fruit & Vegetables", "Grain", "Liquor"], [...dup(2, "Hydroponic Farms"), "narc1", "peri1"]],
+		"Industrial": [4, ["Bacterial Farms", "Deuterium Cells", "Explosives", "Fertilizer", "Heavy Plastics", "Liquid Oxygen"], ["Atmospheric Catalysts", ...dup(2, "Industrial Equipment")]],
+		"Manufacturing": [3, ["Air Processors", "Automobiles", "Farming Equipment", "Hand Weapons", "Luxury Goods", "robo1"], [...dup(2, "Industrial Goods"), "lux2"]],
+		"Terraforming": [3, ["Chemicals", "Minerals", "Regolith", "Volatiles"], ["Regolith", "Volatiles"]],
+		"High Tech": [4, ["Electronics", "Gene Stock", "lux2", "lux3", "Medicine", "narc2", "narc3", "narc4", "Robots"], ["cons1", "cons2", "Electronics", "gene2", ...dup(2, "Atmospheric Catalysts", "gene3", "Probes", "Robots", "slav4"), "robo2", ...dup(3, "Synthetic Meat")]],
+		"Affluent": [0, [], []],
+		"Slum": [3, ["cons3", "cons4", "Luxury Goods", "peri2", "peri3", "Slaves"], ["lux1", "peri2", "peri3", ...dup(2, "slav1", "slav2"), "slav3", "slav4"]],
+		"Cultural": [1, ["liq2", "liq3", "lux3"], ["cons1", "liq2", "peri1"]],
+		"Prison": [2, ["cons3", "Minerals", "slav2", "slav3", "slav4", ...dup(2, "cons1", "cons2")], ["slav2"]],
+		"Frontier": [1, ["Chemicals", "cons1", "liq1", "narc1", "peri1", "Petroleum", "Precious Metals", "slav1", "slav2", "slav3"], ["Grain"]],
+		"Mixed": [3, [], []]
+	}[w.focus];
+	set = ...addGoods(supply[1]);
+
+	// Add live animals to agricultural and frontier worlds
+	if (["Agricultural", "Frontier"].includes(w.focus)) {
+			const animalGrade = (seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3 + 1;
+			set.push(goods.reduce((t, v, i) => v.name.includes("Animal") && v.grade === animalGrade ? [...t, i] : [...t], []));
+	}
+
+	// Add mixed goods
+	if (w.focus == "Mixed) {
+		for (const i of times((w.name.length + seed) % 4 + 3)) {
+			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
+			set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
+		}				
+	}
+	
+	// Add random repeats of goods in first set, then add second set
+	for (const i of times(supply[0])) {
+		supply[2].push(rnd(supply[1]));
+	}
+	set.push(...addGoods(supply[2]));
+	set = set.flat();
+
+	// Add corporate goods?
+	// +2 narc1 on agricultural
+	// Affluent goods --> if (w.gov == "Corporate") set.push(...[17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => goods[v].type == oldCorps.find(c => c.name == w.govdesc).name));
+	if (w.gov == "Corporate") {
+		new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
+		if (w.focus == "Affluent") set.push(goods.reduce((t, v, i) => ["Consumer Goods", "Liquor", "Luxury Goods", "Perishable Goods", "Robots"].includes(v.name) && v.type == w.govdesc ? [...t, i, i] : [...t], []));
+		if (w.focus == "Agricultural") set.push(...addGoods(dup(2, "narc1")));
+	}
+
+	// Add Lumber, Water, and Volatiles to certain world types
+	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
+		if (w.type == "Rocky") set.push(...addGoods(["Lumber", "Lumber"]));
+		if (w.type == "Desert") set.push(...addGoods(["Lumber"]));
+		if (w.type == "Ice") set.push(...addGoods(dup(2, "Volatiles", "Water")));
+	}
+	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type == "Ocean") set.push(...addGoods(["Water"]));
+
+	// Remove supplied goods from mixed good list (increase likeliness of rarer goods on mixed worlds)
+	set.forEach(v => {
+		const i = mixedGoods.indexOf(v);
+		if (i > -1) mixedGoods.splice(i, 1); });
+
+	buildArray(1);
 
 
 	// Set demand goods
@@ -371,17 +441,17 @@ function worldGoods(w) {
 
 	// Set demand goods
 	set = [...addGoods({
-		"Mining": ["auto1", "auto2", "meat1", "meat2", "cons1", "cons2", "peri2", ...dup(2, "Air Processors", "expl1", "narc1", "narc2", "Probes", "robo1", "robo2", "slav2", "slav3", "Synthetic Meat"), ...dup(3, "Industrial Goods", "liq1", "peri1", "slav4")],
-		"Agricultural": ["auto1", "auto2", "Live Animals", "Lumber", "medi1", "robo2", ...dup(2, "Fertilizer", "robo1", "slav2", "slav3", "slav4"), ...dup(3, "Farming Equipment")],
-		"Industrial": ["auto1", "auto2", "meat1", "meat2", "cons1", "cons2", "elec1", "liq2", "medi1", "medi2", "robo2", ...dup(2, "liq1", "narc1", "narc2", "peri2", "robo1", "slav2", "slav3", "slav4", "Synthetic Meat"), ...dup(3, "Chemicals", "Iron Ore", "Minerals", "peri1", "Petroleum")],
+		"Mining": ["atmo1", "auto1", "auto2", "meat1", "meat2", "cons1", "cons2", "peri2", ...dup(2, "Air Processors", "expl1", "narc1", "narc2", "Probes", "robo1", "robo2", "slav2", "slav3", "Synthetic Meat"), ...dup(3, "Industrial Equipment", "liq1", "peri1", "slav4")],
+		"Agricultural": ["auto1", "auto2", "Live Animals", "Lumber", "medi1", "robo2", "Volatiles", ...dup(2, "Atmospheric Catalysts", "Fertilizer", "Regolith", "robo1", "slav2", "slav3", "slav4"), ...dup(3, "Farming Equipment")],
+		"Industrial": ["auto1", "auto2", "meat1", "meat2", "cons1", "cons2", "elec1", "liq2", "medi1", "medi2", "robo2", ...dup(2, "liq1", "narc1", "narc2", "peri2", "robo1", "slav2", "slav3", "slav4", "Synthetic Meat", "Volatiles"), ...dup(3, "Chemicals", "Minerals", "peri1", "Petroleum")],
 		"Manufacturing": ["Animal Meat", "cons1", "cons2", "cons3", "Fruit & Vegetables", "Grain", "Liquid Oxygen", "liq1", "medi1", "medi2", "narc1", "narc2", "narc3", "peri3", ...dup(2, "Gemstones", "Industrial Equipment", "liq2", "peri1", "Precious Metals", "slav2", "slav3", "Synthetic Meat"), ...dup(3, "peri2", "robo2", "robo3")],
-		"Terraforming": ["meat1", "meat2", "bact1", "bact2", "cons1", "cons2", "expl2", "farm2", "Fruit & Vegetables", "Hydroponic Farms", "Industrial Goods", "medi1", "peri2", "robo1", "slav3", "slav4", "Synthetic Meat", ...dup(2, "Air Processors", "expl1", "Liquid Oxygen", "Live Animals", "peri1", "Probes", "robo2", "Water"), ...dup(3, "Fertilizer")], 
-		"High Tech": ["auto1", "auto2", "auto4", "Grain", "Hydroponic Farms", "hydr2", "liq1", "meat1", "slav3", ...dup(2, "auto3", "Bacterial Farms", "Chemicals", "cons3", "cons4", "Fruit & Vegetables", "Industrial Goods", "liq2", "liq3", "lux1", "meat2", "meat3", "peri2", "peri3", "slav5"), ...dup(3, "Precious Metals")],
-		"Affluent": ["anim1", "Deuterium Cells", "Grain", "hydr3", "lux1", "narc2", "robo2", "weap2", ...dup(2, "anim2", "anim3", "auto3", "cons3", "Gemstones", "Government Artifacts", "liq2", "Lumber", "lux2", "meat2", "medi2", "narc3", "narc4", "peri3", "robo3", "skin1", "slav1", "slav3", "weap3", "weap4"), ...dup(3, "auto4", "cons4", "Fruit & Vegetables", "liq3", "lux3", "meat3", "medi3", "robo4", "skin2", "skin3", "slav5")],
+		"Terraforming": ["bact1", "bact2", "cons1", "cons2", "expl2", "farm2", "Fruit & Vegetables", "Gene Stock", "Hydroponic Farms", "Industrial Goods", "meat1", "meat2", "medi1", "peri2", "robo1", "slav3", "slav4", "Synthetic Meat", ...dup(2, "Air Processors", "expl1", "Liquid Oxygen", "Live Animals", "peri1", "Probes", "robo2", "Water"), ...dup(3, "Atmospheric Catalysts", "Fertilizer")], 
+		"High Tech": ["auto1", "auto2", "auto4", "Grain", "Hydroponic Farms", "hydr2", "liq1", "meat1", "slav3", ...dup(2, "auto3", "Bacterial Farms", "Chemicals", "cons3", "cons4", "Fruit & Vegetables", "Industrial Goods", "liq2", "liq3", "lux1", "meat2", "meat3", "peri2", "peri3", "slav5", "Volatiles"), ...dup(3, "Precious Metals")],
+		"Affluent": ["anim1", "Deuterium Cells", "Grain", "hydr3", "lux1", "narc2", "robo2", "weap2", ...dup(2, "anim2", "anim3", "auto3", "cons3", "Gemstones", "Gene Stock", "Government Artifacts", "liq2", "Lumber", "lux2", "meat2", "medi2", "narc3", "narc4", "peri3", "robo3", "skin1", "slav1", "slav3", "weap3", "weap4"), ...dup(3, "auto4", "cons4", "Fruit & Vegetables", "liq3", "lux3", "meat3", "medi3", "robo4", "skin2", "skin3", "slav5")],
 		"Slum": ["auto1", "Chemicals", "cons1", "cons2", "Deuterium Cells", "Explosives", "Gemstones", "liq2", "weap4", ...dup(2, "Electronics", "Grain", "Heavy Plastics", "Lumber", "narc1", "narc2", "peri1", "Synthetic Meat", "weap3"), ...dup(3, "liq1", "narc3", "narc4", "weap1", "weap2")],
-		"Cultural": ["Animal Skins", "auto2", "auto3", "Animal Meat", "Animal Skins", "cons4", "Lumber", "lux1", "lux2", "Medicine", "medi2", "narc3", "narc4", "peri2", "Precious Metals", "robo3", ...dup(2, "cons3", "Fruit & Vegetables", "Grain", "narc1", "narc2", "slav3", "slav5")],
+		"Cultural": ["Animal Meat", "Animal Skins", "auto2", "auto3", "cons4", "Gene Stock", "Lumber", "lux1", "lux2", "Medicine", "medi2", "narc3", "narc4", "peri2", "Precious Metals", "robo3", ...dup(2, "cons3", "Fruit & Vegetables", "Grain", "narc1", "narc2", "slav3", "slav5")],
 		"Prison": ["auto1", "Chemicals", "Electronics", "Grain", "medi1", "peri1", "robo1", "robo2", "weap1", "weap2", ...dup(2, "Heavy Plastics", "Lumber"), ...dup(3, "Synthetic Meat")], 
-		"Frontier": ["auto1", "auto2", "Deuterium Cells", "expl1", "Fruit & Vegetables", "hydr1", "medi1", "narc2", "prob1", "robo1", "weap3", ...dup(2, "cons2", "Fertilizer", "liq2", "peri2", "Synthetic Meat", "Water", "weap1", "weap2")],
+		"Frontier": ["Atmospheric Catalysts", "auto1", "auto2", "Deuterium Cells", "expl1", "Fruit & Vegetables", "hydr1", "medi1", "narc2", "prob1", "robo1", "Regolith", "weap3", ...dup(2, "cons2", "Fertilizer", "gene1", "liq2", "peri2", "Synthetic Meat", "Water", "weap1", "weap2")],
 		"Mixed": ["cons1", "cons2"]
 	}[w.focus])];
 
@@ -396,6 +466,9 @@ function worldGoods(w) {
 	
 	// Remove Agricultural Demand for produced animals
 	if (w.focus == "Agricultural") set.splice(set.findIndex(i => i == arr.find(v => goods[v].name == "Live Animals")), 1);
+
+	// Add Regolith demand on Ocean worlds
+	if (w.type == "Ocean") set.push(...addGoods(dup(3, "Regolith")));
 	
 	// Adjust Demand for Democratic Governments
 	if (["Industrial", "Manufacturing", "Mining"].includes(w.focus) {
@@ -417,7 +490,7 @@ function worldGoods(w) {
 	if (w.gov == "Military") {
 		//if (![37, 38, 39, 40].some(v => arr.includes(v))) set.push(37, 37, 38, 38, 39, 39, 40, 40);
 		//if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
-		set.push(...addGoods(...dup(2, "Hand Weapons"), "Bacterial Farms"));
+		set.push(...addGoods([...dup(2, "gene3", "Hand Weapons"), "Bacterial Farms", "gene2"]));
 		//set.push(...findGoods("Hand Weapons"), ...findGoods("Hand Weapons"), ...findGoods("Bacterial Farms"));
 	}
 	//
@@ -476,7 +549,7 @@ function goodsPerish() {
 			const s = ship[x][y];
 			if (s.room == 'cargohold' && s.name) {
 				if (s.config != 'cold' && s.stat == 'cold') {
-					if (s.name == 'Liquid Oxygen') {
+					if (["Liquid Oxygen", "Volatiles"].includes(s.name)) {
 						displayCanvas('ship');
 						explosion(x, y);
 						setTimeout(_ => {removeCargo(x, y)}, 3000);	// *switch to fade out graphic
@@ -502,26 +575,3 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
