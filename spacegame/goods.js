@@ -471,7 +471,7 @@ function worldGoods(w) {
 	if (w.type == "Ocean") set.push(...addGoods(dup(3, "Regolith")));
 	
 	// Adjust Demand for Democratic Governments
-	if (["Industrial", "Manufacturing", "Mining"].includes(w.focus) {
+	if (["Industrial", "Manufacturing", "Mining"].includes(w.focus)) {
 		["Air Processors", "Animal Meat", "Automobiles", "Consumer Goods", "Electronics", "Farming Equipment", "Hydroponic Farms", "Industrial Goods", "Luxury Goods", "Medicine", "Perishable Goods", "Probes", "Robots"].forEach(g => {
 			const goodSubset = set.filter(v => goods[v].name === g);
 			if (goodSubset.length > 0) {
@@ -575,6 +575,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
