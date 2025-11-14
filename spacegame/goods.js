@@ -159,7 +159,7 @@ function worldGoods(w) {
 		console.log(arr);
 		console.log(set);
 		for (const g of set) {
-			console.log(g);
+			if (!goods[g].name) continue;
 			const existing = arr.findIndex(v => v.name === goods[g].name && v.type === goods[g].type);
 			if (existing > -1 && sd !== 0) {
 				arr[existing].supply += sd;
@@ -411,7 +411,7 @@ function worldGoods(w) {
 		const i = mixedGoods.indexOf(v);
 		if (i > -1) mixedGoods.splice(i, 1); });
 
-	if (set.length) buildArray(1);
+	buildArray(1);
 
 
 	// Set demand goods
@@ -579,6 +579,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
