@@ -455,14 +455,15 @@ function worldGoods(w) {
 		"Mixed": ["cons1", "cons2"]
 	}[w.focus])];
 
+
+	console.log(`DEBUG -> planet: ${w.name}, arr:`);
+	console.log(arr);
 	// Add Additional Mixed Demands
 	if (w.focus == "Mixed") {
 		for (const i of times(6 - (w.name.length + seed) % 4)) {
 			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 			set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
 		}
-		console.log("DEBUG -> arr:");
-		console.log(arr);
 		set.push(...addGoods(arr.some(v => goods[v].name == "Consumer Goods") ? [rnd(["Chemicals", "Heavy Plastics", "Lumber"]), rnd(["Chemicals", "Heavy Plastics", "Lumber"])] : ["cons3"]));
 	}
 	
@@ -577,6 +578,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
