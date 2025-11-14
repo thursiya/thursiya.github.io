@@ -371,7 +371,7 @@ function worldGoods(w) {
 	}
 
 	// Add mixed goods
-	if (w.focus == "Mixed) {
+	if (w.focus == "Mixed") {
 		for (const i of times((w.name.length + seed) % 4 + 3)) {
 			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
 			set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
@@ -575,5 +575,6 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
