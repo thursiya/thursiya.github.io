@@ -155,6 +155,9 @@ function worldGoods(w) {
 	const dup = (number, ...items) => Array(number).fill(items).flat();
 	
 	function buildArray(sd) {
+		console.log(`DEBUG -> planet: ${w.name}, arr, set:`);
+		console.log(arr);
+		console.log(set);
 		for (const g of set) {
 			const existing = arr.findIndex(v => v.name === goods[g].name && v.type === goods[g].type);
 			if (existing > -1 && sd !== 0) {
@@ -455,9 +458,6 @@ function worldGoods(w) {
 		"Mixed": ["cons1", "cons2"]
 	}[w.focus])];
 
-
-	console.log(`DEBUG -> planet: ${w.name}, arr:`);
-	console.log(arr);
 	// Add Additional Mixed Demands
 	if (w.focus == "Mixed") {
 		for (const i of times(6 - (w.name.length + seed) % 4)) {
@@ -578,6 +578,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
