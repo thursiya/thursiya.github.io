@@ -480,8 +480,8 @@ function worldGoods(w) {
 				const bestGrade = Math.min(goods[goodSubset[goodSubset.length - 1]].grade + 1, topGrade);
 				// Set worst to 1 level below lowest grade good (minimum 1)
 				const worstGrade = Math.max(goods[goodSubset[0]].grade - 1, 1);
-				set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade : worstGood));
-				if (goodSubset.length > 4) set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade - 1 : worstGood + 1));
+				set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade : worstGrade));
+				if (goodSubset.length > 4) set.push(...findGoods(g, w.gov === "Democracy" ? bestGrade - 1 : worstGrade + 1));
 			}
 		});		
 	}
@@ -575,6 +575,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
