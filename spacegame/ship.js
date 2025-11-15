@@ -217,7 +217,8 @@ function changeShip() {
 	ship[3][1] = { hull: "backcurve" };
 	ship[3][5] = { hull: "backcurve" };
 	ship[4][1] = { hull: "topright" };
-	ship[4][2] = { hull: "full", room: "cargohold", name: goods[17].name, file: goods[17].file, type: goods[17].type, price: 0, dest: "None", origin: here };
+	const g = goods.find(v => v.name == "Consumer Goods" && v.grade == 1);
+	ship[4][2] = { hull: "full", room: "cargohold", name: g.name, file: g.file, type: g.type, price: 0, dest: "None", origin: here };
 	ship[4][3] = { hull: "engine" };
 	ship[4][4] = { hull: "full", room: "cargohold", config: "live" };
 	ship[4][5] = { hull: "bottomright" };
@@ -230,3 +231,4 @@ function changeShip() {
 	
 	updateManifest();
 }
+
