@@ -351,7 +351,7 @@ function worldGoods(w) {
 	// Set supplied goods ([ # of repeats, [repeatable goods], [non-repeatable goods] ])
 	const supply = {
 		"Mining": [5, ["Chemicals", "Gemstones", "Minerals", "Petroleum", "Precious Metals", "Regolith", "Volatiles"], ["Minerals"]],
-		"Agricultural": [3, ["Fruit & Vegetables", "Grain", "Liquor"], [...dup(2, "Hydroponic Farms"), "narc1", "peri1"]],
+		"Agricultural": [3, ["Fruit & Vegetables", "Grain", "Liquor"], [...dup(2, "gene1", "Hydroponic Farms"), "gene2", "narc1", "peri1"]],
 		"Industrial": [4, ["Bacterial Farms", "Deuterium Cells", "Explosives", "Fertilizer", "Heavy Plastics", "Liquid Oxygen"], ["Atmospheric Catalysts", ...dup(2, "Industrial Equipment")]],
 		"Manufacturing": [3, ["Air Processors", "Automobiles", "Farming Equipment", "Hand Weapons", "Luxury Goods", "robo1"], [...dup(2, "Industrial Goods"), "lux2"]],
 		"Terraforming": [3, ["Chemicals", "Minerals", "Regolith", "Volatiles"], ["Regolith", "Volatiles"]],
@@ -575,6 +575,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
