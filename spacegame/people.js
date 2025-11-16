@@ -132,8 +132,6 @@ function Corporation(name, type, founded, hq, motto, desc = "") {
 	this.fullname = `${this.name} ${this.type}`;
 	this.founded = founded || time.year - rnd(50);
 	const w = world.find(v => v.name == this.name) || shuffle(world).pop();
-	console.log(w);
-	console.log(shuffle(world).pop());
 	this.hq = hq || `${rnd(w.city)}, ${w.name}`;
 	this.motto = motto || parse("#corpMottoPre# #corpMottoPost#.");
 	this.desc = desc;	
@@ -155,3 +153,4 @@ function rndCorporationName() {
 	} while (name == "FAIL");
 	return name;
 }
+
