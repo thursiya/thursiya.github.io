@@ -120,12 +120,9 @@ function chooseGoods(m, query) {
 		(v.price > 4999 && p.rep < 60) ||	// Skip moderate goods if low rep
 		(v.price < 5000 && p.rep > 79) ||	// Skip cheap goods if high rep
 		v.name == "Radioactive Waste" || v.name == "Waste Products" ||		// Skip wastes
-//		i == 80 || i == 93 ||		// Skip wastes
 //		Basic goods: Chemicals, Grain, Deuterium Cells, Iron Ore, Liquid Oxygen, Lumber, Minerals, Petroleum, Synthetic Meat, Water
 		(query != "extended" && ["Chemicals", "Deuterium Cells", "Grain", "Liquid Oxygen", "Lumber", "Minerals", "Petroleum", "Regolith", "Synthetic Meat", "Volatiles", "Water"].includes(v.name)) ||		// Skip basic goods
-//		(query != "extended" && [16, 36, 42, 51, 52, 59, 66, 76, 92, 94].includes(i)) ||	// Skip basic goods
 		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on "legal" query
-//		(query == "general" && [22, 35, 71].includes(i)) ? t :	// Skip unique goods on "general" query
 		(query == "general" && uniqueGoods.includes(v.name)) ? t :		// Skip unique goods on "general" query
 			[...t, ...uniqueGoods.includes(v.name) ? new Array((v.name == "Government Artifacts" && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
@@ -136,21 +133,10 @@ function worldGoods(w) {
 	let mixedGoods = [];
 	let set = [];
 	
-	// Helper: find all indices for a given list of good names
-	//const byName = (...names) => goods
-	//	.map((v, i) => names.includes(v.name) ? i : -1)
-	//	.filter(i => i >= 0);
-	// const byName = (...names) => goods.reduce((t, v, i) => names.includes(v.name) ? [...t, i] : [...t], []);
-
-	// Helper: find index by name & optional type
-	// const findGood = (name, type) => goods.findIndex(v => v.name === name && (!type || v.type === type));
-
 	// Helper: find all indices for a given list of goods based on short or full name
 	const addGoods = (names) => goods.reduce((t, v, i) => names.includes(v.id) || names.some(a => new RegExp(v.name, 'i').test(a)) ? [...t, i] : [...t] , []);
-	
 	// Helper: find all indices for a good by name & optional grade
 	const findGoods = (name, grade) => goods.reduce((t, v, i) => v.name === name && (!grade || v.grade === grade) ? [...t, i] : [...t], []);
-
 	// Helper: return array of strings
 	const dup = (number, ...items) => Array(number).fill(items).flat();
 	
@@ -169,186 +155,11 @@ function worldGoods(w) {
 		}
 	}
 
-	// --- Set supplied goods based on world focus ---
-	/*
-	switch (w.focus) {
-		case "Mining":
-			set = byName("Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals");
-			set.push(rnd(set), rnd(set), rnd(set), rnd(byName("Chemicals", "Gemstones", "Iron Ore")), rnd(byName("Minerals", "Petroleum", "Precious Metals")));
-			break;
-
-		case "Agricultural":
-			set = byName("Fruit & Vegetables", "Grain", "Hydroponic Farms", "Liquor", "Narcotics", "Perishable Goods");
-
-			const animalVariety = (seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3;
-			const animal = goods.reduce((t, v, i) => v.name.includes("Animal") && v.type === animalVariety ? [...t, i] : [...t], []);
-			const fruit = findGood("Fruit & Vegetables");
-			const grain = findGood("Grain");
-			const liquor1 = findGood("Liquor", "assorted new");
-			const liquor2 = findGood("Liquor", "assorted aged");
-			set.concat(rnd([animal, fruit, grain]), 
-					   rnd([animal, fruit, grain]), 
-					   rnd([animal, fruit, grain]), 
-					   w.gov === "Democracy" ? [findGood("Hydroponic Farms", "Centauri"), findGood("Hydroponic Farms", "Veridian"), findGood("Liquor", "assorted aged"), findGood("Liquor", "Doleamas"), findGood("Perishable Goods", "MilkyWay")] : 
-											   [grain, findGood("Hydroponic Farms", "AmritJivan"), liquor1]);
-			set.push(...byName("Fruit & Vegetables", "Grain"), findGood("Hydroponic Farms", "Centauri"), findGood("Liquor", "assorted new"), findGood("Liquor", "assorted aged"), findGood("Narcotics", "Minor"));
-			
-			if (w.type === "Ocean") set.push(...byName("Hydroponic Farms"));
-			if (w.govdesc === "Veridian") set.push(findGood("Hydroponic Farms", "Veridian"));
-			if (w.govdesc === "Doleamas") set.push(findGood("Liquor", "Doleamas"));
-			if (w.gov === "Corporate") set.push(findGood("Narcotics", "Minor"), findGood("Narcotics", "Minor"));
-			break;
-						// [["Animal Meat", "Animal Skins", "Live Animals"], [], []]
-			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
-			// ["Fruit & Vegetables", "Grain", "Hydroponic Farms" (grade 2), "Liquor" (grade 1), "Liquor" (grade 2), "Narcotics" (grade 1), "Perishable Goods" (grade 1)]			["Hydroponic Farms" (grade 2), "Hydroponic Farms" (grade 3), "Liquor" (grade 2), "Liquor" (grade 3), "Perishable Goods" (grade 1)] : ["Grain", "Hydroponic Farms" (grade 1), "Liquor" (grade 1)]
-			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
-			//if (w.type == "Ocean") set.push(43, 44, 45);
-			//if (w.govdesc == "Veridian") set.push(45);
-			//if (w.govdesc == "Doleamas") set.push(55);
-			//if (w.gov == "Corporate") set.push(67, 67);
-			break;
-
-		case "Industrial":
-			set = byName("Bacteria Farms", "Deuterium Cells", "Explosives", "Fertilizer", "Heavy Plastics", "Industrial Equipment", "Industrial Goods", "Liquid Oxygen");
-			set.push(rnd(Bact1,Exp1,Fert), rnd(Bact2,Exp2,Fert), rnd(Plas,Deut,Oxy), rnd(Plas,Deut,Oxy));
-			set = [13, 14, 15, 27, 28, 29, 41, 42,
-				   46, 47, 47, 48, 48, 52, rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
-			break;
-
-		case "Manufacturing":
-			set = byName("Automobiles", "Industrial Goods", "Luxury Goods", "Robots", "Consumer Goods");
-			break;
-
-		case "Terraforming":
-			set = byName("Chemicals", "Iron Ore", "Minerals", "Atmospheric Catalysts", "Air Processors");
-			break;
-
-		case "High Tech":
-			set = byName("Electronics", "Medicine", "Probes", "Robots", "Consumer Goods", "Luxury Goods", "Gene Stock");
-			break;
-
-		case "Affluent":
-			set = byName("Luxury Goods", "Liquor", "Consumer Goods", "Medicine", "Electronics");
-			break;
-
-		case "Slum":
-			set = byName("Consumer Goods", "Luxury Goods", "Liquor", "Narcotics", "Slaves");
-			break;
-
-		case "Cultural":
-			set = byName("Luxury Goods", "Government Artifacts", "Liquor", "Medicine", "Consumer Goods");
-			break;
-
-		case "Prison":
-			set = byName("Consumer Goods", "Industrial Goods", "Slaves");
-			break;
-
-		case "Frontier":
-			set = byName("Fruit & Vegetables", "Grain", "Liquor", "Bacteria Farms", "Farming Equipment", "Water");
-			break;
-
-		case "Mixed":
-			if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
-			set = [];
-			for (let i = 0; i < (w.name.length % 4 + 3); i++) {
-				set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
-			}
-			break;
-	}
-
-	// --- Add environmental resource bonuses ---
-	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
-		if (w.type === "Rocky") set.push(findGood("Lumber"));
-		if (w.type === "Desert") set.push(findGood("Lumber"));
-		if (w.type === "Ice") set.push(findGood("Water"));
-	}
-	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type === "Ocean"))
-		set.push(findGood("Water"));
-
-	// --- Corporate boosts: duplicate corporate goods ---
-	if (w.gov === "Corporate") {
-		for (const v of new Set(set)) {
-			if (goods[v].type === w.govdesc) set.push(v, v, v);
-		}
-	}
-	*/
-
-	/*
-	switch (w.focus) {
-		case "Mining":
-			// ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"];
-			//set = goods.reduce((t, v, i) => ["Chemicals", "Gemstones", "Iron Ore", "Minerals", "Petroleum", "Precious Metals"].includes(v.name) ? [...t, i] : [...t], []);
-			//set.push(rnd(set), rnd(set), rnd(set), rnd(
-			set = [16, 34, 51, 66, 76, 77];
-			set.push(rnd(set), rnd(set), rnd(set), rnd([16, 34, 51]), rnd([66, 76, 77]));
-			break;
-		case "Agricultural":
-			// [["Animal Meat", "Animal Skins", "Live Animals"], [], []]
-			// x2 gene1, gene2
-			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
-			// ["Fruit & Vegetables", "Grain", "Hydroponic Farms" (grade 2), "Liquor" (grade 1), "Liquor" (grade 2), "Narcotics" (grade 1), "Perishable Goods" (grade 1)]			["Hydroponic Farms" (grade 2), "Hydroponic Farms" (grade 3), "Liquor" (grade 2), "Liquor" (grade 3), "Perishable Goods" (grade 1)] : ["Grain", "Hydroponic Farms" (grade 1), "Liquor" (grade 1)]
-			set = [33, 36, 44, 53, 54, 67, 72].concat(set, rnd([set, 33, 36]), rnd([set, 33, 36]), rnd([set, 33, 36]), w.gov == "Democracy" ? [44, 45, 54, 55, 72] : [36, 43, 53]);
-			if (w.type == "Ocean") set.push(43, 44, 45);
-			if (w.govdesc == "Veridian") set.push(45);
-			if (w.govdesc == "Doleamas") set.push(55);
-			if (w.gov == "Corporate") set.push(67, 67);
-			break;
-		case "Industrial":
-			// Atmospheric Catalysts
-			set = [13, 14, 15, 27, 28, 29, "Heavy Plastics", "Deuterium Cells", 46, 47, 47, 48, 48, "Liquid Oxygen", rnd([13, 27, 29]), rnd([14, 28, 29]), rnd([41, 42, 52]), rnd([41, 42, 52])];	//(80), (93)
-			break;
-		case "Manufacturing":
-			set = [0, 1, 2, 3, 4, 5, 6, 30, 31, 32, 37, 38, 39, 40, 49, 49, 50, 50, 60, 61, 61, 62, 81];
-			break;
-		case "Terraforming":
-			set = [16, 51, 66];
-			set.push(rnd(set), rnd(set), rnd(set));
-			break;
-		case "High Tech":
-			// x2 Atmospheric Catalysts, gene1, x2 gene2, x3 gene3
-			set = [17, 18, 23, 24, 25, 26, 61, 62, 63, 64, 65, 68, 69, 70, 78, 79, 81, 82, 83, 84, 90, 92]; // (80), (93)
-			break;
-		case "Affluent":
-			if (w.gov == "Corporate") set.push(...[17, 18, 19, 20, 21, 55, 60, 61, 62, 72, 73, 74, 75, 81, 82, 83, 84].filter(v => goods[v].type == oldCorps.find(c => c.name == w.govdesc).name));
-			break;
-		case "Slum":
-			set = [19, 20, 21, 60, 60, 61, 62, 73, 73, 74, 74, 75, 75, 85, 85, 85, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 91];
-			break;
-		case "Cultural":
-			set = [54, 54, 55, 62].concat(w.gov == "Democracy" ? 55 : [17, 72]);
-			if (w.govdesc == "Doleamas") set.push(55);
-			break;
-		case "Prison":
-			set = [17, 18, 86, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 90, rnd([17, 51, 66])].concat(w.gov == "Democracy" ? [17, 18, 19, 20] : rnd([51, 66]));	
-			break;
-		case "Frontier":
-			set = [[7, 10, 56], [8, 11, 57], [9, 12, 58]][(seed + world.filter(v => ["Agricultural", "Frontier"].includes(v.focus)).length) % 3];
-			set.push(53, 77, rnd([16, 36, 76]), [17, 67, 72][w.name.length % 3], ...(w.gov == "Democracy" ? [[17, 36, 72][w.name.length % 3]] : [85, 86, 86, 87, 88, 89]));
-			break;
-		case "Mixed":
-			for (const i of times((w.name.length + seed) % 4 + 3)) {
-				if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
-				set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
-			}				
-	}
-	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
-		if (w.type == "Rocky") set.push(59, 59);
-		if (w.type == "Desert") set.push(59);
-		if (w.type == "Ice") set.push(94, 94);
-	}
-	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type == "Ocean") set.push(94);
-	if (w.gov == "Corporate") new Set(set).forEach(v => {if (goods[v].type == w.govdesc) set.push(v, v, v)});
-	set.forEach(v => {
-		const i = mixedGoods.indexOf(v);
-		if (i > -1) mixedGoods.splice(i, 1); });
-	buildArray(1);
-	*/
-
-	// Set illegal goods
+	// --- Set illegal goods ---
 	set = illegalGoods(w.gov);
 	buildArray(0);
 	
-	// Set supplied goods ([ # of repeats, [repeatable goods], [non-repeatable goods] ])
+	// --- Set supplied goods based on world focus --- ([ # of repeats, [repeatable goods], [non-repeatable goods] ])
 	const supply = {
 		"Mining": [5, ["Chemicals", "Gemstones", "Minerals", "Petroleum", "Precious Metals", "Regolith", "Volatiles"], ["Minerals"]],
 		"Agricultural": [3, ["Fruit & Vegetables", "Grain", "Liquor"], [...dup(2, "gene1", "Hydroponic Farms"), "gene2", "narc1", "peri1"]],
@@ -410,36 +221,7 @@ function worldGoods(w) {
 	buildArray(1);
 
 
-	// Set demand goods
-	//if (w.focus == "Mining") set = [0, 0, 1, 1, 2, 3, 4, 7, 8, 17, 18, 27, 27, 27, 46, 46, 46, 47, 47, 47, 48, 48, 48, 53, 53, 53, 67, 67, 68, 68, 72, 72, 72, 73, 74, 78, 78, 79, 81, 81, 82, 82, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 90, 92, 92];
-	// Agricultural Democ: if med1: +med1 med2, if rob2: +rob1 rob2 || +slav2 slav2 slav3 slav3 slav4 slav4
-	//if (w.focus == "Agricultural") set = [2, 3, 4, 29, 29, 30, 30, 30, 31, 31, 31, 32, 32, 32, 59, 63, 81, 81, 82, ...(w.gov == "Democracy" ? [63, 64, 81, 82] : [86, 86, 87, 87, 88, 88, 89, 89, 90, 90]), ...(arr.includes(56) ? [57, 58] : arr.includes(57) ? [56, 58] : [56, 57])];
-	//if (w.focus == "Industrial") set = [2, 3, 4, 7, 8, 16, 16, 16, 17, 18, 23, 51, 51, 51, 53, 53, 54, 63, 64, 66, 66, 66, 67, 67, 68, 68, 72, 72, 72, 73, 73, 73, 74, 74, 76, 76, 76, 81, 81, 82, 85, 85, 86, 86, 87, 87, 88, 88, 89, 89, 90, 90, 92, 92];
-	//if (w.focus == "Manufacturing") set = [7, 8, 9, 17, 18, 19, 33, 34, 34, 36, 46, 46, 47, 47, 48, 48, 52, 53, 54, 54, 63, 64, 67, 68, 69, 72, 72, 73, 73, 73, 74, 74, 74, 75, 77, 77, 82, 82, 82, 83, 83, 83, 86, 86, 87, 87, 88, 88, 89, 89, 92, 92];
-	// Terraforming Democ: if med1: +med1 med2, if air2: +air2, if cons1,2: +cons3, if farm2: +farm3, if hydr: +hydr3, if meat1,2: +meat3, if peri: +peri3, if prob: +prob2 || if air1: +air1, +bact1 bact2, if peri1: +peri1, +exp1 exp1 exp2, if farm2: +farm1, if hydr: +hydr1, if peri: +peri1 peri2 peri2b, if prob: +prob1, +slav3 slav4
-	//if (w.focus == "Terraforming") set = [0, 0, 1, 1, 7, 8, 17, 18, 29, 29, 29, 31, 33, 43, 44, 45, 49, 50, 52, 52, 56, 56, 57, 57, 58, 63, 72, 72, 73, 74, 78, 78, 79, 79, 81, 82, 82, 92, 94, 94, 94, ...(w.gov == "Democracy" ? [1, 9, 19, 20, 32, 45, 63, 64, 75, 79] : [0, 13, 14, 17, 27, 27, 28, 30, 43, 72, 73, 74, 78, 87, 88, 89, 90])];
-	// High Tech Democ: if auto: +auto3 auto4, if cons3: +cons3 cons4, if hydr3: +hydr3, if indg2: +indg2, if liq3: +liq3, if lux: +lux1 lux2 lux2, if peri: +peri3 || +auto2|2, +bact1 bact1 bact2 bact2 bact3 bact3, +hydr1, +indg1, +slav3 slav5 slav5
-	//if (w.focus == "High Tech") set = [2, 3, 4, 5, 5, 6, 7, 8, 8, 9, 9, 16, 16, 19, 20, 20, 21, 21, 33, 33, 36, 43, 44, 44, 45, 49, 49, 50, 50, 53, 54, 54, 55, 55, 60, 60, 72, 73, 73, 74, 74, 75, 75, 77, 77, 77, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 45, 50, 55, 60, 61, 61, 75] : [3, 4, 13, 13, 14, 14, 15, 15, 43, 49, 87, 88, 89, 91, 91])];
-	// Affluent Democ: if auto: +auto3 auto4, if cons3: +cons3 cons4, if liq3: +liq3, if lux: +lux1 lux2 lux3, if medi3: +medi3, if peri3: +peri3, if robo: +robo4 || +skin1 skin1 skin2 skin2 skin2 skin3 skin3 skin3, +hand2 hand3 hand3 hand4 hand4, +narc2 narc3 narc3 narc4 narc4, +slav1 slav1 slav3 slav3 slav5 slav5 slav5
-	//if (w.focus == "Affluent") set = [5, 5, 6, 6, 6, 8, 8, 9, 9, 9, 19, 19, 20, 20, 21, 21, 21, 33, 33, 33, 34, 34, 35, 35, 35, 36, 42, 45, 54, 54, 55, 55, 55, 56, 57, 57, 58, 58, 59, 59, 60, 61, 61, 62, 62, 62, 64, 64, 65, 65, 65, 75, 75, 82, 83, 83, 84, 84, 84, ...(w.gov == "Democracy" ? [5, 6, 19, 20, 55, 60, 61, 62, 65, 75, 84] : [10, 10, 11, 11, 11, 12, 12, 12, 38, 39, 39, 40, 40, 68, 69, 69, 70, 70, 85, 85, 87, 87, 88, 88, 89, 89, 91, 91, 91])];
-	// Slum Democ: if auto: +auto2, if elec: +elec3, if peri: +peri2 peri2 || if auto: +auto1, if elec: +elec1, +expl1 expl2, +hand1 hand1 hand1 hand2 hand2 hand2 hand3 hand3 hand4, +narc2 narc2 narc3 narc3 narc3 narc4 narc4 narc4
-	//if (w.focus == "Slum") set = [2, 16, 17, 18, 23, 23, 24, 24, 25, 25, 26, 34, 36, 36, 41, 42, 53, 53, 53, 54, 59, 67, 67, 72, 72, 92, 92, ...(w.gov == "Democracy" ? [3, 4, 26, 73, 73] : [2, 23, 27, 28, 37, 37, 37, 38, 38, 38, 39, 39, 40, 68, 68, 69, 69, 69, 70, 70, 70])];
-	// Cultural Democ: if auto: +auto4, if meat: +meat3, if skin: +skin3??, if cons: +cons4, if medi: +medi3, if peri: +peri3, if robo: +robo4 || if auto: +auto1, if meat: +meat2, if skin: +skin2, if cons: +cons2, if narc: +narc2 narc2 narc3 narc4, +slav3 slav3 slav5 slav5
-	//if (w.focus == "Cultural") set = [3, 4, 5, 7, 8, 9, 10, 11, 12, 19, 19, 20, 20, 21, 33, 33, 36, 36, 57, 58, 59, 60, 61, 63, 64, 64, 65, 67, 67, 73, 74, 77, 83].concat(w.gov == "Democracy" ? [6, 9, 12, 21, 65, 75, 84] : [2, 8, 11, 18, 68, 68, 69, 70, 87, 87, 88, 88, 89, 89, 91, 91]);
-	// Prison Democ: if elec: +elec3, if grain: +grain, if lumb: +lumb || if elec: +elec1, if plas: +plas, if peri: +peri1 --> increase base lumber and plastic demand?
-	//if (w.focus == "Prison") set = [2, 16, 23, 24, 25, 26, 36, 41, 59, 72, 92, 92, 92, ...(w.gov == "Democracy" ? [26, 36, 59] : [23, 41, 72])];
-	// Frontier Democ: if auto: +auto2, if cons: +cons3, +elec1, if veg: +veg, if liq: +liq3, if medi: +medi2, if prob: +prob2, if robo: +robo2 || +expl1, +hand1 hand1 hand2 hand2 hand3, +narc2, if peri: +peri1 peri1
-	//if (w.focus == "Frontier") set = [2, 3, 4, 18, 18, 29, 29, 33, 42, 43, 54, 54, 63, 73, 73, 74, 74, 78, 81, 92, 92, 94, 94, ...(w.gov == "Democracy" ? [3, 4, 19, 20, 23, 33, 55, 64, 79, 82] : [27, 37, 37, 38, 38, 39, 68, 72, 72])];
-	//if (w.focus == "Mixed") {
-	//	set = [17, 18];
-	//	for (const i of times(6 - (w.name.length + seed) % 4)) {
-	//		if (mixedGoods.length < 1) mixedGoods = fillMixedArray();
-	//		set.push(mixedGoods.splice(rnd(mixedGoods.length) - 1, 1)[0]);
-	//	}
-	//	set.push(...(arr.some(v => v > 16 && v < 22) ? [rnd([16, 41, 59]), rnd([16, 41, 59])] : [18, 19, 20, w.gov == "Democracy" ? 21 : 17]));
-	//}
-
-	// Set demand goods
+	// --- Set demand goods ---
 	set = [...addGoods({
 		"Mining": ["atmo1", "auto1", "auto2", "meat1", "meat2", "cons1", "cons2", "peri2", ...dup(2, "Air Processors", "expl1", "narc1", "narc2", "Probes", "robo1", "robo2", "slav2", "slav3", "Synthetic Meat"), ...dup(3, "Industrial Equipment", "liq1", "peri1", "slav4")],
 		"Agricultural": ["auto1", "auto2", "Live Animals", "Lumber", "medi1", "robo2", "Volatiles", ...dup(2, "Atmospheric Catalysts", "Fertilizer", "Regolith", "robo1", "slav2", "slav3", "slav4"), ...dup(3, "Farming Equipment")],
@@ -503,28 +285,9 @@ function fillMixedArray() {
 	// Include all goods except those in exceptionList
 	const exceptionList = ["Data Vaults", "Government Artifacts", "Lumber", "Packages", "Radioactive Waste", "Waste Products", "Water"];
 	return goods.reduce((t, v, i) => exceptionList.includes(v.name) ? [...t] : [...t, i], []);
-	
-	/*
-	const a = [...Array(93)].map((v, i) => i);	// All goods except waste & water
-	a.splice(80, 1); // radioactive waste
-	a.splice(71, 1); // packages
-	a.splice(59, 1); // lumber
-	a.splice(35, 1); // artifacts
-	a.splice(22, 1); // datavaults
-	return a
-	*/
 }
 
 function illegalGoods(gov) {
-/*
-	Corp: explosives (all), hand weapons (all), narcotics (grade 2-4)
-	Demo: animal skins (all), bacterial farms (all), explosives (all), hand weapons (all), narcotics (grade 2-4), slaves (all)
-	Feud: explosives (all), narcotics (grade 3-4)
-	Mili: narcotics (all)
-	Theo: explosives (all), liquor (all), luxury goods (all), narcotics (all), robots (all) , slaves (grade 5)
-	goods.filter(v => ["Explosives", "Hand Weapons"].includes(v.name) || v.name == "Narcotics" && v.grade > 1).map(v => Object.create(v));
-*/
-	
 	const illegalList = {
 		"Corporate": { "Explosives": 0, "Gene Stock": 2, "Hand Weapons": 0, "Narcotics": 1 },
 		"Democracy": { "Animal Skins": 0, "Atmospheric Catalysts": 0, "Bacterial Farms": 0, "Explosives": 0, "Gene Stock": 1, "Hand Weapons": 0, "Narcotics": 1, "Slaves": 0 },
@@ -532,14 +295,6 @@ function illegalGoods(gov) {
 		"Military": { "Narcotics": 0 },
 		"Theocracy": { "Atmospheric Catalysts": 0, "Explosives": 0, "Gene Stock": 0, "Liquor": 0, "Luxury Goods": 0, "Narcotics": 0, "Robots": 0, "Slaves": 4 } };
 	return goods.reduce((t, v, i) => illegalList[gov]?.[v.name] < v.grade ? [...t, i] : [...t], []);
-
-/*
-	return ({"Corporate": [27, 28, 37, 38, 39, 40, 68, 69, 70],
-		"Democracy": [10, 11, 12, 13, 14, 15, 27, 28, 37, 38, 39, 40, 68, 69, 70, 85, 86, 87, 88, 89, 90, 91],
-		"Feudal": [27, 28, 69, 70],
-		"Military": [67, 68, 69, 70],
-		"Theocracy": [27, 28, 53, 54, 55, 60, 61, 62, 67, 68, 69, 70, 81, 82, 83, 84, 91]})[gov] || [];
-*/
 }
 
 // will need reworking along with whole ship array storage method
@@ -575,19 +330,3 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
