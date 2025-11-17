@@ -231,7 +231,7 @@ function worldGoods(w) {
 		"High Tech": ["auto1", "auto2", "auto4", "Grain", "Hydroponic Farms", "hydr2", "liq1", "meat1", "slav3", ...dup(2, "auto3", "Bacterial Farms", "Chemicals", "cons3", "cons4", "Fruit & Vegetables", "Industrial Goods", "liq2", "liq3", "lux1", "meat2", "meat3", "peri2", "peri3", "slav5", "Volatiles"), ...dup(3, "Precious Metals")],
 		"Affluent": ["anim1", "Deuterium Cells", "Grain", "hydr3", "lux1", "narc2", "robo2", "weap2", ...dup(2, "anim2", "anim3", "auto3", "cons3", "Gemstones", "Gene Stock", "Government Artifacts", "liq2", "Lumber", "lux2", "meat2", "medi2", "narc3", "narc4", "peri3", "robo3", "skin1", "slav1", "slav3", "weap3", "weap4"), ...dup(3, "auto4", "cons4", "Fruit & Vegetables", "liq3", "lux3", "meat3", "medi3", "robo4", "skin2", "skin3", "slav5")],
 		"Slum": ["auto1", "Chemicals", "cons1", "cons2", "Deuterium Cells", "Explosives", "Gemstones", "liq2", "weap4", ...dup(2, "Electronics", "Grain", "Heavy Plastics", "Lumber", "narc1", "narc2", "peri1", "Synthetic Meat", "weap3"), ...dup(3, "liq1", "narc3", "narc4", "weap1", "weap2")],
-		"Cultural": ["Animal Meat", "Animal Skins", "auto2", "auto3", "cons4", "Gene Stock", "Lumber", "lux1", "lux2", "Medicine", "medi2", "narc3", "narc4", "peri2", "Precious Metals", "robo3", ...dup(2, "cons3", "Fruit & Vegetables", "Grain", "narc1", "narc2", "slav3", "slav5")],
+		"Cultural": ["Animal Meat", "Animal Skins", "anim2", "anim3", "auto2", "auto3", "cons4", "Gene Stock", "Lumber", "lux1", "lux2", "Medicine", "medi2", "narc3", "narc4", "peri2", "Precious Metals", "robo3", ...dup(2, "cons3", "Fruit & Vegetables", "Grain", "narc1", "narc2", "slav3", "slav5")],
 		"Prison": ["auto1", "Chemicals", "Electronics", "Grain", "medi1", "peri1", "robo1", "robo2", "weap1", "weap2", ...dup(2, "Heavy Plastics", "Lumber"), ...dup(3, "Synthetic Meat")], 
 		"Frontier": ["Atmospheric Catalysts", "auto1", "auto2", "Deuterium Cells", "expl1", "Fruit & Vegetables", "hydr1", "medi1", "narc2", "prob1", "robo1", "Regolith", "weap3", ...dup(2, "cons2", "Fertilizer", "gene1", "liq2", "peri2", "Synthetic Meat", "Water", "weap1", "weap2")],
 		"Mixed": ["cons1", "cons2"]
@@ -330,3 +330,4 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
