@@ -377,7 +377,7 @@ function displayInfo(type, which) {
        						<td style="text-align: center">${v.demand}</td>
 	     				</tr>`, "")}
 			</table>
-   			<p class="reduced" style="font-style: italics; font-variant: small-caps">
+   			<p class="reduced" style="font-style: italic; font-variant: small-caps">
       				<b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming
 	  		</p>
 			<p>${g[0].desc}</p>`;
@@ -491,6 +491,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
