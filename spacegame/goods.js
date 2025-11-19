@@ -116,13 +116,12 @@ function chooseGoods(m, query) {
 	const suppliedGoods = world[loc].goods.map(v => (v.supply > 0 && v.stat != "illegal") ? v.type + v.name : 0);
 	const uniqueGoods = ["Data Vaults", "Government Artifacts", "Packages"];
 	return goods.map(v => Object.create(v)).reduce((t, v, i) => suppliedGoods.includes(v.type + v.name) ||	// Skip supplied goods
-		(v.price > 9999 && p.rep < 80) ||	// Skip expensive goods if not high rep
-		(v.price > 4999 && p.rep < 60) ||	// Skip moderate goods if low rep
-		(v.price < 5000 && p.rep > 79) ||	// Skip cheap goods if high rep
+		(v.price > 9999 && p.rep < 80) ||		// Skip expensive goods if not high rep
+		(v.price > 4999 && p.rep < 60) ||		// Skip moderate goods if low rep
+		(v.price < 5000 && p.rep > 79) ||		// Skip cheap goods if high rep
 		v.name == "Radioactive Waste" || v.name == "Waste Products" ||		// Skip wastes
-//		Basic goods: Chemicals, Grain, Deuterium Cells, Iron Ore, Liquid Oxygen, Lumber, Minerals, Petroleum, Synthetic Meat, Water
 		(query != "extended" && ["Chemicals", "Deuterium Cells", "Grain", "Liquid Oxygen", "Lumber", "Minerals", "Petroleum", "Regolith", "Synthetic Meat", "Volatiles", "Water"].includes(v.name)) ||		// Skip basic goods
-		(query == "legal" && illegals.includes(i)) ||	// Skip illegal goods on "legal" query
+		(query == "legal" && illegals.includes(i)) ||		// Skip illegal goods on "legal" query
 		(query == "general" && uniqueGoods.includes(v.name)) ? t :		// Skip unique goods on "general" query
 			[...t, ...uniqueGoods.includes(v.name) ? new Array((v.name == "Government Artifacts" && world[loc].focus == "Cultural") ? 15 : 5).fill(Object.assign(v, { id: `${(Math.floor(seed / (world[loc].notices.length + 1) + time.full) % 1679616).toString(36).toUpperCase()}-${("00" + rnd(999)).slice(-3)}` })) : [v]], []);
 }
@@ -330,4 +329,5 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
