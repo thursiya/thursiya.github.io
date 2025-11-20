@@ -367,7 +367,8 @@ function addLocale (which, location, m = {}, name, query) {
 	const hidden = (query == "hidden");
 		
 	const localname = rnd([w.name, rnd(w.city)]);
-	if (!name) name = parse(rnd(({bar: [`${rndPersonName().split(" ")[0]}'s ${capitalize(type)}`,
+	if (!name) name = parse(rnd(({
+		bar: [`${rndPersonName().split(" ")[0]}'s ${capitalize(type)}`,
 			`The #fabricN[!unique].caps|plantN[!general].caps|predatorN.caps# #Club|${capitalize(type)}#`,
 			`#gods|mythicalLoc#`],
 		embassy: [`${world[rnd(w.links)].name} #embassy.caps#`],
@@ -496,15 +497,18 @@ function mTextSwap (v, m) {
 			const c = m.cargo[s.replace(/CARGO(.*?)/g, "").replace(/\.(.*)/g, "")];
 			const t = s.split(".")[1] || 'name';
 			if (t == 'name' && !c.altname && illegalGoods(world[m.origin].gov).includes(goods.findIndex(v => v.name == c.name && v.type == c.type))) {
-				c.altname = ({"Animal Skins": `"Woolen Rugs"`,
-					"Bacteria Farms": `"${rnd(['Scientific', 'Diagnostic'])} Organisms"`,
-					"Explosives": `"${rnd(['Fracturing', 'Dispersal'])} Devices"`,
-					"Hand Weapons": `"${rnd(['Security', 'Deterrence'])} Devices"`,
-					"Liquor": `"${rnd(['Spiritual', 'Pleasant'])} Beverages"`,
-					"Luxury Goods": `"${rnd(['Heavenly', 'Generous'])} Amenities"`,
-					"Narcotics": `"Alternative Medicines"`,
-					"Robots": `"Mobile Computers"`,
-					"Slaves": `"${rnd(['Refugees', 'Foreign Workers', 'Entertainers'])}"`})[c.name];
+				c.altname = ({
+					"Animal Skins": "#Natural|Organic|Traditional# #Fabric|Leather|Textile#s",
+					"Atmospheric Catalysts": "#Air Quality|Climate|Environmental# #Additive|Enhancer|Treatment Agent#s",
+					"Bacterial Farms": "#Diagnostic|Microbial|Scientific# #Culture|Organism|Substrate#s",
+					"Explosives": "#Demolition|Dispersal|Fracturing# #Device|Implement|Tool#s",
+					"Gene Stock": "#Ancestral|Heritage|Reproductive# #Culture|Sample|Specimen#s",
+					"Hand Weapons": "#Deterrence|Personal Safety|Security# #Device|Implement|Tool#s",
+					"Liquor": "#Ceremonial|Communal|Consecrated# #Beverage|Refreshment|Tonic#s",
+					"Luxury Goods": "#Exclusive|High-End|Premium# #Amenitie|Commoditie|Good#s",
+					"Narcotics": "#Alternative|Therapeutic|Wellness# #Medicine|Remedie|Supplement#s"`,
+					"Robots": "#Autonomous|Mobile|Service# #Assitant|System|Unit#s",
+					"Slaves": "#Entertainers|Foreign Workers|Indentured Personnel|Refugees#" })[c.name];
 			}
 			return (t == 'name') ? c.altname || c.name : c[t];
 		}
@@ -527,3 +531,4 @@ function checkTriggers () {
 			}
 		} );
 }
+
