@@ -509,6 +509,7 @@ function mTextSwap (v, m) {
 					"Narcotics": "#Alternative|Therapeutic|Wellness# #Medicine|Remedie|Supplement#s"`,
 					"Robots": "#Autonomous|Mobile|Service# #Assitant|System|Unit#s",
 					"Slaves": "#Entertainers|Foreign Workers|Indentured Personnel|Refugees#" }[c.name]);
+				console.log(c);
 				console.log(`c.altname: ${c.altname}`);
 			}
 			return (t == 'name') ? c.altname || c.name : c[t];
@@ -532,6 +533,7 @@ function checkTriggers () {
 			}
 		} );
 }
+
 
 
 
