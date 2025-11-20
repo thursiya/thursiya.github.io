@@ -497,6 +497,7 @@ function mTextSwap (v, m) {
 			const c = m.cargo[s.replace(/CARGO(.*?)/g, "").replace(/\.(.*)/g, "")];
 			const t = s.split(".")[1] || 'name';
 			if (t == 'name' && !c.altname && illegalGoods(world[m.origin].gov).includes(goods.findIndex(v => v.name == c.name && v.type == c.type))) {
+				console.log(c);
 				c.altname = parse({
 					"Animal Skins": "#Natural|Organic|Traditional# #Fabric|Leather|Textile#s",
 					"Atmospheric Catalysts": "#Air Quality|Climate|Environmental# #Additive|Enhancer|Treatment Agent#s",
@@ -506,7 +507,7 @@ function mTextSwap (v, m) {
 					"Hand Weapons": "#Deterrence|Personal Safety|Security# #Device|Implement|Tool#s",
 					"Liquor": "#Ceremonial|Communal|Consecrated# #Beverage|Refreshment|Tonic#s",
 					"Luxury Goods": "#Exclusive|High-End|Premium# #Amenitie|Commoditie|Good#s",
-					"Narcotics": "#Alternative|Therapeutic|Wellness# #Medicine|Remedie|Supplement#s"`,
+					"Narcotics": "#Alternative|Therapeutic|Wellness# #Medicine|Remedie|Supplement#s",
 					"Robots": "#Autonomous|Mobile|Service# #Assitant|System|Unit#s",
 					"Slaves": "#Entertainers|Foreign Workers|Indentured Personnel|Refugees#" }[c.name]);
 				console.log(c);
@@ -533,6 +534,7 @@ function checkTriggers () {
 			}
 		} );
 }
+
 
 
 
