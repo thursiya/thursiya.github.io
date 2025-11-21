@@ -90,7 +90,7 @@
 	{ id: "robo2", name: "Robots", grade: 2, type: "Microtronic", file: "robots", price: 6000, stat: 'dangerous', produce: "H", demand: "Af Ag I Ma Mi T (F)" },
 	{ id: "robo3", name: "Robots", grade: 3, type: "Nanoworks", file: "robots", price: 8000, stat: 'dangerous', produce: "H", demand: "Af C Ma" },
 	{ id: "robo4", name: "Robots", grade: 4, type: "Mitsutomo", file: "robots", price: 10000, stat: 'dangerous', produce: "H", demand: "Af (C)" },
-	{ id: "slav1", name: "Slaves", grade: 1, type: "Child", file: "slaves", price: 5000, stat: 'live', produce: "F S", demand: "Af I", tag: "Property, redefined.<br><i>Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.</i>", desc: "Living cargo traded across less-regulated systems. Encompasses everything from indentured labour to bio-engineered servitude. Legal status varies — and often depends on who owns the system." }, //85) S, P -> M, Ag, I, T, Af
+	{ id: "slav1", name: "Slaves", grade: 1, type: "Minor", file: "slaves", price: 5000, stat: 'live', produce: "F S", demand: "Af I", tag: "Property, redefined.<br><i>Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.</i>", desc: "Living cargo traded across less-regulated systems. Encompasses everything from indentured labour to bio-engineered servitude. Legal status varies — and often depends on who owns the system." }, //85) S, P -> M, Ag, I, T, Af
 	{ id: "slav2", name: "Slaves", grade: 2, type: "Uneducated", file: "slaves", price: 7500, stat: 'live', produce: "F P S", demand: "Ag I Ma Mi" },
 	{ id: "slav3", name: "Slaves", grade: 3, type: "Bonded", file: "slaves", price: 15000, stat: 'live', produce: "F P S", demand: "Af Ag C H I Ma Mi T" },
 	{ id: "slav4", name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: 'live', produce: "H P S", demand: "Ag I Mi T" },
@@ -332,6 +332,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
