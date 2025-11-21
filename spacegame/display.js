@@ -365,7 +365,7 @@ function displayInfo(type, which) {
             "F": "Frontier",
             "Mi": "Mining",
             "Ma": "Manufacturing",
-            "I": "Industrial"}[str] || str}.png" draggable="false">`;
+            "I": "Industrial"}[str] || str}.png" draggable="false" width="16px">`;
 	
 		out = `<h2>
   				<img src="images/goods/${g[0].file}.png" draggable="false" style="image-rendering: pixelated; vertical-align: middle; width: 64px"> ${which}
@@ -505,6 +505,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
