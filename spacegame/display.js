@@ -356,7 +356,7 @@ function displayInfo(type, which) {
 		const g = goods.filter(v => v.name == which);
 		const swap = (str) => {
 			const txt = { "Af": "Affluent",	"Ag": "Agricultural", "C": "Cultural", "S": "Slum", "T": "Terraforming", "P": "Prison", "H": "High Tech", "F": "Frontier","Mi": "Mining", "Ma": "Manufacturing", "I": "Industrial"}[str] || str;
-			return `<img src="images/${str == "Military" ? "govs" : "foci"}/${txt}.png" draggable="false" title="${txt}" style="height: 24px; vertical-align: middle">`;
+			return `<img src="images/${["Military", "Theocracy"].includes(str) ? "govs" : "foci"}/${txt}.png" draggable="false" title="${txt}" style="height: 24px; vertical-align: middle">`;
 		}
 	
 		out = `<h2>
@@ -384,9 +384,6 @@ function displayInfo(type, which) {
 	     				</tr>`, "")}
 			</table>
 			<p>${g[0].desc}</p>`;
-		   	//<p class="reduced" style="font-style: italic; font-variant: small-caps">
-      		//		<b>Af</b>fluent, <b>Ag</b>ricultural, <b>C</b>ultural, <b>F</b>rontier, <b>H</b>igh Tech, <b>I</b>ndustrial, <b>Ma</b>nufacturing, <b>Mi</b>ning, <b>P</b>rison, <b>S</b>lum, <b>T</b>erraforming
-	  		//</p>
 	}
 	
 	document.getElementById('infoDBText').innerHTML = out;
@@ -497,6 +494,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
