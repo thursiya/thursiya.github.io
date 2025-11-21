@@ -332,7 +332,7 @@ function displayInfo(type, which) {
       				Illegal Goods:${which == "Anarchy" ? " <i>None</i></div>" : `</div><div style="margin-left: 20px">
 	  				${Object.values(illegalGoods(which).map(v => goods[v]).reduce((t, v) => Object.assign(t, { [v.name]: t[v.name] ? [...t[v.name], v] : [v] }), {})).reduce((t, v) =>
 						`${t}<span class="clickable" onclick="displayInfo('good', '${v[0].name}')"><img src="images/goods/${v[0].file}.png" draggable="false" style="margin: 5px; vertical-align: middle"> ${v[0].name} (${v.map(v2 => v2.type).join(", ")})</span><br>`, "")}</div>`}
-      			${which == "Military" ? "<p>Military worlds will demand bacterial farms, advanced gene stock, and hand weapons (if they don't produce them).</p>" : ""}`;
+      			${which == "Military" ? "<p>Military worlds will demand bacterial farms, advanced gene stock, and hand weapons.</p>" : which == "Theocracy" ? "<p>Theocratic worlds will demand additional basic labourers in place of robots.</p>" : ""}`;
 	}
 	
 	if (type == "economy") {
@@ -492,4 +492,5 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
