@@ -354,6 +354,19 @@ function displayInfo(type, which) {
 	
 	if (type == "good") {
 		const g = goods.filter(v => v.name == which);
+		const swap = (str) => `<img src="images/${str == "Military" ? `gov` : `foci`}/${{
+			"Af": "Affluent",
+        	"Ag": "Agricultural",
+        	"C": "Cultural",
+        	"S": "Slum",
+            "T": "Terraforming",
+            "P": "Prison",
+            "H": "High Tech",
+            "F": "Frontier",
+            "Mi": "Mining",
+            "Ma": "Manufacturing",
+            "I": "Industrial"}[str] || str}.png" draggable="false">`;
+	
 		out = `<h2>
   				<img src="images/goods/${g[0].file}.png" draggable="false" style="image-rendering: pixelated; vertical-align: middle; width: 64px"> ${which}
      			</h2>
@@ -374,8 +387,8 @@ function displayInfo(type, which) {
 					`${t}<tr>
      						<td>${oldCorps.map(v => v.name).includes(v.type) ? `<span class="clickable" onclick="displayInfo('corp', '${v.type}')">${v.type}</span>` : v.type}</td>
 	   					<td style="text-align: center">${v.price}</td>
-	 					<td style="text-align: center">${v.produce}</td>
-       						<td style="text-align: center">${v.demand}</td>
+	 					<td style="text-align: center">${v.produce.replace(/\w+/g, swap)}</td>
+       						<td style="text-align: center">${v.demand.replace(/\w+/g, swap)}</td>
 	     				</tr>`, "")}
 			</table>
    			<p class="reduced" style="font-style: italic; font-variant: small-caps">
@@ -492,6 +505,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
