@@ -295,13 +295,29 @@ function credit (amount, who, what = "") {
 
 
 // Return a random system 'distance' jumps away from 'here' (or alternate origin)
-function adjacentSystem (distance, origin = here, query) {
+/* function adjacentSystem (distance, origin = here, query) {
 	if (distance < 1) return false;
 	let jump = [[origin]];
 	for (let i = 0; i < distance; i++) {
 		jump[i + 1] = [];
 		for (let j = 0; j < jump[i].length; j++) {
 			for (let k of world[jump[i][j]].links) {
+				if (!jump.find((v, i) => jump[i].indexOf(k) > -1)) {
+					jump[i + 1].push(k);
+					if (i + 1 == distance && world[k].focus == query) jump[i + 1].push(k);	// double odds to fly to 'query' focus worlds
+				}
+			}
+		}
+	}
+	return rnd(jump[distance]);
+}*/
+function adjacentSystem (distance, origin = here, query) {
+	if (distance < 1) return false;
+	const jump = [[origin]];
+	for (const i of distance) {
+		jump[i + 1] = [];
+		for (const j of jump[i].length) {
+			for (const k of world[jump[i][j]].links) {
 				if (!jump.find((v, i) => jump[i].indexOf(k) > -1)) {
 					jump[i + 1].push(k);
 					if (i + 1 == distance && world[k].focus == query) jump[i + 1].push(k);	// double odds to fly to 'query' focus worlds
@@ -425,3 +441,4 @@ function* prng (seed) {
 		yield result;
     }
 }
+
