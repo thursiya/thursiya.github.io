@@ -38,8 +38,8 @@
 	{ id: "vege", name: "Fruit & Vegetables", type: "assorted", file: "vegetables", price: 1000, stat: 'cold', produce: "Ag", demand: "Af C F H Ma T", tag: "A galaxy of varieties.", desc: "Perishable produce from hydroponic or planetary farms. Often imported frozen or sealed; vital morale boosters in long-term colonies where greenery is scarce." },		//33) Ag -> *
 	{ name: "Gemstones", type: "assorted", file: "gemstones", price: 100000, supply: { M: 1 }, produce: "Mi", demand: "Af Ma S", tag: "Shiny proof that scarcity still sells.", desc: "Precious and synthetic stones mined or fabricated across the galaxy. Mostly decorative, occasionally industrial, and used in energy weapon production. Value fluctuates wildly with fashion and scarcity propaganda." },	//34) M -> I, Af
 	{ id: "gene1", name: "Gene Stock", grade: 1, type: "Cultivar", file: "gene-stock", price: 2500, stat: "live", produce: "Ag", demand: "Af C F H Ma T", tag: "DNA on demand.", desc: "Encoded genetic material ranging from agricultural seed libraries to synthetic human and animal genomes. Critical to off-world agriculture and medical research, yet often subject to strict licensing or bio-ethical bans." },
-	{ id: "gene2", name: "Gene Stock", grade: 2, type: "Enhanced", file: "gene-stock", price: 12000, stat: "live", produce: "Ag H", demand: "Af C F I Ma T" },
-	{ id: "gene3", name: "Gene Stock", grade: 3, type: "Restricted", file: "gene-stock", price: 45000, stat: "live", produce: "H", demand: "Af C I Ma" },
+	{ id: "gene2", name: "Gene Stock", grade: 2, type: "Enhanced", file: "gene-stock", price: 12000, stat: "live", produce: "Ag H", demand: "Military Af C F I Ma T" },
+	{ id: "gene3", name: "Gene Stock", grade: 3, type: "Restricted", file: "gene-stock", price: 45000, stat: "live", produce: "H", demand: "Military Af C I Ma" },
 	{ name: "Government Artifacts", type: "priceless", file: "artifacts", price: 100000, stat: 'sensitive', produce: "*", demand: "Af", tag: "The past trades better than the future.<br><i>Government artifacts are usually only available on the black market.</i>", desc: "Rare relics and recovered materials from lost colonies or pre-expansion civilizations. Legal status varies widely; some worlds treat them as heritage, others as contraband." },	//35) * -> Af, C		(!)
 	{ name: "Grain", type: "assorted", file: "grain", price: 300, produce: "Ag (F)", demand: "Af C H Ma P S", tag: "Breadbasket of the void.", desc: "Staple food crop exports like wheat, soy, or engineered grains. Transported in bulk to sustain colony populations or used as feedstock for livestock, synthetic foods, and ethanol production." },	//36) Ag -> *
 	{ id: "weap1", name: "Hand Weapons", grade: 1, type: "Cyberops", file: "hand-weapons", price: 5500, produce: "Ma", demand: "Military F S", tag: "Democracy's worst argument.<br><i>Military worlds will demand them.<br>Illegal on corporate and democratic worlds.</i>", desc: "Small arms, blades, and directed-energy sidearms—personal defence for some, profit centre for others. Built in the same factories that assemble industrial tools, their design speaks of humanity’s endless need to carve authority into metal. They travel everywhere, whether declared or not." },	//37) I, S -> Military, *		!
@@ -332,6 +332,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
