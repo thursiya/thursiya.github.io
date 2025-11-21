@@ -269,11 +269,14 @@ function worldGoods(w) {
 
 	// Adjust Demand for Military Governments
 	if (w.gov == "Military") {
-		//if (![37, 38, 39, 40].some(v => arr.includes(v))) set.push(37, 37, 38, 38, 39, 39, 40, 40);
-		//if (![13, 14, 15].some(v => arr.includes(v))) set.push(13, 14, 15, 15);
 		set.push(...addGoods([...dup(2, "gene3", "Hand Weapons"), "Bacterial Farms", "gene2"]));
-		//set.push(...findGoods("Hand Weapons"), ...findGoods("Hand Weapons"), ...findGoods("Bacterial Farms"));
 	}
+
+	// Adjust Demand for Theocratic Governments
+	if (w.gov == "Theocracy") {
+		set.push(...addGoods(["slav1", "slav2"]));
+	}
+	
 	//
 	buildArray(-1);
 	
@@ -329,5 +332,6 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
