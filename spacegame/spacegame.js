@@ -316,7 +316,7 @@ function adjacentSystem (distance, origin = here, query) {
 	const jump = [[origin]];
 	for (const i of times(distance)) {
 		jump[i + 1] = [];
-		for (const j of jump[i].length) {
+		for (const j of times(jump[i].length)) {
 			for (const k of world[jump[i][j]].links) {
 				if (!jump.find((v, i) => jump[i].indexOf(k) > -1)) {
 					jump[i + 1].push(k);
@@ -441,5 +441,6 @@ function* prng (seed) {
 		yield result;
     }
 }
+
 
 
