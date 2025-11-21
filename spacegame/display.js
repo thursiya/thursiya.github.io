@@ -356,7 +356,7 @@ function displayInfo(type, which) {
 		const g = goods.filter(v => v.name == which);
 		const swap = (str) => {
 			const txt = { "Af": "Affluent",	"Ag": "Agricultural", "C": "Cultural", "S": "Slum", "T": "Terraforming", "P": "Prison", "H": "High Tech", "F": "Frontier","Mi": "Mining", "Ma": "Manufacturing", "I": "Industrial"}[str] || str;
-			return `<img src="images/${str == "Military" ? "govs" : "foci"}/${txt}.png" draggable="false" title="${txt}" width="20px">`;
+			return `<img src="images/${str == "Military" ? "govs" : "foci"}/${txt}.png" draggable="false" title="${txt}" style="height: 24px; vertical-align: middle">`;
 		}
 	
 		out = `<h2>
@@ -497,6 +497,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
