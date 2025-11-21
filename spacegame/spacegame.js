@@ -314,7 +314,7 @@ function credit (amount, who, what = "") {
 function adjacentSystem (distance, origin = here, query) {
 	if (distance < 1) return false;
 	const jump = [[origin]];
-	for (const i of distance) {
+	for (const i of times(distance)) {
 		jump[i + 1] = [];
 		for (const j of jump[i].length) {
 			for (const k of world[jump[i][j]].links) {
@@ -441,4 +441,5 @@ function* prng (seed) {
 		yield result;
     }
 }
+
 
