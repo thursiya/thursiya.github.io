@@ -7,8 +7,8 @@
 	{ id: "skin1", name: "Animal Skins", grade: 1, type: "Bio-Engineered", file: "animal-skins", price: 5000, supply: "A F", demand: "W C", tag: "The oldest luxury, still warm from the source.", note: "Illegal on democratic worlds.", desc: "Processed furs, leathers, and exotic hides. Once a status symbol, now mostly sourced from bio-cloned fauna or off-world feral reserves. Banned on democratic worlds for ethical reasons." },
 	{ id: "skin2", name: "Animal Skins", grade: 2, type: "Terran", file: "animal-skins", price: 7500, supply: "A F", demand: "W C" },
 	{ id: "skin3", name: "Animal Skins", grade: 3, type: "Lacotian", file: "animal-skins", price: 12500, supply: "A F", demand: "W C" },
-	{ id: "atmo1", name: "Atmospheric Catalysts", grade: 1, type: "Centauri", file: "atmo-catalysts", price: 4000, stat: "dangerous", produce: "H I", demand: "A F T M", tag: "Terraforming reagents. Handle with extreme care.", note: "Illegal on democratic and theocratic worlds.", desc: "Specialized chemical and nanobiotic reagents designed to trigger large-scale atmospheric reactions. Used to seed breathable air, accelerate carbon capture, or generate precipitation on frontier worlds. Essential for colonization and climate regulation, but dangerously unstable outside controlled deployment. Misused or uncalibrated, they can rewrite a planet's climate in weeks — with results not always compatible with human life." },
-	{ id: "atmo2", name: "Atmospheric Catalysts", grade: 2, type: "Rainline", file: "atmo-catalysts", price: 18000, stat: "dangerous", produce: "H I", demand: "A F T" },
+	{ id: "atmo1", name: "Atmospheric Catalysts", grade: 1, type: "Centauri", file: "atmo-catalysts", price: 4000, stat: "dangerous", supply: "H I", demand: "A F T M", tag: "Terraforming reagents. Handle with extreme care.", note: "Illegal on democratic and theocratic worlds.", desc: "Specialized chemical and nanobiotic reagents designed to trigger large-scale atmospheric reactions. Used to seed breathable air, accelerate carbon capture, or generate precipitation on frontier worlds. Essential for colonization and climate regulation, but dangerously unstable outside controlled deployment. Misused or uncalibrated, they can rewrite a planet's climate in weeks — with results not always compatible with human life." },
+	{ id: "atmo2", name: "Atmospheric Catalysts", grade: 2, type: "Rainline", file: "atmo-catalysts", price: 18000, stat: "dangerous", supply: "H I", demand: "A F T" },
 	{ id: "auto1", name: "Automobiles", grade: 1, type: "Eagle", file: "automobiles", price: 2500, stat: 'sensitive', supply: "N", demand: "H F I M A P S (C)", tag: "Ground transport, wherever there's still ground.", desc: "Personal and commercial land vehicles adapted for planetary terrain — from wheeled haulers to hovercraft. Popular on terraformed worlds with stable atmospheres; largely ceremonial elsewhere." },
 	{ id: "auto2", name: "Automobiles", grade: 2, type: "Geotech", file: "automobiles", price: 4000, stat: 'sensitive', supply: "N", demand: "H F I M A C (W P S)" },
 	{ id: "auto2", name: "Automobiles", grade: 2, type: "5-Star", file: "automobiles", price: 4000, stat: 'sensitive', supply: "N", demand: "H F I M A C (W P S)" },
@@ -332,6 +332,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
