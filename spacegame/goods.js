@@ -1,9 +1,9 @@
-	const goods = [																			// M, Ag | I, T | Af, S, C, HT, Mx | P, F
-	{ id: "airp1", name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, supply: { M: -2, N: 1, T: -2 }, produce: "Ma", demand: "Mi T", tag: "Turning dust and exhaust into breathable futures.", desc: "Industrial-scale atmospheric processors used to sustain life on hostile worlds and deep-space mining stations. Each unit filters toxins, stabilizes pressure, and extracts oxygen from trace gases. The quiet backbone of frontier expansion—unseen, essential, and always one malfunction away from extinction." },	//0) I -> T3, F2, P2, M2, I1
-	{ id: "airp2", name: "Air Processors", grade: 2, type: "Boreatek", file: "air-processors", price: 2500, supply: { M: -2, N: 1, T: -2 }, produce: "Ma", demand: "Mi T" },	// I -> T3, F2, M2, I1
-	{ id: "meat1", name: "Animal Meat", grade: 1, type: "Bio-Engineered", file: "animal-meat", price: 1500, stat: 'cold', supply: { A: 1.1, C: -1, F: 1.1, H: -1, I: -1, M: -1, N: -1, T: -1 }, produce: "Ag F", demand: "C H I Ma Mi T", tag: "Still legal.", desc: "Cultured or slaughtered animal protein. Genuine livestock meat commands high prices on frontier worlds and among elites nostalgic for pre-industrial Earth diets." },	//7) Ag -> Af1, *1	(!)
-	{ id: "meat2", name: "Animal Meat", grade: 2, type: "Terran", file: "animal-meat", price: 2500, stat: 'cold', supply: { A: 1.2, C: -1, F: 1.2, H: -2, I: -1, M: -1, N: -1, T: -1, W: -2 }, produce: "Ag F", demand: "Af C H I Ma Mi T" },				// Ag -> Af2,		(!)
-	{ id: "meat3", name: "Animal Meat", grade: 3, type: "Lacotian", file: "animal-meat", price: 4500, stat: 'cold', supply: { A: 1.3, C: -1, F: 1.3, H: -2, N: -1, W: -3 }, produce: "Ag F", demand: "Af C H Ma (T)" },				// Ag -> Af3, 		(!)
+	const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
+	{ id: "airp1", name: "Air Processors", grade: 1, type: "Certibrand", file: "air-processors", price: 1500, supply: "N", demand: "M T", tag: "Turning dust and exhaust into breathable futures.", desc: "Industrial-scale atmospheric processors used to sustain life on hostile worlds and deep-space mining stations. Each unit filters toxins, stabilizes pressure, and extracts oxygen from trace gases. The quiet backbone of frontier expansion—unseen, essential, and always one malfunction away from extinction." },
+	{ id: "airp2", name: "Air Processors", grade: 2, type: "Boreatek", file: "air-processors", price: 2500, supply: "N", demand: "M T" },
+	{ id: "meat1", name: "Animal Meat", grade: 1, type: "Bio-Engineered", file: "animal-meat", price: 1500, stat: 'cold', supply: "A F", demand: "C H I N M T", tag: "Still legal.", desc: "Cultured or slaughtered animal protein. Genuine livestock meat commands high prices on frontier worlds and among elites nostalgic for pre-industrial Earth diets." },
+	{ id: "meat2", name: "Animal Meat", grade: 2, type: "Terran", file: "animal-meat", price: 2500, stat: 'cold', supply: "A F", demand: "W C H I N M T" },
+	{ id: "meat3", name: "Animal Meat", grade: 3, type: "Lacotian", file: "animal-meat", price: 4500, stat: 'cold', supply: "A F", demand: "W C H N (T)" },
 	{ id: "skin1", name: "Animal Skins", grade: 1, type: "Bio-Engineered", file: "animal-skins", price: 5000, supply: { A: 1.1, C: -1, F: 1.1, W: -2 }, produce: "Ag F", demand: "Af C", tag: "The oldest luxury, still warm from the source.<br><i>Illegal on democratic worlds.</i>", desc: "Processed furs, leathers, and exotic hides. Once a status symbol, now mostly sourced from bio-cloned fauna or off-world feral reserves. Banned on democratic worlds for ethical reasons." }, //10) Ag -> Af2	!
 	{ id: "skin2", name: "Animal Skins", grade: 2, type: "Terran", file: "animal-skins", price: 7500, supply: { A: 1.2, C: -1, F: 1.2, W: -3 }, produce: "Ag F", demand: "Af C" },	// Ag -> Af3	!
 	{ id: "skin3", name: "Animal Skins", grade: 3, type: "Lacotian", file: "animal-skins", price: 12500, supply: { A: 1.3, C: -1, F: 1.3, W: -3 }, produce: "Ag F", demand: "Af C" },							// Ag -> Af3	!
@@ -332,6 +332,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
