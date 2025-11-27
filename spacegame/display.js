@@ -363,6 +363,7 @@ function displayInfo(type, which) {
   				<img src="images/goods/${g[0].file}.png" draggable="false" style="image-rendering: pixelated; vertical-align: middle; width: 64px"> ${which}
      			</h2>
 			<p>${g[0].tag}</p>
+			${"note" in g[0] ? `<p style="font-style: italic">${g[0].note}</p>` : ""}
    			${"stat" in g[0] ? `<p>Status: <b>${capitalize(g[0].stat)}</b> <i class="reduced">(${({ 
 				"cold": "must be kept in cold storage",
 				"dangerous": "damaged cargo poses a threat to ship",
@@ -379,7 +380,7 @@ function displayInfo(type, which) {
 					`${t}<tr>
      						<td>${oldCorps.map(v => v.name).includes(v.type) ? `<span class="clickable" onclick="displayInfo('corp', '${v.type}')">${v.type}</span>` : v.type}</td>
 	   					<td style="text-align: center">${v.price}</td>
-	 					<td style="text-align: center">${v.produce.replace(/\w+/g, swap)}</td>
+	 					<td style="text-align: center">${v.supply.replace(/\w+/g, swap)}</td>
        						<td style="text-align: center">${v.demand.replace(/\w+/g, swap)}</td>
 	     				</tr>`, "")}
 			</table>
@@ -494,6 +495,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
