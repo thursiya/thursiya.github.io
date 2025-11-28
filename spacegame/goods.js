@@ -14,9 +14,9 @@
 	{ id: "auto2", name: "Automobiles", grade: 2, type: "5-Star", file: "automobiles", price: 4000, stat: 'sensitive', supply: "N", demand: "H F I M A C (W P S)" },
 	{ id: "auto3", name: "Automobiles", grade: 3, type: "Mechanica", file: "automobiles", price: 5500, stat: 'sensitive', supply: "N", demand: "H W C (A F)" },
 	{ id: "auto4", name: "Automobiles", grade: 4, type: "Eunion", file: "automobiles", price: 8000, stat: 'sensitive', supply: "N", demand: "H W (C)" },
-	{ id: "bact1", name: "Bacterial Farms", grade: 1, type: "AmritJivan", file: "bacterial-farms", price: 3000, stat: 'dangerous', supply: { H: -2, I: 1, Mil: -1, T: -1 }, produce: "I", demand: "Military H T", tag: "Feed worlds. End worlds. Same technology.<br><i>Military worlds will demand them.<br>Illegal on democratic worlds.</i>", desc: "Self-contained bioreactors cultivating microbial cultures that convert biomass into food, fuel, or pharmaceuticals. But their real value lies in weaponized biology: programmable strains designed for sterilization, siege, or ecosystem collapse. Bacterial farms are the backbone of the interstellar bioweapons trade—regulated in name only, and a strategic necessity for every militarized world. Officially banned on democratic planets, unofficially indispensable to the economies that defend them." },	//13) HT? -> HT, Military	!		? stat: 'live' ?
-	{ id: "bact2", name: "Bacterial Farms", grade: 2, type: "Astromedica", file: "bacterial-farms", price: 5000, stat: 'dangerous', supply: { H: -2, I: 1, Mil: -1, T: -1 }, produce: "I", demand: "Military H T" },// -> HT	!
-	{ id: "bact3", name: "Bacterial Farms", grade: 3, type: "Aegis", file: "bacterial-farms", price: 7000, stat: 'dangerous', supply: { H: -2, I: 1, Mil: -2 }, produce: "I", demand: "Military H" },	// -> HT	!
+	{ id: "bact1", name: "Bacterial Farms", grade: 1, type: "AmritJivan", file: "bacterial-farms", price: 3000, stat: 'dangerous', supply: "I", demand: "Military H T", tag: "Feed worlds. End worlds. Same technology.", note: "Military worlds will demand them.<br>Illegal on democratic worlds.", desc: "Self-contained bioreactors cultivating microbial cultures that convert biomass into food, fuel, or pharmaceuticals. But their real value lies in weaponized biology: programmable strains designed for sterilization, siege, or ecosystem collapse. Bacterial farms are the backbone of the interstellar bioweapons trade—regulated in name only, and a strategic necessity for every militarized world. Officially banned on democratic planets, unofficially indispensable to the economies that defend them." },
+	{ id: "bact2", name: "Bacterial Farms", grade: 2, type: "Astromedica", file: "bacterial-farms", price: 5000, stat: 'dangerous', supply: "I", demand: "Military H T" },
+	{ id: "bact3", name: "Bacterial Farms", grade: 3, type: "Aegis", file: "bacterial-farms", price: 7000, stat: 'dangerous', supply: "I", demand: "Military H" },
 	{ name: "Chemicals", type: "assorted", file: "chemicals", price: 500, stat: 'sensitive', supply: { F: 0.5, H: -2, I: -3, M: 1, P: -1, S: -1, T: 1 }, produce: "Mi T (F)", demand: "H I P S", tag: "Every colony runs on something volatile.", desc: "Industrial reagents, solvents, and compounds for refining, manufacturing, or scientific use. Dangerous in bulk, indispensable everywhere. Some double as illicit precursors in the right hands." },	//16) M -> I3, HT2, Af1, S1, Mx1, P1, C1
 	{ id: "cons1", name: "Consumer Goods", grade: 1, type: "Eagle", file: "consumer-goods", price: 1000, supply: { CN: 1, H: 1, I: -1, M: -1, N: -1, P: 1, T: -1, W: 0 }, produce: "C H P (Af F)", demand: "I Ma Mi S T", tag: "Everything you don't need, but want.", desc: "The galaxy's endless tide of everyday convenience items — clothing, appliances, comfort tech. Produced by countless subsidiaries of the major megacorps; disposable, replaceable, unavoidable." },	//17) I, HT, Af, S, C, Mx, P -> *1
 	{ id: "cons2", name: "Consumer Goods", grade: 2, type: "Nanoworks", file: "consumer-goods", price: 2000, supply: { H: 1, I: -1, M: -1, N: -1, P: 1, T: -1, W: 0 }, produce: "H P (Af)", demand: "C F I Ma Mi S T" },						// -> *1
@@ -286,7 +286,7 @@ function worldGoods(w) {
 function fillMixedArray() {
 	// Include all goods except those in exceptionList
 	const exceptionList = ["Data Vaults", "Government Artifacts", "Lumber", "Packages", "Radioactive Waste", "Waste Products", "Water"];
-	return goods.reduce((t, v, i) => exceptionList.includes(v.name) ? [...t] : [...t, i], []);
+	return goods.reduce((t, v, i) => exceptionList.includes(v.name) ? t : [...t, i], []);
 }
 
 function illegalGoods(gov) {
@@ -296,7 +296,7 @@ function illegalGoods(gov) {
 		"Feudal": { "Explosives": 0, "Narcotics": 2 },
 		"Military": { "Narcotics": 0 },
 		"Theocracy": { "Atmospheric Catalysts": 0, "Explosives": 0, "Gene Stock": 0, "Liquor": 0, "Luxury Goods": 0, "Narcotics": 0, "Robots": 0, "Slaves": 4 } };
-	return goods.reduce((t, v, i) => illegalList[gov]?.[v.name] < v.grade ? [...t, i] : [...t], []);
+	return goods.reduce((t, v, i) => illegalList[gov]?.[v.name] < v.grade ? [...t, i] : t, []);
 }
 
 // will need reworking along with whole ship array storage method
@@ -332,6 +332,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
