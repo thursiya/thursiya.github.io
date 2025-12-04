@@ -65,9 +65,9 @@ const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
 	{ id: "anim2", name: "Live Animals", grade: 2, type: "Terran", file: "live-animals", price: 15000, stat: "live", supply: "A F", demand: "W A C T" },
 	{ id: "anim3", name: "Live Animals", grade: 3, type: "Lacotian", file: "live-animals", price: 25000, stat: "live", supply: "A F", demand: "W A C T" },
 	{ name: "Lumber", type: "cut", file: "lumber", price: 300, supply: "M A P S X (Rocky Desert)", demand: "W C A P S (X)", tag: "Because steel doesn’t smell right.", note: "Produced on some rocky and desert worlds.", desc: "Timber harvested from planetary forests or bioengineered groves. Still valued for construction, furniture, and nostalgia — especially in habitats starved for natural texture." },
-	{ id: "lux1", name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, produce: "N S (W)", demand: "W C H", tag: "Proof that taste is always for sale.", note: "Illegal on theocratic worlds.", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },
-	{ id: "lux2", name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, produce: "H N S (W)", demand: "W C" },
-	{ id: "lux3", name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, produce: "C H N S (W)", demand: "W" },
+	{ id: "lux1", name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, supply: "N S (W)", demand: "W C H", tag: "Proof that taste is always for sale.", note: "Illegal on theocratic worlds.", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },
+	{ id: "lux2", name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, supply: "H N S (W)", demand: "W C" },
+	{ id: "lux3", name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, supply: "C H N S (W)", demand: "W" },
 	{ id: "medi1", name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", tag: "Survival, standardized.", desc: "Pharmaceuticals, medkits, and biotech treatments. Manufactured by corporate labs under tightly held patents. A lucrative trade, legal or otherwise, in every system." },	//63) HT -> *		? stat: "cold" ?
 	{ id: "medi2", name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)" },
 	{ id: "medi3", name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C" },
@@ -333,6 +333,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
