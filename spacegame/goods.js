@@ -61,13 +61,13 @@ const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
 	{ id: "liq1", name: "Liquor", grade: 1, type: "Assorted New", file: "liquor", price: 1500, supply: "A F", demand: "H M I N S", tag: "Because judgement is overrated.", note: "Illegal on theocratic worlds.", desc: "Distilled indulgence in liquid form—spirits, wines, brews, and everything fermented in between. Still banned in theocracies and wherever sound judgement is required, but indispensable to celebration, negotiation, and regret." },
 	{ id: "liq2", name: "Liquor", grade: 2, type: "Assorted Aged", file: "liquor", price: 5500, supply: "A F", demand: "H W I N S F" },
 	{ id: "liq3", name: "Liquor", grade: 3, type: "Doleamas", file: "liquor", price: 20000, supply: "A C (W)", demand: "H W" },
-	{ id: "anim1", name: "Live Animals", grade: 1, type: "Bio-Engineered", file: "live-animals", price: 10000, stat: "live", supply: { A: 1.1, F: 1.1 }, produce: "Ag F", demand: "Af Ag T", tag: "Breathing investments.<br><i>Agricultural worlds demand the animals they do not produce.<br>Requires life support.</i>", desc: "Livestock or exotic species transported for breeding, study, or consumption. Expensive to ship and risky to insure, yet vital to maintaining planetary biospheres." },	//56) Ag -> Af, C		!
-	{ id: "anim2", name: "Live Animals", grade: 2, type: "Terran", file: "live-animals", price: 15000, stat: "live", produce: "Ag F", demand: "Af Ag C T" },
-	{ id: "anim3", name: "Live Animals", grade: 3, type: "Lacotian", file: "live-animals", price: 25000, stat: "live", produce: "Ag F", demand: "Af Ag C T" },
-	{ name: "Lumber", type: "cut", file: "lumber", price: 300, produce: "Ag, Mi, P, S (Rocky, Desert)", demand: "Af, Ag, C, P, S", tag: "Because steel doesn’t smell right.<br><i>Produced on most rocky and desert worlds.</i>", desc: "Timber harvested from planetary forests or bioengineered groves. Still valued for construction, furniture, and nostalgia — especially in habitats starved for natural texture." },		//59) Rocky -> *
-	{ id: "lux1", name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, produce: "Ma S (Af)", demand: "Af C H", tag: "Proof that taste is always for sale.<br><i>Illegal on theocratic worlds.</i>", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },	//60) HT, I, Af, S, C, Mx -> Af
-	{ id: "lux2", name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, produce: "H Ma S (Af)", demand: "Af C (H)" },
-	{ id: "lux3", name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, produce: "C H Ma S (Af)", demand: "Af" },
+	{ id: "anim1", name: "Live Animals", grade: 1, type: "Bio-Engineered", file: "live-animals", price: 10000, stat: "live", supply: "A F", demand: "W A T", tag: "Breathing investments.", note: "Agricultural worlds demand the animals they do not produce.<br>Requires life support.", desc: "Livestock or exotic species transported for breeding, study, or consumption. Expensive to ship and risky to insure, yet vital to maintaining planetary biospheres." },
+	{ id: "anim2", name: "Live Animals", grade: 2, type: "Terran", file: "live-animals", price: 15000, stat: "live", supply: "A F", demand: "W A C T" },
+	{ id: "anim3", name: "Live Animals", grade: 3, type: "Lacotian", file: "live-animals", price: 25000, stat: "live", supply: "A F", demand: "W A C T" },
+	{ name: "Lumber", type: "cut", file: "lumber", price: 300, supply: "M A P S X (Rocky Desert)", demand: "W C A P S (X)", tag: "Because steel doesn’t smell right.", note: "Produced on some rocky and desert worlds.", desc: "Timber harvested from planetary forests or bioengineered groves. Still valued for construction, furniture, and nostalgia — especially in habitats starved for natural texture." },
+	{ id: "lux1", name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, produce: "N S (W)", demand: "W C H", tag: "Proof that taste is always for sale.", note: "Illegal on theocratic worlds.", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },
+	{ id: "lux2", name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, produce: "H N S (W)", demand: "W C" },
+	{ id: "lux3", name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, produce: "C H N S (W)", demand: "W" },
 	{ id: "medi1", name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", tag: "Survival, standardized.", desc: "Pharmaceuticals, medkits, and biotech treatments. Manufactured by corporate labs under tightly held patents. A lucrative trade, legal or otherwise, in every system." },	//63) HT -> *		? stat: "cold" ?
 	{ id: "medi2", name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)" },
 	{ id: "medi3", name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C" },
@@ -333,6 +333,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
