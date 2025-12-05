@@ -68,10 +68,10 @@ const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
 	{ id: "lux1", name: "Luxury Goods", grade: 1, type: "Polis", file: "luxury-goods", price: 10000, supply: "N S (W)", demand: "W C H", tag: "Proof that taste is always for sale.", note: "Illegal on theocratic worlds.", desc: "High-value, non-essential consumer items — jewellery, art, designer cybernetics. A symbol of wealth and excess across every system. Contraband on theocracies and subject to steep tariffs elsewhere." },
 	{ id: "lux2", name: "Luxury Goods", grade: 2, type: "Eunion", file: "luxury-goods", price: 15000, supply: "H N S (W)", demand: "W C" },
 	{ id: "lux3", name: "Luxury Goods", grade: 3, type: "ICP", file: "luxury-goods", price: 35000, supply: "C H N S (W)", demand: "W" },
-	{ id: "medi1", name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, produce: "H", demand: "Ag C F I Ma T", tag: "Survival, standardized.", desc: "Pharmaceuticals, medkits, and biotech treatments. Manufactured by corporate labs under tightly held patents. A lucrative trade, legal or otherwise, in every system." },	//63) HT -> *		? stat: "cold" ?
-	{ id: "medi2", name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, produce: "H", demand: "Af C I Ma (Ag F T)" },
-	{ id: "medi3", name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, produce: "H", demand: "Af C" },
-	{ name: "Minerals", type: "assorted", file: "minerals", price: 400, supply: { M: 1 }, produce: "Mi T (P)", demand: "I", desc: "Generic non-ferrous minerals such as bauxite, copper, and lithium. Feedstock for industrial production and power storage. Easily sourced production need that's always in motion along the trade lanes." },	 //66) M, T -> I
+	{ id: "medi1", name: "Medicine", grade: 1, type: "Tsai", file: "medicine", price: 5000, supply: "H", demand: "C I N A T P F (W)", tag: "Survival, standardized.", desc: "Pharmaceuticals, medkits, and biotech treatments. Manufactured by corporate labs under tightly held patents. A lucrative trade, legal or otherwise, in every system." },
+	{ id: "medi2", name: "Medicine", grade: 2, type: "Centauri", file: "medicine", price: 6500, supply: "H", demand: "C I N W (A T P F)" },
+	{ id: "medi3", name: "Medicine", grade: 3, type: "Astromedica", file: "medicine", price: 8000, supply: "H", demand: "C W" },
+	{ name: "Minerals", type: "assorted", file: "minerals", price: 400, supply: "M T P", demand: "I", desc: "Generic non-ferrous minerals such as bauxite, copper, and lithium. Feedstock for industrial production and power storage. Easily sourced production need that's always in motion along the trade lanes." },	 //66) M, T -> I
 	{ id: "narc1", name: "Narcotics", grade: 1, type: "Minor", file: "narcotics", price: 5000, produce: "Ag (F)", demand: "C I Ma Mi S", tag: "Pleasure, profit, or poison.<br><i>Illegal on all but lawless worlds, although corporate and democratic worlds will allow minor narcotics and feudal worlds will also allow hallucinogenic narcotics.</i>", desc: "Chemical and biological recreational substances. “Minor” varieties are tolerated in some corporate zones; “major” narcotics remain illicit and highly profitable on nearly all worlds." },	//67) HT -> *		!
 	{ id: "narc2", name: "Narcotics", grade: 2, type: "Hallucinogenic", file: "narcotics", price: 8000, produce: "H", demand: "Af C F I Ma Mi S" },
 	{ id: "narc3", name: "Narcotics", grade: 3, type: "Heavy", file: "narcotics", price: 10000, produce: "H", demand: "Af C Ma S" },
@@ -333,6 +333,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
