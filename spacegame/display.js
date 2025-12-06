@@ -355,7 +355,7 @@ function displayInfo(type, which) {
 	if (type == "good") {
 		const g = goods.filter(v => v.name == which);
 		const swap = (str) => {
-			const txt = { "W": "Affluent",	"A": "Agricultural", "C": "Cultural", "S": "Slum", "T": "Terraforming", "P": "Prison", "H": "High Tech", "F": "Frontier","M": "Mining", "N": "Manufacturing", "I": "Industrial"}[str] || str;
+			const txt = { "W": "Affluent",	"A": "Agricultural", "C": "Cultural", "S": "Slum", "T": "Terraforming", "P": "Prison", "H": "High Tech", "F": "Frontier","M": "Mining", "N": "Manufacturing", "I": "Industrial", "X": "Mixed" }[str] || str;
 			return `<img src="images/${["Military", "Theocracy"].includes(str) ? "govs" : "foci"}/${txt}.png" draggable="false" title="${txt}" style="height: 24px; vertical-align: middle">`;
 		}
 	
@@ -495,6 +495,7 @@ function updateContactsDisplay() {
 	  				</tr>`]] : t, []).slice().sort().reduce((t, v) => t + v[1], "")}
     		</table>`;
 }
+
 
 
 
