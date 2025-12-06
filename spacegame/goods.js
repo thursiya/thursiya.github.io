@@ -81,7 +81,7 @@ const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
 	{ id: "peri2", name: "Perishable Goods", grade: 2, type: "5-Star", file: "perishable-goods", price: 1500, stat: "cold", supply: "S (W)", demand: "N H M I T C F (W P)" },
 	{ id: "peri2", name: "Perishable Goods", grade: 2, type: "Veridian", file: "perishable-goods", price: 1500, stat: "cold", supply: "S (W)", demand: "N H M I T C F (W P)" },
 	{ id: "peri3", name: "Perishable Goods", grade: 3, type: "Tsai", file: "perishable-goods", price: 2000, stat: "cold", supply: "S (W)", demand: "N H W (T C F)" },
-	{ name: "Petroleum", type: "light", file: "petroleum", price: 500, supply: { M: 1 }, supply: "Mi (F)", demand: "I", tag: "Black gold.", desc: "Crude and refined hydrocarbons from fossil or synthetic origins. Valued for chemical production and legacy engines. An archaic but stubbornly persistent resource economy." },	//76) M -> I
+	{ name: "Petroleum", type: "light", file: "petroleum", price: 500, supply: "M F", demand: "I", tag: "Black gold.", desc: "Crude and refined hydrocarbons from fossil or synthetic origins. Valued for chemical production and legacy engines. An archaic but stubbornly persistent resource economy." },
 	{ name: "Precious Metals", type: "assorted", file: "precious-metals", price: 10000, supply: { M: 1 }, supply: "F Mi", demand: "C H Ma", tag: "Actual gold.", desc: "Gold, platinum, palladium, and other high-value metals used in electronics, banking, and ornamentation. The old money of a new age." },  //77) M -> I, HT
 	{ id: "prob1", name: "Probes", grade: 1, type: "Omninet", file: "probes", price: 2500, supply: "H", demand: "F Mi T", tag: "The explorers you can afford to lose.", desc: "Automated drones mostly used in mining, planetary survey, navigation mapping, or research. Disposable, but indispensable. A single lost probe can start a gold rush—or a scandal." },  //78) HT -> T, M
 	{ id: "prob2", name: "Probes", grade: 2, type: "Forge", file: "probes", price: 4000, supply: "H", demand: "Mi T (F)" },
@@ -333,6 +333,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
