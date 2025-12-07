@@ -91,15 +91,15 @@ const goods = [																			// M, A | I, N, T | W, S, C, H, X | P, F
 	{ id: "robo2", name: "Robots", grade: 2, type: "Microtronic", file: "robots", price: 6000, stat: "dangerous", supply: "H (W)", demand: "W A I M T P N (C F)" },
 	{ id: "robo3", name: "Robots", grade: 3, type: "Nanoworks", file: "robots", price: 8000, stat: "dangerous", supply: "H (W)", demand: " W C N (A T P)" },
 	{ id: "robo4", name: "Robots", grade: 4, type: "Mitsutomo", file: "robots", price: 10000, stat: "dangerous", supply: "H (W)", demand: "W (C N)" },
-	{ id: "slav1", name: "Slaves", grade: 1, type: "Minor", file: "slaves", price: 5000, stat: "live", supply: "F S", demand: "Theocracy Af", tag: "Property, redefined.<br><i>Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.</i>", desc: "Living cargo traded across less-regulated systems. Encompasses everything from indentured labour to bio-engineered servitude. Legal status varies — and often depends on who owns the system." }, //85) S, P -> M, Ag, I, T, Af
-	{ id: "slav2", name: "Slaves", grade: 2, type: "Uneducated", file: "slaves", price: 7500, stat: "live", supply: "F P S", demand: "Theocracy Ag I Ma Mi" },
-	{ id: "slav3", name: "Slaves", grade: 3, type: "Bonded", file: "slaves", price: 15000, stat: "live", supply: "F P S", demand: "Af Ag C H I Ma Mi T" },
-	{ id: "slav4", name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: "live", supply: "H P S", demand: "Ag I Mi T" },
-	{ id: "slav5", name: "Slaves", grade: 5, type: "Luxorian", file: "slaves", price: 50000, stat: "live", supply: "S", demand: "Af C H" },	// Special Supply -> 
-	{ name: "Synthetic Meat", type: "assorted", file: "synthetic-meat", price: 1000, stat: "cold", supply: "H", demand: "F I Ma Mi P S T", tag: "Lab-grown, guilt optional.", desc: "Engineered protein grown from cultured cells. Tastes <i>almost</i> as good as the real thing. Cheap, sustainable, and nutritionally perfect—but critics claim long-term consumption dulls taste receptors and memory alike." },	//92) HT? -> *
-	{ name: "Volatiles", type: "compressed", file: "volatiles", price: 600, stat: "cold", supply: "F Mi T", demand: "", tag: "Bottled breath: extracted atmospherics for fuel and synthesis.<br><i>Will explode if not kept in cold storage.</i>", desc: "Volatile elements, such as methane, ammonia, and CO₂, harvested during atmosphere processing or ice mining. Shipped in bulk to industrial worlds for use in plastics, fertilizers, and fuel synthesis. Terraforming operations treat them as waste by-products; manufacturers see them as profit in canisters." },
-	{ name: "Waste Products", type: "assorted", file: "waste-products", price: 50, supply: "*", demand: "-", tag: "Everything has an afterlife.<br><i>Produced by industrial processes, large populations, and damaged goods. Must pay to have them disposed of.</i>", desc: "Industrial runoff, biological residue, and other byproducts of production. Officially recycled, unofficially exported. Some colonies make fortunes cleaning up what others discard." },		//93) Af, C, Mx, HT -> *
-	{ name: "Water", type: "fresh", file: "water", price: 100, stat: "sensitive", supply: "H Mi P (Ice, Ocean)", demand: "F T", tag: "The lifeblood of the galaxy.", desc: "Processed or harvested water from asteroids, comets, or reclamation plants. The basis of life and trade — measured, taxed, and fought over since before the first launch." }	//94) Ocean, Ice -> T, F
+	{ id: "slav1", name: "Slaves", grade: 1, type: "Minor", file: "slaves", price: 5000, stat: "live", supply: "S F", demand: "W Theocracy", tag: "Property, redefined.", note: "Illegal on democratic worlds. Luxorian slaves illegal on theocratic worlds.", desc: "The ugliest constant in human commerce. Slavery endures wherever law is weak and profit outweighs conscience — from indentured minors to engineered life designed for obedience. Where regulation fails, exploitation fills the gap." },
+	{ id: "slav2", name: "Slaves", grade: 2, type: "Uneducated", file: "slaves", price: 7500, stat: "live", supply: "S P F", demand: "M A I N Theocracy" },
+	{ id: "slav3", name: "Slaves", grade: 3, type: "Bonded", file: "slaves", price: 15000, stat: "live", supply: "S P F", demand: "W C H M A I N" },
+	{ id: "slav4", name: "Slaves", grade: 4, type: "Bio-Engineered", file: "slaves", price: 25000, stat: "live", supply: "S P H", demand: "M A I" },
+	{ id: "slav5", name: "Slaves", grade: 5, type: "Luxorian", file: "slaves", price: 50000, stat: "live", supply: "S", demand: "W C H" },
+	{ name: "Synthetic Meat", type: "Assorted", file: "synthetic-meat", price: 1000, stat: "cold", supply: "H", demand: "M I N T S P F", tag: "Lab-grown, guilt optional.", desc: "Engineered protein grown from cultured cells. Tastes <i>almost</i> as good as the real thing. Cheap, sustainable, and nutritionally perfect—but critics claim long-term consumption dulls taste receptors and memory alike." },
+	{ name: "Volatiles", type: "Compressed", file: "volatiles", price: 600, stat: "cold", supply: "M T Ice (F P)", demand: "A I H", tag: "Bottled breath: extracted atmospherics for fuel and synthesis.", note: "Will explode if not kept in cold storage.", desc: "Volatile elements, such as methane, ammonia, and CO₂, harvested during atmosphere processing or ice mining. Shipped in bulk to industrial worlds for use in plastics, fertilizers, and fuel synthesis. Terraforming operations treat them as waste by-products; manufacturers see them as profit in canisters." },
+	{ name: "Waste Products", type: "Assorted", file: "waste-products", price: 50, supply: "*", demand: "-", tag: "Everything has an afterlife.", note: "Produced by industrial processes, large populations, and damaged goods. Must pay to have disposed of.", desc: "Industrial runoff, biological residue, and other byproducts of production. Officially recycled, unofficially exported. Some colonies make fortunes cleaning up what others discard." },
+	{ name: "Water", type: "Fresh", file: "water", price: 100, stat: "sensitive", supply: "Ice Ocean (M F P H T X)", demand: "F T", tag: "The lifeblood of the galaxy.", desc: "Processed or harvested water from asteroids, comets, or reclamation plants. The basis of life and trade — measured, taxed, and fought over since before the first launch." }
 ];
 
 // Called by 'addMission()' when determining cargo (m = mission, query = all/extended/general/illegal/legal)
@@ -209,8 +209,8 @@ function worldGoods(w) {
 	if (["Mining", "Agricultural", "Slum", "Prison", "Mixed"].includes(w.focus)) {
 		if (w.type == "Rocky") set.push(...addGoods(["Lumber", "Lumber"]));
 		if (w.type == "Desert") set.push(...addGoods(["Lumber"]));
-		if (w.type == "Ice") set.push(...addGoods(dup(2, "Volatiles", "Water")));
 	}
+	if (w.type == "Ice") set.push(...addGoods(dup(2, "Volatiles", "Water")));
 	if (["Terraforming", "High Tech", "Prison", "Mixed"].includes(w.focus) && w.type == "Ocean") set.push(...addGoods(["Water"]));
 
 	// Remove supplied goods from mixed good list (increase likeliness of rarer goods on mixed worlds)
@@ -333,6 +333,7 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
+
 
 
 
