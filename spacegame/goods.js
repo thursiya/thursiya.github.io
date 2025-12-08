@@ -134,9 +134,9 @@ function worldGoods(w) {
 	let set = [];
 	
 	// Helper: find all indices for a given list of goods based on short or full name
-	const addGoods = (names) => goods.reduce((t, v, i) => names.includes(v.id) || names.some(a => new RegExp(v.name, 'i').test(a)) ? [...t, i] : [...t] , []);
+	const addGoods = (names) => goods.reduce((t, v, i) => names.includes(v.id) || names.some(a => new RegExp(v.name, 'i').test(a)) ? [...t, i] : t , []);
 	// Helper: find all indices for a good by name & optional grade
-	const findGoods = (name, grade) => goods.reduce((t, v, i) => v.name === name && (!grade || v.grade === grade) ? [...t, i] : [...t], []);
+	const findGoods = (name, grade) => goods.reduce((t, v, i) => v.name === name && (!grade || v.grade === grade) ? [...t, i] : t, []);
 	// Helper: return array of strings
 	const dup = (number, ...items) => Array(number).fill(items).flat();
 	
@@ -333,24 +333,3 @@ function processGoodsFile(data) {
 	return { name: g[0] || prev.name, type: g[1] || "assorted", grade: g[2] || prev.grade, price: g[3] || prev.price, demand: g[4] || prev.demand, produce: g[5] || prev.produce, stat: g[6] || prev.stat, file: g[7] || prev.file, desc: g[8] || prev.desc };
 }
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
