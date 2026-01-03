@@ -35,6 +35,7 @@
 30649,Ninjago,Ice Dragon Creature
 30679,Super Heroes,Venom Street Bike
 30685,Star Wars,TIE Interceptor
+30687,Bluey,Bluey Tea Party
 30708,Star Wars,Millenium Falcon
 30710,Technic,Skid-Steer Loader
 31056,Creator,Green Truck
@@ -51,6 +52,7 @@
 31145,Creator,Red Dragon
 40461,Botanical Collection,Tulips
 40540,BrickHeadz,Lion Dance Guy
+40619,BrickHeadz,EVE & WALL•E
 40624,BrickHeadz,Alex
 40626,BrickHeadz,Zombie
 40640,Lego,Nutcracker
@@ -62,6 +64,8 @@
 42132,Technic,Motorcycle
 42149,Technic,Monster Jam Dragon
 42161,Technic,Lamborghini Huracán Tecnica
+42166,Technic,NEOM McLaren Extreme E Race Car
+42201,Technic,Deep-Sea Research Submarine
 60107,City,Fire Truck
 60182,City,Camper Caravan
 60185,City,Mining Power Splitter
@@ -71,7 +75,9 @@
 60249,City,Street Sweeper
 60250,City,Mail Plane
 60251,City,Monster Truck
+60391,City,Construction Trucks and Wrecking Ball Crane
 60402,City,Monster Truck
+60431,City,Space Explorer Rover and Alien Life
 70418,Hidden Side,J.B.'s Ghost Lab
 70419,Hidden Side,Wrecked Shrimp Boat
 70612,Ninjago Movie,Green Ninja Mech Dragon
@@ -112,6 +118,7 @@
 75368,Star Wars,Darth Vader Mech
 75369,Star Wars,Boba Fett Mech
 75370,Star Wars,Stormtrooper Mech
+75390,Star Wars,Luke Skywalker X-Wing Mech
 75391,Star Wars,Captain Rex Y-Wing Microfighter
 75895,Speed Champions,1974 Porsche 911 Turbo 3.0
 75976,Overwatch,Wrecking Ball (Hamster)
@@ -136,6 +143,7 @@
 76908,Speed Champions,Lamborghini Countach
 76916,Speed Champions,Porsche 963
 76918,Speed Champions,McLaren Solus GT & McLaren F1 LM
+76919,Speed Champions,2023 McLaren Formula 1 Race Car
 76943,Jurassic World,Pteranodon Chase
 76962,Jurassic World,Baby Bumpy: Ankylosaurus
 77242,Speed Champions,Ferrari SF-24 F1 Race Car
