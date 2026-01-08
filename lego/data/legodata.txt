@@ -120,6 +120,7 @@
 75370,Star Wars,Stormtrooper Mech
 75390,Star Wars,Luke Skywalker X-Wing Mech
 75391,Star Wars,Captain Rex Y-Wing Microfighter
+75400,Star Wars,Plo Koon's Jedi Starfighter Microfighter
 75895,Speed Champions,1974 Porsche 911 Turbo 3.0
 75976,Overwatch,Wrecking Ball (Hamster)
 76085,Super Heroes,Aquaman Battle
@@ -147,3 +148,4 @@
 76943,Jurassic World,Pteranodon Chase
 76962,Jurassic World,Baby Bumpy: Ankylosaurus
 77242,Speed Champions,Ferrari SF-24 F1 Race Car
+
