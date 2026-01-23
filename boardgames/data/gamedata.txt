@@ -205,7 +205,7 @@ exp: "@2005|Freshly Spiced@" },
 minp: 3, maxp: 5, time: 100, skill: 3.5, luck: 2,
 exp: "<i>@40688|Alea Treasure Chest@<br />1 official</i>" },
 
-{name: "The Quacks of Quedlinburg", num: 244521,
+{name: "Quacks", num: 244521,
 minp: 2, maxp: 4, time: 60, skill: 2.5, luck: 3.5,
 exp: "<i>@269259|The Herb Witches@<br />@316597|The Alchemists@</i>" },
 
@@ -333,6 +333,7 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
+
 
 
 
