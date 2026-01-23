@@ -147,5 +147,5 @@
 76919,Speed Champions,2023 McLaren Formula 1 Race Car
 76943,Jurassic World,Pteranodon Chase
 76962,Jurassic World,Baby Bumpy: Ankylosaurus
+77238,Speed Champions,Lamborghini Revuelto & Huracán STO
 77242,Speed Champions,Ferrari SF-24 F1 Race Car
-
