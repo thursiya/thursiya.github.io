@@ -22,6 +22,10 @@ exp: "<i>@313011|New Students@</i>" },
 {name: "Amun-Re", num: 5404,
 minp: 3, maxp: 5, time: 90, skill: 3, luck: 2 },
 
+{name: "Ark Nova", num: 342942,
+minp: 1, maxp: 4, time: 120, ttext: "90-150", skill: 3.5, luck: 2.5,
+exp: "<i>@368966|Marine Worlds@</i>" },
+
 {name: "Attika", num: 8051,
 minp: 2, maxp: 4, time: 60, skill: 2, luck: 3 },
 
@@ -230,6 +234,10 @@ minp: 3, maxp: 4, time: 60, skill: 3, luck: 2},
 minp: 2, maxp: 4, time: 45, skill: 2.5, luck: 4,
 exp: "<i>@40688|Alea Treasure Chest@</i>" },
 
+{name: "Sea Salt & Paper", num: 367220,
+minp: 2, maxp: 4, time: 40, skill: 2.5, luck: 4,
+exp: "<i>@396545|Extra Salt@ @442250|Extra Pepper@</i>" },
+
 {name: "Shogun", num: 20551,
 minp: 3, maxp: 5, time: 120, skill: 4, luck: 2.5,
 exp: "<i>@74823|Tenno's Court@</i>" },
@@ -325,5 +333,6 @@ exp: "@420321|<i>Matcha</i>@"},
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
+
 
 
