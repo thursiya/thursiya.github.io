@@ -37,7 +37,7 @@
 30679,Super Heroes,Venom Street Bike
 30685,Star Wars,TIE Interceptor
 30687,Bluey,Bluey Tea Party
-30700,Arin vs. Dragonian Battle
+30700,Ninjago,Arin vs. Dragonian Battle
 30708,Star Wars,Millenium Falcon
 30710,Technic,Skid-Steer Loader
 30719,City,Go-Kart Racer
