@@ -33,11 +33,15 @@
 30394,Minecraft,Alex & Skeleton
 30451,Super Heroes,Spider-Man's Mini Spider Crawler
 30649,Ninjago,Ice Dragon Creature
+30675,Ninjago,Tournament Training Ground
 30679,Super Heroes,Venom Street Bike
 30685,Star Wars,TIE Interceptor
 30687,Bluey,Bluey Tea Party
+30700,Arin vs. Dragonian Battle
 30708,Star Wars,Millenium Falcon
 30710,Technic,Skid-Steer Loader
+30719,City,Go-Kart Racer
+30735,Technic,Hot Rod Car
 31056,Creator,Green Truck
 31058,Creator,Mighty Dinosaurs
 31062,Creator,Blue Robot
