@@ -27,6 +27,7 @@
 21259,Minecraft,The Pirate Ship Voyage
 21266,Minecraft,The Nether Lava Battle
 21268,Minecraft,The Baby Pig House
+21275,Minecraft,The TNT Jungle House
 21281,Minecraft,Baby Pig's Birthday Party
 30384,Star Wars,Mini Snowspeeder
 30393,Minecraft,Steve & Creeper
@@ -69,6 +70,7 @@
 42149,Technic,Monster Jam Dragon
 42161,Technic,Lamborghini Huracán Tecnica
 42166,Technic,NEOM McLaren Extreme E Race Car
+42167,Technic,Mack LR Electric Garbage Truck
 42201,Technic,Deep-Sea Research Submarine
 60107,City,Fire Truck
 60182,City,Camper Caravan
