@@ -199,7 +199,7 @@ minp: 2, maxp: 4, time: 90, skill: 3.5, luck: 2.5},
 
 {name: "Planet Unknown", num: 258779,
 minp: 1, maxp: 6, time: 80, skill: 2, luck: 3,
-exp: "<i>@393509|Supermoon@, @437800|New Planets and Corporations@</i>" },
+exp: "<i>@393509|Supermoon@</i>, @437800|New Planets and Corporations@" },
 
 {name: "Point Salad", num: 274960,
 minp: 2, maxp: 6, time: 15, skill: 2, luck: 3.5},
