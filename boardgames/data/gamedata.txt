@@ -88,17 +88,11 @@ minp: 2, maxp: 5, time: 60, skill: 2, luck: 3 },
 {name: "Egizia", num: 58421,
 minp: 2, maxp: 4, time: 120, skill: 2.5, luck: 3 },
 
-{name: "Eketorp", num: 6281,
-minp: 3, maxp: 6, time: 45, skill: 2, luck: 3 },
-
 {name: "Emerald", num: 311294,
 minp: 2, maxp: 5, time: 45, skill: 2, luck: 2 },
 
 {name: "Endeavor", num: 33160,
 minp: 2, maxp: 5, time: 60, ttext: "60-90", skill: 3, luck: 1 },
-
-{name: "Fairy Tale", num: 13823,
-minp: 2, maxp: 5, time: 20, skill: 2, luck: 3 },
 
 {name: "Finca", num: 40628,
 minp: 2, maxp: 4, time: 45, skill: 2, luck: 2,
