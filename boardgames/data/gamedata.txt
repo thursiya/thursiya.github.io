@@ -24,10 +24,14 @@ minp: 3, maxp: 5, time: 90, skill: 3, luck: 2 },
 
 {name: "Ark Nova", num: 342942,
 minp: 1, maxp: 4, time: 120, ttext: "90-150", skill: 3.5, luck: 2.5,
-exp: "<i>@368966|Marine Worlds@</i>" },
+exp: "@368966|Marine Worlds@" },
 
 {name: "Attika", num: 8051,
 minp: 2, maxp: 4, time: 60, skill: 2, luck: 3 },
+
+{name: "Beyond the Sun", num: 317985,
+minp: 2, maxp: 4, time: 120, ttext: "90-150", skill: 3.5, luck: 2.5,
+exp: "<i>@378291|Leaders of the New Dawn@</i>" },
 
 {name: "Broom Service:<br />The Card Game", num: 192735,
 minp: 3, maxp: 6, time: 30, skill: 2, luck: 3 },
@@ -82,6 +86,11 @@ minp: 2, maxp: 4, time: 45, skill: 2, luck: 3,
 exp: "<i>@40834|Intrigue@<br />Many others</i>",
 enote: "Dominion: Intrigue is playable alone." },
 
+{name: "Dune: Imperium", num: 316554,
+minp: 1, maxp: 4, time: 90, skill: 3.5, luck: 2,
+exp: "<i>@342031|Rise of Ix@<br />@367466|Immortality@<br />@426129|Bloodlines@<br />@472822|Conspiracy@</i>",
+enote: "Dune: Imperium - Uprising is a standalone/variant game compatible with the expansions." },
+
 {name: "Edel, Stein & Reich", num: 5781,
 minp: 2, maxp: 5, time: 60, skill: 2, luck: 3 },
 
@@ -93,6 +102,10 @@ minp: 2, maxp: 5, time: 45, skill: 2, luck: 2 },
 
 {name: "Endeavor", num: 33160,
 minp: 2, maxp: 5, time: 60, ttext: "60-90", skill: 3, luck: 1 },
+
+{name: "Faraway", num: 385761,
+minp: 2, maxp: 6, time: 20, skill: 2, luck: 2,
+exp: "<i>@425029|People from Below@<br />@451708|Under Starry Skies@<br />@471430|Beyond the Veil@</i>" },
 
 {name: "Finca", num: 40628,
 minp: 2, maxp: 4, time: 45, skill: 2, luck: 2,
@@ -122,7 +135,7 @@ minp: 2, maxp: 5, time: 45, skill: 2, luck: 3 },
 
 {name: "Innovation", num: 63888,
 minp: 2, maxp: 4, time: 90, ttext: "30-90", skill: 3, luck: 3,
-exp: "@92898|Echoes of the Past@<br /><i>@122323|Figures in the Sand@</i>" },
+exp: "@92898|Echoes of the Past@<br /><i>@122323|Figures in the Sand@<br />@150669|Cities of Destiny@<br />@185796|Artifacts of History@</i>" },
 
 {name: "In the Year of the Dragon", num: 31594,
 minp: 2, maxp: 5, time: 90, skill: 3, luck: 1,
@@ -230,7 +243,11 @@ exp: "<i>@40688|Alea Treasure Chest@</i>" },
 
 {name: "Sea Salt & Paper", num: 367220,
 minp: 2, maxp: 4, time: 40, skill: 2.5, luck: 4,
-exp: "<i>@396545|Extra Salt@ @442250|Extra Pepper@</i>" },
+exp: "<i>@396545|Extra Salt@, @442250|Extra Pepper@</i>" },
+
+{name: "SETI: Search for Extraterrestrial Intelligence", num: 418059,
+minp: 1, maxp: 4, time: 150, skill: 4, luck: 2.5,
+exp: "<i>@445048|Space Agencies@</i>" },
 
 {name: "Shogun", num: 20551,
 minp: 3, maxp: 5, time: 120, skill: 4, luck: 2.5,
@@ -283,7 +300,7 @@ minp: 4, maxp: 4, ptext: "4<br />(3-6)", pnote: "Tichu really only plays well wi
 
 {name: "Ticket to Ride: Europe", num: 14996,
 minp: 2, maxp: 5, time: 90, skill: 2, luck: 4,
-exp: "<i>1 official<br />Many variants</i>" },
+exp: "@53383|Europa 1912@<br /><i>Many variant maps</i>" },
 
 {name: "Tigris & Euphrates", num: 42,
 minp: 2, maxp: 4, time: 120, skill: 3, luck: 3,
@@ -322,12 +339,8 @@ minp: 3, maxp: 4, time: 60, skill: 3, luck: 3.5 },
 
 {name: "The White Castle", num: 371942,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2,
-exp: "@420321|<i>Matcha</i>@"},
+exp: "@420321|Matcha@"},
 
 {name: "Yokohama", num: 196340,
 minp: 2, maxp: 4, time: 90, skill: 4, luck: 2}
 ]
-
-
-
-
