@@ -7,7 +7,7 @@
 10753,Super Heroes,The Joker Batcave Attack
 10789,Super Heroes,Spider-Man's Car and Doc Ock
 11005,Classic,900 Piece Box
-11509,Botanicals,Flowering Cactus
+11509,Botanical Collection,Flowering Cactus
 21118,Minecraft,The Mine
 21151,Minecraft,The End Battle
 21159,Minecraft,The Pillager Outpost
