@@ -7,6 +7,7 @@
 10753,Super Heroes,The Joker Batcave Attack
 10789,Super Heroes,Spider-Man's Car and Doc Ock
 11005,Classic,900 Piece Box
+11509,Botanicals,Flowering Cactus
 21118,Minecraft,The Mine
 21151,Minecraft,The End Battle
 21159,Minecraft,The Pillager Outpost
@@ -26,9 +27,13 @@
 21254,Minecraft,The Turtle Beach House
 21259,Minecraft,The Pirate Ship Voyage
 21266,Minecraft,The Nether Lava Battle
+21267,Minecraft,The Illager Desert Patrol
 21268,Minecraft,The Baby Pig House
 21275,Minecraft,The TNT Jungle House
 21281,Minecraft,Baby Pig's Birthday Party
+21585,Minecraft,Chicken Farm
+21586,Minecraft,The Pale Garden
+21594,Minecraft,The Skeleton
 30384,Star Wars,Mini Snowspeeder
 30393,Minecraft,Steve & Creeper
 30394,Minecraft,Alex & Skeleton
@@ -105,6 +110,7 @@
 71780,Ninjago,Kai's Ninja Race Car EVO
 71792,Ninjago,Sora's Transforming Mech Bike Racer
 71821,Ninjago,Cole's Titan Dragon Mech
+72041,Super Mario,Party at Toad's House
 75004,Star Wars,Z-95 Headhunter
 75030,Star Wars,Han Solo Millennium Falcon Microfighter
 75040,Star Wars,General Grievous' Wheel Bike
@@ -146,6 +152,7 @@
 76207,Super Heroes,Attack on New Asgard
 76245,Super Heroes,Ghost Rider Mech & Bike
 76284,Super Heroes,Green Goblin
+76336,Super Heroes,Spider-Man Car vs. Venomized Wolverine
 76906,Speed Champions,1970 Ferrari 512 M
 76908,Speed Champions,Lamborghini Countach
 76916,Speed Champions,Porsche 963
