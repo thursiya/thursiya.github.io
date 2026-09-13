@@ -158,7 +158,9 @@
 76916,Speed Champions,Porsche 963
 76918,Speed Champions,McLaren Solus GT & McLaren F1 LM
 76919,Speed Champions,2023 McLaren Formula 1 Race Car
+76923,Speed Champions,Lamborghini Lambo V12 Vision GT Super Car
 76943,Jurassic World,Pteranodon Chase
 76962,Jurassic World,Baby Bumpy: Ankylosaurus
 77238,Speed Champions,Lamborghini Revuelto & Huracán STO
 77242,Speed Champions,Ferrari SF-24 F1 Race Car
+77261,Speed Champions,Ferrari 499P
