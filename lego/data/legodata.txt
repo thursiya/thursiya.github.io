@@ -47,6 +47,7 @@
 30700,Ninjago,Arin vs. Dragonian Battle
 30708,Star Wars,Millenium Falcon
 30710,Technic,Skid-Steer Loader
+30718,Creator,Cataclaws Snow Adventure
 30719,City,Go-Kart Racer
 30735,Technic,Hot Rod Car
 31056,Creator,Green Truck
