@@ -49,6 +49,7 @@
 30710,Technic,Skid-Steer Loader
 30718,Creator,Cataclaws Snow Adventure
 30719,City,Go-Kart Racer
+30723,Ninjago,Cole's Car
 30735,Technic,Hot Rod Car
 31056,Creator,Green Truck
 31058,Creator,Mighty Dinosaurs
